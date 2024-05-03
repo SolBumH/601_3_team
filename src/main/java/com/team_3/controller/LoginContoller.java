@@ -27,6 +27,8 @@ public class LoginContoller {
 		System.out.println("id : " + user.getLoginid());
 		System.out.println("pw : " + user.getPw());
 		List<UserDTO> dto = loginService.findByLoginid(user.getLoginid(), user.getPw());
+		Long i = loginService.countByLoginid(user.getLoginid());
+		System.out.println("i : " + i);
 		System.out.println(dto);
 		System.out.println(dto.size());
 		return "redirect:/login";

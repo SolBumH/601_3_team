@@ -9,4 +9,8 @@ import com.team_3.dto.UserDTO;
 public interface LoginRepository extends JpaRepository<UserDTO, Integer>{
 
 	List<UserDTO> findByLoginidAndPw(String loginid, String pw);
+
+	Long countByLoginid(String loginid);
+
+	Long countByLoginid(UserDTO user);
 }

@@ -17,5 +17,13 @@ public class LoginService {
 	public List<UserDTO> findByLoginid(String loginid, String pw) {
 		return loginRepository.findByLoginidAndPw(loginid, pw);
 	}
+
+	public Long countByLoginid(String loginid) {
+		return loginRepository.countByLoginid(loginid);
+	}
+
+	public Long countByLoginid(UserDTO user) {
+		return loginRepository.countByLoginid(user);
+	}
 	
 }
