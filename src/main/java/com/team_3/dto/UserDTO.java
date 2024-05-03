@@ -19,24 +19,24 @@ public class UserDTO {
 	@Id // 회원번호, PK
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "user_no")
-	private int userNo;
+	private Integer userno;
 	
 	@Column(name = "login_id") // 로그인 아이디
-	private String loginId;
+	private String loginid;
 	
 	@Column(name = "pw") // 비밀번호
 	private String pw;
 
 	@Column(name = "fir_yn") // 계정 잠금 여부
-	private String firYN;
+	private String firyn;
 	
 	@Column(name ="pw_err_cnt") // 비밀번호 오류 수
-	private int pwErrCnt;
+	private Integer pwerrcnt;
 	
 	@Column(name = "rct_acc_dt") // 최근 접속일
 	@Temporal(TemporalType.TIMESTAMP)
-	private LocalDateTime rctAccDt;
+	private LocalDateTime rctaccdate;
 	
 	@Column(name = "admin_yn") // 관리자 여부
-	private String adminYN;
+	private String adminyn;
 }
