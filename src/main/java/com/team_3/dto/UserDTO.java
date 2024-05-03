@@ -18,7 +18,8 @@ import lombok.Data;
 public class UserDTO {
 	@Id // 회원번호, PK
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private String userNo;
+	@Column(name = "user_no")
+	private int userNo;
 	
 	@Column(name = "login_id") // 로그인 아이디
 	private String loginId;
