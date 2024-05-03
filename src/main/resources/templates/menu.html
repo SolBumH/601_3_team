@@ -1,8 +1,16 @@
 <!DOCTYPE html>
 <html lang="ko" xmlns:th="http://www.thymeleaf.org">
 <body>
-	<th:block th:fragment="headImport">
+	<th:block th:fragment="scriptImport">
+		<!-- 제이쿼리 -->
 		<script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+		<!-- Toast UI Script -->
+		<script src="https://uicdn.toast.com/editor/latest/toastui-editor-all.min.js"></script>
+	</th:block>
+	
+	<th:block th:fragment="headImport">
+		<!-- Toast UI CSS -->
+		<link rel="stylesheet" href="https://uicdn.toast.com/editor/latest/toastui-editor.min.css" />
 	</th:block>
 
 	<th:block th:fragment="menu">
@@ -16,5 +24,7 @@
 			</ul>
 		</nav>
 	</th:block>
+	
+	
 </body>
 </html>
