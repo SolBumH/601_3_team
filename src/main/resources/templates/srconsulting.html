@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="ko">
+<head>
+<meta charset="UTF-8">
+<script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.11/index.global.min.js"></script>
+<script type="text/javascript">
+	document.addEventListener('DOMContentLoaded', function() {
+    const calendarEl = document.getElementById('calendar')
+    const calendar = new FullCalendar.Calendar(calendarEl, {
+      initialView: 'dayGridMonth', // 초기화면에 보이는 캘린더 화면
+      initialDate: '2024-05-03', // 초기 날짜 설정 (설정하지 않으면 오늘 날짜가 보인다.)
+      locale: 'ko', // 한국어로 변경
+      //selectable : true, // 달력 드래그 설정
+      //navLinks: true, // 날짜를 선택하면 Day 캘린더나 Week 캘린더로 링크
+      //editable: true, // 수정 가능?
+      nowIndicator: true, // 현재 시간 마크
+    })
+    calendar.render();
+  })
+
+</script>
+<title>로그인</title>
+</head>
+<body>
+	<th:block th:insert="~{menu.html::menu}">메뉴 들어가는 곳</th:block>
+	<th:block th:insert="~{menu.html::consulting}">상담 목록</th:block>
+	
+	심리상담 프로그램 신청<br>
+	
+	<div id='calendar'></div>
+	
+	
+	
+	<script src="../js/login.js"></script>
+</body>
+</html>
