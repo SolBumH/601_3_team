@@ -1,7 +1,5 @@
 package com.team_3.controller;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -26,11 +24,6 @@ public class LoginContoller {
 	public String login(UserDTO user) {
 		System.out.println("id : " + user.getLoginid());
 		System.out.println("pw : " + user.getPw());
-		List<UserDTO> dto = loginService.findByLoginid(user.getLoginid(), user.getPw());
-		Long i = loginService.countByLoginid(user.getLoginid());
-		System.out.println("i : " + i);
-		System.out.println(dto);
-		System.out.println(dto.size());
 		return "redirect:/login";
 	}
 	
