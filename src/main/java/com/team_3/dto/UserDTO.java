@@ -6,11 +6,11 @@ import lombok.Data;
 
 @Data
 public class UserDTO {
-	private Integer userno;
-	private String loginid;
+	private Integer user_no;
+	private String login_id;
 	private String pw;
-	private String firyn;
-	private Integer pwerrcnt;
-	private LocalDateTime rctaccdate;
-	private String adminyn;
+	private String fir_yn;
+	private Integer pw_err_cnt;
+	private LocalDateTime rct_acc_dt;
+	private String admin_yn;
 }
