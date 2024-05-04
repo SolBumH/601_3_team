@@ -1,0 +1,10 @@
+@charset "UTF-8";
+.fc-day-sun a{
+	color: red;
+	text-decoration: none;
+}
+
+.fc-day-sat a{
+	color: blue;
+	text-decoration: none;
+}
