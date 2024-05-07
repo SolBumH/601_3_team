@@ -23,7 +23,7 @@ public class CounselingController {
 	
 	@GetMapping("/jcCounseling")
 	public String jcCounseling() {
-		return "sangdam";
+		return "jcCounseling";
 	}
 	
 	@GetMapping("/jkCounseling")
