@@ -15,7 +15,7 @@ public class LoginContoller {
 	@Autowired
 	private LoginService loginService;
 
-	@GetMapping("/loginPage")
+	@GetMapping("/login")
 	public String login() {
 		return "login";
 	}
@@ -32,5 +32,20 @@ public class LoginContoller {
 	public String test(Model model) {
 		model.addAttribute("list", loginService.list());
 		return "test";
+	}
+	
+	
+	
+	@GetMapping("/join")
+	public String join() {
+		return "join";
+	}
+	
+	@PostMapping("/joinProc")
+	public String joinProc(UserDTO userDTO) {
+		userDTO.setLogin_id(userDTO.getUsername());
+		System.out.println(userDTO.toString());
+		loginService.joinProcess(userDTO);
+		return "redirect:/login";
 	}
 }
