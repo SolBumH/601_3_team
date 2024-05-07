@@ -6,8 +6,7 @@
 <th:block th:insert="~{menu.html::headImport}">CDN CSS 링크</th:block>
 </head>
 <body>
-	<div id="content"></div>
-	
+	[[${list}]]	
 	<th:block th:insert="~{menu.html::scriptImport}">CDN JS 링크</th:block>
 	<script src="../js/login.js"></script>
 </body>

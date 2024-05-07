@@ -1,16 +1,19 @@
 package com.team_3.repository;
 
-import java.util.List;
-
-import org.springframework.data.jpa.repository.JpaRepository;
+import org.apache.ibatis.session.SqlSession;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 
 import com.team_3.dto.UserDTO;
 
-public interface LoginRepository extends JpaRepository<UserDTO, Integer>{
+@Repository
+public class LoginRepository {
+	
+	@Autowired
+	private SqlSession sqlSession;
 
-	List<UserDTO> findByLoginidAndPw(String loginid, String pw);
+	public UserDTO list() {
+		return sqlSession.selectOne("test.test");
+	}
 
-	Long countByLoginid(String loginid);
-
-	Long countByLoginid(UserDTO user);
 }

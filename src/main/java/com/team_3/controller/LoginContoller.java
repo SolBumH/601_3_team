@@ -1,9 +1,8 @@
 package com.team_3.controller;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
@@ -16,7 +15,7 @@ public class LoginContoller {
 	@Autowired
 	private LoginService loginService;
 
-	@GetMapping("/login")
+	@GetMapping("/loginTest")
 	public String login() {
 		return "login";
 	}
@@ -24,18 +23,14 @@ public class LoginContoller {
 	@PostMapping("/login")
 	// public String login(@RequestParam(name = "id") String id, @RequestParam(name = "pw") String pw) {
 	public String login(UserDTO user) {
-		System.out.println("id : " + user.getLoginid());
+		System.out.println("id : " + user.getLogin_id());
 		System.out.println("pw : " + user.getPw());
-		List<UserDTO> dto = loginService.findByLoginid(user.getLoginid(), user.getPw());
-		Long i = loginService.countByLoginid(user.getLoginid());
-		System.out.println("i : " + i);
-		System.out.println(dto);
-		System.out.println(dto.size());
 		return "redirect:/login";
 	}
 	
 	@GetMapping("/test")
-	public String test() {
+	public String test(Model model) {
+		model.addAttribute("list", loginService.list());
 		return "test";
 	}
 }
