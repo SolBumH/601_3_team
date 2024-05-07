@@ -15,7 +15,7 @@ public class LoginContoller {
 	@Autowired
 	private LoginService loginService;
 
-	@GetMapping("/login")
+	@GetMapping("/loginTest")
 	public String login() {
 		return "login";
 	}
