@@ -8,9 +8,10 @@ import lombok.Data;
 public class UserDTO {
 	private Integer user_no;
 	private String login_id;
-	private String pw;
+	private String username;
+	private String password;
 	private String fir_yn;
 	private Integer pw_err_cnt;
 	private LocalDateTime rct_acc_dt;
-	private String admin_yn;
+	private String role;
 }
