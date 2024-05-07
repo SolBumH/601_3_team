@@ -19,7 +19,12 @@ public class CounselingController {
 	
 	@GetMapping("/jdCounseling")
 	public String jdCounseling() {
-		return "sangdam";
+		return "groupsangdam";
+	}
+	
+	@GetMapping("/groupDetail.html")
+	public String groupDetail() {
+		return "groupDetail.html";
 	}
 	
 	@GetMapping("/jcCounseling")
