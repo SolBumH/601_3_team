@@ -15,17 +15,17 @@ public class LoginContoller {
 	@Autowired
 	private LoginService loginService;
 
-	@GetMapping("/loginTest")
+	@GetMapping("/loginPage")
 	public String login() {
 		return "login";
 	}
 	
-	@PostMapping("/login")
+	@PostMapping("/loginPost")
 	// public String login(@RequestParam(name = "id") String id, @RequestParam(name = "pw") String pw) {
 	public String login(UserDTO user) {
 		System.out.println("id : " + user.getLogin_id());
-		System.out.println("pw : " + user.getPw());
-		return "redirect:/login";
+		System.out.println("pw : " + user.getPassword());
+		return "redirect:/index";
 	}
 	
 	@GetMapping("/test")

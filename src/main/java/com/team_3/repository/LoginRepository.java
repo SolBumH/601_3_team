@@ -15,5 +15,8 @@ public class LoginRepository {
 	public UserDTO list() {
 		return sqlSession.selectOne("test.test");
 	}
-
+	
+	public UserDTO findByUsername(String username) {
+		return sqlSession.selectOne("test.findByUsername", username);
+	}
 }
