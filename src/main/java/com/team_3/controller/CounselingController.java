@@ -25,4 +25,9 @@ public class CounselingController {
 	public String jcCounseling() {
 		return "jcCounseling";
 	}
+	
+	@GetMapping("/jkCounseling")
+	public String jkCounseling() {
+		return "sangdam";
+	}
 }
