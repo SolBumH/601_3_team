@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<body>
+	<th:block th:fragment="scriptImport">
+		<!-- 제이쿼리 -->
+		<script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+		<!-- Toast UI Script -->
+		<script src="https://uicdn.toast.com/editor/latest/toastui-editor-all.min.js"></script>
+	</th:block>
+	
+	<th:block th:fragment="headImport">
+		<!-- Toast UI CSS -->
+		<link rel="stylesheet" href="https://uicdn.toast.com/editor/latest/toastui-editor.min.css" />
+	</th:block>
+
+	<th:block th:fragment="menu">
+		<nav>
+			<ul>
+				<li><a th:text="대학안내" th:href="@{#}">대학안내</a></li>
+				<li><a th:text="입학안내" th:href="@{#}">입학안내</a></li>
+				<li><a th:text="학과소개" th:href="@{#}">학과소개</a></li>
+				<li><a th:text="상담예약" th:href="@{/srCounseling}">상담예약</a></li>
+				<li><a th:text="로그인" th:href="@{/login}">로그인</a></li>
+			</ul>
+		</nav>
+	</th:block>
+	
+	<th:block th:fragment="consulting">
+		<nav>
+			<ul>
+				<li><a th:text="심리검사" th:href="@{/srCounseling}">심리검사</a></li>
+				<li><a th:text="전문상담" th:href="@{/jmCounseling}">전문상담</a></li>
+				<li><a th:text="집단상담" th:href="@{/jdCounseling}">집단상담</a></li>
+				<li><a th:text="취업상담" th:href="@{/jcCounseling}">취업상담</a></li>
+			</ul>
+		</nav>
+	</th:block>
+	
+	
+</body>
+</html>

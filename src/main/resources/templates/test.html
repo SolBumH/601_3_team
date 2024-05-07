@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="ko">
+<head>
+<meta charset="UTF-8">
+<title>테스트</title>
+<th:block th:insert="~{menu.html::headImport}">CDN CSS 링크</th:block>
+</head>
+<body>
+	[[${list}]]	
+	<th:block th:insert="~{menu.html::scriptImport}">CDN JS 링크</th:block>
+	<script src="../js/login.js"></script>
+</body>
+</html>

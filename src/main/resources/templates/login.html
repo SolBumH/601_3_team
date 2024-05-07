@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="ko">
+<head>
+<meta charset="UTF-8">
+<title>로그인</title>
+<th:block th:insert="~{menu.html::headImport}">CDN CSS 링크</th:block>
+</head>
+<body>
+	<th:block th:insert="~{menu.html::menu}">메뉴 들어가는 곳</th:block>
+	<div class="login">
+		<form method="post" action="/login">
+			<input type="text" name="loginid" />
+			<input type="password" name="pw" />
+			<button type="submit" th:text="로그인">로그인버튼</button>
+		</form>
+	</div>
+	<div>
+		<a th:text="'아이디 찾기'" th:href="@{/findMyId}">아이디찾기</a>
+		<a th:text="'비밀번호 찾기'" th:href="@{/findMyPw}">비번찾기</a>
+	</div>
+	
+	<script src="../js/login.js"></script>
+	<th:block th:insert="~{menu.html::scriptImport}">CDN JS 링크</th:block>
+</body>
+</html>
