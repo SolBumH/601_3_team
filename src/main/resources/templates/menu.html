@@ -16,33 +16,13 @@
 			src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
 			integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
 			crossorigin="anonymous"></script>
+			<th:block th:insert="~{menu.html::scriptImport}">CDN JS 링크</th:block>
 	</th:block>
 
-   <th:block th:fragment="menu">
-<nav class="navbar navbar-expand-lg" style="padding-top: 30px; padding-bottom: 30px; background-color: darkgrey;">
-  <div class="container justify-content-center">
-    <a class="navbar-brand justify-content-center" href="#" style="margin: 0 20px;font-size: 30px;">
-      <img src="/img/logo.png" width="50" height="40" class="d-inline-block align-text-top">
-      3조대학교
-    </a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-    </button>
-    
-      <ul class="nav mb-2 mb-lg-0">
-    <li class="nav-item" style="margin: 0 20px;">
-        <a class="nav-link active text-dark" aria-current="page" href="#" style="font-weight: bold; ">대학안내</a>
-    </li>
-    <li class="nav-item" style="margin: 0 20px;">
-        <a class="nav-link active text-dark" aria-current="page" href="#" style="font-weight: bold; ">입학안내</a>
-    </li>
-    <li class="nav-item" style="margin: 0 20px;">
-        <a class="nav-link active text-dark" aria-current="page" href="#" style="font-weight: bold;">학과소개</a>
-    </li>
-    
-
 	<th:block th:fragment="menu">
-		<nav class="navbar navbar-expand-lg"
-			style="padding-top: 40px; padding-bottom: 40px; background-color: darkgrey;">
+
+		<nav class="navbar navbar-expand-lg bg-body-tertiary"
+			style="padding-top: 40px; padding-bottom: 40px;">
 			<div class="container justify-content-center">
 				<a class="navbar-brand justify-content-center" href="#"
 					style="margin: 0 20px; font-size: 30px;"> <img
@@ -76,18 +56,18 @@
 								<ul class="col-sm-12"
 									style="list-style-type: none; padding: 0; display: flex; justify-content: center;">
 									<li style="margin: 0; padding: 0 40px;"><a
-										class="dropdown-item" href="#" style="font-weight: bold;">심리상담</a></li>
+										class="dropdown-item" href="/srCounseling" style="font-weight: bold;">심리상담</a></li>
 									<li style="margin: 0; padding: 0 40px;"><a
-										class="dropdown-item" href="#" style="font-weight: bold;">전문상담</a></li>
+										class="dropdown-item" href="/jmCounseling" style="font-weight: bold;">전문상담</a></li>
 									<li style="margin: 0; padding: 0 40px;"><a
-										class="dropdown-item" href="#" style="font-weight: bold;">집단상담</a></li>
+										class="dropdown-item" href="/jdCounseling" style="font-weight: bold;">집단상담</a></li>
 									<li style="margin: 0; padding: 0 40px;"><a
-										class="dropdown-item" href="#" style="font-weight: bold;">취업상담</a></li>
+										class="dropdown-item" href="/jcCounseling" style="font-weight: bold;">취업상담</a></li>
+										<li style="margin: 0; padding: 0 40px;"><a
+										class="dropdown-item" href="/jkCounseling" style="font-weight: bold;">교수상담</a></li>
 								</ul>
 							</li>
-						</ul>
-					</li>
-					
+						</ul></li>
 					<li class="nav-item" style="margin: 0 20px;"><a
 						class="nav-link active text-dark" aria-current="page" href="#"
 						style="font-weight: bold;">커뮤니티</a></li>
@@ -95,11 +75,12 @@
 						class="nav-link active text-dark" aria-current="page" href="#"
 						style="font-weight: bold;">공지사항</a></li>
 					<li class="nav-item" style="margin: 0 20px;"><a
-						class="nav-link active text-dark" aria-current="page" th:href="@{/loginPage}"
+						class="nav-link active text-dark" aria-current="page" href="#"
 						style="font-weight: bold;">로그인</a></li>
 				</ul>
 			</div>
 		</nav>
 	</th:block>
+
 </body>
 </html>
