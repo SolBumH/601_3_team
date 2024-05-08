@@ -20,8 +20,14 @@ public class CounselingController {
 	}
 	
 	@GetMapping("/jdCounseling")
-	public String jdCounseling() {
-		return "groupsangdam";
+	public String jdCounseling(Model model) {
+		model.addAttribute("counselingTitle", "집단 상담 안내");
+		return "group";
+	}
+	
+	@GetMapping("/groupsangdam.html")
+	public String groupSangdam() {
+		return "groupsangdam.html";
 	}
 	
 	@GetMapping("/groupDetail.html")

@@ -5,51 +5,22 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <!-- 부트 스트랩 -->
 <title>집단상담</title>
-<link
-   href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
-   rel="stylesheet"
-   integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
-   crossorigin="anonymous">
-<!-- 부트스트랩 -->
+
   <th:block th:insert="~{menu.html::headImport}">CDN CSS 링크</th:block>
   <link rel="stylesheet" href="/css/jcCounseling.css">
 
 </head>
-<style>
-.explain {
-	margin-top: 50px;
-	margin-left: 50px;
-}
-
-.request {
-	margin-top: 100px;
-	margin-left: 50px;
-}
-
-.container {
-	margin-top: 30px;
-}
-
-  .card-body {
-     height: 300px !important; /* 카드의 높이를 조정합니다. */
-}
-
-.card-body img {
-	width: 100%; /* 이미지의 가로 길이를 100%로 설정하여 가로 길이를 늘립니다. */
-	height: 220px; /* 이미지의 세로 길이를 자동으로 조정합니다. */
-}
-
-</style>
 
 <body>
    <th:block th:insert="~{menu.html::menu}">메뉴 들어가는 곳</th:block>
    <!-- <th:block th:insert="~{menu.html::consulting}">상담 목록</th:block> -->
    <div class="explain">
       <h3>집단상담 프로그램이란?</h3>
-      <p>  자기이해, 대인관계증진, 정서 및 스트레스 관리 등의 주제로 비슷한 관심을 가진 학생들이 상담전문가와 함께 소그룹
+      <p>  자기이해, 대인관계증진, 정서 및 스트레스 관리 등의 주제로 <br>
+      	   비슷한 관심을 가진 학생들이 상담전문가와 함께 소그룹
            집단상담을 통해 새로운 관계경험, 자기성장 및 자아실현, 정신건강을 도모하는 프로그램입니다.<br>
            한 사람의 상담자가 동시에 몇 명의 내담자들을 상대로 상담하여 내담자들의 관심사, 대인관계, 사고 및 행동양식의 변화를 가져오는 활동입니다. <br>
-           그러나 상담자가 개인적인 능력에만 의존하는 것이 아니라 집단구성원간의 상호 작용적 관계(역동적 관계-Group Dynamics)를 바탕으로 내담자 개개인의 문제해결 및 변화가 이루어지는 '집단적 접근방법'입니다.</p>
+           그러나 상담자가 개인적인 능력에만 의존하는 것이 아니라 집단구성원간의 상호 작용적 관계(역동적 관계-Group Dynamics)를 바탕으로<br> 내담자 개개인의 문제해결 및 변화가 이루어지는 '집단적 접근방법'입니다.</p>
    </div>
 
    <div class="request">
@@ -63,6 +34,11 @@
                     <div class="card-body" style="height: 200px">
                         <a href="groupDetail.html"><img alt="" src="https://via.placeholder.com/150"></a>
                     </div>
+                    <div>
+                    <p>일정 : 2024년 05월 20일<br>
+                    	프로그램명 : 룰루랄랄라
+                    </p>
+                    </div>
                 </div>
             </div>
         </th:block>
@@ -73,10 +49,6 @@
 
    </div>
   <th:block th:insert="~{menu.html::scriptImport}">CDN JS 링크</th:block>
-   <script
-      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
-      integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
-      crossorigin="anonymous"></script>
    <!-- 부트스트랩 -->
 </body>
 </html>
