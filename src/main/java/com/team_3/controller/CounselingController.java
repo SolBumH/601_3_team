@@ -30,14 +30,14 @@ public class CounselingController {
 		return "groupsangdam.html";
 	}
 	
-	@GetMapping("/groupDetail.html")
+	@GetMapping("/groupDetail")
 	public String groupDetail() {
-		return "groupDetail.html";
+		return "groupDetail";
 	}
 	
-	@GetMapping("/groupRequest.html")
+	@GetMapping("/groupRequest")
 	public String groupRequest() {
-		return "groupRequest.html";
+		return "groupRequest";
 	}
 	
 	@GetMapping("/jcCounseling")
@@ -49,6 +49,6 @@ public class CounselingController {
 	@GetMapping("/jkCounseling")
 	public String jkCounseling(Model model) {
 		model.addAttribute("counselingTitle", "교수 상담 안내");
-		return "sangdam";
+		return "jkCounseling";
 	}
 }
