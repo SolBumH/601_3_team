@@ -26,6 +26,11 @@ public class CounselingController {
 		return "groupDetail.html";
 	}
 	
+	@GetMapping("/groupRequest.html")
+	public String groupRequest() {
+		return "groupRequest.html";
+	}
+	
 	@GetMapping("/jcCounseling")
 	public String jcCounseling() {
 		return "jcCounseling";
