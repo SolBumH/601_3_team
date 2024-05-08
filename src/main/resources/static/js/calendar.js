@@ -1,3 +1,6 @@
+const header = $("meta[name='_csrf_header']").attr('content');
+const token = $("meta[name='_csrf']").attr('content');
+
 document.addEventListener('DOMContentLoaded', function() {
 	let calendarEl = document.getElementById('calendar')
 	let calendar = new FullCalendar.Calendar(calendarEl, {
@@ -12,24 +15,21 @@ document.addEventListener('DOMContentLoaded', function() {
 		editable: true, // 기존 예약을 옮길수 있음
 		select: function(arg) {
 			click(arg.startStr);
-
-
 			calendar.unselect();
 		} //달력 빈칸클릭시 event 추가 가능
 	});
-
 	calendar.render();
-
-
 });
+
 function click(arg) {
 	$.ajax({
 		type: 'post',
 		url: '/SrController',
 		dataType: 'json',
-		data: {
-			start: arg,
+		beforeSend: function(xhr) {
+			xhr.setRequestHeader(header, token);
 		},
+		data: { 'start': arg },
 		success: function(data) {
 			console.log(data);
 		},
@@ -37,5 +37,4 @@ function click(arg) {
 			console.log(error);
 		}
 	});
-	alert(arg);
 }

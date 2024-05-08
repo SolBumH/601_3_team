@@ -22,7 +22,11 @@
       <!-- 부트스트랩 -->
       <link rel="stylesheet" type="text/css" href="/css/menu.css">
    </th:block>
-
+   
+    <th:block th:fragment="metaImport">
+    	<meta name="_csrf_header" th:content="${_csrf.headerName}">
+		<meta name="_csrf" th:content="${_csrf.token}">
+	</th:block>
 
 	<th:block th:fragment="menu">
 		<nav class="navbar navbar-expand-lg">
