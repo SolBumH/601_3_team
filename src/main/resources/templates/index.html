@@ -8,11 +8,6 @@
 <body>
 	<th:block th:insert="~{menu.html::menu}">메뉴 들어가는 곳</th:block>
 	<h1>메인페이지</h1>
-	[[${id}]]
-	[[${role}]]
-	<p sec:authentication="name">asd</p>
-	<p sec:authentication="principal.authorities">asd</p>
-	
 	<th:block th:insert="~{menu.html::scriptImport}">CDN JS 링크</th:block>
 </body>
 </html>
