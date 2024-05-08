@@ -2,51 +2,143 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<link rel="stylesheet" href="https://uicdn.toast.com/grid/latest/tui-grid.css" />
-<script src="https://uicdn.toast.com/grid/latest/tui-grid.js"></script>
+<link rel="stylesheet" href="https://uicdn.toast.com/tui-grid/latest/tui-grid.css" />
+<link rel="stylesheet" href="https://uicdn.toast.com/tui.pagination/latest/tui-pagination.css" />
+<script src="https://uicdn.toast.com/tui.pagination/latest/tui-pagination.js"></script>
+<script src="https://uicdn.toast.com/tui-grid/latest/tui-grid.js"></script>
+
 <title>Insert title here</title>
 </head>
 
 <script type="text/javascript">
-const instance = new Grid({
-	  el: document.getElementById('grid'), // Container element
-	  columns: [
-	    {
-	      header: 'Name',
-	      name: 'name'
-	    },
-	    {
-	      header: 'Artist',
-	      name: 'artist'
-	    },
-	    {
-	      header: 'Release',
-	      name: 'release'
-	    },
-	    {
-	      header: 'Genre',
-	      name: 'genre'
-	    }
-	  ],
-	  data: [
-	    {
-	      name: 'Beautiful Lies',
-	      artist: 'Birdy',
-	      release: '2016.03.26',
-	      genre: 'Pop'
-	    }
-	  ]
-	});
-
-	instance.resetData(newData); // Call API of instance's public method
-
-	Grid.applyTheme('striped'); // Call API of static method
 
 </script>
+
 
 <body>
 
 <div id="grid"></div>
 
+
 </body>
+<script>
+
+const gridData = [
+	  {
+	    id: '10012',
+	    city: 'Seoul',
+	    country: 'South Korea'
+	  },
+	  {
+	    id: '10013',
+	    city: 'Tokyo',
+	    country: 'Japan'    
+	  },
+	  {
+	    id: '10014',
+	    city: 'London',
+	    country: 'England'
+	  },
+	  {
+		    id: '10013',
+		    city: 'Tokyo',
+		    country: 'Japan'    
+		  },
+		  {
+			    id: '10013',
+			    city: 'Tokyo',
+			    country: 'Japan'    
+			  },
+			  {
+				    id: '10013',
+				    city: 'Tokyo',
+				    country: 'Japan'    
+				  },
+				  {
+					    id: '10013',
+					    city: 'Tokyo',
+					    country: 'Japan'    
+					  },
+					  {
+						    id: '10013',
+						    city: 'Tokyo',
+						    country: 'Japan'    
+						  },
+						  {
+							    id: '10013',
+							    city: 'Tokyo',
+							    country: 'Japan'    
+							  },
+							  {
+								    id: '10013',
+								    city: 'Tokyo',
+								    country: 'Japan'    
+								  },
+								  
+								  {
+									    id: '10013',
+									    city: 'Tokyo',
+									    country: 'Japan'    
+									  },
+									  {
+										    id: '10013',
+										    city: 'Tokyo',
+										    country: 'Japan'    
+										  },
+										  {
+											    id: '10013',
+											    city: 'Tokyo',
+											    country: 'Japan'    
+											  },
+											  {
+												    id: '10013',
+												    city: 'Tokyo',
+												    country: 'Japan'    
+												  },
+												  {
+													    id: '10013',
+													    city: 'Tokyo',
+													    country: 'Japan'    
+													  },
+													  {
+														    id: '10013',
+														    city: 'Tokyo',
+														    country: 'Japan'    
+														  }
+	];
+
+const grid = new tui.Grid({
+    el: document.getElementById('grid'),
+    data: gridData,
+    /* data : {
+    	api : {
+    		readData : { url : 'getList', method : 'GET'}
+    	}	
+    },  DB연결방법*/
+    rowHeaders: ['rowNum'],
+    pageOptions: {
+      useClient: true,
+      perPage: 5
+    },
+    scrollX: false,
+    scrollY: false,
+    columns: [
+      {
+        header: '아이디',
+        name: 'id',
+      },
+      {
+        header: '도시',
+        name: 'city',
+      },
+      {
+        header: '지역',
+        name: 'contry'
+      }
+      ]
+  });
+
+ 
+
+</script>
 </html>
