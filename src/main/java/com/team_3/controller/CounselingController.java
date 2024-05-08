@@ -20,18 +20,24 @@ public class CounselingController {
 	}
 	
 	@GetMapping("/jdCounseling")
-	public String jdCounseling() {
-		return "groupsangdam";
+	public String jdCounseling(Model model) {
+		model.addAttribute("counselingTitle", "집단 상담 안내");
+		return "group";
 	}
 	
-	@GetMapping("/groupDetail")
+	@GetMapping("/groupsangdam.html")
+	public String groupSangdam() {
+		return "groupsangdam.html";
+	}
+	
+	@GetMapping("/groupDetail.html")
 	public String groupDetail() {
-		return "groupDetail";
+		return "groupDetail.html";
 	}
 	
-	@GetMapping("/groupRequest")
+	@GetMapping("/groupRequest.html")
 	public String groupRequest() {
-		return "groupRequest";
+		return "groupRequest.html";
 	}
 	
 	@GetMapping("/jcCounseling")
