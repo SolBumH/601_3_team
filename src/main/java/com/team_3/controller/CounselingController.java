@@ -30,14 +30,14 @@ public class CounselingController {
 		return "groupsangdam.html";
 	}
 	
-	@GetMapping("/groupDetail")
+	@GetMapping("/groupDetail.html")
 	public String groupDetail() {
-		return "groupDetail";
+		return "groupDetail.html";
 	}
 	
-	@GetMapping("/groupRequest")
+	@GetMapping("/groupRequest.html")
 	public String groupRequest() {
-		return "groupRequest";
+		return "groupRequest.html";
 	}
 	
 	@GetMapping("/jcCounseling")
