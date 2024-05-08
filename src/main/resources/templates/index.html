@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" lang="ko">
+<html xmlns:th="http://www.thymeleaf.org" lang="ko" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
 <meta charset="UTF-8">
 <title>메인페이지</title>
@@ -10,6 +10,8 @@
 	<h1>메인페이지</h1>
 	[[${id}]]
 	[[${role}]]
+	<p sec:authentication="name">asd</p>
+	<p sec:authentication="principal.authorities">asd</p>
 	
 	<th:block th:insert="~{menu.html::scriptImport}">CDN JS 링크</th:block>
 </body>
