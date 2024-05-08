@@ -5,7 +5,7 @@
 .navbar {
     padding-top: 40px;
     padding-bottom: 40px;
-    background-color: darkgrey;
+    background-color: #B9DBF8;
 }
 
 .container {
@@ -14,7 +14,7 @@
 
 .navbar-brand {
     margin: 0 20px;
-    font-size: 30px;
+    font-size: 35px;
 }
 
 .navbar-brand img {
@@ -42,7 +42,7 @@
     transform: translateX(-55%);
     border: none;
     width: 1920px;
-    background-color: skyblue;
+    background-color: #5FB4FB;
 }
 
 .dropdown-item {
@@ -57,7 +57,7 @@
 }
 
 .nav-item.dropdown{
-    margin-top: 15px; 
+    margin-top: 16px; 
     
 }
 

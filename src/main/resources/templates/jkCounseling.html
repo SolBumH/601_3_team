@@ -19,7 +19,9 @@
 			<div class="job_cnts">
 				<h4 class="tit">상담운영내용</h4>
 				<ul class="dot">
-					<li>취업·진로 상담 : 전 학년(1~4학년)</li>
+					<li>취업·진로 상담 : 전 학년</li>
+					<li>개인 상담 : 전 학년</li>					
+					<li>성적 상담 : 전 학년</li>					
 					<li>이력서, 자기소개서 컨설팅 : 3, 4학년 인턴 및 취업준비생 위주(저학년도 가능)</li>
 					<li>면접 컨설팅
 						<ul class="inner">
@@ -47,8 +49,8 @@
 		</section>
 
 	</div>
-	<div style="text-align: center;">
-		<button href="#">상담 신청하기</button>
+	<div style="text-align: center;"> 
+		<button><a th:href="@{/calendar}">상담 신청하기</a></button>
 	</div>
 	<th:block th:insert="~{menu.html::scriptImport}">CDN JS 링크</th:block>
 </body>
