@@ -20,7 +20,7 @@ public class LoginContoller {
 		return "login";
 	}
 	
-	@PostMapping("/loginPost")
+	@PostMapping("/login")
 	public String login(UserDTO user) {
 		return "redirect:/index";
 	}
