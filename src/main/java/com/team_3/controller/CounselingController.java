@@ -36,7 +36,7 @@ public class CounselingController {
 	
 	@GetMapping("/jcCounseling")
 	public String jcCounseling(Model model) {
-		model.addAttribute("counselingTitle", "취업·진로 상담 안내");
+		model.addAttribute("counselingTitle", "취업·진로 상담 안내");		
 		return "sangdam";
 	}
 	
