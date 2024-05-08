@@ -20,12 +20,12 @@ public class CustomUserDetailService implements UserDetailsService {
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 		
 		UserDTO user = loginRepository.findByUsername(username);
-		System.out.println("CustomUserDetailService : " + user.toString());
 		
-		if (user.getUser_no() != null) {
+		if (user != null) {
+			System.out.println("CustomUserDetailService : " + user.toString());
 			return new CustomUserDetails(user);
 		}
-		
+		System.out.println("없는 회원");
 		return null;
 	}
 	
