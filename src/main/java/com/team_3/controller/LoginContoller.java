@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 import com.team_3.dto.UserDTO;
 import com.team_3.service.LoginService;
+import com.team_3.util.UserUtil;
 
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -20,9 +21,15 @@ public class LoginContoller {
 	
 	@Autowired
 	private LoginService loginService;
+	
+	@Autowired
+	private UserUtil userUtil;
 
 	@GetMapping("/login")
-	public String login() {
+	public String login(Model model) {
+//		model.addAttribute("id", userUtil.getUsername());
+//		model.addAttribute("role", userUtil.getUserRole());
+		model.addAttribute("user", userUtil.getUserNameAndRole());
 		return "login";
 	}
 	
