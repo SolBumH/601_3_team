@@ -5,8 +5,13 @@
 		select * from user
 	</select>
 	
-	<select id="findByUsername" resultType="userDTO">
+	<select id="findByUsername" resultType="UserDTO">
 		select * from user
 		where login_id = #{username}
 	</select>
+	
+	<insert id="join" parameterType="userDTO">
+		insert into user(login_id, password, username)
+		values (#{login_id}, #{password}, #{username})
+	</insert>
 </mapper>

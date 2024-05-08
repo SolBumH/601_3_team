@@ -13,5 +13,5 @@ public class UserDTO {
 	private String fir_yn;
 	private Integer pw_err_cnt;
 	private LocalDateTime rct_acc_dt;
-	private String role;
+	private String role; // 권한
 }
