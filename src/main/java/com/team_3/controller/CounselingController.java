@@ -25,19 +25,19 @@ public class CounselingController {
 		return "group";
 	}
 	
-	@GetMapping("/groupsangdam.html")
+	@GetMapping("/groupsangdam")
 	public String groupSangdam() {
-		return "groupsangdam.html";
+		return "groupsangdam";
 	}
 	
-	@GetMapping("/groupDetail.html")
+	@GetMapping("/groupDetail")
 	public String groupDetail() {
-		return "groupDetail.html";
+		return "groupDetail";
 	}
 	
-	@GetMapping("/groupRequest.html")
+	@GetMapping("/groupRequest")
 	public String groupRequest() {
-		return "groupRequest.html";
+		return "groupRequest";
 	}
 	
 	@GetMapping("/jcCounseling")
