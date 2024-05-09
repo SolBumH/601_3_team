@@ -6,7 +6,7 @@
 <!-- 부트 스트랩 -->
 <title>집단상담</title>
 <th:block th:insert="~{menu.html::headImport}">CDN CSS 링크</th:block>
-
+<link rel="stylesheet" href="/css/jdCounseling.css">
 </head>
 
 <body>
@@ -14,7 +14,7 @@
 	<!-- <th:block th:insert="~{menu.html::consulting}">상담 목록</th:block> -->
 
 	<div class="container">
-		<h3>집단상담 프로그램 신청</h3>
+		<h4>집단상담 프로그램 신청</h4>
 		<div class="row">
 			<!-- First card -->
 			<div class="col-sm-3 mb-2">
@@ -58,8 +58,8 @@
 				</div>
 			</div>
 		</div>
-		
-<!-- 		<div class="row"> -->
+
+	<!-- 		<div class="row"> -->
 <!-- 			<div class="col-sm-4 offset-sm-4 mb-2"> -->
 <!-- 				<a href="groupResult" class="btn btn-primary">신청하기</a> -->
 <!-- 			</div> -->
@@ -70,6 +70,7 @@
 <button type="button" class="btn btn-primary" href="groupResult" data-bs-toggle="modal" data-bs-target="#exampleModal">
   신청하기
 </button>
+	</div>
 
 <!-- Modal -->
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">

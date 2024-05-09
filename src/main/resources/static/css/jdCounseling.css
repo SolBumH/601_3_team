@@ -4,7 +4,7 @@
         width: 1500px; /* 최대 너비 지정 */
         margin-top: 50px;
         margin-bottom: 0px;
-        margin-left : 200px;
+        margin-left : 150px;
     }
 
     .title-container {
@@ -13,10 +13,14 @@
 
     .explain {
    		margin-left:50px;
-        margin-top: 30px;
+        margin-top: 20px;
         margin-bottom: 50px;
     }
 
     .request {
         margin-top: 30px;
      }
+
+    .container {
+    	 margin-top: 30px;
+    }
