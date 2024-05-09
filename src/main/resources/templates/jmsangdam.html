@@ -6,7 +6,7 @@
   <meta name="description" content="Orbitor,business,company,agency,modern,bootstrap4,tech,software">
   <meta name="author" content="themefisher.com">
 
-  <title>메인 페이지</title>
+  <title>전문 상담</title>
 
   <!-- Favicon -->
   <link rel="shortcut icon" type="image/x-icon" href="/images/favicon.ico" />
@@ -22,97 +22,45 @@
 </head>
 
 <body id="top">
-<th:block th:insert="~{menu.html::header}"></th:block>
+<th:block th:insert="~{/menu.html::header}"></th:block>
 <section class="section testimonial-2 gray-bg">
 	<div class="container">
 		<div class="row justify-content-center">
 			<div class="col-lg-7">
 				<div class="section-title text-center">
-					<h2>We served over 5000+ Patients</h2>
+					<h1 th:text="${counselingTitle}">상담 텍스트 들어가는 곳</h1>
 					<div class="divider mx-auto my-4"></div>
-					<p>Lets know moreel necessitatibus dolor asperiores illum possimus sint voluptates incidunt molestias nostrum laudantium. Maiores porro cumque quaerat.</p>
+					<h5>
+						전문 상담 : 전 학년 ( 1 ~ 4학년 )<br>
+						주제 : 가족, 일상, 개인 등
+					</h5>
+				</div>
+				<div class="section-title text-center">
+					<h1 th:text="운영일시">운영일시</h1>
+					<div class="divider mx-auto my-4"></div>
+						<h5>학기 중 : 10:00 ~ 17:00 ( 월 ~ 금, 공휴일 제외 )</h5>
+				</div>
+				<div class="section-title text-center">
+					<h1 th:text="'상담 신청 방법'">상담신청방법</h1>
+					<div class="divider mx-auto my-4"></div>
+						<h5>상담은 온라인으로 예약 후 진행됩니다.</h5>
+						<h5>신청서 상에 기재된 모든 내용을 작성해주세요. * 필요 시 파일 첨부</h5>
+						<h5>모든 상담은 1:1 개별상담으로 진행됩니다.</h5>
+						<h5>상담시간은 50분입니다.</h5>
+				</div>
+				
+				<div class="section-title text-center">
+					<th:block th:if="${user.username ne 'anonymousUser'}">
+						<button th:onclick="|location.href='@{/}'|" th:text="'상담 신청'">신청버튼</button>
+					</th:block>
 				</div>
 			</div>
 		</div>
 	</div>
 </section>
 <!-- footer Start -->
-<footer class="footer section">
-	<div class="container">
-		<div class="row">
-			<div class="col-lg-4 mr-auto col-sm-6">
-				<div class="widget mb-5 mb-lg-0">
-					<div class="logo mb-4">
-						<h1 th:text="3조대학교"></h1>
-					</div>
-					<p>Tempora dolorem voluptatum nam vero assumenda voluptate, facilis ad eos obcaecati tenetur veritatis eveniet distinctio possimus.</p>
-
-					<ul class="list-inline footer-socials mt-4">
-						<li class="list-inline-item"><a href="https://www.facebook.com/themefisher"><i class="icofont-facebook"></i></a></li>
-						<li class="list-inline-item"><a href="https://twitter.com/themefisher"><i class="icofont-twitter"></i></a></li>
-						<li class="list-inline-item"><a href="https://www.pinterest.com/themefisher/"><i class="icofont-linkedin"></i></a></li>
-					</ul>
-				</div>
-			</div>
-
-			<div class="col-lg-2 col-md-6 col-sm-6">
-				<div class="widget mb-5 mb-lg-0">
-					<h4 class="text-capitalize mb-3">Department</h4>
-					<div class="divider mb-4"></div>
-
-					<ul class="list-unstyled footer-menu lh-35">
-						<li><a href="#">Surgery </a></li>
-						<li><a href="#">Wome's Health</a></li>
-						<li><a href="#">Radiology</a></li>
-						<li><a href="#">Cardioc</a></li>
-						<li><a href="#">Medicine</a></li>
-					</ul>
-				</div>
-			</div>
-
-			<div class="col-lg-2 col-md-6 col-sm-6">
-				<div class="widget mb-5 mb-lg-0">
-					<h4 class="text-capitalize mb-3">Support</h4>
-					<div class="divider mb-4"></div>
-
-					<ul class="list-unstyled footer-menu lh-35">
-						<li><a href="#">Terms & Conditions</a></li>
-						<li><a href="#">Privacy Policy</a></li>
-						<li><a href="#">Company Support </a></li>
-						<li><a href="#">FAQuestions</a></li>
-						<li><a href="#">Company Licence</a></li>
-					</ul>
-				</div>
-			</div>
-
-			<div class="col-lg-3 col-md-6 col-sm-6">
-				<div class="widget widget-contact mb-5 mb-lg-0">
-					<h4 class="text-capitalize mb-3">Get in Touch</h4>
-					<div class="divider mb-4"></div>
-
-					<div class="footer-contact-block mb-4">
-						<div class="icon d-flex align-items-center">
-							<i class="icofont-email mr-3"></i>
-							<span class="h6 mb-0">Support Available for 24/7</span>
-						</div>
-						<h4 class="mt-2"><a href="tel:+23-345-67890">Support@email.com</a></h4>
-					</div>
-
-					<div class="footer-contact-block">
-						<div class="icon d-flex align-items-center">
-							<i class="icofont-support mr-3"></i>
-							<span class="h6 mb-0">Mon to Fri : 08:30 - 18:00</span>
-						</div>
-						<h4 class="mt-2"><a href="tel:+23-345-67890">+23-456-6588</a></h4>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-</footer>
-
+<th:block th:insert="~{menu.html::footer}"></th:block>
    
-
     <!-- 
     Essential Scripts
     =====================================-->
@@ -137,7 +85,6 @@
     
     <script src="js/script.js"></script>
     <script src="js/contact.js"></script>
-
-  </body>
-  </html>
+</body>
+</html>
    

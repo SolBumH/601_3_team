@@ -27,10 +27,14 @@ public class LoginContoller {
 
 	@GetMapping("/login")
 	public String login(Model model) {
-//		model.addAttribute("id", userUtil.getUsername());
-//		model.addAttribute("role", userUtil.getUserRole());
-		model.addAttribute("user", userUtil.getUserNameAndRole());
-		return "login";
+		UserDTO user = userUtil.getUserNameAndRole();
+		model.addAttribute("user", user);
+		if (user.getUsername().equals("anonymousUser")) {
+			return "login";
+		} else {
+			return "redirect:/";
+		}
+		
 	}
 	
 	@PostMapping("/login")
