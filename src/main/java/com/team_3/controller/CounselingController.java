@@ -24,7 +24,7 @@ public class CounselingController {
 	public String jmCounseling(Model model) {
 		model.addAttribute("counselingTitle", "전문 상담 안내");
 		model.addAttribute("user", userUtil.getUserNameAndRole());
-		return "sangdam";
+		return "jmsangdam";
 	}
 	
 	@GetMapping("/jdCounseling")
