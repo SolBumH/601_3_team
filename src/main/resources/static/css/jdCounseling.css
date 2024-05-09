@@ -1,0 +1,22 @@
+@charset "UTF-8";
+.center {
+        margin: 0 auto; /* 좌우 가운데 정렬 */
+        width: 1500px; /* 최대 너비 지정 */
+        margin-top: 50px;
+        margin-bottom: 0px;
+        margin-left : 200px;
+    }
+
+    .title-container {
+        margin-left : 10px;
+    }
+
+    .explain {
+   		margin-left:50px;
+        margin-top: 30px;
+        margin-bottom: 50px;
+    }
+
+    .request {
+        margin-top: 30px;
+     }
