@@ -18,7 +18,7 @@ document.addEventListener('DOMContentLoaded', function() {
 		},
 		select: function(arg) {
 			click(arg.startStr);
-			// calendar.unselect();
+			calendar.unselect();
 		} //달력 빈칸클릭시 event 추가 가능
 	});
 	calendar.render();
