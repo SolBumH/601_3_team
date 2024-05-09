@@ -20,8 +20,8 @@
 			<div class="col-sm-3 mb-2">
 				<div class="card">
 					<div class="card-body" style="height: 300px">
-						<a href="groupDetail.html"><img alt=""
-							src="https://via.placeholder.com/270"></a>
+						<a href="groupDetail.html"><img alt="/img/program.png"
+							src="/img/program.png" width="270" height="270"></a>
 					</div>
 				</div>
 			</div>
@@ -59,12 +59,37 @@
 			</div>
 		</div>
 		
-		<div class="row">
-			<div class="col-sm-4 offset-sm-4 mb-2">
-				<a href="groupRequest" class="btn btn-primary">신청하기</a>
-			</div>
-		</div>
-	</div>
+<!-- 		<div class="row"> -->
+<!-- 			<div class="col-sm-4 offset-sm-4 mb-2"> -->
+<!-- 				<a href="groupResult" class="btn btn-primary">신청하기</a> -->
+<!-- 			</div> -->
+<!-- 		</div> -->
+<!-- 	</div> -->
+
+<!-- Button trigger modal -->
+<button type="button" class="btn btn-primary" href="groupResult" data-bs-toggle="modal" data-bs-target="#exampleModal">
+  신청하기
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">확인</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+       프로그램을 신청 하시겠습니까?
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">닫기</button>
+        <button type="button" class="btn btn-primary" onclick="window.location.href='groupResult'">확인</button>
+      </div>
+    </div>
+  </div>
+</div>
+
 
 
 	<th:block th:insert="~{menu.html::scriptImport}">CDN JS 링크</th:block>

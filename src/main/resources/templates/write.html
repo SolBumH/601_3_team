@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="ko">
+<head>
+<th:block th:insert="~{menu.html::metaImport}">CDN META 링크</th:block>
+<meta charset="UTF-8">
+<title>글쓰기</title>
+<th:block th:insert="~{menu.html::headImport}">CDN CSS 링크</th:block>
+</head>
+<body>
+	<th:block th:insert="~{menu.html::menu}">메뉴 들어가는 곳</th:block>
+	
+	<form action="/write" method="post" name="board">
+		<input type="text" name="board_title" placeholder="제목을 적어주세요."/>
+		<textarea name="board_content" placeholder="내용을 입력해주세요."></textarea>
+		<button type="submit" th:text="글쓰기">글쓰기</button>
+		<input type="hidden" name="_csrf" th:value="${_csrf.token}"/>
+	</form>
+	
+	
+	<th:block th:insert="~{menu.html::scriptImport}">CDN JS 링크</th:block>
+</body>
+</html>

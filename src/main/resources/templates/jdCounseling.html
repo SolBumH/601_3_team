@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- 부트 스트랩 -->
+<title>상담 예약</title>
+	<th:block th:insert="~{menu.html::headImport}">CDN CSS 링크</th:block>
+ 	<link rel="stylesheet" href="/css/jkCounseling.css">
+</head>
+<body>
+	<th:block th:insert="~{menu.html::menu}">메뉴 들어가는 곳</th:block>
+
+	<div class="context">
+		<section class="counselindex">
+			<h1 th:text="${counselingTitle}"></h1>
+			<hr class="long-horizontal-line">
+			<br>
+			<div class="job_cnts">
+			<h4 class="tit">상담운영내용</h4>
+				<ul class="dot">
+					<li>집단 상담 프로그램: 전 학년(1~4학년)</li>
+					<li>자기이해, 대인관계증진, 정서 및 스트레스 관리 등의 주제로<br> 비슷한 관심을 가진 학생들이
+						상담전문가와 함께 소그룹 집단상담을 통해 <br>새로운 관계경험, 자기성장 및 자아실현, 정신건강을 도모하는
+						프로그램입니다.
+					</li>
+					<li>프로그램 종류
+						<ul class="inner">
+							<li>자기성장</li>
+							<li>대인관계증진</li>
+							<li>진로탐색</li>
+							<li>스트레스 대처 프로그램 등</li>
+						</ul>
+
+					</li>
+				</ul>
+				<br>
+				<h4 class="tit">운영일시</h4>
+				<ul class="dot">
+					<li>학기 중 : 10:00~17:00 (월~금)</li>
+				</ul>
+				<br>
+
+			<h4 class="tit">상담신청 방법</h4>
+				<ul class="dot">
+					<li>프로그램 목록을 확인합니다.</li>
+					<li>원하는 집단 상담 프로그램을 선택하세요.</li>
+					<li>프로그램 상세 설명 확인 후, 원하는 상담 내용일시 신청하기 버튼을 클릭합니다..</li>
+					<li>상담날짜 및 시간은 프로그램 설명에서 확인해주세요.</li>
+				</ul>
+
+			</div>
+		</section>
+
+	</div>
+	<div style="text-align: center;"> 
+		<a href="groupsangdam" class="btn btn-primary">상담 프로그램 확인하기</a>
+	</div>
+	<th:block th:insert="~{menu.html::scriptImport}">CDN JS 링크</th:block>
+</body>
+</html>
