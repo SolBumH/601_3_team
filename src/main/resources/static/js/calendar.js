@@ -29,12 +29,10 @@ function click(arg) {
 		beforeSend: function(xhr) {
 			xhr.setRequestHeader(header, token);
 		},
-		data: { 'start': arg },
+		data: { 'start': arg, },
 		success: function(data) {
-			console.log(data);
 		},
 		error: function(error) {
-			console.log(error);
 		}
 	});
 }

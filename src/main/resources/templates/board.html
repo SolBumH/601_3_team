@@ -1,28 +1,14 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" lang="ko">
 <head>
+<th:block th:insert="~{menu.html::metaImport}">CDN META 링크</th:block>
 <meta charset="UTF-8">
-<th:block th:insert="~{menu.html::metaImport}">
-<style>
-#calendarBox {
-	width: 70%;
-	padding-left: 15%;
-}
-</style>
-<title>달력페이지</title>
+<title>로그인</title>
 <th:block th:insert="~{menu.html::headImport}">CDN CSS 링크</th:block>
 </head>
 <body>
 	<th:block th:insert="~{menu.html::menu}">메뉴 들어가는 곳</th:block>
-
-	<h2>심리상담 프로그램 신청</h2>
-	<br>
-
-	<div id="calendarBox">
-		<div id='calendar'></div>
-	</div>
-
+	
 	<th:block th:insert="~{menu.html::scriptImport}">CDN JS 링크</th:block>
-	<th:block th:insert="~{menu.html::calendarImport}">달력 링크</th:block>
 </body>
 </html>
