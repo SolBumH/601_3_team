@@ -18,6 +18,20 @@ document.addEventListener('DOMContentLoaded', function() {
 		},
 		select: function(arg) {
 			click(arg.startStr);
+			let moda = arg.startStr;
+			$.ajax({
+				type: 'post',
+				url: '/scmenu',
+				dataType: 'json',
+				beforeSend: function(xhr) {
+					xhr.setRequestHeader(header, token);
+				},
+				data: { 'moda': moda },
+				success: function(data) {
+				},
+				error: function(error) {
+				}
+			})
 			// calendar.unselect();
 		} //달력 빈칸클릭시 event 추가 가능
 	});
