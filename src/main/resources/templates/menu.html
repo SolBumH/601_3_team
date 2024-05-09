@@ -71,7 +71,7 @@
             </ul>
         </li>
         
-        <li class="nav-item"><a class="nav-link active text-dark" aria-current="page" href="#">커뮤니티</a></li>
+        <li class="nav-item"><a class="nav-link active text-dark" aria-current="page" th:href="@{/board}">문의하기</a></li>
         <li class="nav-item"><a class="nav-link active text-dark" aria-current="page" href="#">공지사항</a></li>
         <th:block th:if="${user.username ne 'anonymousUser'}">
 			<li class="nav-item"><a class="nav-link me-lg-3" th:href="@{/logout}" th:text="로그아웃"></a></li>

@@ -1,11 +1,19 @@
 package com.team_3.config;
 
+import java.io.IOException;
+
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
+import org.springframework.security.web.authentication.SimpleUrlAuthenticationSuccessHandler;
+
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 
 @Configuration
 @EnableWebSecurity
@@ -38,6 +46,7 @@ public class SecurityConfig {
         http.formLogin((auth) -> auth.loginPage("/login")
         		.loginProcessingUrl("/login")  // 로그인 시 해당 URL로 값 전송
         		.defaultSuccessUrl("/")
+        		// .successHandler(successHandler()) 
         		.permitAll());
         
         // 세션 고정 보호, 10강
@@ -54,5 +63,4 @@ public class SecurityConfig {
         
         return http.build();
     }
-
 }

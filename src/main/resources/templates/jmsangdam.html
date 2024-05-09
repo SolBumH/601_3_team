@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<th:block th:insert="~{menu.html::metaImport}">META 링크</th:block>
+<!-- 부트 스트랩 -->
+<title>전문 상담 안내</title>
+<th:block th:insert="~{menu.html::headImport}">CDN CSS 링크</th:block>
+<link rel="stylesheet" href="/css/sangdam.css">
+</head>
+<body>
+	<th:block th:insert="~{menu.html::menu}">메뉴 들어가는 곳</th:block>
+	<!-- <th:block th:insert="~{menu.html::consulting}">상담 목록</th:block> -->
+
+	<div class="context">
+		<section class="counselindex">
+			<h1 th:text="${counselingTitle}">상담 텍스트 들어가는 곳</h1>
+			<hr class="long-horizontal-line">
+			<br>
+			<br>
+			<div class="job_cnts">
+
+				<h4 class="tit">상담 운영</h4>
+				<ul class="dot">
+					<li>전문 상담 : 전 학년 ( 1 ~ 4학년 )</li>
+					<li>주제 : 가족, 일상, 개인 등</li>
+				</ul>
+				<br>
+				<h4 class="tit">운영일시</h4>
+				<ul class="dot">
+					<li>학기 중 : 10:00~17:00 (월~금)</li>
+				</ul>
+				<br>
+
+				<h4 class="tit">상담신청 방법</h4>
+				<ul class="dot">
+					<li>상담은 온라인으로 예약 후 진행됩니다.</li>
+					<li>신청서 상에 기재된 모든 내용을 작성해주세요.</li>
+					<li>필요 시 파일을 첨부해주세요.</li>
+					<li>모든 상담은 1:1 개별상담으로 진행됩니다.</li>
+					<li>상담시간은 50분입니다.</li>
+				</ul>
+			</div>
+
+			<img src="/img/process.png" alt="상담 신청 과정">
+
+			<div class="centered-button">
+				<button th:onclick="|location.href='@{/groupRequest}'|" class="btn btn-primary" th:text="'상담 신청하기'">상담신청버튼</button>
+			</div>
+
+		</section>
+	</div>
+
+	<footer>
+		<div class="footer-box">푸터</div>
+	</footer>
+
+	<th:block th:insert="~{menu.html::scriptImport}">CDN JS 링크</th:block>
+</body>
+</html>
