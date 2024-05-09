@@ -11,6 +11,15 @@
       <!-- 부트스트랩 -->
       <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
    </th:block>
+   
+    <th:block th:fragment="calendarImport">
+        <!-- 달력 API -->
+        <script src="/js/calendar.js"></script>
+      	<script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.11/index.global.min.js"></script>
+		<script src="https://unpkg.com/@popperjs/core@2"></script>
+		<script src="https://unpkg.com/tippy.js@6"></script>
+    </th:block>
+   
 
    <th:block th:fragment="headImport">
       <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -20,7 +29,11 @@
       <!-- 부트스트랩 -->
       <link rel="stylesheet" type="text/css" href="/css/menu.css">
    </th:block>
-
+   
+    <th:block th:fragment="metaImport">
+    	<meta name="_csrf_header" th:content="${_csrf.headerName}">
+		<meta name="_csrf" th:content="${_csrf.token}">
+	</th:block>
 
 	<th:block th:fragment="menu">
 		<nav class="navbar navbar-expand-lg">
