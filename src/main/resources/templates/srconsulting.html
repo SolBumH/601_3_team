@@ -5,24 +5,24 @@
 <th:block th:insert="~{menu.html::metaImport}">로그인 정보 링크</th:block>
 <style>
 #calendarBox {
-	width: 70%;
-	padding-left: 15%;
-}
+   width: 70%;
+   padding-left: 15%;
+}   
 </style>
 <title>달력페이지</title>
 <th:block th:insert="~{menu.html::headImport}">CDN CSS 링크</th:block>
 </head>
 <body>
-	<th:block th:insert="~{menu.html::menu}">메뉴 들어가는 곳</th:block>
+   <th:block th:insert="~{menu.html::menu}">메뉴 들어가는 곳</th:block>
 
-	<h2>심리상담 프로그램 신청</h2>
-	<br>
+   <h2>심리상담 프로그램 신청</h2>
+   <br>
 
-	<div id="calendarBox">
-		<div id='calendar'></div>
-	</div>
+   <div id="calendarBox">
+      <div id='calendar'></div>
+   </div>
 
-	<th:block th:insert="~{menu.html::scriptImport}">CDN JS 링크</th:block>
-	<th:block th:insert="~{menu.html::calendarImport}">달력 링크</th:block>
+   <th:block th:insert="~{menu.html::scriptImport}">CDN JS 링크</th:block>
+   <th:block th:insert="~{menu.html::calendarImport}">달력 링크</th:block>
 </body>
 </html>
