@@ -5,11 +5,11 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <!-- 부트 스트랩 -->
 <title>상담 예약</title>
-	<th:block th:insert="~{menu.html::headImport}">CDN CSS 링크</th:block>
+	<th:block th:insert="~{index.html::headImport}">CDN CSS 링크</th:block>
  	<link rel="stylesheet" href="/css/jkCounseling.css">
 </head>
 <body>
-	<th:block th:insert="~{menu.html::menu}">메뉴 들어가는 곳</th:block>
+	<th:block th:insert="~{index.html::menu}">메뉴 들어가는 곳</th:block>
 
 	<div class="context">
 		<section class="counselindex">
@@ -52,6 +52,6 @@
 	<div style="text-align: center;"> 
 		<button><a th:href="@{/srconsulting}">상담 신청하기</a></button>
 	</div>
-	<th:block th:insert="~{menu.html::scriptImport}">CDN JS 링크</th:block>
+	<th:block th:insert="~{index.html::jsImport}">CDN JS 링크</th:block>
 </body>
 </html>
