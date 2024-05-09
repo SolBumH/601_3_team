@@ -5,14 +5,14 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <!-- 부트 스트랩 -->
 <title>상담 예약</title>
-	<th:block th:insert="~{menu.html::headImport}">CDN CSS 링크</th:block>
+	<th:block th:insert="~{index.html::headImport}">CDN CSS 링크</th:block>
  	<link rel="stylesheet" href="/css/jkCounseling.css">
 </head>
 <body>
-	<th:block th:insert="~{menu.html::menu}">메뉴 들어가는 곳</th:block>
+	<th:block th:insert="~{index.html::menu}">메뉴 들어가는 곳</th:block>
 
 	<div class="context">
-		<section class="counselindex">
+		<section class="counselindex gray-bg">
 			<h1 th:text="${counselingTitle}"></h1>
 			<hr class="long-horizontal-line">
 			<br>
@@ -56,6 +56,6 @@
 	<div style="text-align: center;"> 
 		<a href="groupsangdam" class="btn btn-primary">상담 프로그램 확인하기</a>
 	</div>
-	<th:block th:insert="~{menu.html::scriptImport}">CDN JS 링크</th:block>
+	<th:block th:insert="~{index.html::jsImport}">CDN JS 링크</th:block>
 </body>
 </html>
