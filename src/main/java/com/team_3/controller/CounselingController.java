@@ -34,19 +34,19 @@ public class CounselingController {
 		return "group";
 	}
 	
-	@GetMapping("/groupsangdam.html")
+	@GetMapping("/groupsangdam")
 	public String groupSangdam(Model model) {
 		model.addAttribute("user", userUtil.getUserNameAndRole());
 		return "groupsangdam";
 	}
 	
-	@GetMapping("/groupDetail.html")
+	@GetMapping("/groupDetail")
 	public String groupDetail(Model model) {
 		model.addAttribute("user", userUtil.getUserNameAndRole());
 		return "groupDetail";
 	}
 	
-	@GetMapping("/groupRequest.html")
+	@GetMapping("/groupRequest")
 	public String groupRequest(Model model) {
 		model.addAttribute("user", userUtil.getUserNameAndRole());
 		return "groupRequest";
