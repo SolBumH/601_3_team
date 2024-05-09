@@ -10,12 +10,15 @@ document.addEventListener('DOMContentLoaded', function() {
 		locale: 'ko', // 한국어로 변경
 		aspectRatio: 1.35, // 가로세로 비율
 		selectable: true, // 달력 드래그 설정
-		dayMaxEventRows: true, // for all non-TimeGrid views
+		// dayMaxEventRows: false, // for all non-TimeGrid views
 		nowIndicator: true, // 현재 시간 마크
-		editable: true, // 기존 예약을 옮길수 있음
+		editable: false, // 기존 예약을 옮길수 있음
+		validRange: {
+				start: Date.now(),
+		},
 		select: function(arg) {
 			click(arg.startStr);
-			calendar.unselect();
+			// calendar.unselect();
 		} //달력 빈칸클릭시 event 추가 가능
 	});
 	calendar.render();
