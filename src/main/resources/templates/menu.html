@@ -83,5 +83,49 @@
     		</div>
 		</nav>
 	</th:block>
+	
+	<th:block th:flagment="header">
+		<header>
+			<nav class="navbar navbar-expand-lg navigation" id="navbar">
+				<div class="container">
+				 	 <a class="navbar-brand" th:href="@{/}">
+					  	<h1 th:text="3조대학교">제목</h1>
+					  </a>
+		
+				  	<button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbarmain" aria-controls="navbarmain" aria-expanded="false" aria-label="Toggle navigation">
+					<span class="icofont-navigation-menu"></span>
+				  </button>
+			  
+				  <div class="collapse navbar-collapse" id="navbarmain">
+					<ul class="navbar-nav ml-auto">
+					  <li class="nav-item active">
+						<a class="nav-link" th:href="@{/}">대학안내</a>
+					  </li>
+					   <li class="nav-item"><a class="nav-link" th:href="@{/about}">입학안내</a></li>
+					    <li class="nav-item"><a class="nav-link" th:href="@{/service}">학과소개</a></li>
+		
+					    <li class="nav-item dropdown">
+							<a class="nav-link dropdown-toggle" href="department.html" id="dropdown02" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">상담예약 <i class="icofont-thin-down"></i></a>
+							<ul class="dropdown-menu" aria-labelledby="dropdown02">
+								<li><a class="dropdown-item" th:href="@{/srCounseling}">심리상담</a></li>
+								<li><a class="dropdown-item" th:href="@{/jmCounseling}">전문상담</a></li>
+								<li><a class="dropdown-item" th:href="@{/jdCounseling}">집단상담</a></li>
+								<li><a class="dropdown-item" th:href="@{/jcCounseling}">취업상담</a></li>
+								<li><a class="dropdown-item" th:href="@{/jkCounseling}">교수상담</a></li>
+							</ul>
+					  	</li>
+					  	<li class="nav-item"><a class="nav-link" th:href="@{/board}">문의사항</a></li>
+					  	<th:block th:if="${user.username ne 'anonymousUser'}">
+							<li class="nav-item"><a class="nav-link me-lg-3" th:href="@{/logout}" th:text="로그아웃"></a></li>
+		        		</th:block>
+		        		<th:block th:unless="${user.username ne 'anonymousUser'}">
+		        			<li class="nav-item"><a class="nav-link active text-dark" aria-current="page" href="/login">로그인</a></li>
+						</th:block>
+					</ul>
+				  </div>
+				</div>
+			</nav>
+		</header>
+	</th:block>
 </body>
 </html>
