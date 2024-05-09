@@ -31,7 +31,7 @@ public class CounselingController {
 	public String jdCounseling(Model model) {
 		model.addAttribute("counselingTitle", "집단 상담 안내");
 		model.addAttribute("user", userUtil.getUserNameAndRole());
-		return "group";
+		return "jdCounseling";
 	}
 	
 	@GetMapping("/groupsangdam")
@@ -46,10 +46,10 @@ public class CounselingController {
 		return "groupDetail";
 	}
 	
-	@GetMapping("/groupRequest")
+	@GetMapping("/groupResult")
 	public String groupRequest(Model model) {
 		model.addAttribute("user", userUtil.getUserNameAndRole());
-		return "groupRequest";
+		return "groupResult";
 	}
 	
 	@GetMapping("/jcCounseling")
