@@ -65,7 +65,7 @@ public class LoginContoller {
 	@PostMapping("/joinProc")
 	public String joinProc(UserDTO userDTO) {
 		System.out.println(userDTO.toString());
-		userDTO.setLogin_id(userDTO.getUsername());
+		userDTO.setName(userDTO.getUsername());
 		loginService.joinProcess(userDTO);
 		return "redirect:/login";
 	}

@@ -7,11 +7,11 @@
 	
 	<select id="findByUsername" resultType="UserDTO">
 		select * from USER
-		where login_id = #{username}
+		where username = #{username}
 	</select>
 	
 	<insert id="join" parameterType="userDTO">
-		insert into USER(LOGIN_ID, PASSWORD, USERNAME)
-		values (#{login_id}, #{password}, #{username})
+		insert into USER(NAME, PASSWORD, USERNAME)
+		values (#{name}, #{password}, #{username})
 	</insert>
 </mapper>
