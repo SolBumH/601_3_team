@@ -20,7 +20,7 @@ public class SrController {
 	public String sd(Model model) {
 		model.addAttribute("user", userUtil.getUserNameAndRole());
 		return "srconsulting";
-	}
+	}	
 	
 	@PostMapping("/SrController")
 	@ResponseBody
