@@ -3,5 +3,6 @@
 <configuration>
     <typeAliases>
         <typeAlias type="com.team_3.dto.UserDTO" alias="userDTO"></typeAlias>
+        <typeAlias type="com.team_3.dto.BoardDTO" alias="BoardDTO"></typeAlias>
     </typeAliases>
 </configuration>
