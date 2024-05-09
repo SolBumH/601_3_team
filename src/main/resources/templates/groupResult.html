@@ -5,14 +5,14 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <!-- 부트 스트랩 -->
 <title>집단상담</title>
-<th:block th:insert="~{menu.html::headImport}">CDN CSS 링크</th:block>
+<th:block th:insert="~{index.html::headImport}">CDN CSS 링크</th:block>
 
 </head>
 
 <body>
-	<th:block th:insert="~{menu.html::menu}">메뉴 들어가는 곳</th:block>
+	<th:block th:insert="~{index.html::menu}">메뉴 들어가는 곳</th:block>
 	<!-- <th:block th:insert="~{menu.html::consulting}">상담 목록</th:block> -->
-
+<section class="counselindex gray-bg">
 	
 
 <div style="background-color: #f2f2f2; padding: 20px; border-radius: 10px; margin: 20px auto; max-width: 600px;">
@@ -38,9 +38,9 @@
 				<a href="groupsangdam" class="btn btn-primary">메인화면으로 이동하기</a>
 			</div>
 		</div>
-	</div>
+		</section>
 
 
-	<th:block th:insert="~{menu.html::scriptImport}">CDN JS 링크</th:block>
+	<th:block th:insert="~{index.html::jsImport}">CDN JS 링크</th:block>
 </body>
 </html>
