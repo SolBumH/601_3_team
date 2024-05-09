@@ -57,14 +57,15 @@ public class LoginContoller {
 	
 	
 	@GetMapping("/join")
-	public String join() {
+	public String join(Model model) {
+		model.addAttribute("user", userUtil.getUserNameAndRole());
 		return "join";
 	}
 	
 	@PostMapping("/joinProc")
 	public String joinProc(UserDTO userDTO) {
-		userDTO.setLogin_id(userDTO.getUsername());
 		System.out.println(userDTO.toString());
+		userDTO.setLogin_id(userDTO.getUsername());
 		loginService.joinProcess(userDTO);
 		return "redirect:/login";
 	}
