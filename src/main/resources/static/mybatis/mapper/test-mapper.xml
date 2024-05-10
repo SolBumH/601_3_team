@@ -14,4 +14,5 @@
 		insert into USER(NAME, PASSWORD, USERNAME)
 		values (#{name}, #{password}, #{username})
 	</insert>
+	
 </mapper>

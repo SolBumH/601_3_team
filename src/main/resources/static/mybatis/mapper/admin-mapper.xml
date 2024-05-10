@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="admin">
+	<select id="AdminBoard" resultType="BoardDTO">
+		select ib.BOARD_NO, ib.BOARD_TITLE, ib.BOARD_DATE, u.NAME  as 'username',
+			(CASE WHEN ib.ANS_YN = '1' THEN '미답변'
+				WHEN ib.ANS_YN = '2' THEN '답변 완료'
+			END) AS ANS_YN
+		from Inq_Board ib
+		join `USER` u
+		where ib.BOARD_USER = u.USER_NO
+		and ib.DEL_YN = '1'
+		order by ib.BOARD_DATE DESC, ib.ANS_YN
+	</select>
+
+</mapper>
