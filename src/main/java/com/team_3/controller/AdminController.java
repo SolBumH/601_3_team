@@ -40,7 +40,6 @@ public class AdminController {
 	@ResponseBody
 	public List<BoardDTO> boardList() {
 		List<BoardDTO> list = adminService.AdminBoard();
-		System.out.println(list);
 		return list;
 	}
 }
