@@ -50,9 +50,8 @@
 				</div>
 				
 				<div class="section-title text-center">
-					<th:block th:if="${user.username ne 'anonymousUser'}">
-						<button th:onclick="|location.href='@{/}'|" th:text="'상담 신청'">신청버튼</button>
-					</th:block>
+					<!-- <button th:onclick="|location.href='@{/}'|" th:text="'상담 신청'">신청버튼</button> -->
+					<button th:onclick="loginCheck([[${user.username}]])" th:text="'상담 신청'">신청버튼</button>
 				</div>
 			</div>
 		</div>
@@ -85,6 +84,7 @@
     
     <script src="js/script.js"></script>
     <script src="js/contact.js"></script>
+    <script src="js/loginCheck.js"></script>
 </body>
 </html>
    
