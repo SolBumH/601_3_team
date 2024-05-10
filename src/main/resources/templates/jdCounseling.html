@@ -6,7 +6,7 @@
   <meta name="description" content="Orbitor,business,company,agency,modern,bootstrap4,tech,software">
   <meta name="author" content="themefisher.com">
 
-  <title>전문 상담</title>
+  <title>집단 상담</title>
 
   <!-- Favicon -->
   <link rel="shortcut icon" type="image/x-icon" href="/images/favicon.ico" />
@@ -45,18 +45,13 @@
 					<div class="divider mx-auto my-4"></div>
 						<h5>프로그램 목록을 확인합니다.</h5>
 						<h5>원하는 집단 상담 프로그램을 선택하세요.</h5>
-						<h5>프로그램 상세 설명 확인 후, 원하는 상담 내용일시 신청하기 버튼을 클릭 해주세요.</h5>
+						<h5>프로그램 상세 설명 확인 후, 원하는 상담 내용일시 신청하기 버튼을 클릭합니다.</h5>
 						<h5>상담날짜 및 시간은 프로그램 설명에서 확인해주세요.</h5>
 				</div>
-
-					<div class="section-title text-center"
-						th:if="${user.username != null}">  	<!-- 사용자가 익명 사용자가 아닌 경우에만 버튼 표시 -->
-						<button id="applyButton"
-							onclick="window.location.href='groupsangdam'">신청버튼</button>
-					</div>
-
-
-					</th:block>
+				
+				<div class="section-title text-center">
+					<!-- <button th:onclick="|location.href='@{/}'|" th:text="'상담 신청'">신청버튼</button> -->
+					<button class="btn btn-primary" th:onclick="loginCheck([[${user.username}]])" th:text="'상담 신청'">신청버튼</button>
 				</div>
 			</div>
 		</div>
@@ -89,6 +84,17 @@
     
     <script src="js/script.js"></script>
     <script src="js/contact.js"></script>
+    <script type="text/javascript">
+	    function loginCheck(id) {
+	    	if (id == 'anonymousUser') {
+	    		alert('로그인이 필요합니다.');
+	    		location.href = '/login';
+	    	} else {
+	    		location.href = '/groupsangdam';
+	    	}
+	    }
+    
+    </script>
 </body>
 </html>
    
