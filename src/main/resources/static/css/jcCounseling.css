@@ -1,8 +1,1 @@
 @charset "UTF-8";
-
-.process-image {
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-}
