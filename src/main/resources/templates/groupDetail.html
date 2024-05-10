@@ -13,7 +13,7 @@
 </head>
 
 <body>
-	<th:block th:insert="~{index.html::menu}">메뉴 들어가는 곳</th:block>
+	<th:block th:insert="~{menu.html::header}">메뉴 들어가는 곳</th:block>
 
 	<section class="counselindex gray-bg">
 		<div class="container" style="height: 100vh">
@@ -63,7 +63,7 @@
 
 
 			<!-- Button trigger modal -->
-			<button type="button" class="btn btn-primary" data-bs-toggle="modal"
+			<button type="button" class="btn btn-danger" data-bs-toggle="modal"
 				data-bs-target="#exampleModal">신청하기</button>
 
 			<!-- Modal -->
@@ -81,7 +81,7 @@
 						<div class="modal-footer">
 							<button type="button" class="btn btn-secondary"
 								data-bs-dismiss="modal">닫기</button>
-							<button type="button" class="btn btn-primary"
+							<button type="button" class="btn btn-danger"
 								onclick="window.location.href='groupResult'">확인</button>
 						</div>
 					</div>
