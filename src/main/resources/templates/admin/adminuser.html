@@ -45,9 +45,11 @@
 	</nav>
 	<th:block th:insert="~{/admin/adminmenu.html::leftmenu}"></th:block>
 	<div class="bodypart">
-
+		<h1>회원관리</h1>
 		<div id="grid"></div>
+		[[${list}]]
 	</div>
+	
 
 
 
@@ -60,40 +62,36 @@
 	<script src="/admin/js/datatables-simple-demo.js"></script>
 	<th:block th:insert="~{menu.html::scriptImport}">CDN JS 링크</th:block>
 	<script type="text/javascript">
-		$(document).ready(function() {
-
-			$.ajax({
-				url : "/admin/boardList",
-				type : "get",
-				dataType : "JSON",
-				contentType : "application/json; charset=UTF-8",
-				success : function(result) {
-					console.log(result);
-
-					const grid = new tui.Grid({
-						el : document.getElementById('grid'),
-						rowHeaders : [ 'rowNum' ],
-						pageOptions : {
-							useClient : true,
-							perPage : 5
-						},
-						scrollX : false,
-						scrollY : false,
-						columns : [ {
-							header : '아이디',
-							name : 'board_no',
-						}, {
-							header : '제목',
-							name : 'board_title',
-						}, {
-							header : '지역',
-							name : 'board_content'
-						} ]
-					});
-					grid.resetData(result);
-				}
-			});
-		});
+	const grid = new tui.Grid({
+	    el: document.getElementById('grid'),
+	    data:{
+	    	api : {
+	    		readData : { url : '/admin/userList', method : 'get'}
+	    	}
+	    },
+	    rowHeaders: ['rowNum'],
+	    pageOptions: {
+	      useClient: true,
+	      perPage: 15
+	    },
+	    scrollX: false,
+	    scrollY: false,
+	    columns: [
+	      {
+	        header: '아이디',
+	        name: 'name',
+	      },
+	      {
+	        header: '도시',
+	        name: 'username',
+	      },
+	      {
+	        header: '지역',
+	        name: 'role'
+	      }
+	      ]
+	  });	
+	    
 	</script>
 </body>
 </html>
