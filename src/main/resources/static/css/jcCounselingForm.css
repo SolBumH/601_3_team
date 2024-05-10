@@ -43,7 +43,8 @@
 	background: #f6f6f6;
 	width: 20%;
 	text-align: left;
-	padding-left: 3%
+	padding-left: 3%;
+	color: #000080;
 }
 
 .request td {
@@ -93,7 +94,9 @@
 
 .request .wid20 {
 	width: 20%;
-	height: 35px
+	height: 37px;
+	margin-bottom: 3px;
+	margin-left: 5px;
 }
 
 .request .wid30 {

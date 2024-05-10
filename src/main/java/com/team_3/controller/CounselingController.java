@@ -4,7 +4,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestBody;
 
+import com.team_3.dto.CounselingFormDTO;
+import com.team_3.service.counselingService;
 import com.team_3.util.UserUtil;
 
 @Controller
@@ -12,6 +16,9 @@ public class CounselingController {
 	
 	@Autowired
 	private UserUtil userUtil;
+	
+	@Autowired
+	private counselingService counselingService;
 	
 	@GetMapping("srCounseling")
 	public String srCounseling(Model model) {
@@ -64,6 +71,14 @@ public class CounselingController {
 		model.addAttribute("user", userUtil.getUserNameAndRole());
 		return "jcCounselingForm";
 	}
+  
+
+	@GetMapping("/jcsuccessPage")
+	public String submitForm(CounselingFormDTO form, Model model) {
+		counselingService.saveForm(form);
+		return "redirect:/jcsuccessPage"; // 저장 후 리다이렉트할 페이지
+	    }
+	
 	
 	@GetMapping("/jkCounseling")
 	public String jkCounseling(Model model) {
