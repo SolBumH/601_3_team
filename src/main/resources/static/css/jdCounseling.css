@@ -2,9 +2,9 @@
 .center {
         margin: 0 auto; /* 좌우 가운데 정렬 */
         width: 1500px; /* 최대 너비 지정 */
-        margin-top: 50px;
         margin-bottom: 0px;
-        margin-left : 150px;
+        margin-left : 100px;
+        padding-top: 50px;
     }
 
     .title-container {
@@ -18,9 +18,10 @@
     }
 
     .request {
-        margin-top: 30px;
+        margin-top: 40px;
      }
 
-    .container {
-    	 margin-top: 30px;
-    }
+
+	.text1 {
+		margin-top: 10px;
+	}
