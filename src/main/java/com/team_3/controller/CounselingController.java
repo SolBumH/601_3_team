@@ -59,6 +59,12 @@ public class CounselingController {
 		return "jcCounseling";
 	}
 	
+	@GetMapping("/jcCounselingForm")
+	public String jcCounselingForm(Model model) {
+		model.addAttribute("user", userUtil.getUserNameAndRole());
+		return "jcCounselingForm";
+	}
+	
 	@GetMapping("/jkCounseling")
 	public String jkCounseling(Model model) {
 		model.addAttribute("counselingTitle", "교수 상담 안내");

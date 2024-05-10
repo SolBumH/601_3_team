@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- 부트 스트랩 -->
+<title>상담 예약</title>
+	<th:block th:insert="~{menu.html::headImport}">CDN CSS 링크</th:block>
+ 	<link rel="stylesheet" href="/css/sangdam.css">
+</head>
+<body>
+	<th:block th:insert="~{menu.html::menu}">메뉴 들어가는 곳</th:block>
+	<!-- <th:block th:insert="~{menu.html::consulting}">상담 목록</th:block> -->
+
+<div class="context">
+	<section class="counselindex">
+			<h1 th:text="${counselingTitle}"></h1>
+			<hr class="long-horizontal-line">
+			<br><br>
+			<div class="job_cnts">
+			
+				<h4 class="tit">상담운영내용</h4>
+				<ul class="dot">
+					<li>취업·진로 상담 : 전 학년(1~4학년)</li>
+					<li>이력서, 자기소개서 컨설팅 : 3, 4학년 인턴 및 취업준비생 위주(저학년도 가능)</li>
+					<li>면접 컨설팅
+						<ul class="inner">
+							<li>취업 전 면접대비 1:1 코칭 진행(모의면접 및 피드백 / 면접컨설팅)</li>
+							<li>취업준비생 중 면접경험이 없거나 면접을 앞두고 있는 학우들의 면접 코칭</li>
+						</ul>
+					</li>
+				</ul>
+				<br>
+				<h4 class="tit">운영일시</h4>
+				<ul class="dot">
+					<li>학기 중 : 10:00~17:00 (월~금)</li>
+				</ul>
+				<br>
+
+				<h4 class="tit">상담신청 방법</h4>
+				<ul class="dot">
+					<li>온라인으로 신청해주세요.</li>
+					<li>신청서 상에 기재된 모든 내용을 작성해주세요.</li>
+					<li>이력서 및 자기소개서는 신청페이지 첨부파일로 넣어주세요.</li>
+					<li>모든 상담은 1:1 개별상담으로 진행됩니다.</li>
+					<li>상담시간은 50분입니다.</li>
+				</ul>
+			</div>
+			
+		<div class="centered-button">
+        	<a href="groupRequest.html" class="btn btn-primary">상담 신청하기</a> 	
+		</div>
+	
+	</section>
+</div>
+	
+	
+	
+	<footer>
+	<div class="footer-box">
+	푸터
+	</div>
+	</footer>
+	
+	<th:block th:insert="~{menu.html::scriptImport}">CDN JS 링크</th:block>
+</body>
+</html>
