@@ -42,4 +42,10 @@ public class AdminController {
 		List<BoardDTO> list = adminService.AdminBoard();
 		return list;
 	}
+	
+	@GetMapping({"/adminGroup", "/admin/Group"})
+	public String adminGroup(Model model) {
+		model.addAttribute("user", userUtil.getUserNameAndRole());
+		return "admin/adminGroup";
+	}
 }

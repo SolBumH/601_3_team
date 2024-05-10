@@ -3,11 +3,11 @@
 <head>
 <meta charset="UTF-8">
 <link rel="stylesheet"
-	href="https://uicdn.toast.com/tui-grid/latest/tui-grid.css" />
+   href="https://uicdn.toast.com/tui-grid/latest/tui-grid.css" />
 <link rel="stylesheet"
-	href="https://uicdn.toast.com/tui.pagination/latest/tui-pagination.css" />
+   href="https://uicdn.toast.com/tui.pagination/latest/tui-pagination.css" />
 <script
-	src="https://uicdn.toast.com/tui.pagination/latest/tui-pagination.js"></script>
+   src="https://uicdn.toast.com/tui.pagination/latest/tui-pagination.js"></script>
 <script src="https://uicdn.toast.com/tui-grid/latest/tui-grid.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <!-- 부트 스트랩 -->
@@ -19,85 +19,85 @@
 </head>
 
 <body>
-	<th:block th:insert="~{menu.html::header}">메뉴 들어가는 곳</th:block>
+   <th:block th:insert="~{menu.html::header}">메뉴 들어가는 곳</th:block>
 
-	<section class="counselindex gray-bg">
-		<div class="center">
-			<div class="card1">
-				<div class="title-container">
-					<h4>집단상담 프로그램이란?</h4>
-				</div>
-				<div class="explain">
-					<p>
-						자기이해, 대인관계증진, 정서 및 스트레스 관리 등의 주제로 비슷한 관심을 가진 학생들이 상담전문가와 함께 소그룹
-						집단상담을 통해 새로운 관계경험, 자기성장 및 자아실현, <br> 정신건강을 도모하는 프로그램입니다. 한
-						사람의 상담자가 동시에 몇 명의 내담자들을 상대로 상담하여 내담자들의 관심사, 대인관계, 사고 및 행동양식의 변화를
-						가져오는 활동입니다. <br> 그러나 상담자가 개인적인 능력에만 의존하는 것이 아니라 집단구성원간의 상호
-						작용적 관계(역동적 관계-Group Dynamics)를 바탕으로 내담자 개개인의 문제해결 및 변화가 이루어지는<br>
-						'집단적 접근방법'입니다.
-					</p>
-				</div>
-			</div>
-			<hr>
-			
-			<div class="title-container">
-				<h4>집단상담 프로그램 목록</h4>
-			</div>
-			<div class="request">
-				<div class="container-1">
-					<div class="row">
-						<!-- Start of card loop -->
-						<th:block th:each="i : ${#numbers.sequence(1,8)}">
-							<div class="col-sm-3 mb-2">
-								<div class="card">
-									<div class="card-body" style="height: 200px">
-										<a href="groupDetail"><img alt="/img/program.png"
-											src="/img/program.png" width="310" height="180"></a>
-									</div>
-									<div class="text1">
-										<p style="text-align: center">
-											일정 : 2024년 05월 20일<br> 프로그램명 : 룰루랄랄라
-										</p>
-									</div>
-								</div>
-							</div>
-					</div>
-					</th:block>
+   <section class="counselindex gray-bg">
+      <div class="center">
+         <div class="card1">
+            <div class="title-container">
+               <h4>집단상담 프로그램이란?</h4>
+            </div>
+            <div class="explain">
+               <p>
+                  자기이해, 대인관계증진, 정서 및 스트레스 관리 등의 주제로 비슷한 관심을 가진 학생들이 상담전문가와 함께 소그룹
+                  집단상담을 통해 새로운 관계경험, 자기성장 및 자아실현, <br> 정신건강을 도모하는 프로그램입니다. 한
+                  사람의 상담자가 동시에 몇 명의 내담자들을 상대로 상담하여 내담자들의 관심사, 대인관계, 사고 및 행동양식의 변화를
+                  가져오는 활동입니다. <br> 그러나 상담자가 개인적인 능력에만 의존하는 것이 아니라 집단구성원간의 상호
+                  작용적 관계(역동적 관계-Group Dynamics)를 바탕으로 내담자 개개인의 문제해결 및 변화가 이루어지는<br>
+                  '집단적 접근방법'입니다.
+               </p>
+            </div>
+         </div>
+         <hr>
+         
+         <div class="title-container">
+            <h4>집단상담 프로그램 목록</h4>
+         </div>
+         <div class="request">
+            <div class="container-1">
+               <div class="row">
+                  <!-- Start of card loop -->
+                  <th:block th:each="i : ${#numbers.sequence(1,4)}">
+                     <div class="col-sm-3 mb-2">
+                        <div class="card">
+                           <div class="card-body" style="height: 200px">
+                              <a href="groupDetail"><img alt="/img/program.png"
+                                 src="/img/program.png" width="310" height="180"></a>
+                           </div>
+                           <div class="text1">
+                              <p style="text-align: center">
+                                 일정 : 2024년 05월 20일<br> 프로그램명 : 룰루랄랄라
+                              </p>
+                           </div>
+                        </div>
+                     </div>
+               </div>
+               </th:block>
 
-					<nav class="d-flex justify-content-center"
-						aria-label="Page navigation example">
-						<ul class="pagination">
-							<li class="page-item"><a class="page-link" href="#"
-								aria-label="Previous"><span aria-hidden="true">&laquo;</span></a></li>
-							<li class="page-item"><a class="page-link" href="#">1</a></li>
-							<li class="page-item"><a class="page-link" href="#">2</a></li>
-							<li class="page-item"><a class="page-link" href="#">3</a></li>
-							<li class="page-item"><a class="page-link" href="#"
-								aria-label="Next"><span aria-hidden="true">&raquo;</span></a></li>
-						</ul>
-					</nav>
-					<!-- Add more columns for additional images -->
-				</div>
-			</div>
-		</div>
-		<th:block th:insert="~{index.html::jsImport}">CDN JS 링크</th:block>
-		<div id="grid"></div>
-	</section>
+               <nav class="d-flex justify-content-center"
+                  aria-label="Page navigation example">
+                  <ul class="pagination">
+                     <li class="page-item"><a class="page-link" href="#"
+                        aria-label="Previous"><span aria-hidden="true">&laquo;</span></a></li>
+                     <li class="page-item"><a class="page-link" href="#">1</a></li>
+                     <li class="page-item"><a class="page-link" href="#">2</a></li>
+                     <li class="page-item"><a class="page-link" href="#">3</a></li>
+                     <li class="page-item"><a class="page-link" href="#"
+                        aria-label="Next"><span aria-hidden="true">&raquo;</span></a></li>
+                  </ul>
+               </nav>
+               <!-- Add more columns for additional images -->
+            </div>
+         </div>
+      </div>
+      <th:block th:insert="~{index.html::jsImport}">CDN JS 링크</th:block>
+      <div id="grid"></div>
+   </section>
 </body>
 
 <script>
 const gridData = [
-	
-	
-	];
+   
+   
+   ];
 
 const grid = new tui.Grid({
   el: document.getElementById('grid'),
   data: gridData,
   /* data : {
-  	api : {
-  		readData : { url : 'getList', method : 'GET'}
-  	}	
+     api : {
+        readData : { url : 'getList', method : 'GET'}
+     }   
   },  DB연결방법*/
   rowHeaders: ['rowNum'],
   pageOptions: {
