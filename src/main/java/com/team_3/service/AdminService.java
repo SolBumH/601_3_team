@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.team_3.dto.BoardDTO;
+import com.team_3.dto.UserDTO;
 import com.team_3.repository.AdminRepository;
 @Service
 public class AdminService {
@@ -15,6 +16,10 @@ public class AdminService {
 	
 	public List<BoardDTO> AdminBoard() {
 		return adminRepository.AdminBoard();
+	}
+
+	public List<UserDTO> AdminUser() {
+		return adminRepository.AdminUser();
 	}
 
 }

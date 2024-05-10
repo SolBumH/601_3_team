@@ -12,5 +12,10 @@
 		and ib.DEL_YN = '1'
 		order by ib.BOARD_DATE DESC, ib.ANS_YN
 	</select>
+	
+	<select id="AdminUser" resultType="userDTO">
+		SELECT name, username, role
+		FROM USER
+	</select>
 
 </mapper>
