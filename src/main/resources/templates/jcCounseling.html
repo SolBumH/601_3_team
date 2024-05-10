@@ -38,7 +38,7 @@
 				
 					<div class="section-title text-center">
                <!-- <button th:onclick="|location.href='@{/}'|" th:text="'상담 신청'">신청버튼</button> -->
-               <button th:onclick="loginCheck([[${user.username}]])" th:text="'상담 신청'">신청버튼</button>
+               <button class="btn btn-danger" th:onclick="loginCheck([[${user.username}]])" th:text="'상담 신청'">신청버튼</button>
             </div>
          </div>
       </div>
@@ -68,7 +68,8 @@
     <script src="plugins/google-map/map.js"></script>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAkeLMlsiwzp6b3Gnaxd86lvakimwGA6UA&callback=initMap"></script>    
     
-    <script src="js/script.js"></script>
+      <script src="js/script.js"></script>
     <script src="js/contact.js"></script>
+    <script src="js/loginCheck.js"></script>
 </body>
 </html>
