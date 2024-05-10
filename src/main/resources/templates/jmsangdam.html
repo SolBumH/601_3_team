@@ -2,60 +2,89 @@
 <html xmlns:th="http://www.thymeleaf.org" lang="ko">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<th:block th:insert="~{menu.html::metaImport}">META 링크</th:block>
-<!-- 부트 스트랩 -->
-<title>전문 상담 안내</title>
-<th:block th:insert="~{menu.html::headImport}">CDN CSS 링크</th:block>
-<link rel="stylesheet" href="/css/sangdam.css">
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta name="description" content="Orbitor,business,company,agency,modern,bootstrap4,tech,software">
+  <meta name="author" content="themefisher.com">
+
+  <title>전문 상담</title>
+
+  <!-- Favicon -->
+  <link rel="shortcut icon" type="image/x-icon" href="/images/favicon.ico" />
+  <!-- bootstrap.min css -->
+  <link rel="stylesheet" href="plugins/bootstrap/css/bootstrap.min.css">
+  <!-- Icon Font Css -->
+  <link rel="stylesheet" href="plugins/icofont/icofont.min.css">
+  <!-- Slick Slider  CSS -->
+  <link rel="stylesheet" href="plugins/slick-carousel/slick/slick.css">
+  <link rel="stylesheet" href="plugins/slick-carousel/slick/slick-theme.css">
+  <!-- Main Stylesheet -->
+  <link rel="stylesheet" href="css/style.css">
 </head>
-<body>
-	<th:block th:insert="~{menu.html::menu}">메뉴 들어가는 곳</th:block>
-	<!-- <th:block th:insert="~{menu.html::consulting}">상담 목록</th:block> -->
 
-	<div class="context">
-		<section class="counselindex">
-			<h1 th:text="${counselingTitle}">상담 텍스트 들어가는 곳</h1>
-			<hr class="long-horizontal-line">
-			<br>
-			<br>
-			<div class="job_cnts">
-
-				<h4 class="tit">상담 운영</h4>
-				<ul class="dot">
-					<li>전문 상담 : 전 학년 ( 1 ~ 4학년 )</li>
-					<li>주제 : 가족, 일상, 개인 등</li>
-				</ul>
-				<br>
-				<h4 class="tit">운영일시</h4>
-				<ul class="dot">
-					<li>학기 중 : 10:00~17:00 (월~금)</li>
-				</ul>
-				<br>
-
-				<h4 class="tit">상담신청 방법</h4>
-				<ul class="dot">
-					<li>상담은 온라인으로 예약 후 진행됩니다.</li>
-					<li>신청서 상에 기재된 모든 내용을 작성해주세요.</li>
-					<li>필요 시 파일을 첨부해주세요.</li>
-					<li>모든 상담은 1:1 개별상담으로 진행됩니다.</li>
-					<li>상담시간은 50분입니다.</li>
-				</ul>
+<body id="top">
+<th:block th:insert="~{/menu.html::header}"></th:block>
+<section class="section testimonial-2 gray-bg">
+	<div class="container">
+		<div class="row justify-content-center">
+			<div class="col-lg-7">
+				<div class="section-title text-center">
+					<h1 th:text="${counselingTitle}">상담 텍스트 들어가는 곳</h1>
+					<div class="divider mx-auto my-4"></div>
+					<h5>
+						전문 상담 : 전 학년 ( 1 ~ 4학년 )<br>
+						주제 : 가족, 일상, 개인 등
+					</h5>
+				</div>
+				<div class="section-title text-center">
+					<h1 th:text="운영일시">운영일시</h1>
+					<div class="divider mx-auto my-4"></div>
+						<h5>학기 중 : 10:00 ~ 17:00 ( 월 ~ 금, 공휴일 제외 )</h5>
+				</div>
+				<div class="section-title text-center">
+					<h1 th:text="'상담 신청 방법'">상담신청방법</h1>
+					<div class="divider mx-auto my-4"></div>
+						<h5>상담은 온라인으로 예약 후 진행됩니다.</h5>
+						<h5>신청서 상에 기재된 모든 내용을 작성해주세요. * 필요 시 파일 첨부</h5>
+						<h5>모든 상담은 1:1 개별상담으로 진행됩니다.</h5>
+						<h5>상담시간은 50분입니다.</h5>
+				</div>
+				
+				<div class="section-title text-center">
+					<!-- <button th:onclick="|location.href='@{/}'|" th:text="'상담 신청'">신청버튼</button> -->
+					<button th:onclick="loginCheck([[${user.username}]])" th:text="'상담 신청'">신청버튼</button>
+				</div>
 			</div>
-
-			<img src="/img/process.png" alt="상담 신청 과정">
-
-			<div class="centered-button">
-				<button th:onclick="|location.href='@{/groupRequest}'|" class="btn btn-primary" th:text="'상담 신청하기'">상담신청버튼</button>
-			</div>
-
-		</section>
+		</div>
 	</div>
+</section>
+<!-- footer Start -->
+<th:block th:insert="~{menu.html::footer}"></th:block>
+   
+    <!-- 
+    Essential Scripts
+    =====================================-->
 
-	<footer>
-		<div class="footer-box">푸터</div>
-	</footer>
-
-	<th:block th:insert="~{menu.html::scriptImport}">CDN JS 링크</th:block>
+    
+    <!-- Main jQuery -->
+    <script src="plugins/jquery/jquery.js"></script>
+    <!-- Bootstrap 4.3.2 -->
+    <script src="plugins/bootstrap/js/popper.js"></script>
+    <script src="plugins/bootstrap/js/bootstrap.min.js"></script>
+    <script src="plugins/counterup/jquery.easing.js"></script>
+    <!-- Slick Slider -->
+    <script src="plugins/slick-carousel/slick/slick.min.js"></script>
+    <!-- Counterup -->
+    <script src="plugins/counterup/jquery.waypoints.min.js"></script>
+    
+    <script src="plugins/shuffle/shuffle.min.js"></script>
+    <script src="plugins/counterup/jquery.counterup.min.js"></script>
+    <!-- Google Map -->
+    <script src="plugins/google-map/map.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAkeLMlsiwzp6b3Gnaxd86lvakimwGA6UA&callback=initMap"></script>    
+    
+    <script src="js/script.js"></script>
+    <script src="js/contact.js"></script>
+    <script src="js/loginCheck.js"></script>
 </body>
 </html>
+   

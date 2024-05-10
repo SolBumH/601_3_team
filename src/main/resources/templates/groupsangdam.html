@@ -13,7 +13,7 @@
 <!-- 부트 스트랩 -->
 <title>집단상담</title>
 
-<th:block th:insert="~{menu.html::headImport}">CDN CSS 링크</th:block>
+<th:block th:insert="~{index.html::headImport}">CDN CSS 링크</th:block>
 <link rel="stylesheet" href="/css/jcCounseling.css">
 <link rel="stylesheet" href="/css/jdCounseling.css">
 
@@ -21,10 +21,11 @@
 
 </head>
 <body>
-	<th:block th:insert="~{menu.html::menu}">메뉴 들어가는 곳</th:block>
+	<th:block th:insert="~{index.html::menu}">메뉴 들어가는 곳</th:block>
 	<!-- <th:block th:insert="~{menu.html::consulting}">상담 목록</th:block> -->
 
 	<div class="center">
+	<section class="counselindex gray-bg">
 		<div class="title-container">
 			<h4>집단상담 프로그램이란?</h4>
 		</div>
@@ -44,15 +45,15 @@
 			<h4>집단상담 프로그램 목록</h4>
 		</div>
 	<div class="request">
-		<div class="container">
+		<div class="container-1">
 			<div class="row">
 				<!-- Start of card loop -->
-				<th:block th:each="i : ${#numbers.sequence(1,12)}">
+				<th:block th:each="i : ${#numbers.sequence(1,8)}" >
 					<div class="col-sm-3 mb-2">
 						<div class="card">
 							<div class="card-body" style="height: 200px">
 								<a href="groupDetail"><img alt="/img/program.png"
-									src="/img/program.png" width="270" height="180"></a>
+									src="/img/program.png" width="290" height="180"></a>
 							</div>
 							<div>
 								<p style= "text-align: center">
@@ -80,9 +81,9 @@
 			<!-- Add more columns for additional images -->
 		</div>
 	</div>
-
+</section>
 	</div>
-		<th:block th:insert="~{menu.html::scriptImport}">CDN JS 링크</th:block>
+		<th:block th:insert="~{index.html::jsImport}">CDN JS 링크</th:block>
 
 	<div id="grid"></div>
 </div>

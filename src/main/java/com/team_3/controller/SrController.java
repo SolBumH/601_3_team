@@ -25,6 +25,15 @@ public class SrController {
 	@PostMapping("/SrController")
 	@ResponseBody
 	public String arg(@RequestParam(name = "start") String start) {
+		//System.out.println(start);
 		return "srcunsulting";
+	}
+	
+	@PostMapping("/scmenu")
+	@ResponseBody
+	public String scmenu(@RequestParam(name = "moda") String moda) {
+		System.out.println(moda);
+	
+		return "scmenu";
 	}
 }
