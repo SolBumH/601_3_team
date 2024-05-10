@@ -32,14 +32,13 @@
 					<h1 th:text="'글쓰기'">타이틀들어가는곳</h1>
 					<div class="divider mx-auto my-4"></div>
 					<form id="writeForm">
-						<input type="text" name="board_title" placeholder="제목을 적어주세요."/>
+						<input class="form-control" maxlength="40" type="text" name="board_title" placeholder="제목을 적어주세요."/>
 						<div id="editor"></div>
-						<input type="hidden" name="_csrf" th:value="${_csrf.token}"/>
 					</form>
 				</div>
 				
 				<div class="section-title text-center">
-					<button th:onclick="writeComplete()" class="btn btn-danger" th:text="'작성하기'">글쓰기버튼</button>
+					<button th:onclick="writeComplete([[${user}]])" class="btn btn-danger" th:text="'작성하기'">글쓰기버튼</button>
 				</div>
 			</div>
 		</div>

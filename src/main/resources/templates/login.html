@@ -32,21 +32,21 @@
 					<div class="divider mx-auto my-4"></div>
 					<div id="login">
 						<form method="post" action="/login" name="loginForm">
-							<div>
+							<div class="my-2">
 								<label class="form-label" th:text="아이디" for="username"></label>
 								<input class="form-control" type="text" name="username" placeholder="아이디"/>
 							</div>
-							<div>
+							<div class="my-2">
 								<label class="form-label" th:text="비밀번호" for="password"></label>
 								<input class="form-control" type="password" name="password" placeholder="비밀번호"/>
 							</div>
 							<input type="hidden" name="_csrf" th:value="${_csrf.token}"/>
-							<button type="submit" class="btn btn-danger" th:text="로그인">로그인버튼</button>
+							<button type="submit" class="btn btn-danger my-2" th:text="로그인">로그인버튼</button>
 						</form>
 					</div>
-					<div>
-						<a th:text="'아이디 찾기'" th:href="@{/findMyId}">아이디찾기</a>
-						<a th:text="'비밀번호 찾기'" th:href="@{/findMyPw}">비번찾기</a>
+					<div class="my-2">
+						<a class="mx-2" th:text="'아이디 찾기'" th:href="@{/findMyId}">아이디찾기</a>
+						<a class="mx-2" th:text="'비밀번호 찾기'" th:href="@{/findMyPw}">비번찾기</a>
 					</div>
 				</div>
 			</div>

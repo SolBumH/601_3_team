@@ -5,6 +5,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.team_3.dto.BoardDTO;
 import com.team_3.service.BoardService;
@@ -46,5 +47,14 @@ public class BoardController {
 			// 에러 시 에러 페이지 이동시키기
 			return "redirect:/board";
 		}
+	}
+	
+	@PostMapping("/writeComplete")
+	@ResponseBody
+	public String write2(BoardDTO board) {
+		System.out.println(board.toString());
+		System.out.println("title : " + board.getBoard_title());
+		System.out.println("content : " + board.getBoard_content());
+		return "1";
 	}
 }

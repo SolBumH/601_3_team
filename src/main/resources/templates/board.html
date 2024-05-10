@@ -77,14 +77,12 @@
 				dataType : "JSON",
 				contentType : "application/json; charset=UTF-8",
 				success : function(result) {
-					console.log(result);
-			
 					const grid = new tui.Grid({
 					  el: document.getElementById('grid'),
 					  // rowHeaders: ['rowNum'],
 					  pageOptions: {
 					    useClient: true,
-					    perPage: 15
+					    perPage: 10,
 					  },
 					  scrollX: false,
 					  scrollY: false,
@@ -92,18 +90,28 @@
 					    {
 					      header: '제목',
 					      name: 'board_title',
+					      align: 'center',
 					    },
 					    {
 					      header: '작성자',
 					      name: 'username',
+					      width: 130,
+					      align: 'center',
 					    },
 					    {
 					      header: '답변여부',
-					      name: 'ans_yn'
+					      name: 'ans_yn',
+					      width: 100,
+					      align: 'center',
 					    }
-					    ]
+					    ],
+					    contextMenu: null,
+					    columnOptions: {
+					      resizable: true
+					    },
 					});
 					grid.resetData(result);
+					tui.Grid.applyTheme('clean', {});
 				}
 			});
 		});
