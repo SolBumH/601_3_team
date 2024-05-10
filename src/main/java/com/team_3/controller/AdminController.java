@@ -59,6 +59,8 @@ public class AdminController {
 		List<UserDTO> list = adminService.AdminUser();
 		System.out.println(list);
 		return list;
+	}
+	
 	@GetMapping({"/adminGroup", "/admin/Group"})
 	public String adminGroup(Model model) {
 		model.addAttribute("user", userUtil.getUserNameAndRole());
