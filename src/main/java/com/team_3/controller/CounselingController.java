@@ -73,7 +73,7 @@ public class CounselingController {
 	}
   
 
-	@GetMapping("/jcsuccessPage")
+	@GetMapping("/jcsuccessPage") //신청폼에서 db로 저장
 	public String submitForm(CounselingFormDTO form, Model model) {
 		counselingService.saveForm(form);
 		return "redirect:/jcsuccessPage"; // 저장 후 리다이렉트할 페이지
