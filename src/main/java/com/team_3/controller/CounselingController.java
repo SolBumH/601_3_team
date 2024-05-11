@@ -1,14 +1,17 @@
 package com.team_3.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
 import com.team_3.dto.CounselingFormDTO;
-import com.team_3.service.counselingService;
+import com.team_3.service.CounselingService;
 import com.team_3.util.UserUtil;
 
 @Controller
@@ -18,7 +21,7 @@ public class CounselingController {
 	private UserUtil userUtil;
 	
 	@Autowired
-	private counselingService counselingService;
+	private CounselingService counselingService;
 	
 	@GetMapping("srCounseling")
 	public String srCounseling(Model model) {
@@ -73,10 +76,15 @@ public class CounselingController {
 	}
   
 
-	@GetMapping("/jcsuccessPage") //신청폼에서 db로 저장
-	public String submitForm(CounselingFormDTO form, Model model) {
-		counselingService.saveForm(form);
-		return "redirect:/jcsuccessPage"; // 저장 후 리다이렉트할 페이지
+	   @PostMapping("/saveCounselingForm") //신청폼 db로 전송
+	    public ResponseEntity<String> saveCounselingForm(@RequestBody CounselingFormDTO formDTO) {
+	        try {
+	            counselingService.saveForm(formDTO);
+	            return ResponseEntity.ok("신청 내용이 성공적으로 저장되었습니다.");
+	        } catch (Exception e) {
+	            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+	                .body("신청 내용 저장 중 오류가 발생했습니다.");
+	        }
 	    }
 	
 	

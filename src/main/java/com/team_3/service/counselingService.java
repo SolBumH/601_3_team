@@ -1,17 +1,19 @@
 package com.team_3.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.team_3.dto.CounselingFormDTO;
 import com.team_3.repository.CounselingRepository;
 
-public class counselingService {
+@Service
+public class CounselingService {
 
 	  @Autowired
 	    private CounselingRepository counselingRepository;
 
 	    public void saveForm(CounselingFormDTO form) {
-	        counselingRepository.save(form);
+	    	counselingRepository.insertCounselingForm(form);
 	    }
 		
 	}
