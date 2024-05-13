@@ -19,5 +19,13 @@ public class CounselingService {
     public void saveForm(CounselingFormDTO formDTO) {
         counselingRepository.saveForm(formDTO);
     }
+    
+    public String test() {
+    	//System.out.println(counselingRepository.findByJcNo("1234567"));
+		return counselingRepository.findByJcNo("1234567");
+    }
 
+	public Object findBySTUD_NO() {
+		return counselingRepository.findBySTUD_NO("010-2345-6789");
+	}
 }
