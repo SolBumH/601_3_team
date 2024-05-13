@@ -4,7 +4,7 @@
 <mapper namespace="jcCounselingForm">
 
 <insert id="insertCounselingForm" parameterType="BoardDTO">
-    INSERT INTO CounselingForm (name, student_id, email, phone_number, counseling_content) 
+    INSERT INTO CounselingForm (name, studentId, email, phoneNumber, counselingContent) 
     VALUES (#{name}, #{studentId}, #{email}, #{phoneNumber}, #{counselingContent})
 </insert>
 
