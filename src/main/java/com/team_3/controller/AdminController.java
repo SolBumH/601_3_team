@@ -24,7 +24,7 @@ public class AdminController {
 	@Autowired
 	private AdminService adminService;
 	
-	@GetMapping("/index")
+	@GetMapping({"/index" , "/"})
 	public String index(Model model) {
 		model.addAttribute("user", userUtil.getUserNameAndRole());
 		return "admin/adminIndex";
