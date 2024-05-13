@@ -21,4 +21,8 @@ public class BoardRepository {
 	public int write(BoardDTO board) {
 		return sqlSession.insert("board.boardInsert", board);
 	}
+
+	public BoardDTO getDetail(int no) {
+		return sqlSession.selectOne("board.detail", no);
+	}
 }

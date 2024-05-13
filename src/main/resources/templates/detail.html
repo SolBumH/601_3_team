@@ -6,7 +6,7 @@
   <meta name="description" content="Orbitor,business,company,agency,modern,bootstrap4,tech,software">
   <meta name="author" content="themefisher.com">
   <th:block th:insert="~{menu.html::metaImport}"></th:block>
-  <title>문의하기</title>
+  <title th:text="${detail.board_title}">타이틀</title>
 
   <!-- Favicon -->
   <link rel="shortcut icon" type="image/x-icon" href="/images/favicon.ico" />
@@ -19,8 +19,6 @@
   <link rel="stylesheet" href="plugins/slick-carousel/slick/slick-theme.css">
   <!-- Main Stylesheet -->
   <link rel="stylesheet" href="css/style.css">
-  <!-- Toast Grid -->
-  <th:block th:insert="~{menu.html::toastgrid}"></th:block>
 </head>
 
 <body id="top">
@@ -30,13 +28,22 @@
 		<div class="row justify-content-center">
 			<div class="col-lg-7">
 				<div class="section-title text-center">
-					<h1 th:text="'문의 게시판'">타이틀들어가는곳</h1>
+					<h1 th:text="${detail.board_title}">타이틀들어가는곳</h1>
 					<div class="divider mx-auto my-4"></div>
-					<div id="grid"></div>
+					<div class="row justify-content-between">
+						<div>
+							<span>작성자 : </span>
+							<span th:text="${detail.name}">이름칸</span>
+						</div>
+						<div>
+							<span>작성일 : </span>
+							<span th:text="${#dates.format(detail.board_date, 'yyyy-MM-dd HH:mm')}"></span>
+						</div>
+					</div>
+					<h5 class="my-4" id="content">[[${detail.board_content}]]</h5>
 				</div>
 				
 				<div class="section-title text-center">
-					<button th:onclick="boardWrite([[${user.username}]])" class="btn btn-danger" th:text="'글쓰기'">글쓰기버튼</button>
 				</div>
 			</div>
 		</div>
@@ -45,10 +52,7 @@
 <!-- footer Start -->
 <th:block th:insert="~{menu.html::footer}"></th:block>
    
-    <!-- 
-    Essential Scripts
-    =====================================-->
-
+    <!-- Essential Scripts =====================================-->
     
     <!-- Main jQuery -->
     <script src="plugins/jquery/jquery.js"></script>
@@ -68,67 +72,6 @@
     <th:block th:insert="~{menu.html::scriptImport}"></th:block>
     <script src="js/script.js"></script>
     <script src="js/contact.js"></script>
-    <script src="js/write.js"></script>
-    <script type="text/javascript">
-	    const grid = new tui.Grid({
-			  el: document.getElementById('grid'),
-			  // rowHeaders: ['rowNum'],
-			  pageOptions: {
-			    useClient: true,
-			    perPage: 10,
-			  },
-			  scrollX: false,
-			  scrollY: false,
-			  columns: [
-			  	{
-			      header: '번호',
-			      name: 'board_no',
-			      width: 30,
-			      align: 'center',
-			      formatter: function (e) {
-			    	return `<a href="detail?no=${e.value}">${e.value}</a>`;  
-			      },
-			    },
-			    {
-			      header: '제목',
-			      name: 'board_title',
-			      align: 'center',
-			    },
-			    {
-			      header: '작성자',
-			      name: 'username',
-			      width: 130,
-			      align: 'center',
-			    },
-			    {
-			      header: '답변여부',
-			      name: 'ans_yn',
-			      width: 100,
-			      align: 'center',
-			    }
-			    ],
-			    contextMenu: null,
-			    columnOptions: {
-			      resizable: true
-			    },
-			});
-    
-		$(document).ready(function(){
-			$.ajax({
-				url : "/admin/boardList",
-				type : "get",
-				dataType : "JSON",
-				contentType : "application/json; charset=UTF-8",
-				success : function(result) {
-					grid.resetData(result);
-					tui.Grid.applyTheme('clean', {});
-				}
-			});
-		});
-
-		grid.on("click", function (ev) {
-		});
-	</script>
 </body>
 </html>
    
