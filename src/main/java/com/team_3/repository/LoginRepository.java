@@ -23,4 +23,8 @@ public class LoginRepository {
 	public void joinProcess(UserDTO user) {
 		sqlSession.insert("test.join", user);
 	}
+
+	public UserDTO getUserData(UserDTO user) {
+		return sqlSession.selectOne("test.getUserData", user);
+	}
 }
