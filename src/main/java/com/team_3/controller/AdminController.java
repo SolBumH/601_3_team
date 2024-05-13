@@ -61,7 +61,7 @@ public class AdminController {
 		return list;
 	}
 	
-	@GetMapping({"/adminGroup", "/Group"})
+	@GetMapping({"/adminGroup", "/group"})
 	public String adminGroup(Model model) {
 		model.addAttribute("user", userUtil.getUserNameAndRole());
 		return "admin/adminGroup";
