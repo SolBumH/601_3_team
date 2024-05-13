@@ -11,70 +11,73 @@
 <body id="top">
 	<th:block th:insert="~{/menu.html::header}"></th:block>
 
-<section class="section testimonial-4 gray-bg">
-    <div class="container">
-        
-            <h4>상담 신청</h4>
-            
-            <div class="section-title text-center">
-            <div class="box">
-                <div class="container">
-                    <span class="label">상담 구분:</span>
-                    <select class="form-select" aria-label="상담 종류 선택">
-                        <!-- 선택할 항목 -->
-                        <option value="심리 상담 신청서">심리 상담</option>
-                        <option value="전문 상담 신청서">전문 상담</option>
-                        <option value="집단 상담 신청서">집단 상담</option>
-                        <option value="취업·진로 상담 신청서">취업·진로 상담</option>
-                        <option value="교수 상담 신청서">교수 상담</option>
-                    </select>
-                </div>
-            </div>
-            <!-- Form -->
-            <form>
-                <table class="request">
-                   <tr>
-    				<th class="th" scope="row">학생정보</th>
-   					 <td><input type="text" title="이름" placeholder="자동으로 들어갈 예정" ></td>
-				  </tr>
-                     <tr>
-                        <th class="th" scope="row">학번</th>
-                        <td><input type="text" title="학번" placeholder="자동으로 들어갈 예정" ></td>
-                    </tr>
-                     <tr>
-                        <th class="th" scope="row">이메일</th>
-                        <td><input type="text" class="wid53" title="이메일" placeholder="자동으로 들어갈 예정" ></td>
-                    </tr>
-                    <tr>
-                        <th class="th" scope="row">연락처</th>
-                        <td>
-                            <select class="wid10" title="핸드폰 앞 자리 선택">
-                                <option value="010">010</option>
-                                <option value="011">011</option>
-                                <option value="016">016</option>
-                                <option value="017">017</option>
-                            </select>
-                            <input type="text" title="전화번호 앞" maxlength="4" class="wid20">
-                          <input type="text" title="전화번호뒤" maxlength="4" class="wid20" style="margin-left: -5px;">
-                        </td>
-                    </tr>
-                   
-                   
-                
-                    <tr>
-                        <th class="th" scope="row">상담 내용</th>
-                        <td><textarea title="상담 내용" placeholder="200자 이내(400byte)로 입력해 주세요"></textarea></td>
-                    </tr>
-                </table>
-                	<div class="section-title text-center">
-               <!-- <button th:onclick="|location.href='@{/}'|" th:text="'상담 신청'">신청버튼</button> -->
-               <button class="btn btn-danger">신청하기</button>
-            </div>   
-            </form>
-            <!-- //Form -->
-        </div>
-    </div>
-</section>
+	<section class="section testimonial-4 gray-bg">
+		<div class="container">
+
+			<h4>상담 신청</h4>
+
+			<div class="section-title text-center">
+				<div class="box">
+					<div class="container">
+						<span class="label">상담 구분:</span> <select class="form-select"
+							aria-label="상담 종류 선택">
+							<!-- 선택할 항목 -->
+							<option value="심리 상담 신청서">심리 상담</option>
+							<option value="전문 상담 신청서">전문 상담</option>
+							<option value="집단 상담 신청서">집단 상담</option>
+							<option value="취업·진로 상담 신청서">취업·진로 상담</option>
+							<option value="교수 상담 신청서">교수 상담</option>
+						</select>
+					</div>
+				</div>
+				
+				<form action="/saveCounselingForm" method="post">
+					<table class="request">
+						<tr>
+							<th class="th" scope="row">학생정보</th>
+							<td>
+							<input type="text" name="name" placeholder="자동으로 들어갈 예정">
+							</td>
+						</tr>
+						<tr>
+							<th class="th" scope="row">학번</th>
+							<td><input type="text" name="studentId"placeholder="자동으로 들어갈 예정">
+							</td>
+						</tr>
+						<tr>
+							<th class="th" scope="row">이메일</th>
+							<td><input type="text" class="wid53" name="email" placeholder="자동으로 들어갈 예정">
+							</td>
+						</tr>
+						<tr>
+							<th class="th" scope="row">연락처</th>
+							<td>
+							<select class="wid10" title="핸드폰 앞 자리 선택">
+									<option value="010">010</option>
+									<option value="011">011</option>
+									<option value="016">016</option>
+									<option value="017">017</option>
+							</select> 
+							<input type="text" name="phoneNumber" maxlength="4"class="wid20"> <input type="text" name="phoneNumber" maxlength="4" class="wid20" style="margin-left: -5px;">
+							</td>
+						</tr>
+						<tr>
+							<th class="th" scope="row">상담 내용</th>
+							<td><textarea name="counselingContent" placeholder="200자 이내(400byte)로 입력해 주세요">
+							</textarea>
+							</td>
+						</tr>
+					</table>
+					<div class="section-title text-center">
+						<button class="btn btn-danger">신청하기</button>
+					</div>
+
+					<input type="hidden" name="_csrf" th:value="${_csrf.token}" />
+				</form>
+				<!-- //Form -->
+			</div>
+		</div>
+	</section>
 
 
 

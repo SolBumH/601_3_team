@@ -9,8 +9,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.team_3.dto.CounselingFormDTO;
+import com.team_3.service.CounselingService;
 import com.team_3.service.CounselingService;
 import com.team_3.util.UserUtil;
 
@@ -76,15 +78,23 @@ public class CounselingController {
 	}
   
 
-	   @PostMapping("/saveCounselingForm") //신청폼 db로 전송
-	    public ResponseEntity<String> saveCounselingForm(@RequestBody CounselingFormDTO formDTO) {
-	        try {
-	            counselingService.saveForm(formDTO);
-	            return ResponseEntity.ok("신청 내용이 성공적으로 저장되었습니다.");
-	        } catch (Exception e) {
-	            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
-	                .body("신청 내용 저장 중 오류가 발생했습니다.");
-	        }
+	  @PostMapping("/saveCounselingForm")
+	    public String saveCounselingForm(@RequestParam("name") String name,
+	                                     @RequestParam("studentId") String studentId,
+	                                     @RequestParam("email") String email,
+	                                     @RequestParam("phoneNumber") String phoneNumber,
+	                                     @RequestParam("counselingContent") String counselingContent) {
+	       
+		  CounselingFormDTO formDTO = new CounselingFormDTO();
+	        formDTO.setName(name);
+	        formDTO.setStudentId(studentId);
+	        formDTO.setEmail(email);
+	        formDTO.setPhoneNumber(phoneNumber);
+	        formDTO.setCounselingContent(counselingContent);
+
+	        counselingService.saveForm(formDTO); // 서비스를 통해 데이터 저장
+
+	        return "redirect:/successPage"; // 성공 페이지로 리다이렉트
 	    }
 	
 	
