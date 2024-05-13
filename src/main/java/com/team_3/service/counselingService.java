@@ -1,18 +1,25 @@
 package com.team_3.service;
 
+import java.util.logging.Logger;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.team_3.dto.CounselingFormDTO;
 import com.team_3.repository.CounselingRepository;
+
 @Service
-public class counselingService {
+public class CounselingService {
 
-	  @Autowired
-	  private CounselingRepository counselingRepository;
+    private CounselingRepository counselingRepository;
 
-	    public void saveForm(CounselingFormDTO form) {
-	        counselingRepository.save(form);
-	    }
-		
-	}
+    @Autowired
+    public CounselingService(CounselingRepository counselingRepository) {
+        this.counselingRepository = counselingRepository;
+    }
+
+    public void saveForm(CounselingFormDTO formDTO) {
+        counselingRepository.saveForm(formDTO);
+    }
+
+}

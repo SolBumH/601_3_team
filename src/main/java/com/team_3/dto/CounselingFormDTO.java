@@ -5,7 +5,11 @@ import lombok.Data;
 @Data
 public class CounselingFormDTO {
 	
-	private int STUD_NO;
-	private String JC_DSCSN_CN;
+    private String name;
+    private String studentId;
+    private String email;
+    private String phoneNumber;
+    private String counselingContent;
+	
 	
 }
