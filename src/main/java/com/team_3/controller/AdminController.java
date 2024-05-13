@@ -24,7 +24,7 @@ public class AdminController {
 	@Autowired
 	private AdminService adminService;
 	
-	@GetMapping("/index")
+	@GetMapping({"/index" , ""})
 	public String index(Model model) {
 		model.addAttribute("user", userUtil.getUserNameAndRole());
 		return "admin/adminIndex";
@@ -61,7 +61,7 @@ public class AdminController {
 		return list;
 	}
 	
-	@GetMapping({"/adminGroup", "/admin/Group"})
+	@GetMapping({"/adminGroup", "/Group"})
 	public String adminGroup(Model model) {
 		model.addAttribute("user", userUtil.getUserNameAndRole());
 		return "admin/adminGroup";

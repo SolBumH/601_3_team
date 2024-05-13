@@ -10,8 +10,9 @@
 	<th:block th:insert="~{menu.html::menu}">메뉴 들어가는 곳</th:block>
 	<div class="login">
 		<form action="/joinProc" method="post" name="joinForm">
+			<input type="text" name="name" placeholder="name" />
 			<input type="text" name="username" placeholder="Username" />
-			<input type="password" name="password" placeholder="Password" />
+			<input type="text" name="password" placeholder="Password" />
 			<button type="submit">가입</button>
 		</form>
 	</div>

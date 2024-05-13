@@ -49,7 +49,8 @@ function writeComplete(user) {
 			xhr.setRequestHeader(header, token);
 		},
 		success: function(result) {
-			console.log(result);
+			alert("작성이 완료되었습니다.");
+			location.href="/board";
 		},
 		error: function(error) {
 		}
