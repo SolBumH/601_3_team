@@ -105,6 +105,25 @@
 								<a th:href="@{/}" class="mr-3">
 									<span class="">HOME</span>
 								</a>
+								
+								<th:block th:if="${user.role eq 'ROLE_ADMIN'}">
+									<a th:href="@{/admin}" class="mr-3">
+										<span class="">관리자 페이지</span>
+									</a>
+								</th:block>
+								
+								<th:block th:if="${user.role eq 'ROLE_USER'}">
+									<a th:href="@{/admin}" class="mr-3">
+										<span class="">교직원 페이지</span>
+									</a>
+								</th:block>
+								
+								<th:block th:if="${user.role eq 'ROLE_STUD'}">
+									<a th:href="@{#}" class="mr-3">
+										<span class="">마이페이지</span>
+									</a>
+								</th:block>
+								
 								<th:block th:if="${user.username ne 'anonymousUser'}">
 									<a th:href="@{/logout}">
 										<span class="">로그아웃</span>

@@ -1,5 +1,7 @@
 package com.team_3.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -23,9 +25,13 @@ public class BoardController {
 	@GetMapping("/board")
 	public String board(Model model) {
 		model.addAttribute("user", userUtil.getUserNameAndRole());
-		// 게시글 목록 불러오기
-		model.addAttribute("list", boardService.boardList());
 		return "board";	
+	}
+	
+	@GetMapping("/boardList")
+	public List<BoardDTO> boardList() {
+		List<BoardDTO> list = boardService.getBoardList();
+		return list;
 	}
 	
 	@GetMapping("/write")
