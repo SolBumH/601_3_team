@@ -47,7 +47,6 @@
 	<div class="bodypart">
 		<h1>회원관리</h1>
 		<div id="grid"></div>
-		[[${list}]]
 	</div>
 	
 
@@ -62,36 +61,98 @@
 	<script src="/admin/js/datatables-simple-demo.js"></script>
 	<th:block th:insert="~{menu.html::scriptImport}">CDN JS 링크</th:block>
 	<script type="text/javascript">
-	const grid = new tui.Grid({
-	    el: document.getElementById('grid'),
-	    data:{
-	    	api : {
-	    		readData : { url : '/admin/userList', method : 'get'}
-	    	}
-	    },
-	    rowHeaders: ['rowNum'],
-	    pageOptions: {
-	      useClient: true,
-	      perPage: 15
-	    },
-	    scrollX: false,
-	    scrollY: false,
-	    columns: [
-	      {
-	        header: '아이디',
-	        name: 'name',
-	      },
-	      {
-	        header: '도시',
-	        name: 'username',
-	      },
-	      {
-	        header: '지역',
-	        name: 'role'
+	class CustomTextEditor {
+	      constructor(props) {
+	        const el = document.createElement('input');
+
+	        el.type = 'text';
+	        el.value = String(props.value);
+
+	        this.el = el;
 	      }
-	      ]
-	  });	
-	    
+
+	      getElement() {
+	        return this.el;
+	      }
+
+	      getValue() {
+	        return this.el.value;
+	      }
+
+	      mounted() {
+	        this.el.select();
+	      }
+	    }
+	$(document).ready(function() {
+
+		$.ajax({
+			url : "/admin/userList",
+			type : "get",
+			dataType : "JSON",
+			contentType : "application/json; charset=UTF-8",
+			success : function(result) {
+				console.log(result);
+
+				const grid = new tui.Grid({
+					el : document.getElementById('grid'),
+					rowHeaders : [ 'checkbox' ],
+					pageOptions : {
+						useClient : true,
+						perPage : 15
+					},
+					scrollX : false,
+					scrollY : false,
+					columns : [ {
+						header : '회원번호',
+						name : 'user_no',
+						editor: {
+				            type: CustomTextEditor,
+				            options: {
+				              maxLength: 10
+				            }
+				          }
+					},{
+						header : '이름',
+						name : 'name',
+					}, {
+						header : '아이디',
+						name : 'username',
+					}, {
+						header : '등급',
+						name : 'role',
+						formatter: 'listItemText',
+						editor : {
+							type : 'select',
+							options : {
+								listItems : [
+									 { text: '관리자', value: 'ROLE_ADMIN' },
+						             { text: '일반', value: 'ROLE_USER' },
+						             { text: '학생', value: 'ROLE_STUD' },
+								]
+							}	
+						}
+					} ]
+				});
+				
+				grid.on('beforeChange', ev => {
+					
+				});
+				grid.on('afterChange', ev => {
+					console.log(ev);
+				});
+				
+				grid.on('focusChange', ev => {
+				      console.log('change focused cell!', ev);
+				    });
+				  
+				    
+				    
+				    
+				grid.resetData(result);
+			}
+		});
+	});
+	  
 	</script>
 </body>
 </html>

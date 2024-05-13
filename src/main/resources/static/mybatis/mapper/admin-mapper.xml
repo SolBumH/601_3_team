@@ -14,7 +14,7 @@
 	</select>
 	
 	<select id="AdminUser" resultType="userDTO">
-		SELECT name, username, role
+		SELECT *
 		FROM USER
 	</select>
 
