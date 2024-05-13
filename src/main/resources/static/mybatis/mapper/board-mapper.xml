@@ -5,6 +5,7 @@
 		select ib.BOARD_NO, ib.BOARD_TITLE, ib.BOARD_DATE, u.NAME  as 'username',
 			(CASE WHEN ib.ANS_YN = '1' THEN '미답변'
 				WHEN ib.ANS_YN = '2' THEN '답변 완료'
+				WHEN ib.ANS_YN = '3' THEN '답변 불필요'
 			END) AS ANS_YN
 		from Inq_Board ib
 		join `USER` u

@@ -18,7 +18,7 @@ public class BoardService {
 		return boardRepository.write(board);
 	}
 
-	public List<BoardDTO> boardList() {
+	public List<BoardDTO> getBoardList() {
 		return boardRepository.boardList();
 	}
 }
