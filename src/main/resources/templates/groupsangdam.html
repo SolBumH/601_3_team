@@ -16,6 +16,23 @@
 <th:block th:insert="~{index.html::headImport}">CDN CSS 링크</th:block>
 <link rel="stylesheet" href="/css/jcCounseling.css">
 <link rel="stylesheet" href="/css/jdCounseling.css">
+<style>
+	.text1 {
+		padding-top: 5px;
+		text-align: center;
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+		height: 100%;
+	}
+	
+	.card-group-item.col {
+		margin: 5px 0;
+		padding: 2px;
+		font-size: 14px;
+	}
+</style>
 </head>
 
 <body>
@@ -49,14 +66,14 @@
                   <th:block th:each="row : ${groupDataList}">
                      <div class="col-sm-3 mb-2">
                         <div class="card">
-                           <div class="card-body" style="height: 200px">
+                           <div class="card-body" style="height: 300px">
                               <a href="groupDetail"><img alt="/img/program.png"
-                                 src="/img/program.png" width="310" height="180"></a>
+                                 src="/img/program.png" width="310" height="300"></a>
                            </div>
                            <div class="text1">
                               <p style="text-align: center">
                               	<div class="card-group-item col"  th:text="${row.PG_NAME}"></div>
-                              	<div class="card-group-item col" th:text="${row.JMS_CS_DATE}"></div>
+                              	 <div class="card-group-item col" th:text="'일 정 : ' + ${#dates.format(row.JMS_CS_DATE, 'yyyy-MM-dd HH:mm')}"></div>
                               </p>
                            </div>
                         </div>
@@ -64,18 +81,23 @@
 	               </th:block>
                </div>
 
-               <nav class="d-flex justify-content-center"
-                  aria-label="Page navigation example">
-                  <ul class="pagination">
-                     <li class="page-item"><a class="page-link" href="#"
-                        aria-label="Previous"><span aria-hidden="true">&laquo;</span></a></li>
-                     <li class="page-item"><a class="page-link" href="#">1</a></li>
-                     <li class="page-item"><a class="page-link" href="#">2</a></li>
-                     <li class="page-item"><a class="page-link" href="#">3</a></li>
-                     <li class="page-item"><a class="page-link" href="#" aria-label="Next"><span aria-hidden="true">&raquo;</span></a></li>
-                  </ul>
-               </nav>
-               <!-- Add more columns for additional images -->
+<!-- 페이징 -->
+<!-- 					<nav class="d-flex justify-content-center"> -->
+<!-- 						<ul class="pagination"> -->
+<!-- 							<li th:if="${currentPage != 0}" class="page-item"><a -->
+<!-- 								class="page-link" th:href="@{/groups(page=${currentPage - 1})}" -->
+<!-- 								aria-label="Previous">&laquo;</a></li> -->
+<!-- 							<li th:each="i : ${#numbers.sequence(0, totalPages - 1)}" -->
+<!-- 								th:classappend="${i == currentPage} ? 'active' : ''" -->
+<!-- 								class="page-item"><a th:href="@{/groups(page=${i})}" -->
+<!-- 								th:text="${i + 1}" class="page-link"></a></li> -->
+<!-- 							<li th:if="${currentPage < totalPages - 1}" class="page-item"> -->
+<!-- 								<a class="page-link" -->
+<!-- 								th:href="@{/groups(page=${currentPage + 1})}" aria-label="Next">&raquo;</a> -->
+<!-- 							</li> -->
+<!-- 						</ul> -->
+<!-- 					</nav> -->
+					<!-- Add more columns for additional images -->
             </div>
          </div>
       </div>
