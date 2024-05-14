@@ -1,5 +1,9 @@
 package com.team_3.controller;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -7,6 +11,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.team_3.dto.BoardDTO;
 import com.team_3.dto.CounselingFormDTO;
 import com.team_3.service.CounselingService;
 import com.team_3.util.UserUtil;
@@ -19,6 +24,14 @@ public class CounselingController {
 	
 	@Autowired
 	private CounselingService counselingService;
+	
+	@GetMapping("/srconsulting")
+	public String sd(Model model) {
+		model.addAttribute("user", userUtil.getUserNameAndRole());
+		List<Map<String, Object>> schedule = counselingService.getSchedule();
+		model.addAttribute("schedule", schedule);
+		return "srconsulting";
+	}	
 	
 	@GetMapping("srCounseling")
 	public String srCounseling(Model model) {
@@ -41,9 +54,18 @@ public class CounselingController {
 		return "jdCounseling";
 	}
 	
-	@GetMapping("/groupsangdam")
+	@GetMapping("/groupsangdam") //집단상담 프로그램 목록
 	public String groupSangdam(Model model) {
 		model.addAttribute("user", userUtil.getUserNameAndRole());
+		
+		List<BoardDTO> groupDataList = new ArrayList<>(); // 초기화
+		groupDataList = counselingService.getGroupData();
+		
+		System.out.println(groupDataList);
+		  
+		model.addAttribute("groupDataList", groupDataList);
+		  
+		
 		return "groupsangdam";
 	}
 	

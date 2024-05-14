@@ -85,9 +85,6 @@
 			      name: 'board_no',
 			      width: 30,
 			      align: 'center',
-			      formatter: function (e) {
-			    	return `<a href="detail?no=${e.value}">${e.value}</a>`;  
-			      },
 			    },
 			    {
 			      header: '제목',
@@ -127,6 +124,8 @@
 		});
 
 		grid.on("click", function (ev) {
+			let board = grid.getRow(ev.rowKey);
+			location.href = "/detail?no=" + board.board_no;
 		});
 	</script>
 	<script type="text/javascript">
@@ -134,6 +133,8 @@
 	
 		if (searchParams.get("error") == 1) {
 			alert("본인 게시글만 확인 가능합니다.");
+		} else if (searchParams.get("error") == 2) {
+			alert("게시글 열람 권한이 없습니다.\n로그인이 필요합니다.");
 		}
 	</script>
 </body>
