@@ -73,9 +73,9 @@ public class AdminController {
 		return "admin/adminCounseling";
 	}
 	
-	@GetMapping("/statistics")
-	public String statistics(Model model) {
+	@GetMapping("/charts")
+	public String charts(Model model) {
 		model.addAttribute("user", userUtil.getUserNameAndRole());
-		return "admin/adminstatistics";
+		return "admin/admincharts";
 	}
 }

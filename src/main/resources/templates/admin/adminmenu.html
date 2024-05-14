@@ -79,7 +79,7 @@
 	                           </div>
 	                           <div class="sb-sidenav-menu-heading"></div>
 	                           <th:block th:if="${user.role eq 'ROLE_ADMIN'}">
-		                           <a class="nav-link" href="charts.html">
+		                           <a class="nav-link" th:href="@{/admin/charts}">
 		                               <div class="sb-nav-link-icon"><i class="fas fa-chart-area"></i></div>
 		                               통계
 		                           </a>
