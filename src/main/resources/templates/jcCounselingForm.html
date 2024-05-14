@@ -40,11 +40,11 @@
 						
 						<tr>
 							<th class="th" scope="row">상담 날짜</th>
-							<td th:text="${param.date}"></td>
+							<td><input type="text" class="wid53" name="JC_DSCSN_YMD" placeholder="달력 완성 되면 가져올 예정"></td>
 						</tr>
 							<tr>
 							<th class="th" scope="row">상담 시간</th>
-							<td th:text="${param.time} + '시'"></td>
+							<td><input type="text" class="wid53" name="JC_DSCSN_TM" placeholder="달력 완성 되면 가져올 예정"></td>
 						</tr>
 						
 						<tr>
@@ -56,7 +56,6 @@
 						<tr>
 							<th class="th" scope="row">학번</th>
 							<td th:text="${findBySTUD_NO}"></td>
-							</td>
 						</tr>
 									
 						<tr>

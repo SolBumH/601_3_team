@@ -93,7 +93,8 @@ public class CounselingController {
 		model.addAttribute("user", userUtil.getUserNameAndRole());
 		
 		model.addAttribute("test", counselingService.test());
-		model.addAttribute("findBySTUD_NO", counselingService.findBySTUD_NO());
+		model.addAttribute("findBySTUD_NO", counselingService.findBySTUD_NO()); //학번으로 잡기
+		
 		//System.out.println(counselingService.test());
 	
 		return "jcCounselingForm";
