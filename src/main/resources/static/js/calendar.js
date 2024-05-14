@@ -37,6 +37,8 @@ document.addEventListener('DOMContentLoaded', function() {
 			// calendar.unselect();
 		} //달력 빈칸클릭시 event 추가 가능
 	});
+	
+	
 	calendar.render();
 });
 
