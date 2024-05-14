@@ -82,7 +82,7 @@ public class BoardController {
 		UserDTO user = userUtil.getUserData();
 		BoardDTO detail = boardService.getDetail(no);
 		if (user == null || user.getRole().equals("ROLE_ANONYMOUS")) {
-			return "redirect:/board?error=1";
+			return "redirect:/board?error=2";
 		}
 		
 		if (!user.getRole().equals("ROLE_STUD") || user.getUser_no() == detail.getBoard_user()) {
@@ -90,7 +90,7 @@ public class BoardController {
 			model.addAttribute("user", user);
 			return "detail";
 		} else {
-			return "redirect:/board";
+			return "redirect:/board?error=1";
 		}
 	}
 	
