@@ -21,4 +21,8 @@ public class BoardService {
 	public List<BoardDTO> getBoardList() {
 		return boardRepository.boardList();
 	}
+
+	public BoardDTO getDetail(int no) {
+		return boardRepository.getDetail(no);
+	}
 }

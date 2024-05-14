@@ -7,9 +7,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.team_3.dto.BoardDTO;
+import com.team_3.dto.UserDTO;
 import com.team_3.service.BoardService;
 import com.team_3.util.UserUtil;
 
@@ -24,7 +26,8 @@ public class BoardController {
 
 	@GetMapping("/board")
 	public String board(Model model) {
-		model.addAttribute("user", userUtil.getUserNameAndRole());
+		UserDTO user = userUtil.getUserNameAndRole();
+		model.addAttribute("user", user);
 		return "board";	
 	}
 	
@@ -36,14 +39,19 @@ public class BoardController {
 	
 	@GetMapping("/write")
 	public String write(Model model) {
-		model.addAttribute("user", userUtil.getUserNameAndRole());
-		return "write";
+		UserDTO user = userUtil.getUserNameAndRole();
+		model.addAttribute("user", user);
+		if (user.getRole().equals("ROLE_ANONYMOUS")) {
+			return "redirect:/login";
+		} else {
+			return "write";
+		}
 	}
 	
 	@PostMapping("/write")
 	public String write(BoardDTO board) {
 		// 로그인이 안 된 사용자면 /board로 보내기
-		if (userUtil.getUsername().equals("anonymousUser")) {
+		if (userUtil.getUserRole().equals("ROLE_ANONYMOUS")) {
 			return "redirect:/board";
 		}
 		int result = boardService.write(board);
@@ -61,6 +69,29 @@ public class BoardController {
 		System.out.println(board.toString());
 		System.out.println("title : " + board.getBoard_title());
 		System.out.println("content : " + board.getBoard_content());
-		return "1";
+		String role = userUtil.getUserRole();
+		if (role.equals("ROLE_ANONYMOUS")) {
+			return "0";
+		} else {
+			return "1";
+		}
 	}
+	
+	@GetMapping("/detail")
+	public String detail(Model model, @RequestParam(name = "no") int no) {
+		UserDTO user = userUtil.getUserData();
+		BoardDTO detail = boardService.getDetail(no);
+		if (user == null || user.getRole().equals("ROLE_ANONYMOUS")) {
+			return "redirect:/board?error=1";
+		}
+		
+		if (!user.getRole().equals("ROLE_STUD") || user.getUser_no() == detail.getBoard_user()) {
+			model.addAttribute("detail", detail);
+			model.addAttribute("user", user);
+			return "detail";
+		} else {
+			return "redirect:/board";
+		}
+	}
+	
 }

@@ -24,11 +24,12 @@ public class CounselingService {
         counselingRepository.saveForm(formDTO);
     }
     
-    //집단상담 프로그램 목록 띄우기
-	public List<BoardDTO> getGroupData() {
-		List<BoardDTO> groupDataList = counselingRepository.getGroupData();
-		return groupDataList;
-	}
+    public String test() {
+    	//System.out.println(counselingRepository.findByJcNo("1234567"));
+		return counselingRepository.findByJcNo("1234567");
+    }
 
-    
+	public Object findBySTUD_NO() {
+		return counselingRepository.findBySTUD_NO("010-2345-6789");
+	}
 }

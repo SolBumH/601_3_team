@@ -7,7 +7,8 @@ import com.team_3.dto.CounselingFormDTO;
 
 public interface CounselingRepository {
 	 void saveForm(CounselingFormDTO formDTO);
+	 
+	 String findByJcNo(String str);
 
-	List<BoardDTO> getGroupData();
-
+	 String findBySTUD_NO(String str2);
 }

@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="admin">
 	<select id="AdminBoard" resultType="BoardDTO">
-		select ib.BOARD_NO, ib.BOARD_TITLE, ib.BOARD_DATE, u.NAME  as 'username',
+		select ib.BOARD_NO, ib.BOARD_TITLE, ib.BOARD_DATE, u.NAME,
 			(CASE WHEN ib.ANS_YN = '1' THEN '미답변'
 				WHEN ib.ANS_YN = '2' THEN '답변 완료'
 			END) AS ANS_YN
@@ -14,7 +14,7 @@
 	</select>
 	
 	<select id="AdminUser" resultType="userDTO">
-		SELECT name, username, role
+		SELECT *
 		FROM USER
 	</select>
 

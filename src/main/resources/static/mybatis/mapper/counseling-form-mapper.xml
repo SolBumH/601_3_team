@@ -3,14 +3,20 @@
 
 <mapper namespace="jcCounselingForm">
 
-<insert id="insertCounselingForm" parameterType="BoardDTO">
-    INSERT INTO CounselingForm (name, studentId, email, phoneNumber, counselingContent) 
-    VALUES (#{name}, #{studentId}, #{email}, #{phoneNumber}, #{counselingContent})
-</insert>
+	<insert id="insertCounselingForm"
+		parameterType="com.team_3.dto.CounselingFormDTO">
+		INSERT INTO CounselingForm (email, counselingContent)
+		VALUES ( #{email}, #{counselingContent})
+	</insert>
 
-<select id="selectGroupData" resultType="BoardDTO">
-	SELECT PG_NAME, JMS_CS_DATE
-	FROM JDSD_Info
-</select>
+	<select id="findByJcNo"
+		resultType="String">
+		SELECT JC_NO FROM CounselingForm WHERE STUD_NO = #{STUD_NO}
+	</select>
 
+	<select id="findBySTUD_NO"
+		resultType="String">
+		SELECT STUD_NO FROM STUD_INFO WHERE STUD_PHONE = #{STUD_PHONE}
+	</select>
+	
 </mapper>

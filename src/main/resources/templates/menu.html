@@ -42,54 +42,6 @@
 		<meta name="_csrf" th:content="${_csrf.token}">
 	</th:block>
 
-	<th:block th:fragment="menu">
-		<nav class="navbar navbar-expand-lg">
-			<div class="container justify-content-center">
-				<a class="navbar-brand justify-content-center" href="/index"> <img
-					src="/img/logo.png" width="50" height="40"
-					class="d-inline-block align-text-top"> 3조대학교
-				</a>
-	
-	<button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-		data-bs-target="#navbarSupportedContent"
-		aria-controls="navbarSupportedContent" aria-expanded="false"
-		aria-label="Toggle navigation">
-	</button>
-
-	<ul class="nav mb-2 mb-lg-0">
-    	<li class="nav-item"><a class="nav-link active text-dark" aria-current="page" href="#">대학안내</a></li>
-   		<li class="nav-item"><a class="nav-link active text-dark" aria-current="page" href="#">학과소개</a></li>
-	</ul>
-
-    <ul class="nav mb-2 mb-lg-0">
-        <li class="nav-item dropdown">
-            <a href="#" id="consultingDropdown" data-bs-toggle="dropdown" aria-expanded="false">상담예약</a>
-            <ul class="dropdown-menu" aria-labelledby="consultingDropdown" style="margin-top:20px;">
-                <li class="row">
-                    <ul class="col-sm-12">
-                        <li><a class="dropdown-item" href="/srCounseling">심리상담</a></li>
-                        <li><a class="dropdown-item" href="/jmCounseling">전문상담</a></li>
-                        <li><a class="dropdown-item" href="/jdCounseling">집단상담</a></li>
-                        <li><a class="dropdown-item" href="/jcCounseling">취업상담</a></li>
-                        <li><a class="dropdown-item" href="/jkCounseling">교수상담</a></li>
-                    </ul>
-                </li>
-            </ul>
-        </li>
-        
-        <li class="nav-item"><a class="nav-link active text-dark" aria-current="page" th:href="@{/board}">문의하기</a></li>
-        <li class="nav-item"><a class="nav-link active text-dark" aria-current="page" href="#">공지사항</a></li>
-        <th:block th:if="${user.username ne 'anonymousUser'}">
-			<li class="nav-item"><a class="nav-link me-lg-3" th:href="@{/logout}" th:text="로그아웃"></a></li>
-        </th:block>
-        <th:block th:unless="${user.username ne 'anonymousUser'}">
-        	<li class="nav-item"><a class="nav-link active text-dark" aria-current="page" href="/login">로그인</a></li>
-		</th:block>
-    </ul>
-    		</div>
-		</nav>
-	</th:block>
-	
 	<th:block th:fragment="header">
 		<header>
 			<div class="header-top-bar">
@@ -119,7 +71,7 @@
 								</th:block>
 								
 								<th:block th:if="${user.role eq 'ROLE_STUD'}">
-									<a th:href="@{#}" class="mr-3">
+									<a th:href="@{/mypage}" class="mr-3">
 										<span class="">마이페이지</span>
 									</a>
 								</th:block>
@@ -154,7 +106,6 @@
 					  <li class="nav-item active">
 						<a class="nav-link" th:href="@{/}">대학안내</a>
 					  </li>
-					   <li class="nav-item"><a class="nav-link" th:href="@{/about}">입학안내</a></li>
 					    <li class="nav-item"><a class="nav-link" th:href="@{/service}">학과소개</a></li>
 		
 					    <li class="nav-item dropdown">

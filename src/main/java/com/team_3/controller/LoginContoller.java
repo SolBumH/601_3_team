@@ -50,12 +50,10 @@ public class LoginContoller {
 	
 	@GetMapping("/logout")
     public String logout(HttpServletRequest request, HttpServletResponse response) throws Exception {
-
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         if(authentication != null) {
             new SecurityContextLogoutHandler().logout(request, response, authentication);
         }
-
         return "redirect:/";
     }
 	
@@ -68,7 +66,7 @@ public class LoginContoller {
 	
 	@PostMapping("/joinProc")
 	public String joinProc(UserDTO userDTO) {
-		System.out.println(userDTO.toString());
+		// System.out.println(userDTO.toString());
 		loginService.joinProcess(userDTO);
 		return "redirect:/join";
 	}
