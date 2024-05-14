@@ -2,6 +2,7 @@ package com.team_3.controller;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -23,6 +24,14 @@ public class CounselingController {
 	
 	@Autowired
 	private CounselingService counselingService;
+	
+	@GetMapping("/srconsulting")
+	public String sd(Model model) {
+		model.addAttribute("user", userUtil.getUserNameAndRole());
+		List<Map<String, Object>> schedule = counselingService.getSchedule();
+		model.addAttribute("schedule", schedule);
+		return "srconsulting";
+	}	
 	
 	@GetMapping("srCounseling")
 	public String srCounseling(Model model) {
