@@ -13,8 +13,10 @@ document.addEventListener('DOMContentLoaded', function() {
 		// dayMaxEventRows: false, // for all non-TimeGrid views
 		nowIndicator: true, // 현재 시간 마크
 		editable: false, // 기존 예약을 옮길수 있음
+		fixedWeekCount: false, // 해당 달의 마지막 주 까지만 보여줌, 다음 달의 미리보기 X
 		validRange: {
 				start: Date.now(),
+				end: Date.now() + 2592000000,
 		},
 		select: function(arg) {
 			click(arg.startStr);

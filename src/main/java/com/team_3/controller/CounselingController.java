@@ -1,18 +1,13 @@
 package com.team_3.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.team_3.dto.CounselingFormDTO;
-import com.team_3.service.CounselingService;
 import com.team_3.service.CounselingService;
 import com.team_3.util.UserUtil;
 
@@ -74,28 +69,33 @@ public class CounselingController {
 	@GetMapping("/jcCounselingForm")
 	public String jcCounselingForm(Model model) {
 		model.addAttribute("user", userUtil.getUserNameAndRole());
+		
+		model.addAttribute("test", counselingService.test());
+		model.addAttribute("findBySTUD_NO", counselingService.findBySTUD_NO());
+		//System.out.println(counselingService.test());
+	
 		return "jcCounselingForm";
 	}
-  
 
-	  @PostMapping("/saveCounselingForm")
-	    public String saveCounselingForm(@RequestParam("name") String name,
-	                                     @RequestParam("studentId") String studentId,
-	                                     @RequestParam("email") String email,
-	                                     @RequestParam("phoneNumber") String phoneNumber,
+	  @PostMapping("/saveCounselingForm") 
+	    public String saveCounselingForm(                                    
+	                                     @RequestParam("email") String email,	   
 	                                     @RequestParam("counselingContent") String counselingContent) {
 	       
-		  CounselingFormDTO formDTO = new CounselingFormDTO();
-	        formDTO.setName(name);
-	        formDTO.setStudentId(studentId);
+		  CounselingFormDTO formDTO = new CounselingFormDTO();       
 	        formDTO.setEmail(email);
-	        formDTO.setPhoneNumber(phoneNumber);
 	        formDTO.setCounselingContent(counselingContent);
 
 	        counselingService.saveForm(formDTO); // 서비스를 통해 데이터 저장
 
-	        return "redirect:/successPage"; // 성공 페이지로 리다이렉트
+	        return "redirect:/JcFromsuccessPage"; // 성공 페이지로 리다이렉트
 	    }
+	  
+		@GetMapping("/JcFromsuccessPage")
+		public String JcFromsuccessPage(Model model) {
+			model.addAttribute("user", userUtil.getUserNameAndRole());
+			return "JcFromsuccessPage";
+		}
 	
 	
 	@GetMapping("/jkCounseling")

@@ -20,4 +20,14 @@ public class CounselingRepositoryImpl implements CounselingRepository {
 	public void saveForm(CounselingFormDTO formDTO) {
 		sqlSession.insert("jcCounselingForm.insertCounselingForm", formDTO);		
 	}
+
+	@Override
+	public String findByJcNo(String str) {
+		return sqlSession.selectOne("jcCounselingForm.findByJcNo", str);
+	}
+
+	@Override
+	public String findBySTUD_NO(String str2) {
+		return sqlSession.selectOne("jcCounselingForm.findBySTUD_NO", str2);
+	}
 }
