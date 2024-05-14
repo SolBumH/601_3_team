@@ -19,4 +19,8 @@
 		SELECT STUD_NO FROM STUD_INFO WHERE STUD_PHONE = #{STUD_PHONE}
 	</select>
 	
+	<select id="selectGroupData" resultType="BoardDTO">
+		SELECT PG_NAME, JMS_CS_DATE
+	FROM JDSD_Info
+	</select>
 </mapper>

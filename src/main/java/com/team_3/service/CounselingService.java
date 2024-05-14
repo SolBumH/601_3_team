@@ -32,4 +32,11 @@ public class CounselingService {
 	public Object findBySTUD_NO() {
 		return counselingRepository.findBySTUD_NO("010-2345-6789");
 	}
+	
+	public List<BoardDTO> getGroupData() {
+		List<BoardDTO> groupDataList = counselingRepository.getGroupData();
+		return groupDataList;
+	}
+
+    
 }

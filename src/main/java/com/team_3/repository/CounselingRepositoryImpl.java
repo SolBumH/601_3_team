@@ -1,8 +1,6 @@
 package com.team_3.repository;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,4 +33,10 @@ public class CounselingRepositoryImpl implements CounselingRepository {
 	public String findBySTUD_NO(String str2) {
 		return sqlSession.selectOne("jcCounselingForm.findBySTUD_NO", str2);
 	}
+	
+	@Override
+    public List<BoardDTO> getGroupData() {
+		    return sqlSession.selectList("jcCounselingForm.selectGroupData");
+    }   
+	
 }
