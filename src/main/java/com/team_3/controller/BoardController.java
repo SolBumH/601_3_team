@@ -79,11 +79,10 @@ public class BoardController {
 	
 	@GetMapping("/detail")
 	public String detail(Model model, @RequestParam(name = "no") int no) {
-		System.out.println(no);
 		UserDTO user = userUtil.getUserData();
 		BoardDTO detail = boardService.getDetail(no);
 		if (user == null || user.getRole().equals("ROLE_ANONYMOUS")) {
-			return "redirect:/login";
+			return "redirect:/board?error=1";
 		}
 		
 		if (!user.getRole().equals("ROLE_STUD") || user.getUser_no() == detail.getBoard_user()) {
