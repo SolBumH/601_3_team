@@ -57,13 +57,25 @@ public class AdminController {
 	@ResponseBody
 	public List<UserDTO> userList(Model model) {
 		List<UserDTO> list = adminService.AdminUser();
-		System.out.println(list);
+		//System.out.println(list);
 		return list;
 	}
 	
-	@GetMapping({"/adminGroup", "/group"})
+	@GetMapping("/Group")
 	public String adminGroup(Model model) {
 		model.addAttribute("user", userUtil.getUserNameAndRole());
 		return "admin/adminGroup";
+	}
+	
+	@GetMapping("/Counseling")
+	public String counseling(Model model) {
+		model.addAttribute("user", userUtil.getUserNameAndRole());
+		return "admin/adminCounseling";
+	}
+	
+	@GetMapping("/statistics")
+	public String statistics(Model model) {
+		model.addAttribute("user", userUtil.getUserNameAndRole());
+		return "admin/adminstatistics";
 	}
 }
