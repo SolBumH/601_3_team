@@ -1,6 +1,7 @@
 package com.team_3.repository;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,6 +38,11 @@ public class CounselingRepositoryImpl implements CounselingRepository {
 	@Override
     public List<BoardDTO> getGroupData() {
 		    return sqlSession.selectList("jcCounselingForm.selectGroupData");
-    }   
+    }
+
+	@Override
+	public List<Map<String, Object>> getSchedule() {
+		return sqlSession.selectList("jcCounselingForm.getSchedule");
+	}   
 	
 }
