@@ -8,4 +8,9 @@
     VALUES (#{name}, #{studentId}, #{email}, #{phoneNumber}, #{counselingContent})
 </insert>
 
+<select id="selectGroupData" resultType="BoardDTO">
+	SELECT PG_NAME, JMS_CS_DATE
+	FROM JDSD_Info
+</select>
+
 </mapper>

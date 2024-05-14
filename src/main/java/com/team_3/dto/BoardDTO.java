@@ -18,4 +18,8 @@ public class BoardDTO {
 	private String del_yn; // 삭제 여부 ( 1:미삭제, 2:삭제 )
 	private String ans_yn; // 답변 여부 ( 1:미답변, 2:답변완료 )
 	private String file_no; // 파일 번호
+	
+	private String PG_NAME; //프로그램명
+	private Date EN_DATE;	// 끝나는 날짜
+	private Date JMS_CS_DATE; //프로그램 실행날짜
 }

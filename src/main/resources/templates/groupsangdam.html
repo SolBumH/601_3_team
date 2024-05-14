@@ -39,15 +39,14 @@
             </div>
          </div>
          <hr>
-         
-         <div class="title-container">
+        <div class="title-container">
             <h4>집단상담 프로그램 목록</h4>
          </div>
          <div class="request">
             <div class="container-1">
                <div class="row">
                   <!-- Start of card loop -->
-                  <th:block th:each="i : ${#numbers.sequence(1,4)}">
+                  <th:block th:each="row : ${groupDataList}">
                      <div class="col-sm-3 mb-2">
                         <div class="card">
                            <div class="card-body" style="height: 200px">
@@ -56,17 +55,14 @@
                            </div>
                            <div class="text1">
                               <p style="text-align: center">
-                              	<div class="card-group-item col">${row.PG_NAME}</div>
-                              	<div class="card-group-item col">${row.JMS_CS_DATE}</div>
-                              
-                              
-                                 일정 : 2024년 05월 20일<br> 프로그램명 : 룰루랄랄라
+                              	<div class="card-group-item col"  th:text="${row.PG_NAME}"></div>
+                              	<div class="card-group-item col" th:text="${row.JMS_CS_DATE}"></div>
                               </p>
                            </div>
                         </div>
                      </div>
+	               </th:block>
                </div>
-               </th:block>
 
                <nav class="d-flex justify-content-center"
                   aria-label="Page navigation example">
