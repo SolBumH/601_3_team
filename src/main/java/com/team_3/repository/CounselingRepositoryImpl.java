@@ -5,6 +5,7 @@ import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Repository;
 
 import com.team_3.dto.BoardDTO;
@@ -27,12 +28,17 @@ public class CounselingRepositoryImpl implements CounselingRepository {
 
 	@Override
 	public String findByJcNo(String str) {
-		return sqlSession.selectOne("jcCounselingForm.findByJcNo", str);
+		return null;
 	}
 
 	@Override
-	public String findBySTUD_NO(String str2) {
-		return sqlSession.selectOne("jcCounselingForm.findBySTUD_NO", str2);
+	public String findStudentName(String username) {
+		    return sqlSession.selectOne("jcCounselingForm.findByName", username);
+		}
+
+	@Override
+	public String findStudentNumber(String username) {
+		return sqlSession.selectOne("jcCounselingForm.findByStud_no", username);
 	}
 	
 	@Override

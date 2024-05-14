@@ -9,8 +9,7 @@
 		VALUES (#{email}, #{counselingContent})
 	</insert>
 
-	<select id="findByJcNo"
-		resultType="String">
+	<select id="findByJcNo" resultType="String">
 		SELECT JC_NO FROM CounselingForm WHERE STUD_NO = #{STUD_NO}
 	</select>
 

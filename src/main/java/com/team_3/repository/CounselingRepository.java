@@ -11,6 +11,12 @@ public interface CounselingRepository {
 	 
 	 String findByJcNo(String str);
 
+	String findStudentName(String username);
+
+	String findStudentNumber(String username);
+
+
+	
 	 String findBySTUD_NO(String str2);
 	 
 	 List<BoardDTO> getGroupData();
