@@ -5,7 +5,6 @@ import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Repository;
 
 import com.team_3.dto.BoardDTO;
@@ -49,6 +48,11 @@ public class CounselingRepositoryImpl implements CounselingRepository {
 	@Override
 	public List<Map<String, Object>> getSchedule() {
 		return sqlSession.selectList("jcCounselingForm.getSchedule");
+	}
+
+	@Override
+	public String findBySTUD_NO(String str2) {
+		return null;
 	}   
 	
 }
