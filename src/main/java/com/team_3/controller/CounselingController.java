@@ -2,18 +2,18 @@ package com.team_3.controller;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import com.team_3.dto.BoardDTO;
 import com.team_3.dto.CounselingFormDTO;
 import com.team_3.dto.UserDTO;
 import com.team_3.service.CounselingService;
+import com.team_3.service.CustomUserDetailService;
 import com.team_3.util.UserUtil;
 
 @Controller
@@ -24,6 +24,9 @@ public class CounselingController {
 	
 	@Autowired
 	private CounselingService counselingService;
+	
+	@Autowired
+	private CustomUserDetailService customUserDetailService;
 	
 	@GetMapping("srCounseling")
 	public String srCounseling(Model model) {
@@ -88,38 +91,6 @@ public class CounselingController {
 		model.addAttribute("user", userUtil.getUserNameAndRole());
 		return "jcCounseling";
 	}
-	
-	@GetMapping("/jcCounselingForm")
-	public String jcCounselingForm(Model model) {
-		model.addAttribute("user", userUtil.getUserNameAndRole());
-		
-		model.addAttribute("test", counselingService.test());
-		model.addAttribute("findBySTUD_NO", counselingService.findBySTUD_NO());
-		//System.out.println(counselingService.test());
-	
-		return "jcCounselingForm";
-	}
-
-	  @PostMapping("/saveCounselingForm") 
-	    public String saveCounselingForm(                                    
-	                                     @RequestParam("email") String email,	   
-	                                     @RequestParam("counselingContent") String counselingContent) {
-	       
-		  CounselingFormDTO formDTO = new CounselingFormDTO();       
-	        formDTO.setEmail(email);
-	        formDTO.setCounselingContent(counselingContent);
-
-	        counselingService.saveForm(formDTO); // 서비스를 통해 데이터 저장
-
-	        return "redirect:/JcFromsuccessPage"; // 성공 페이지로 리다이렉트
-	    }
-	  
-		@GetMapping("/JcFromsuccessPage")
-		public String JcFromsuccessPage(Model model) {
-			model.addAttribute("user", userUtil.getUserNameAndRole());
-			return "JcFromsuccessPage";
-		}
-	
 	
 	@GetMapping("/jkCounseling")
 	public String jkCounseling(Model model) {

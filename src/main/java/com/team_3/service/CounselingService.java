@@ -1,6 +1,7 @@
 package com.team_3.service;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -29,8 +30,8 @@ public class CounselingService {
 		return counselingRepository.findByJcNo("1234567");
     }
 
-	public Object findBySTUD_NO() {
-		return counselingRepository.findBySTUD_NO("010-2345-6789");
+	public String findStudentNumber(String username) {
+		return counselingRepository.findStudentNumber(username);
 	}
 	
 	public List<BoardDTO> getGroupData() {
