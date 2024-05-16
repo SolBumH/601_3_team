@@ -12,6 +12,8 @@ public class CounselingFormDTO {
     private String email;   
     private String counselingContent;
     private String selectedType;
+    private String studentName;
+    private String studentNumber;
 				
 }
 

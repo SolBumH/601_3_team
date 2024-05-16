@@ -20,8 +20,8 @@
 				<form action="/saveCounselingForm" method="post">
 					<div class="box">
 						<div class="container">
-							<span class="label">상담 구분:</span> <select id="counselingType"
-								name="selectedType" class="form-select" aria-label="상담 종류 선택">
+							<span class="label">상담 구분:</span>
+							 <select id="counselingType" name="selectedType" class="form-select" aria-label="상담 종류 선택">
 								<option value="" selected disabled>상담 종류를 선택해주세요</option>
 								<option value="심리상담">심리 상담</option>
 								<option value="전문상담">전문 상담</option>
@@ -115,7 +115,7 @@
 		if (selectedType === "") {
 			alert("상담 종류를 선택해주세요.");
 			 event.preventDefault(); // 이벤트의 기본 동작 중지
-		       return false; // 이벤트 버블링 차단
+		        return false; // 이벤트 버블링 차단
 		}
 	});
 </script>
