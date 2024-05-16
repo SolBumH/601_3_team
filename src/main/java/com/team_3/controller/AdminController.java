@@ -78,4 +78,10 @@ public class AdminController {
 		model.addAttribute("user", userUtil.getUserNameAndRole());
 		return "admin/admincharts";
 	}
+	
+	@GetMapping("/jkCounseling")
+	public String jkCounseling(Model model) {
+		model.addAttribute("user",userUtil.getUserNameAndRole());
+		return "admin/adminJkCounseling";
+	}
 }
