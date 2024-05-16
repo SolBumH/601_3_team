@@ -20,7 +20,13 @@
 	</select>
 	
 	<select id="selectGroupData" resultType="BoardDTO">
-		SELECT PG_NAME, JMS_CS_DATE
-	FROM JDSD_Info
+		SELECT PG_NAME, JMS_CS_DATE FROM JDSD_Info
+	</select>
+	
+	<select id="getDetail" parameterType="Integer" resultType="BoardDTO">
+		SELECT PG_NAME, PG_EXPLAIN, EN_DATE, JMS_CS_DATE, TO_NO, AP_NO, PA_NO 
+		FROM JDSD_Info
+		WHERE JD_NO = #{no}
+			and EN_NO = "2"
 	</select>
 </mapper>

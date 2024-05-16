@@ -38,5 +38,9 @@ public class CounselingService {
 		return groupDataList;
 	}
 
+	public BoardDTO getDetail(int no) {
+		return counselingRepository.getDetail(no);
+	}
+
     
 }
