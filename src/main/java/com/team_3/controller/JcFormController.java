@@ -56,7 +56,6 @@ public class JcFormController {
 		return "jcCounselingForm";
 	}
 
-
 	@GetMapping("/jcFormsuccessPage")
 	public String successPage(Model model) {
 		model.addAttribute("user", userUtil.getUserNameAndRole());
@@ -64,17 +63,31 @@ public class JcFormController {
 	}
 
 	@PostMapping("/saveCounselingForm")
-	public String saveCounselingForm(@RequestParam("email") String email,
+	public String saveCounselingForm(@RequestParam(name = "email") String email,
 			@RequestParam("counselingContent") String counselingContent,
-			@RequestParam("selectedType") String selectedType) {
+			@RequestParam("selectedType") String selectedType, 
+			@RequestParam("date") String date,
+			@RequestParam("time") String time, 
+			@RequestParam("name") String name,
+			@RequestParam("studentNumber") String studentNumber) {
+	
+		System.out.println("시간: " + time); System.out.println("학생이름: " + name);
+		System.out.println("날짜: " + date); System.out.println("학번: " + studentNumber);
+		
 		CounselingFormDTO formDTO = new CounselingFormDTO();
 		formDTO.setEmail(email);
 		formDTO.setCounselingContent(counselingContent);
 		formDTO.setSelectedType(selectedType);
-
+		formDTO.setDate(date);
+		formDTO.setTime(time);
+		formDTO.setNAME(name);
+		formDTO.setStudentNumber(studentNumber);
+		
+		System.out.println("컨트롤러 들어왔어요");
+		
+		// System.out.println(formData);
 		counselingService.saveForm(formDTO);
 
-		return "redirect:/jcFormsuccessPage";
+		return "redirect:/jcFormsuccessPage"; 
 	}
-
 }

@@ -3,10 +3,10 @@
 
 <mapper namespace="jcCounselingForm">
 
-   <insert id="insertCounselingForm"  parameterType="com.team_3.dto.CounselingFormDTO">
-      INSERT INTO CounselingForm (selectedType, email, counselingContent)
-      VALUES (#{selectedType}, #{email}, #{counselingContent})
-   </insert>
+   <insert id="insertCounselingForm" parameterType="com.team_3.dto.CounselingFormDTO">
+    INSERT INTO CounselingForm (date, time, NAME, studentNumber, selectedType, email, counselingContent)
+    VALUES (#{date}, #{time}, #{NAME}, #{studentNumber}, #{selectedType}, #{email}, #{counselingContent})
+</insert>
 
     <select id="findByStud_no" resultType="String">
         SELECT STUD_NO FROM student_user_view WHERE USERNAME = #{USERNAME}
