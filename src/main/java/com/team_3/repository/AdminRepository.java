@@ -27,4 +27,8 @@ public class AdminRepository {
 		return sqlSession.update("admin.updateBoardDel", board);
 	}
 
+	public int userUpdate(UserDTO dto) {
+		return sqlSession.update("admin.userUpdate", dto);
+	}
+
 }
