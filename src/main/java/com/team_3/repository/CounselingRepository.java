@@ -22,4 +22,6 @@ public interface CounselingRepository {
 	 List<BoardDTO> getGroupData();
 
 	 BoardDTO getDetail(int no);
+
+	List<Map<String, Object>> getSchedule();
 }
