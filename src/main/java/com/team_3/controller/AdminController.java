@@ -95,6 +95,8 @@ public class AdminController {
 	public String response(Model model) {
 		model.addAttribute("user", userUtil.getUserNameAndRole());
 		return "/admin/adminResponse";
+	}
+	
 	@PostMapping("/userUpdate")
 	@ResponseBody
 	public int userUpdate(UserDTO dto) {
