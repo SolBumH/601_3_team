@@ -8,10 +8,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.team_3.dto.BoardDTO;
+import com.team_3.dto.UserDTO;
 import com.team_3.service.CounselingService;
-import com.team_3.service.CustomUserDetailService;
 import com.team_3.util.UserUtil;
 
 @Controller
@@ -23,8 +24,13 @@ public class CounselingController {
 	@Autowired
 	private CounselingService counselingService;
 	
-	@Autowired
-	private CustomUserDetailService customUserDetailService;
+	@GetMapping("/srconsulting")
+	public String sd(Model model) {
+		model.addAttribute("user", userUtil.getUserNameAndRole());
+		List<Map<String, Object>> schedule = counselingService.getSchedule();
+		model.addAttribute("schedule", schedule);
+		return "srconsulting";
+	}	
 	
 	@GetMapping("srCounseling")
 	public String srCounseling(Model model) {
@@ -57,15 +63,24 @@ public class CounselingController {
 		System.out.println(groupDataList);
 		  
 		model.addAttribute("groupDataList", groupDataList);
-		  
-		
 		return "groupsangdam";
 	}
 	
 	@GetMapping("/groupDetail")
-	public String groupDetail(Model model) {
-		model.addAttribute("user", userUtil.getUserNameAndRole());
-		return "groupDetail";
+	public String groupDetail(Model model, @RequestParam(name = "no") int no) {
+		UserDTO user = userUtil.getUserData();
+		BoardDTO detail = counselingService.getDetail(no);
+		if (user == null || user.getRole().equals("ROLE_ANONYMOUS")) {
+			return "redirect:/board?error=2";
+		}
+		
+		if (!user.getRole().equals("ROLE_STUD") || user.getUser_no() == detail.getBoard_user()) {
+			model.addAttribute("detail", detail);
+			model.addAttribute("user", user);
+			return "detail";
+		} else {
+			return "redirect:/board?error=1";
+		}
 	}
 	
 	@GetMapping("/groupResult")

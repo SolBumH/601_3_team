@@ -24,19 +24,18 @@ public class CounselingService {
     public void saveForm(CounselingFormDTO formDTO) {
         counselingRepository.saveForm(formDTO);
     }
-    
-    public String test() {
-    	//System.out.println(counselingRepository.findByJcNo("1234567"));
-		return counselingRepository.findByJcNo("1234567");
-    }
 
-	public String findStudentNumber(String username) {
-		return counselingRepository.findStudentNumber(username);
+	public String findStudentNumber(String name) {
+		return counselingRepository.findStudentNumber(name);
 	}
 	
 	public List<BoardDTO> getGroupData() {
 		List<BoardDTO> groupDataList = counselingRepository.getGroupData();
 		return groupDataList;
+	}
+
+	public BoardDTO getDetail(int no) {
+		return counselingRepository.getDetail(no);
 	}
 
 	public List<Map<String, Object>> getSchedule() {
