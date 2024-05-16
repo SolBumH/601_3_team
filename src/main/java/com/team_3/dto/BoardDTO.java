@@ -23,4 +23,6 @@ public class BoardDTO {
 	private String PG_NAME; //프로그램명
 	private Date EN_DATE;	// 끝나는 날짜
 	private Date JMS_CS_DATE; //프로그램 실행날짜
+	private int JD_NO; //집단상담 프로그램 번호
+	private String PG_EXPLAIN; //집단상담 프로그램 설명
 }

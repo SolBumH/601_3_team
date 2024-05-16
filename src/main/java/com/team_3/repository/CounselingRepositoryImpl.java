@@ -34,9 +34,10 @@ public class CounselingRepositoryImpl implements CounselingRepository {
 	public List<Map<String, Object>> getSchedule() {
 		return sqlSession.selectList("jcCounselingForm.getSchedule");
 	}
-  
-	public String findStudentNumber(String username) {
-		return sqlSession.selectOne("jcCounselingForm.findByStud_no", username);
+	
+	@Override
+	public String findStudentNumber(String name) {
+		return sqlSession.selectOne("jcCounselingForm.findByStud_no", name);
 	}
 	
 	@Override

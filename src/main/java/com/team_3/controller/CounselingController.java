@@ -60,7 +60,6 @@ public class CounselingController {
 		List<BoardDTO> groupDataList = new ArrayList<>(); // 초기화
 		groupDataList = counselingService.getGroupData();
 		
-		System.out.println(groupDataList);
 		  
 		model.addAttribute("groupDataList", groupDataList);
 		return "groupsangdam";
@@ -70,6 +69,7 @@ public class CounselingController {
 	public String groupDetail(Model model, @RequestParam(name = "no") int no) {
 		UserDTO user = userUtil.getUserData();
 		BoardDTO detail = counselingService.getDetail(no);
+		System.out.println(detail);
 		if (user == null || user.getRole().equals("ROLE_ANONYMOUS")) {
 			return "redirect:/board?error=2";
 		}
