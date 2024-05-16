@@ -89,4 +89,12 @@ public class AdminController {
 		int result = adminService.updateBoardDel(board);
 		return String.valueOf(result);
 	}
+	
+	@PostMapping("/userUpdate")
+	@ResponseBody
+	public int userUpdate(UserDTO dto) {
+		int result = adminService.userUpdate(dto);
+		System.out.println(result);
+		return result;
+	}
 }

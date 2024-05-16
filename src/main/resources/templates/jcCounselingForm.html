@@ -36,23 +36,28 @@
 
 						<tr>
 							<th class="th" scope="row">상담 날짜</th>
-							<td><input type="text" class="wid53" name="JC_DSCSN_YMD"
-								placeholder="달력 완성 되면 가져올 예정"></td>
+							<td th:text="${param.date}"><input type="text"
+								th:value="${param.date}" name="date" hidden="true" /></td>
 						</tr>
 						<tr>
 							<th class="th" scope="row">상담 시간</th>
-							<td><input type="text" class="wid53" name="JC_DSCSN_TM"
-								placeholder="달력 완성 되면 가져올 예정"></td>
+
+							<td th:text="${param.time} + '시'"><input type="text"
+								th:value="${param.time}" name="time" hidden="true" /></td>
+
 						</tr>
 
 						<tr>
 							<th class="th" scope="row">이름</th>
-							<td th:text="${studentName}"></td>
+							<td th:text="${studentName}"><input type="text"
+								th:value="${studentName}" name="name" hidden="true" /></td>
+
 						</tr>
 
 						<tr>
 							<th class="th" scope="row">학번</th>
-							<td th:text="${studentNumber}"></td>
+							<td th:text="${studentNumber}"><input type="text"
+								th:value="${studentNumber}" name="time" hidden="true" /></td>
 						</tr>
 
 						<tr>
@@ -102,8 +107,7 @@
 	<script src="plugins/counterup/jquery.counterup.min.js"></script>
 	<!-- Google Map -->
 	<script src="plugins/google-map/map.js"></script>
-	<script
-		src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAkeLMlsiwzp6b3Gnaxd86lvakimwGA6UA&callback=initMap"></script>
+	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAkeLMlsiwzp6b3Gnaxd86lvakimwGA6UA&callback=initMap"></script>
 
 	<script src="js/script.js"></script>
 	<script src="js/contact.js"></script>
