@@ -83,7 +83,7 @@ grid.on("afterChange", (ev) => {
 
   $.ajax({
     url: "/admin/updateBoardDel",
-    type: "get",
+    type: "post",
     dataType: "text",
     data: { board_no: board_no, del_yn: del_yn },
     beforeSend: function (xhr) {

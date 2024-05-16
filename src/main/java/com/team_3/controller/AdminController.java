@@ -82,7 +82,7 @@ public class AdminController {
 	}
 	
 	// 관리자페이지 글 상태 변경 메소드
-	@GetMapping("/updateBoardDel")
+	@PostMapping("/updateBoardDel")
 	@ResponseBody
 	public String updateBoardDel(BoardDTO board) {
 		System.out.println("no + " + board.getBoard_no() + " del : " + board.getDel_yn());
