@@ -89,4 +89,11 @@ public class AdminController {
 		int result = adminService.updateBoardDel(board);
 		return String.valueOf(result);
 	}
+	
+	// 게시글 답변 페이지 이동
+	@GetMapping("/response")
+	public String response(Model model) {
+		model.addAttribute("user", userUtil.getUserNameAndRole());
+		return "/admin/adminResponse";
+	}
 }
