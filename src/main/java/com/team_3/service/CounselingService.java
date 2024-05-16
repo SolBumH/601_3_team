@@ -30,8 +30,8 @@ public class CounselingService {
 		return counselingRepository.findByJcNo("1234567");
     }
 
-	public Object findBySTUD_NO() {
-		return counselingRepository.findBySTUD_NO("010-2345-6789");
+	public String findStudentNumber(String username) {
+		return counselingRepository.findStudentNumber(username);
 	}
 	
 	public List<BoardDTO> getGroupData() {
@@ -39,7 +39,9 @@ public class CounselingService {
 		return groupDataList;
 	}
 
-	public List<Map<String, Object>> getSchedule() {
-		return counselingRepository.getSchedule();
+	public BoardDTO getDetail(int no) {
+		return counselingRepository.getDetail(no);
 	}
+
+    
 }

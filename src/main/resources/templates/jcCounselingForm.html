@@ -34,43 +34,43 @@
 				<form action="/saveCounselingForm" method="post">
 					<table class="request">
 						<tr>
-   						<th class="th" scope="row">취업 상담 번호</th>
-						<td th:text="${test}"></td>
+							<th class="th" scope="row">취업 상담 번호</th>
+							<td th:text="${test}"></td>
 						</tr>
-						
+
 						<tr>
 							<th class="th" scope="row">상담 날짜</th>
-							<td th:text="${param.date}"></td>
+							<td><input type="text" class="wid53" name="JC_DSCSN_YMD"
+								placeholder="달력 완성 되면 가져올 예정"></td>
 						</tr>
 							<tr>
 							<th class="th" scope="row">상담 시간</th>
-							<td th:text="${param.time} + '시'"></td>
+							<td><input type="text" class="wid53" name="JC_DSCSN_TM"
+								placeholder="달력 완성 되면 가져올 예정"></td>
 						</tr>
-						
+
 						<tr>
 							<th class="th" scope="row">이름</th>
-							<td><input type="text" class="wid53" name="NAME" placeholder="2024.05.14 한 번에 여러 칼럼 가지고 오기 작업하기">
-							</td>
+							<td th:text="${studentName}"></td>
 						</tr>
-						
+
 						<tr>
 							<th class="th" scope="row">학번</th>
-							<td th:text="${findBySTUD_NO}"></td>
-							</td>
+							<td th:text="${studentNumber}"></td>
 						</tr>
-									
+
 						<tr>
 							<th class="th" scope="row">이메일</th>
 							<td><input type="text" class="wid53" name="email"
 								placeholder="이메일을 입력해주세요"></td>
 						</tr>
-						
-						
+
+
 						<tr>
 							<th class="th" scope="row">상담 내용</th>
-								<td>
-									<textarea name="counselingContent" placeholder="200자 이내(400byte)로 입력해 주세요" style="text-align: left;"></textarea>				
-								</td>
+							<td><textarea name="counselingContent"
+									placeholder="200자 이내(400byte)로 입력해 주세요"
+									style="text-align: left;"></textarea></td>
 						</tr>
 					</table>
 					<div class="section-title text-center">

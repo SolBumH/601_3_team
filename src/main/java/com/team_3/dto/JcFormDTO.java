@@ -5,7 +5,7 @@ import java.time.LocalDateTime;
 import lombok.Data;
 
 @Data
-public class UserDTO {
+public class JcFormDTO {
 	private Integer user_no;
 	private String name;
 	private String username;

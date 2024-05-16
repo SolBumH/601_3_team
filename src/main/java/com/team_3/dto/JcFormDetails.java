@@ -6,17 +6,17 @@ import java.util.Collection;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
-public class CustomUserDetails implements UserDetails {
+public class JcFormDetails implements UserDetails {
 
 	private UserDTO userDTO;
 
-	public CustomUserDetails(UserDTO user) {
+	public JcFormDetails(UserDTO user) {
 		this.userDTO = user;
 	}
 	
 	private CounselingFormDTO CounselingFormDTO;
 
-	public CustomUserDetails(CounselingFormDTO counselingFormDTO) {
+	public JcFormDetails(CounselingFormDTO counselingFormDTO) {
 		this.CounselingFormDTO = CounselingFormDTO;
 	}
 
