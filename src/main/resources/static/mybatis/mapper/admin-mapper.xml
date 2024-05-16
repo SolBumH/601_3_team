@@ -7,7 +7,7 @@
 		from Inq_Board ib
 		join `USER` u
 		where ib.BOARD_USER = u.USER_NO
-		and ib.DEL_YN = '1'
+		<!-- and ib.DEL_YN = '1' -->
 		order by ib.BOARD_DATE DESC, ib.ANS_YN
 	</select>
 	
@@ -16,4 +16,13 @@
 		FROM USER
 	</select>
 
+	<update id="updateBoardDel" parameterType="BoardDTO">
+		update Inq_Board set DEL_YN = #{del_yn}
+		where BOARD_NO = #{board_no}
+	</update>
+	
+	<update id="userUpdate" parameterType="userDTO">
+		UPDATE USER SET ROLE = #{role}
+		WHERE USER_NO = #{user_no}
+	</update>
 </mapper>

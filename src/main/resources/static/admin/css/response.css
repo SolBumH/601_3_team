@@ -1,0 +1,13 @@
+@charset "UTF-8";
+
+.w40 {
+	display: inline-block;
+	/* justify-content: space-between; */
+	width: 45%;
+	margin: 0 0 1rem 0;
+}
+
+.responseTextarea {
+	height: 250px;
+	resize: none;
+}

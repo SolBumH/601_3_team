@@ -40,10 +40,13 @@
 							<span th:text="${#dates.format(detail.board_date, 'yyyy-MM-dd HH:mm')}"></span>
 						</div>
 					</div>
-					<h5 class="my-4" id="content">[[${detail.board_content}]]</h5>
+					<h5 class="my-4" id="content" th:text="${detail.board_content}">글내용들어가는곳</h5>
 				</div>
 				
 				<div class="section-title text-center">
+				</div>
+				<div class="row justify-content-end">
+					<button class="btn btn-outline-info" th:onclick="deleteBoard([[${detail.board_no}]])" th:text="삭제">삭제버튼</button>
 				</div>
 			</div>
 		</div>
@@ -72,6 +75,36 @@
     <th:block th:insert="~{menu.html::scriptImport}"></th:block>
     <script src="js/script.js"></script>
     <script src="js/contact.js"></script>
+    <script type="text/javascript">
+	 	// csrf 토큰
+	    const header = $("meta[name='_csrf_header']").attr('content');
+	    const token = $("meta[name='_csrf']").attr('content');
+    
+    	function deleteBoard(board_no) {
+    		if (confirm("글을 삭제 하시겠습니까?")) {
+    			$.ajax({
+    				url: "/deleteBoard",
+    				type: "post",
+    				dataType: "text",
+    				data: {'board_no' : board_no},
+    				beforeSend: function(xhr) {
+    					xhr.setRequestHeader(header, token);
+    				},
+    				success: function (result) {
+    					if (result == 1) {
+	    					alert("삭제 완료되었습니다.");
+	    					location.href="/board";
+    					}
+    				},
+    				error: function (xhr, status, error) {
+    					alert("통신 에러 발생");
+    				}
+    			});
+    		}  else {
+    			alert("글 삭제를 취소하였습니다.");
+    		}
+    	}
+    </script>
 </body>
 </html>
    

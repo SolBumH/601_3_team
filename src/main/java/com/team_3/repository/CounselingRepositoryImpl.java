@@ -24,21 +24,6 @@ public class CounselingRepositoryImpl implements CounselingRepository {
 	public void saveForm(CounselingFormDTO formDTO) {
 		sqlSession.insert("jcCounselingForm.insertCounselingForm", formDTO);		
 	}
-
-	@Override
-	public String findByJcNo(String str) {
-		return null;
-	}
-
-	@Override
-	public String findStudentName(String username) {
-		    return sqlSession.selectOne("jcCounselingForm.findByName", username);
-		}
-
-	@Override
-	public String findStudentNumber(String username) {
-		return sqlSession.selectOne("jcCounselingForm.findByStud_no", username);
-	}
 	
 	@Override
     public List<BoardDTO> getGroupData() {
@@ -49,11 +34,10 @@ public class CounselingRepositoryImpl implements CounselingRepository {
 	public List<Map<String, Object>> getSchedule() {
 		return sqlSession.selectList("jcCounselingForm.getSchedule");
 	}
-
-	@Override
-	public String findBySTUD_NO(String str2) {
-		return null;
-	}   
+  
+	public String findStudentNumber(String username) {
+		return sqlSession.selectOne("jcCounselingForm.findByStud_no", username);
+	}
 	
 	@Override
 	public BoardDTO getDetail(int no) {

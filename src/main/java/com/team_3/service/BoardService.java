@@ -25,4 +25,8 @@ public class BoardService {
 	public BoardDTO getDetail(int no) {
 		return boardRepository.getDetail(no);
 	}
+
+	public int deleteBoard(String board_no) {
+		return boardRepository.deleteBoard(board_no);
+	}
 }

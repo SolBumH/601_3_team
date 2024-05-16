@@ -11,8 +11,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.team_3.dto.CounselingFormDTO;
-import com.team_3.dto.CustomUserDetails;
-import com.team_3.dto.JcFormDetails;
 import com.team_3.service.CounselingService;
 import com.team_3.service.CustomUserDetailService;
 import com.team_3.util.UserUtil;
@@ -46,32 +44,36 @@ public class JcFormController {
 	    String name = userDetails.getUsername();
 
 	    // 사용자 이름으로 학생 번호 가져오기
-	    String studentNumber = counselingService.findStudentNumber(username);
-
+	    String studentNumber = counselingService.findStudentNumber(name);
+	  //  System.out.println(studentNumber); //학번 확인하기
 	    // 모델에 이름, 학번 추가
 	    model.addAttribute("studentName", name);
 	    model.addAttribute("studentNumber", studentNumber);
+	    
 
 	    // 다른 필요한 데이터들을 모델에 추가
 	    model.addAttribute("user", userUtil.getUserNameAndRole());
-	    model.addAttribute("test", counselingService.test());
 
 	    return "jcCounselingForm";
 	}
 
 	
-	  @PostMapping("/saveCounselingForm") 
-	    public String saveCounselingForm(                                    
-	                                     @RequestParam("email") String email,	   
-	                                     @RequestParam("counselingContent") String counselingContent) {
-	       
-		  CounselingFormDTO formDTO = new CounselingFormDTO();       
-	        formDTO.setEmail(email);
-	        formDTO.setCounselingContent(counselingContent);
+	   @PostMapping("/saveCounselingForm")
+	    public String saveCounselingForm(
+	            @RequestParam("email") String email,
+	            @RequestParam("counselingContent") String counselingContent,
+	            @RequestParam("selectedType") String selectedType 
+	    ) {
+			
+			CounselingFormDTO formDTO = new CounselingFormDTO();
+			formDTO.setEmail(email);
+			formDTO.setCounselingContent(counselingContent);
+			formDTO.setSelectedType(selectedType);
+			
+			counselingService.saveForm(formDTO);
+			
 
-	        counselingService.saveForm(formDTO); // 서비스를 통해 데이터 저장
-
-	        return "redirect:/JcFromsuccessPage"; // 성공 페이지로 리다이렉트
+	        return "redirect:/JcFromsuccessPage"; 
 	    }
 	  
 		@GetMapping("/JcFromsuccessPage")

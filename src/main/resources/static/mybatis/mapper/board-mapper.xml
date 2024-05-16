@@ -2,16 +2,13 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="board">
 	<select id="boardList" resultType="BoardDTO">
-		select ib.BOARD_NO, ib.BOARD_TITLE, ib.BOARD_DATE, u.NAME  as 'username',
-			(CASE WHEN ib.ANS_YN = '1' THEN '미답변'
-				WHEN ib.ANS_YN = '2' THEN '답변 완료'
-				WHEN ib.ANS_YN = '3' THEN '답변 불필요'
-			END) AS ANS_YN
+		select ib.BOARD_NO, ib.BOARD_TITLE, ib.BOARD_DATE, u.NAME,
+			ib.ANS_YN
 		from Inq_Board ib
 		join `USER` u
 		where ib.BOARD_USER = u.USER_NO
 		and ib.DEL_YN = '1'
-		order by ib.BOARD_DATE DESC, ib.ANS_YN
+		order by ib.BOARD_DATE DESC, ib.ANS_YN, ib.BOARD_NO DESC
 	</select>
 
 	<insert id="boardInsert" parameterType="BoardDTO">
@@ -29,4 +26,9 @@
 		where BOARD_NO = #{no}
 			and DEL_YN = '1'
 	</select>
+	
+	<update id="deleteBoard" parameterType="String">
+		update Inq_Board set DEL_YN = "2"
+		where BOARD_NO = #{board_no}
+	</update>
 </mapper>

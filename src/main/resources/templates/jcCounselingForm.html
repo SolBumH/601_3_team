@@ -17,46 +17,47 @@
 			<h4>상담 신청</h4>
 
 			<div class="section-title text-center">
-				<div class="box">
-					<div class="container">
-						<span class="label">상담 구분:</span> <select class="form-select"
-							aria-label="상담 종류 선택">
-							<!-- 선택할 항목 -->
-							<option value="심리 상담 신청서">심리 상담</option>
-							<option value="전문 상담 신청서">전문 상담</option>
-							<option value="집단 상담 신청서">집단 상담</option>
-							<option value="취업·진로 상담 신청서">취업·진로 상담</option>
-							<option value="교수 상담 신청서">교수 상담</option>
-						</select>
-					</div>
-				</div>
-
 				<form action="/saveCounselingForm" method="post">
+					<div class="box">
+						<div class="container">
+							<span class="label">상담 구분:</span> <select id="counselingType"
+								name="selectedType" class="form-select" aria-label="상담 종류 선택">
+								<option value="" selected disabled>상담 종류를 선택해주세요</option>
+								<option value="심리상담">심리 상담</option>
+								<option value="전문상담">전문 상담</option>
+								<option value="취업진로상담">취업·진로 상담</option>
+								<option value="교수상담">교수 상담</option>
+							</select>
+						</div>
+					</div>
+
+
 					<table class="request">
-						<tr>
-							<th class="th" scope="row">취업 상담 번호</th>
-							<td th:text="${test}"></td>
-						</tr>
 
 						<tr>
 							<th class="th" scope="row">상담 날짜</th>
-							<td><input type="text" class="wid53" name="JC_DSCSN_YMD"
-								placeholder="달력 완성 되면 가져올 예정"></td>
+							<td th:text="${param.date}"><input type="text"
+								th:value="${param.date}" name="date" hidden="true" /></td>
 						</tr>
-							<tr>
+						<tr>
 							<th class="th" scope="row">상담 시간</th>
-							<td><input type="text" class="wid53" name="JC_DSCSN_TM"
-								placeholder="달력 완성 되면 가져올 예정"></td>
+
+							<td th:text="${param.time} + '시'"><input type="text"
+								th:value="${param.time}" name="time" hidden="true" /></td>
+
 						</tr>
 
 						<tr>
 							<th class="th" scope="row">이름</th>
-							<td th:text="${studentName}"></td>
+							<td th:text="${studentName}"><input type="text"
+								th:value="${studentName}" name="name" hidden="true" /></td>
+
 						</tr>
 
 						<tr>
 							<th class="th" scope="row">학번</th>
-							<td th:text="${studentNumber}"></td>
+							<td th:text="${studentNumber}"><input type="text"
+								th:value="${studentNumber}" name="time" hidden="true" /></td>
 						</tr>
 
 						<tr>
@@ -106,11 +107,20 @@
 	<script src="plugins/counterup/jquery.counterup.min.js"></script>
 	<!-- Google Map -->
 	<script src="plugins/google-map/map.js"></script>
-	<script
-		src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAkeLMlsiwzp6b3Gnaxd86lvakimwGA6UA&callback=initMap"></script>
+	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAkeLMlsiwzp6b3Gnaxd86lvakimwGA6UA&callback=initMap"></script>
 
 	<script src="js/script.js"></script>
 	<script src="js/contact.js"></script>
 	<script src="js/loginCheck.js"></script>
 </body>
+<script>
+	document.querySelector(".btn").addEventListener("click", function() {
+		var selectedType = document.getElementById("counselingType").value;
+		if (selectedType === "") {
+			alert("상담 종류를 선택해주세요.");
+			 event.preventDefault(); // 이벤트의 기본 동작 중지
+		       return false; // 이벤트 버블링 차단
+		}
+	});
+</script>
 </html>

@@ -102,6 +102,17 @@
 			      name: 'ans_yn',
 			      width: 100,
 			      align: 'center',
+			      formatter: 'listItemText',
+					editor : {
+						options : {
+							listItems : [
+								{ text: '미답변', value: "1" },
+								{ text: '답변완료', value: "2" },
+					            { text: '답변불필요', value: "3" },
+							],
+							//useViewMode: true
+						}	
+					},
 			    }
 			    ],
 			    contextMenu: null,
@@ -112,7 +123,7 @@
     
 		$(document).ready(function(){
 			$.ajax({
-				url : "/admin/boardList",
+				url : "/boardList",
 				type : "get",
 				dataType : "JSON",
 				contentType : "application/json; charset=UTF-8",
