@@ -31,4 +31,8 @@ public class AdminRepository {
 		return sqlSession.update("admin.userUpdate", dto);
 	}
 
+	public int answerPost(BoardDTO board) {
+		return sqlSession.insert("admin.answerPost", board);
+	}
+
 }

@@ -1,5 +1,14 @@
 @charset "UTF-8";
 
+.answerpart {
+	width: 100%;
+	display: inline-flex;
+}
+
+label {
+	font: bold;
+}
+
 .w40 {
 	display: inline-block;
 	/* justify-content: space-between; */
@@ -9,5 +18,10 @@
 
 .responseTextarea {
 	height: 250px;
+	resize: none;
+}
+
+.adminAnswer {
+	height: 300px;
 	resize: none;
 }
