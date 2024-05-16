@@ -94,4 +94,11 @@ public class BoardController {
 		}
 	}
 	
+	@PostMapping("/deleteBoard")
+	@ResponseBody
+	public int deleteBoard(@RequestParam(name = "board_no") String board_no) {
+		System.out.println("board_no : " + board_no);
+		int result = boardService.deleteBoard(board_no);
+		return result;
+	}
 }

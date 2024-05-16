@@ -29,4 +29,9 @@
 		where BOARD_NO = #{no}
 			and DEL_YN = '1'
 	</select>
+	
+	<update id="deleteBoard" parameterType="String">
+		update Inq_Board set DEL_YN = "2"
+		where BOARD_NO = #{board_no}
+	</update>
 </mapper>

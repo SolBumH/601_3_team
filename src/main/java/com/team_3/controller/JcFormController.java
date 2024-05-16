@@ -11,8 +11,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.team_3.dto.CounselingFormDTO;
-import com.team_3.dto.CustomUserDetails;
-import com.team_3.dto.JcFormDetails;
 import com.team_3.service.CounselingService;
 import com.team_3.service.CustomUserDetailService;
 import com.team_3.util.UserUtil;

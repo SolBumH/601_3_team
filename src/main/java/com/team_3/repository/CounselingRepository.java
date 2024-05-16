@@ -14,12 +14,12 @@ public interface CounselingRepository {
 	String findStudentName(String username);
 
 	String findStudentNumber(String username);
-
-
 	
 	 String findBySTUD_NO(String str2);
 	 
 	 List<BoardDTO> getGroupData();
 
 	 BoardDTO getDetail(int no);
+
+	List<Map<String, Object>> getSchedule();
 }
