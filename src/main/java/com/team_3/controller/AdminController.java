@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -78,5 +79,14 @@ public class AdminController {
 	public String charts(Model model) {
 		model.addAttribute("user", userUtil.getUserNameAndRole());
 		return "admin/admincharts";
+	}
+	
+	// 관리자페이지 글 상태 변경 메소드
+	@GetMapping("/updateBoardDel")
+	@ResponseBody
+	public String updateBoardDel(BoardDTO board) {
+		System.out.println("no + " + board.getBoard_no() + " del : " + board.getDel_yn());
+		int result = adminService.updateBoardDel(board);
+		return String.valueOf(result);
 	}
 }
