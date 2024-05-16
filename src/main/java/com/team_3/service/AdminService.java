@@ -26,4 +26,8 @@ public class AdminService {
 		return adminRepository.updateBoardDel(board);
 	}
 
+	public int userUpdate(UserDTO dto) {
+		return adminRepository.userUpdate(dto);
+	}
+
 }
