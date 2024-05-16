@@ -39,7 +39,6 @@ public class CounselingService {
 	}
 
 	public List<Map<String, Object>> getSchedule() {
-	      return counselingRepository.getSchedule();
-	   }
-    
+		return counselingRepository.getSchedule();
+	}
 }
