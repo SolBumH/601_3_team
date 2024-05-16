@@ -32,6 +32,7 @@ public class BoardController {
 	}
 	
 	@GetMapping("/boardList")
+	@ResponseBody
 	public List<BoardDTO> boardList() {
 		List<BoardDTO> list = boardService.getBoardList();
 		return list;

@@ -23,4 +23,8 @@ public class AdminRepository {
 		return sqlSession.selectList("admin.AdminUser");
 	}
 
+	public int updateBoardDel(BoardDTO board) {
+		return sqlSession.update("admin.updateBoardDel", board);
+	}
+
 }
