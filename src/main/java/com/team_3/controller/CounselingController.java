@@ -28,6 +28,14 @@ public class CounselingController {
 	@Autowired
 	private CustomUserDetailService customUserDetailService;
 	
+	@GetMapping("/srconsulting")
+	public String sd(Model model) {
+		model.addAttribute("user", userUtil.getUserNameAndRole());
+		List<Map<String, Object>> schedule = counselingService.getSchedule();
+		model.addAttribute("schedule", schedule);
+		return "srconsulting";
+	}	
+	
 	@GetMapping("srCounseling")
 	public String srCounseling(Model model) {
 		model.addAttribute("counselingTitle", "심리 상담 안내");

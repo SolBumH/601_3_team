@@ -34,36 +34,80 @@
 	<script src="/admin/js/datatables-simple-demo.js"></script>
 	<th:block th:insert="~{menu.html::scriptImport}">CDN JS 링크</th:block>
 	<script type="text/javascript">
+		const grid = new tui.Grid({
+			el : document.getElementById('grid'),
+			// rowHeaders : [ 'rowNum' ],
+			pageOptions : {
+				useClient : true,
+				perPage : 15
+			},
+			scrollX : false,
+			scrollY : false,
+			columns : [ {
+				header : '번호',
+				name : 'board_no',
+				width: 50
+			}, {
+				header : '제목',
+				name : 'board_title',
+				width: 350,
+			}, {
+				header : '내용',
+				name : 'board_content',
+				// width: 400
+			}, {
+				header : '작성자',
+				name : 'name',
+				width: 100,
+			}, {
+				header : '삭제 여부',
+				name : 'del_yn',
+				filter: 'select', // 필터
+				width: 100,
+				formatter: 'listItemText',
+				editor : {
+					type : 'select',
+					options : {
+						listItems : [
+							 { text: '미삭제', value: "1" },
+				             { text: '삭제', value: "2" },
+						],
+						 useViewMode: true
+					}	
+				},
+			}, {
+				header : '답변',
+				name : 'ans_yn',
+				filter: 'select',
+				width: 130,
+				formatter: 'listItemText',
+				editor : {
+					type : 'select',
+					options : {
+						listItems : [
+							 { text: '미답변', value: "1" },
+				             { text: '답변완료', value: "2" },
+				             { text: '답변불필요', value: "3" },
+						],
+						 useViewMode: true
+					}	
+				},
+			}]
+		});
+		
+		grid.on('afterChange', ev => {
+			let board_no = grid.getElement(ev.changes[0].rowKey, "board_no").firstChild.innerText;
+			console.log(board_no);
+			console.log(ev.changes[0].value);
+		});
+		
 		$(document).ready(function() {
-
 			$.ajax({
 				url : "/admin/boardList",
 				type : "get",
 				dataType : "JSON",
 				contentType : "application/json; charset=UTF-8",
 				success : function(result) {
-					console.log(result);
-
-					const grid = new tui.Grid({
-						el : document.getElementById('grid'),
-						rowHeaders : [ 'rowNum' ],
-						pageOptions : {
-							useClient : true,
-							perPage : 5
-						},
-						scrollX : false,
-						scrollY : false,
-						columns : [ {
-							header : '아이디',
-							name : 'board_no',
-						}, {
-							header : '제목',
-							name : 'board_title',
-						}, {
-							header : '지역',
-							name : 'board_content'
-						} ]
-					});
 					grid.resetData(result);
 				}
 			});

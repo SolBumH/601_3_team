@@ -16,7 +16,7 @@ public class BoardDTO {
 	private String board_content; // 내용
 	private Date board_date; // 작성일
 	private String del_yn; // 삭제 여부 ( 1:미삭제, 2:삭제 )
-	private String ans_yn; // 답변 여부 ( 1:미답변, 2:답변완료 )
+	private String ans_yn; // 답변 여부 ( 1:미답변, 2:답변완료, 3:답변불필요 )
 	private String file_no; // 파일 번호
 	
 	private String PG_NAME; //프로그램명
