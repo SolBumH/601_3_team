@@ -69,7 +69,7 @@
                      <div class="col-sm-3 mb-2">
                         <div class="card">
                            <div class="card-body" style="height: 300px">
-                              <a th:href="@{/groupDetail(no=1)}"><img alt="/img/program.png"
+                              <a th:href="@{/groupDetail(no=${JD_NO})}"><img alt="/img/program.png"
                                  src="/img/program.png" width="310" height="300"></a>
                            </div>
                            <div class="text1">
@@ -103,6 +103,12 @@
 					<!-- Add more columns for additional images -->
             </div>
          </div>
+         
+               <!-- 페이징 버튼 -->
+         <nav aria-label="Page navigation example">
+            <ul class="pagination justify-content-center" id="pagination">
+            </ul>
+         </nav>
       </div>
       <th:block th:insert="~{index.html::jsImport}">CDN JS 링크</th:block>
       <div id="grid"></div>
