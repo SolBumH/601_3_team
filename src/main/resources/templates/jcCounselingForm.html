@@ -17,21 +17,21 @@
 			<h4>상담 신청</h4>
 
 			<div class="section-title text-center">
-				<div class="box">
-					<div class="container">
-						<span class="label">상담 구분:</span> 
-						<select class="form-select" aria-label="상담 종류 선택">
-							<!-- 선택할 항목 -->
-							<option value="심리 상담">심리 상담</option>
-							<option value="전문 상담">전문 상담</option>
-							<option value="집단 상담">집단 상담</option>
-							<option value="취업·진로 상담">취업·진로 상담</option>
-							<option value="교수 상담">교수 상담</option>
-						</select>
-					</div>
-				</div>
-
 				<form action="/saveCounselingForm" method="post">
+					<div class="box">
+						<div class="container">
+							<span class="label">상담 구분:</span> <select id="counselingType"
+								name="selectedType" class="form-select" aria-label="상담 종류 선택">
+								<option value="" selected disabled>상담 종류를 선택해주세요</option>
+								<option value="심리상담">심리 상담</option>
+								<option value="전문상담">전문 상담</option>
+								<option value="취업진로상담">취업·진로 상담</option>
+								<option value="교수상담">교수 상담</option>
+							</select>
+						</div>
+					</div>
+
+
 					<table class="request">
 
 						<tr>
@@ -39,7 +39,7 @@
 							<td><input type="text" class="wid53" name="JC_DSCSN_YMD"
 								placeholder="달력 완성 되면 가져올 예정"></td>
 						</tr>
-							<tr>
+						<tr>
 							<th class="th" scope="row">상담 시간</th>
 							<td><input type="text" class="wid53" name="JC_DSCSN_TM"
 								placeholder="달력 완성 되면 가져올 예정"></td>
@@ -110,26 +110,13 @@
 	<script src="js/loginCheck.js"></script>
 </body>
 <script>
-document.querySelector(".form-select").addEventListener("change", function() {
-    var selectedType = this.value;
-    sendSelectedType(selectedType);
-});
-
-function sendSelectedType(selectedType) {
-    var xhr = new XMLHttpRequest();
-    xhr.open("POST", "/save-selected-type", true);
-    xhr.setRequestHeader("Content-Type", "application/json");
-    xhr.onreadystatechange = function () {
-        if (xhr.readyState === 4 && xhr.status === 200) {
-            console.log(xhr.responseText); // 서버로부터의 응답
-            alert("선택한 종류가 성공적으로 저장되었습니다.");
-        }
-    };
-    var data = JSON.stringify({ type: selectedType });
-    xhr.send(data);
-}
+	document.querySelector(".btn").addEventListener("click", function() {
+		var selectedType = document.getElementById("counselingType").value;
+		if (selectedType === "") {
+			alert("상담 종류를 선택해주세요.");
+			 event.preventDefault(); // 이벤트의 기본 동작 중지
+		       return false; // 이벤트 버블링 차단
+		}
+	});
 </script>
-
-
-
 </html>

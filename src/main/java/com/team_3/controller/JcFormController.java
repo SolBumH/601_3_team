@@ -58,18 +58,22 @@ public class JcFormController {
 	}
 
 	
-	  @PostMapping("/saveCounselingForm") 
-	    public String saveCounselingForm(                                    
-	                                     @RequestParam("email") String email,	   
-	                                     @RequestParam("counselingContent") String counselingContent) {
-	       
-		  CounselingFormDTO formDTO = new CounselingFormDTO();       
-	        formDTO.setEmail(email);
-	        formDTO.setCounselingContent(counselingContent);
+	   @PostMapping("/saveCounselingForm")
+	    public String saveCounselingForm(
+	            @RequestParam("email") String email,
+	            @RequestParam("counselingContent") String counselingContent,
+	            @RequestParam("selectedType") String selectedType 
+	    ) {
+			
+			CounselingFormDTO formDTO = new CounselingFormDTO();
+			formDTO.setEmail(email);
+			formDTO.setCounselingContent(counselingContent);
+			formDTO.setSelectedType(selectedType);
+			
+			counselingService.saveForm(formDTO);
+			
 
-	        counselingService.saveForm(formDTO); // 서비스를 통해 데이터 저장
-
-	        return "redirect:/JcFromsuccessPage"; // 성공 페이지로 리다이렉트
+	        return "redirect:/JcFromsuccessPage"; 
 	    }
 	  
 		@GetMapping("/JcFromsuccessPage")
