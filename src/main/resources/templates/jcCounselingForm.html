@@ -19,24 +19,20 @@
 			<div class="section-title text-center">
 				<div class="box">
 					<div class="container">
-						<span class="label">상담 구분:</span> <select class="form-select"
-							aria-label="상담 종류 선택">
+						<span class="label">상담 구분:</span> 
+						<select class="form-select" aria-label="상담 종류 선택">
 							<!-- 선택할 항목 -->
-							<option value="심리 상담 신청서">심리 상담</option>
-							<option value="전문 상담 신청서">전문 상담</option>
-							<option value="집단 상담 신청서">집단 상담</option>
-							<option value="취업·진로 상담 신청서">취업·진로 상담</option>
-							<option value="교수 상담 신청서">교수 상담</option>
+							<option value="심리 상담">심리 상담</option>
+							<option value="전문 상담">전문 상담</option>
+							<option value="집단 상담">집단 상담</option>
+							<option value="취업·진로 상담">취업·진로 상담</option>
+							<option value="교수 상담">교수 상담</option>
 						</select>
 					</div>
 				</div>
 
 				<form action="/saveCounselingForm" method="post">
 					<table class="request">
-						<tr>
-							<th class="th" scope="row">취업 상담 번호</th>
-							<td th:text="${test}"></td>
-						</tr>
 
 						<tr>
 							<th class="th" scope="row">상담 날짜</th>
@@ -113,4 +109,27 @@
 	<script src="js/contact.js"></script>
 	<script src="js/loginCheck.js"></script>
 </body>
+<script>
+document.querySelector(".form-select").addEventListener("change", function() {
+    var selectedType = this.value;
+    sendSelectedType(selectedType);
+});
+
+function sendSelectedType(selectedType) {
+    var xhr = new XMLHttpRequest();
+    xhr.open("POST", "/save-selected-type", true);
+    xhr.setRequestHeader("Content-Type", "application/json");
+    xhr.onreadystatechange = function () {
+        if (xhr.readyState === 4 && xhr.status === 200) {
+            console.log(xhr.responseText); // 서버로부터의 응답
+            alert("선택한 종류가 성공적으로 저장되었습니다.");
+        }
+    };
+    var data = JSON.stringify({ type: selectedType });
+    xhr.send(data);
+}
+</script>
+
+
+
 </html>
