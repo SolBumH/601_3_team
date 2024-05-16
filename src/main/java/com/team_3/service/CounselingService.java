@@ -38,5 +38,8 @@ public class CounselingService {
 		return counselingRepository.getDetail(no);
 	}
 
+	public List<Map<String, Object>> getSchedule() {
+	      return counselingRepository.getSchedule();
+	   }
     
 }
