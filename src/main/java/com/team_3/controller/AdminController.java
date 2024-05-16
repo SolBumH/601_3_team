@@ -38,6 +38,7 @@ public class AdminController {
 		return "admin/adminboard";
 	}
 
+	// 게시글 관리의 글 가져오는 컨트롤러
 	@GetMapping("/boardList")
 	@ResponseBody
 	public List<BoardDTO> boardList() {

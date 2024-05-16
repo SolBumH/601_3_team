@@ -55,7 +55,7 @@
 	<script type="text/javascript">
 		const grid = new tui.Grid({
 			el : document.getElementById('grid'),
-			rowHeaders : [ 'checkbox' ],
+			// rowHeaders : [ 'checkbox' ],
 			pageOptions : {
 				useClient : true,
 				perPage : 15
@@ -91,8 +91,9 @@
 		});
 		
 		grid.on('afterChange', ev => {
-			let asdasd = grid.getElement(ev.changes[0].rowKey, "user_no");
-			console.log(asdasd.firstChild.innerText);
+			let user_no = grid.getElement(ev.changes[0].rowKey, "user_no").firstChild.innerText;
+			console.log(user_no);
+			console.log(ev.changes[0].value);
 		});
 		
 		$(document).ready(function() {
