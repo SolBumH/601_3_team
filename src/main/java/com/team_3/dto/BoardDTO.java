@@ -19,7 +19,10 @@ public class BoardDTO {
 	private String ans_yn; // 답변 여부 ( 1:미답변, 2:답변완료, 3:답변불필요 )
 	private String file_no; // 파일 번호
 	
+	//집단상담
 	private String PG_NAME; //프로그램명
 	private Date EN_DATE;	// 끝나는 날짜
 	private Date JMS_CS_DATE; //프로그램 실행날짜
+	private int JD_NO; //집단상담 프로그램 번호
+	private String PG_EXPLAIN; //집단상담 프로그램 설명
 }

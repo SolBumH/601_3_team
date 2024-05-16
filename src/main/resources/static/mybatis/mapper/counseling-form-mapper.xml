@@ -8,17 +8,24 @@
     VALUES (#{date}, #{time}, #{NAME}, #{studentNumber}, #{selectedType}, #{email}, #{counselingContent})
 </insert>
 
-    <select id="findByStud_no" resultType="String">
-        SELECT STUD_NO FROM student_user_view WHERE USERNAME = #{USERNAME}
-    </select>
-   
-   <select id="selectGroupData" resultType="BoardDTO">
-      SELECT PG_NAME, JMS_CS_DATE
-      FROM JDSD_Info
-   </select>
-   
-   <select id="getSchedule" resultType="HashMap">
-      select * from CODE
-      where `DIV` = 'SC01'
-   </select>
+	<select id="findByStud_no" resultType="String">
+		SELECT STUD_NO FROM student_user_view WHERE USERNAME = #{USERNAME}
+	</select>
+	
+	<select id="selectGroupData" resultType="BoardDTO">
+		SELECT * FROM JDSD_Info
+	</select>
+	
+	<select id="getDetail" resultType="BoardDTO">
+		SELECT JD_NO, PG_NAME, PG_EXPLAIN, EN_DATE, JMS_CS_DATE, TO_NO, AP_NO, PA_NO 
+		FROM JDSD_Info
+		WHERE JD_NO = #{no}
+			and EN_NO = "2"
+	</select>
+
+	<select id="getSchedule" resultType="HashMap">
+		select * from CODE
+		where `DIV` = 'SC01'
+	</select>
+	
 </mapper>

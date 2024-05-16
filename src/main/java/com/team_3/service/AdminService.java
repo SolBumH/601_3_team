@@ -30,4 +30,10 @@ public class AdminService {
 		return adminRepository.userUpdate(dto);
 	}
 
+	public int answerPost(BoardDTO board) {
+		board.setBoard_title("└ " + board.getBoard_no() + "번 글에 대한 답변입니다.");
+		
+		return adminRepository.answerPost(board);
+	}
+
 }
