@@ -3,14 +3,15 @@ package com.team_3.controller;
 import java.security.Principal;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.team_3.dto.CounselingFormDTO;
+import com.team_3.dto.CustomUserDetails;
 import com.team_3.service.CounselingService;
 import com.team_3.service.CustomUserDetailService;
 import com.team_3.util.UserUtil;
@@ -26,34 +27,35 @@ public class JcFormController {
 
 	@Autowired
 	private CustomUserDetailService customUserDetailService;
-
+	
 	@GetMapping("/jcCounselingForm")
 	public String jcCounselingForm(Model model, Principal principal) {
-		if (principal == null) {
-			// 로그인되지 않은 경우 로그인 페이지로 리다이렉트
-			return "redirect:/login";
-		}
+	    if (principal == null) {
+	        // 로그인되지 않은 경우 로그인 페이지로 리다이렉트
+	        return "redirect:/login";
+	    }
 
-		// Principal을 이용하여 사용자 이름 가져오기
-		String username = principal.getName();
+	    // Principal 객체에서 사용자의 이름 가져오기
+	    String name = principal.getName();
 
-		// 사용자 정보를 가져오기 위해 CustomUserDetailService를 사용합니다.
-		UserDetails userDetails = customUserDetailService.loadUserByUsername(username);
+	    // 사용자 이름으로 CustomUserDetails 객체 가져오기
+	    CustomUserDetails customUserDetails = (CustomUserDetails) customUserDetailService.loadUserByUsername(name);
 
-		// 사용자 이름 가져오기
-		String name = userDetails.getUsername();
+	    // CustomUserDetails 객체에서 사용자의 이름 가져오기
+	    String username = customUserDetails.getName();
 
-		// 사용자 이름으로 학생 번호 가져오기
-		String studentNumber = counselingService.findStudentNumber(name);
-		// System.out.println(studentNumber); //학번 확인하기
-		// 모델에 이름, 학번 추가
-		model.addAttribute("studentName", name);
-		model.addAttribute("studentNumber", studentNumber);
+	    // 사용자 이름으로 학생 번호 가져오기
+	    String studentNumber = counselingService.findStudentNumber(username);
+	    //System.out.println(studentNumber); // 학번 확인하기
 
-		// 다른 필요한 데이터들을 모델에 추가
-		model.addAttribute("user", userUtil.getUserNameAndRole());
+	    // 모델에 이름, 학번 추가
+	    model.addAttribute("studentName", username);
+	    model.addAttribute("studentNumber", studentNumber);
+	    
+	    // 다른 필요한 데이터들을 모델에 추가
+	    model.addAttribute("user", userUtil.getUserNameAndRole());
 
-		return "jcCounselingForm";
+	    return "jcCounselingForm";
 	}
 
 	@GetMapping("/jcFormsuccessPage")
@@ -69,10 +71,10 @@ public class JcFormController {
 			@RequestParam("date") String date,
 			@RequestParam("time") String time, 
 			@RequestParam("name") String name,
-			@RequestParam("studentNumber") String studentNumber) {
+			@RequestParam("studentNumber") String studentNumber,  RedirectAttributes redirectAttributes) {
 	
-		System.out.println("시간: " + time); System.out.println("학생이름: " + name);
-		System.out.println("날짜: " + date); System.out.println("학번: " + studentNumber);
+		//System.out.println("시간: " + time); System.out.println("학생이름: " + name);
+		//System.out.println("날짜: " + date); System.out.println("학번: " + studentNumber);
 		
 		CounselingFormDTO formDTO = new CounselingFormDTO();
 		formDTO.setEmail(email);
@@ -83,10 +85,24 @@ public class JcFormController {
 		formDTO.setNAME(name);
 		formDTO.setStudentNumber(studentNumber);
 		
-		System.out.println("컨트롤러 들어왔어요");
+		//System.out.println("컨트롤러 들어왔어요");
 		
 		// System.out.println(formData);
 		counselingService.saveForm(formDTO);
+		
+		/*
+		 * System.out.println("Selected Type: " + selectedType);
+		 * System.out.println("Date: " + date); System.out.println("Time: " + time);
+		 * System.out.println("Name: " + name); System.out.println("Student Number: " +
+		 * studentNumber);
+		 */
+		
+		 // RedirectAttributes를 사용하여 데이터를 전달
+	    redirectAttributes.addFlashAttribute("selectedType", selectedType);
+	    redirectAttributes.addFlashAttribute("date", date);
+	    redirectAttributes.addFlashAttribute("time", time);
+	    redirectAttributes.addFlashAttribute("name", name);
+	    redirectAttributes.addFlashAttribute("studentNumber", studentNumber);
 
 		return "redirect:/jcFormsuccessPage"; 
 	}

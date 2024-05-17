@@ -3,49 +3,113 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<!-- 부트 스트랩 -->
-<title>집단상담</title>
+<title>상담 신청서 작성</title>
 <th:block th:insert="~{index.html::headImport}">CDN CSS 링크</th:block>
+<link rel="stylesheet" href="/css/jcCounselingForm.css">
 </head>
 
-<body>
-	<th:block th:insert="~{menu.html::header}">메뉴 들어가는 곳</th:block>
-	
-	<section class="counselindex gray-bg" style="height: 100vh">
+<body id="top">
+	<th:block th:insert="~{/menu.html::header}"></th:block>
 
-		<div style="background-color: #f2f2f2; padding: 20px; border-radius: 10px; margin: 20px auto; max-width: 600px;">
-			<h4 style="text-align: center; color: #333;">상담 신청이 완료되었습니다</h4>
-			<div style="background-color: #ffffff; padding: 20px; border-radius: 10px;">
-				<p>
-					<strong>이름:</strong> [사용자 이름]
-				</p>
-			</div>
-			<div style="background-color: #ffffff; padding: 20px; border-radius: 10px; margin-top: 10px;">
-				<p>
-					<strong>이메일:</strong> [사용자 이메일]
-				</p>
-			</div>
-			<div style="background-color: #ffffff; padding: 20px; border-radius: 10px; margin-top: 10px;">
-				<p>
-					<strong>프로그램명:</strong> [선택한 프로그램의 이름]
-				</p>
-			</div>
-			<div style="background-color: #ffffff; padding: 20px; border-radius: 10px; margin-top: 10px;">
-				<p>
-					<strong>일정:</strong> [선택한 프로그램의 일정]
-				</p>
-			</div>
-			<p style="text-align: center; margin-top: 20px;">상담 신청에 대한 조회는 마이페이지에서 확인해주세요.</p>
-			<p style="text-align: center;">감사합니다.</p>
-		</div>
+	<section class="section testimonial-4 gray-bg">
+		<div class="container">
 
-		<div class="row justify-content-center">
-			<div class="col-sm-2mb-2">
-				<a href="groupsangdam" class="btn btn-danger btn-block">메인화면으로 이동하기</a>
+			<h4>상담 신청 완료</h4>
+
+			<div class="section-title text-center">
+
+				<form action="/saveCounselingForm" method="post">
+
+					<table class="request">
+						<tr>
+							<th class="th" scope="row">프로그램명</th>
+							<td th:text="${PG_NAME}">
+							</td>
+							<td><input id="date" type="text" th:value="${param.date}" name="date" hidden="true"></td>
+							
+						</tr>
+						
+						<tr>
+							<th class="th" scope="row">상담 날짜</th>
+							<td th:text="${JMS_CS_DATE}">
+							</td>
+							<td><input id="date" type="text" th:value="${param.date}" name="date" hidden="true"></td>
+							
+						</tr>
+						<tr>
+							<th class="th" scope="row">상담 시간</th>
+							<td th:text="${param.time} + '시'"></td>
+							<td><input id="time" type="text" th:value="${param.time}" name="time" hidden="true"></td>
+						</tr>
+						<tr>
+							<th class="th" scope="row">이름</th>
+							<td th:text="${studentNumber}">
+							</td>
+							<td><input id="name" type="text" th:value="${studentName}" name="name" hidden="true"></td>
+						</tr>
+						<tr>
+							<th class="th" scope="row">학번</th>
+							<td th:text="${studentNumber}"></td>
+							<td><input id="studentNumber" type="text"th:value="${studentNumber}" name="studentNumber" hidden="true"></td>
+						</tr>
+
+					</table>
+
+					<div class="row justify-content-center">
+						<div class="col-sm-2mb-2">
+							<a href="groupsangdam" class="btn btn-danger btn-block">메인화면으로 이동하기</a>
+						</div>
+					</div>
+
+
+					<input type="hidden" name="_csrf" th:value="${_csrf.token}" />
+				</form>
 			</div>
 		</div>
 	</section>
 
-	<th:block th:insert="~{index.html::jsImport}">CDN JS 링크</th:block>
+
+
+	<hr class="long-horizontal-line">
+	<!-- footer Start -->
+	<th:block th:insert="~{menu.html::footer}"></th:block>
+
+
+	<!-- Main jQuery -->
+	<script src="plugins/jquery/jquery.js"></script>
+	<!-- Bootstrap 4.3.2 -->
+	<script src="plugins/bootstrap/js/popper.js"></script>
+	<script src="plugins/bootstrap/js/bootstrap.min.js"></script>
+	<script src="plugins/counterup/jquery.easing.js"></script>
+	<!-- Slick Slider -->
+	<script src="plugins/slick-carousel/slick/slick.min.js"></script>
+	<!-- Counterup -->
+	<script src="plugins/counterup/jquery.waypoints.min.js"></script>
+
+	<script src="plugins/shuffle/shuffle.min.js"></script>
+	<script src="plugins/counterup/jquery.counterup.min.js"></script>
+	<!-- Google Map -->
+	<script src="plugins/google-map/map.js"></script>
+	<script
+		src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAkeLMlsiwzp6b3Gnaxd86lvakimwGA6UA&callback=initMap"></script>
+
+	<script src="js/script.js"></script>
+	<script src="js/contact.js"></script>
+	<script src="js/loginCheck.js"></script>
+	
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	
 </body>
+<script>
+// 상담 신청 버튼 클릭 시 상담 종류 선택 여부 확인
+document.querySelector(".btn").addEventListener("click", function() {
+    var selectedType = document.getElementById("selectedType").value;
+    if (selectedType === "") {
+        alert("상담 종류를 선택해주세요.");
+        event.preventDefault(); // 이벤트의 기본 동작 중지
+        return false; // 이벤트 버블링 차단
+    }
+});
+</script>
+
 </html>

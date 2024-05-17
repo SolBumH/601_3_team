@@ -1,10 +1,12 @@
 package com.team_3.controller;
 
+import java.security.Principal;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -13,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.team_3.dto.BoardDTO;
 import com.team_3.dto.UserDTO;
 import com.team_3.service.CounselingService;
+import com.team_3.service.CustomUserDetailService;
 import com.team_3.util.UserUtil;
 
 @Controller
@@ -23,6 +26,9 @@ public class CounselingController {
 	
 	@Autowired
 	private CounselingService counselingService;
+	
+	@Autowired
+	private CustomUserDetailService customUserDetailService;
 	
 	@GetMapping("/srconsulting")
 	public String sd(Model model) {
@@ -70,21 +76,34 @@ public class CounselingController {
 		BoardDTO detail = counselingService.getDetail(no);
 		System.out.println(detail);
 		if (user == null || user.getRole().equals("ROLE_ANONYMOUS")) {
-			return "redirect:/board?error=2";
-		}
-		
-		if (!user.getRole().equals("ROLE_STUD") || user.getUser_no() == detail.getBoard_user()) {
+			return "redirect:/login";
+		} else {
 			model.addAttribute("detail", detail);
 			model.addAttribute("user", user);
-			return "detail";
-		} else {
-			return "redirect:/board?error=1";
+			
+			  model.addAttribute("user", userUtil.getUserNameAndRole());
+		        
+		      List<BoardDTO> groupDataList = new ArrayList<BoardDTO>();
+		      groupDataList = counselingService.getGroupData();
+		      model.addAttribute("groupDataList", groupDataList);
+			
+		      return "groupDetail";
 		}
 	}
 	
 	@GetMapping("/groupResult")
-	public String groupRequest(Model model) {
+	public String groupRequest(Model model, Principal principal) {
 		model.addAttribute("user", userUtil.getUserNameAndRole());
+		
+		String username = principal.getName();
+		UserDetails userDetails = customUserDetailService.loadUserByUsername(username);
+		String name = userDetails.getUsername();
+		String studentNumber = counselingService.findStudentNumber(name);
+		
+		model.addAttribute("studentname", name);
+		model.addAttribute("studentNumber", studentNumber);
+		model.addAttribute("user", userUtil.getUserNameAndRole());
+		
 		return "groupResult";
 	}
 	
