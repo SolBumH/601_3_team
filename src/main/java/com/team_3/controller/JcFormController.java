@@ -3,7 +3,6 @@ package com.team_3.controller;
 import java.security.Principal;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -12,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.team_3.dto.CounselingFormDTO;
 import com.team_3.dto.CustomUserDetails;
+import com.team_3.dto.UserDTO;
 import com.team_3.service.CounselingService;
 import com.team_3.service.CustomUserDetailService;
 import com.team_3.util.UserUtil;
@@ -35,28 +35,29 @@ public class JcFormController {
 	        return "redirect:/login";
 	    }
 
-	    // Principal을 이용하여 사용자 이름 가져오기
-	    String username = principal.getName();
+	    // Principal 객체에서 사용자의 이름 가져오기
+	    String name = principal.getName();
 
-	    // 사용자 정보를 가져오기 위해 CustomUserDetailService를 사용합니다.
-	    UserDetails userDetails = customUserDetailService.loadUserByUsername(username);
+	    // 사용자 이름으로 CustomUserDetails 객체 가져오기
+	    CustomUserDetails customUserDetails = (CustomUserDetails) customUserDetailService.loadUserByUsername(name);
 
-	    // 사용자 이름 가져오기
-	    String name = userDetails.getUsername();
+	    // CustomUserDetails 객체에서 사용자의 이름 가져오기
+	    String username = customUserDetails.getUsername();
 
 	    // 사용자 이름으로 학생 번호 가져오기
-	    String studentNumber = counselingService.findStudentNumber(name);
+	    String studentNumber = counselingService.findStudentNumber(username);
+	    System.out.println(studentNumber); // 학번 확인하기
 
 	    // 모델에 이름, 학번 추가
-	    model.addAttribute("studentName", name);
+	    model.addAttribute("studentName", username);
 	    model.addAttribute("studentNumber", studentNumber);
-	    System.out.println("학번" + studentNumber);
-
+	    
 	    // 다른 필요한 데이터들을 모델에 추가
 	    model.addAttribute("user", userUtil.getUserNameAndRole());
 
 	    return "jcCounselingForm";
 	}
+
 
 	@GetMapping("/jcFormsuccessPage")
 	public String successPage(Model model) {

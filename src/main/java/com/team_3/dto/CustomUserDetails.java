@@ -8,74 +8,57 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 public class CustomUserDetails implements UserDetails {
 
-	private UserDTO userDTO;
+    private UserDTO userDTO;
 
-	public CustomUserDetails(UserDTO user) {
-		this.userDTO = user;
-	}
-	
-	private CounselingFormDTO CounselingFormDTO;
+    public CustomUserDetails(UserDTO user) {
+        this.userDTO = user;
+    }
 
-	public CustomUserDetails(CounselingFormDTO counselingFormDTO) {
-		this.CounselingFormDTO = CounselingFormDTO;
-	}
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        Collection<GrantedAuthority> collection = new ArrayList<>();
+        collection.add(new GrantedAuthority() {
+            @Override
+            public String getAuthority() {
+                return userDTO.getRole();
+            }
+        });
+        return collection;
+    }
 
-	@Override
-	public Collection<? extends GrantedAuthority> getAuthorities() {
+    @Override
+    public String getPassword() {
+        return userDTO.getPassword();
+    }
 
-		Collection<GrantedAuthority> collection = new ArrayList<>();
+    @Override
+    public String getUsername() {
+        return userDTO.getUsername();
+    }
 
-		collection.add(new GrantedAuthority() {
+    // 사용자의 이름 반환
+    public String getName() {
+        return userDTO.getName();
+    }
 
-			@Override
-			public String getAuthority() {
+    @Override
+    public boolean isAccountNonExpired() {
+        return true;
+    }
 
-				return userDTO.getRole();
-			}
-		});
+    @Override
+    public boolean isAccountNonLocked() {
+        return true;
+    }
 
-		return collection;
-	}
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return true;
+    }
 
-	@Override
-	public String getPassword() {
-		return userDTO.getPassword();
-	}
+    @Override
+    public boolean isEnabled() {
+        return true;
+    }
 
-	@Override
-	public String getUsername() {
-		return userDTO.getUsername();
-	}
-	
-	public String getName() {
-		return userDTO.getName();
-	}
-
-	@Override
-	public boolean isAccountNonExpired() {
-		return true;
-	}
-
-	@Override
-	public boolean isAccountNonLocked() {
-		return true;
-	}
-
-	@Override
-	public boolean isCredentialsNonExpired() {
-		return true;
-	}
-
-	@Override
-	public boolean isEnabled() {
-		return true;
-	}
-
-	public String getStudentNumber() { //신청폼 학번
-	    if (this.CounselingFormDTO != null) {
-	        return this.CounselingFormDTO.getSTUD_NO();
-	    } else {
-	        return null; 
-	    }
-	}
 }

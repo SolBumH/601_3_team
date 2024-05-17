@@ -26,8 +26,10 @@ public class CounselingService {
         counselingRepository.saveForm(formDTO);
     }
 
-	public String findStudentNumber(String name) {
-		return counselingRepository.findStudentNumber(name);
+	public String findStudentNumber(String username) {
+		 String studentNumber =  "1234";
+		   System.out.println("학번: " + studentNumber);
+		return counselingRepository.findStudentNumber(username);
 	}
 	
 	public List<BoardDTO> getGroupData() {
