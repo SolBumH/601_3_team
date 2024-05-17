@@ -19,6 +19,11 @@
   <link rel="stylesheet" href="plugins/slick-carousel/slick/slick-theme.css">
   <!-- Main Stylesheet -->
   <link rel="stylesheet" href="css/style.css">
+  <style>
+  	#content, #answer {
+  		min-height: 150px;
+  	}
+  </style>
 </head>
 
 <body id="top">
@@ -40,9 +45,13 @@
 							<span th:text="${#dates.format(detail.board_date, 'yyyy-MM-dd HH:mm')}"></span>
 						</div>
 					</div>
+					<hr>
 					<h5 class="my-4" id="content" th:text="${detail.board_content}">글내용들어가는곳</h5>
+					<hr>
+					<th:block th:if="${answer != null}">
+						<h5 class="my-4" id="answer" th:text="${answer.board_content}">글내용들어가는곳</h5>
+					</th:block>
 				</div>
-				
 				<div class="section-title text-center">
 				</div>
 				<div class="row justify-content-end">

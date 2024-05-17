@@ -31,12 +31,23 @@ public class AdminService {
 	}
 
 	public int answerPost(BoardDTO board) {
-		board.setBoard_title("└ " + board.getBoard_no() + "번 글에 대한 답변입니다.");
-		return adminRepository.answerPost(board);
+		// 글 답변 여부 확인하기
+		String ans_yn = adminRepository.getAnsYn(board);
+		
+		if (ans_yn.equals("1")) {
+			board.setBoard_title(board.getBoard_no() + "번 글에 대한 답변입니다.");
+			return adminRepository.answerPostInsert(board);
+		} else {
+			return adminRepository.answerPostUpdate(board);
+		}
 	}
 
-	public int answerPostUpdate(BoardDTO board) {
-		return adminRepository.answerPostUpdate(board);
+	public int answerNumberUpdate(BoardDTO board) {
+		if (board.getBoard_ans_no() == 0) {
+			return 0;
+		} else {
+			return adminRepository.answerNumberUpdate(board);
+		}
 	}
 
 	public String getAnswerContent(int board_no) {
