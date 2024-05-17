@@ -78,6 +78,7 @@
 		});
 		
 		grid.on('afterChange', ev => {
+			// console.log(grid.getRow(ev.changes[0].rowKey).user_no);
 			let user_no = grid.getElement(ev.changes[0].rowKey, "user_no").firstChild.innerText;
 			let role = ev.changes[0].value;
 			

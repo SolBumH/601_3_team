@@ -17,11 +17,14 @@
 			<h4>상담 신청</h4>
 
 			<div class="section-title text-center">
+
 				<form action="/saveCounselingForm" method="post">
+	
+
 					<div class="box">
 						<div class="container">
-							<span class="label">상담 구분:</span> <select id="counselingType"
-								name="selectedType" class="form-select" aria-label="상담 종류 선택">
+							<span class="label">상담 구분:</span>
+							 <select id="selectedType" name="selectedType" class="form-select" aria-label="상담 종류 선택">
 								<option value="" selected disabled>상담 종류를 선택해주세요</option>
 								<option value="심리상담">심리 상담</option>
 								<option value="전문상담">전문 상담</option>
@@ -36,51 +39,50 @@
 
 						<tr>
 							<th class="th" scope="row">상담 날짜</th>
-							<td th:text="${param.date}"><input type="text"
-								th:value="${param.date}" name="date" hidden="true" /></td>
+							<td th:text="${param.date}">
+							</td>
+							<td><input id="date" type="text" th:value="${param.date}" name="date" hidden="true"></td>
+							
 						</tr>
 						<tr>
 							<th class="th" scope="row">상담 시간</th>
-
-							<td th:text="${param.time} + '시'"><input type="text"
-								th:value="${param.time}" name="time" hidden="true" /></td>
-
+							<td th:text="${param.time} + '시'"></td>
+							<td><input id="time" type="text" th:value="${param.time}" name="time" hidden="true"></td>
 						</tr>
-
 						<tr>
 							<th class="th" scope="row">이름</th>
-							<td th:text="${studentName}"><input type="text"
-								th:value="${studentName}" name="name" hidden="true" /></td>
-
+							<td th:text="${studentName}">
+							</td>
+							<td><input id="name" type="text" th:value="${studentName}" name="name" hidden="true"></td>
 						</tr>
-
 						<tr>
 							<th class="th" scope="row">학번</th>
-							<td th:text="${studentNumber}"><input type="text"
-								th:value="${studentNumber}" name="time" hidden="true" /></td>
+							<td th:text="${studentNumber}"></td>
+							<td><input id="studentNumber" type="text"th:value="${studentNumber}" name="studentNumber" hidden="true"></td>
 						</tr>
 
 						<tr>
 							<th class="th" scope="row">이메일</th>
-							<td><input type="text" class="wid53" name="email"
-								placeholder="이메일을 입력해주세요"></td>
+							<td>
+							<input id="email" type="text" class="wid53" name="email" placeholder="이메일을 입력해주세요">
+							</td>
 						</tr>
 
 
 						<tr>
 							<th class="th" scope="row">상담 내용</th>
-							<td><textarea name="counselingContent"
-									placeholder="200자 이내(400byte)로 입력해 주세요"
-									style="text-align: left;"></textarea></td>
+							<td>
+								<textarea id="counselingContent" name="counselingContent" placeholder="200자 이내(400byte)로 입력해 주세요"style="text-align: left;"></textarea>
+							</td>
 						</tr>
 					</table>
+
 					<div class="section-title text-center">
-						<button class="btn btn-danger">신청하기</button>
+						<button id="submitBtn" type="submit" class="btn btn-danger">신청하기</button>
 					</div>
 
 					<input type="hidden" name="_csrf" th:value="${_csrf.token}" />
 				</form>
-				<!-- //Form -->
 			</div>
 		</div>
 	</section>
@@ -107,21 +109,26 @@
 	<script src="plugins/counterup/jquery.counterup.min.js"></script>
 	<!-- Google Map -->
 	<script src="plugins/google-map/map.js"></script>
-	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAkeLMlsiwzp6b3Gnaxd86lvakimwGA6UA&callback=initMap"></script>
+	<script
+		src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAkeLMlsiwzp6b3Gnaxd86lvakimwGA6UA&callback=initMap"></script>
 
 	<script src="js/script.js"></script>
 	<script src="js/contact.js"></script>
 	<script src="js/loginCheck.js"></script>
+	
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	
 </body>
 <script>
-	document.querySelector(".btn").addEventListener("click", function() {
-		var selectedType = document.getElementById("counselingType").value;
-		if (selectedType === "") {
-			alert("상담 종류를 선택해주세요.");
-			 event.preventDefault(); // 이벤트의 기본 동작 중지
-		       return false; // 이벤트 버블링 차단
-	
-		}
-	});
+// 상담 신청 버튼 클릭 시 상담 종류 선택 여부 확인
+document.querySelector(".btn").addEventListener("click", function() {
+    var selectedType = document.getElementById("selectedType").value;
+    if (selectedType === "") {
+        alert("상담 종류를 선택해주세요.");
+        event.preventDefault(); // 이벤트의 기본 동작 중지
+        return false; // 이벤트 버블링 차단
+    }
+});
 </script>
+
 </html>

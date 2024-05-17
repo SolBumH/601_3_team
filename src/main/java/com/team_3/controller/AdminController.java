@@ -8,6 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.team_3.dto.BoardDTO;
@@ -102,6 +103,28 @@ public class AdminController {
 	public int userUpdate(UserDTO dto) {
 		int result = adminService.userUpdate(dto);
 		System.out.println(result);
+		return result;
+	}
+	
+	@PostMapping("/answerPost")
+	@ResponseBody
+	public int answerPost(@RequestParam(name = "board_no") int board_no,
+							@RequestParam(name = "answer") String answer) {
+		BoardDTO board = new BoardDTO();
+		board.setBoard_no(board_no);
+		board.setBoard_content(answer);
+		board.setName(userUtil.getUsername());
+		int result = adminService.answerPost(board);
+		System.out.println(board.toString());
+		adminService.answerPostUpdate(board);
+		
+		return result;
+	}
+	
+	@PostMapping("/answerContent")
+	@ResponseBody
+	public String answerContent(@RequestParam(name = "board_no") int board_no) {
+		String result = adminService.getAnswerContent(board_no);
 		return result;
 	}
 }
