@@ -8,8 +8,8 @@
     VALUES (#{date}, #{time}, #{NAME}, #{studentNumber}, #{selectedType}, #{email}, #{counselingContent})
 </insert>
 
-	<select id="findByStud_no" resultType="String">
-		SELECT STUD_NO FROM student_user_view WHERE USERNAME = #{USERNAME}
+	 <select id="findByStud_no" resultType="String">
+     SELECT STUD_NO FROM student_user_view WHERE USER_NO = #{USER_NO}
 	</select>
 	
 	<select id="selectGroupData" resultType="BoardDTO">

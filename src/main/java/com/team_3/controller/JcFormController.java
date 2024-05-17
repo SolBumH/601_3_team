@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.team_3.dto.CounselingFormDTO;
+import com.team_3.dto.CustomUserDetails;
 import com.team_3.service.CounselingService;
 import com.team_3.service.CustomUserDetailService;
 import com.team_3.util.UserUtil;
@@ -29,31 +30,32 @@ public class JcFormController {
 
 	@GetMapping("/jcCounselingForm")
 	public String jcCounselingForm(Model model, Principal principal) {
-		if (principal == null) {
-			// 로그인되지 않은 경우 로그인 페이지로 리다이렉트
-			return "redirect:/login";
-		}
+	    if (principal == null) {
+	        // 로그인되지 않은 경우 로그인 페이지로 리다이렉트
+	        return "redirect:/login";
+	    }
 
-		// Principal을 이용하여 사용자 이름 가져오기
-		String username = principal.getName();
+	    // Principal을 이용하여 사용자 이름 가져오기
+	    String username = principal.getName();
 
-		// 사용자 정보를 가져오기 위해 CustomUserDetailService를 사용합니다.
-		UserDetails userDetails = customUserDetailService.loadUserByUsername(username);
+	    // 사용자 정보를 가져오기 위해 CustomUserDetailService를 사용합니다.
+	    UserDetails userDetails = customUserDetailService.loadUserByUsername(username);
 
-		// 사용자 이름 가져오기
-		String name = userDetails.getUsername();
+	    // 사용자 이름 가져오기
+	    String name = userDetails.getUsername();
 
-		// 사용자 이름으로 학생 번호 가져오기
-		String studentNumber = counselingService.findStudentNumber(name);
-		// System.out.println(studentNumber); //학번 확인하기
-		// 모델에 이름, 학번 추가
-		model.addAttribute("studentName", name);
-		model.addAttribute("studentNumber", studentNumber);
+	    // 사용자 이름으로 학생 번호 가져오기
+	    String studentNumber = counselingService.findStudentNumber(name);
 
-		// 다른 필요한 데이터들을 모델에 추가
-		model.addAttribute("user", userUtil.getUserNameAndRole());
+	    // 모델에 이름, 학번 추가
+	    model.addAttribute("studentName", name);
+	    model.addAttribute("studentNumber", studentNumber);
+	    System.out.println("학번" + studentNumber);
 
-		return "jcCounselingForm";
+	    // 다른 필요한 데이터들을 모델에 추가
+	    model.addAttribute("user", userUtil.getUserNameAndRole());
+
+	    return "jcCounselingForm";
 	}
 
 	@GetMapping("/jcFormsuccessPage")
