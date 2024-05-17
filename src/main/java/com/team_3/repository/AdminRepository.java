@@ -35,4 +35,11 @@ public class AdminRepository {
 		return sqlSession.insert("admin.answerPost", board);
 	}
 
+	public int answerPostUpdate(BoardDTO board) {
+		return sqlSession.update("admin.answerPostUpdate", board);
+	}
+
+	public String getAnswerContent(int board_no) {
+		return sqlSession.selectOne("admin.getAnswerContent", board_no);
+	}
 }

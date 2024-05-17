@@ -8,8 +8,8 @@ import lombok.Data;
 public class BoardDTO {
 	
 	private int	board_no; // 글 번호
-	private int board_bf_no; // 글 이전 번호
-	private int board_ans_no; // 답변한 글 번호
+	private int board_bf_no; // 답변 한 글 번호 => 답변 글에 업데이트 됨 
+	private int board_ans_no; // 답변 글 번호 => 질문글에 업데이트 됨
 	private int board_user; // 유저 번호
 	private String name; // 글쓴이 아이디
 	private String board_title; // 제목
