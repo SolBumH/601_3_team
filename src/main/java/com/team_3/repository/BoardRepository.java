@@ -29,4 +29,8 @@ public class BoardRepository {
 	public int deleteBoard(String board_no) {
 		return sqlSession.update("board.deleteBoard", board_no);
 	}
+
+	public BoardDTO getAnswerContent(int board_ans_no) {
+		return sqlSession.selectOne("board.getAnswerContent", board_ans_no);
+	}
 }
