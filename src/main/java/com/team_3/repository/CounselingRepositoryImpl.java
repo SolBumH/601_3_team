@@ -43,6 +43,8 @@ public class CounselingRepositoryImpl implements CounselingRepository {
 	@Override
 	public BoardDTO getDetail(int no) {
 		return sqlSession.selectOne("jcCounselingForm.getDetail", no);
-	};
+	}
+
+
 	
 }

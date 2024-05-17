@@ -96,14 +96,14 @@ public class JcFormController {
 		 * System.out.println("Name: " + name); System.out.println("Student Number: " +
 		 * studentNumber);
 		 */
-		
-		 // RedirectAttributes를 사용하여 데이터를 전달
+
+	    // RedirectAttributes를 사용하여 데이터를 전달합니다.
 	    redirectAttributes.addFlashAttribute("selectedType", selectedType);
 	    redirectAttributes.addFlashAttribute("date", date);
 	    redirectAttributes.addFlashAttribute("time", time);
 	    redirectAttributes.addFlashAttribute("name", name);
 	    redirectAttributes.addFlashAttribute("studentNumber", studentNumber);
 
-		return "redirect:/jcFormsuccessPage"; 
+	    return "redirect:/jcFormsuccessPage"; 
 	}
 }

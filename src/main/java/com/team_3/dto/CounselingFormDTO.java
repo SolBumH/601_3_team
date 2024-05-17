@@ -16,8 +16,8 @@ public class CounselingFormDTO {
     private String studentNumber;
     private String date;
     private String time;
-		
-	}
+	
+}
 
 
 
