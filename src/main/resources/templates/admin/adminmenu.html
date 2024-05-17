@@ -27,7 +27,7 @@
 	                <li><a class="dropdown-item" href="#!">Activity Log</a></li>
 	                <li><hr class="dropdown-divider" /></li>
 	                <li><a class="dropdown-item" href="/login">Login</a></li>
-	                <li><a class="dropdown-item" href="#!">Logout</a></li>
+	        		<li><a class="dropdown-item" th:href="@{/logout}">Logout</a></li>
 	            </ul>
 	        </li>
 	    </ul>
@@ -45,17 +45,31 @@
 	                               <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
 	                               HOME
 	                           </a>
-	                           <div class="sb-sidenav-menu-heading"></div>
 	                           <th:block th:if="${user.role eq 'ROLE_ADMIN'}">
+	                           <div class="sb-sidenav-menu-heading"></div>
 		                           <a class="nav-link collapsed" th:href="@{/admin/user}">
 		                               <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
-		                              	회원관리
+		                              	회원 관리
+		                           </a>
+		                           <a class="nav-link" th:href="@{/admin/board}">
+	        							<div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
+	                               		게시글 관리
+	                         		</a>
+		                           <a class="nav-link" th:href="@{/admin/charts}">
+		                               <div class="sb-nav-link-icon"><i class="fas fa-chart-area"></i></div>
+		                               통계
 		                           </a>
 	                           </th:block>
 	                           <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
 	                               <nav class="sb-sidenav-menu-nested nav">
 	                               </nav>
 	                           </div>
+	                           
+	                           <div class="sb-sidenav-menu-heading"></div>
+	                           <th:block th:if="${user.role eq 'ROLE_ADMIN'}">
+		                           
+	                           </th:block>
+	                           
 	                           <a class="nav-link collapsed" th:href="@{/admin/Counseling}" >
 	                               <div class="sb-nav-link-icon"><i class="fas fa-book-open"></i></div>
 	                               상담내역
@@ -101,9 +115,13 @@
 	                               <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
 	                               게시물 관리
 	                           </a>
-	                           <a class="nav-link" th:href="@{/Group}">
+	                           <a class="nav-link" th:href="@{/admin/Group}">
 	                               <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
 	                               집단상담 관리
+	                           </a>
+	                           <a class="nav-link collapsed" th:href="@{/admin/response}" >
+	                               <div class="sb-nav-link-icon"><i class="fas fa-book-open"></i></div>
+	                               게시글 답변하기
 	                           </a>
 	                       </div>
 	                   </div>

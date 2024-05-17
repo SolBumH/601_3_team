@@ -5,39 +5,23 @@
 <script src="https://uicdn.toast.com/tui.pagination/latest/tui-pagination.js"></script>
 <script src="https://uicdn.toast.com/tui-grid/latest/tui-grid.js"></script>
 <head>
+<th:block th:insert="~{menu.html::metaImport}"></th:block>
 <meta charset="utf-8" />
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
 <meta name="description" content="" />
 <meta name="author" content="" />
-<title>Dashboard - SB Admin</title>
+<title>회원 관리</title>
 <link href="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/style.min.css" rel="stylesheet" />
 <link href="/admin/css/styles.css" rel="stylesheet" />
 <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
 </head>
 <body class="sb-nav-fixed">
 
-	<nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
-		<!-- Navbar Brand-->
-		<a class="navbar-brand ps-3" href="index.html">3조 대학교</a>
-		<!-- Sidebar Toggle-->
-		<!-- Navbar Search-->
-		<form class="d-none d-md-inline-block form-inline ms-auto me-0 me-md-3 my-2 my-md-0">
-			<div class="input-group"></div>
-		</form>
-		<!-- Navbar-->
-		<ul class="navbar-nav ms-auto ms-md-0 me-3 me-lg-4">
-			<li class="nav-item dropdown"><a
-				class="nav-link dropdown-toggle" id="navbarDropdown" href="#"
-				role="button" data-bs-toggle="dropdown" aria-expanded="false"><i
-					class="fas fa-user fa-fw"></i></a>
-				<ul class="dropdown-menu dropdown-menu-end"
-					aria-labelledby="navbarDropdown">
-					<li><a class="dropdown-item" href="#!">Logout</a></li>
-				</ul></li>
-		</ul>
-	</nav>
+	<th:block th:insert="~{/admin/adminmenu.html::topbar}"></th:block>
 	<th:block th:insert="~{/admin/adminmenu.html::leftmenu}"></th:block>
+	
+	
 	<div class="bodypart">
 		<h1>회원관리</h1>
 		<div id="grid"></div>
@@ -53,6 +37,9 @@
 	<script src="/admin/js/datatables-simple-demo.js"></script>
 	<th:block th:insert="~{menu.html::scriptImport}">CDN JS 링크</th:block>
 	<script type="text/javascript">
+	// csrf 토큰
+	const header = $("meta[name='_csrf_header']").attr("content");
+	const token = $("meta[name='_csrf']").attr("content");
 		const grid = new tui.Grid({
 			el : document.getElementById('grid'),
 			// rowHeaders : [ 'checkbox' ],
@@ -81,7 +68,7 @@
 					options : {
 						listItems : [
 							 { text: '관리자', value: 'ROLE_ADMIN' },
-				             { text: '일반', value: 'ROLE_USER' },
+				             { text: '교직원', value: 'ROLE_USER' },
 				             { text: '학생', value: 'ROLE_STUD' },
 						],
 						 useViewMode: true
@@ -91,10 +78,24 @@
 		});
 		
 		grid.on('afterChange', ev => {
+			// console.log(grid.getRow(ev.changes[0].rowKey).user_no);
 			let user_no = grid.getElement(ev.changes[0].rowKey, "user_no").firstChild.innerText;
-			console.log(user_no);
-			console.log(ev.changes[0].value);
+			let role = ev.changes[0].value;
+			
+		$.ajax({
+			url : '/admin/userUpdate',
+			type : 'post',
+			data : { 'user_no' : user_no, 'role' : role},
+			dataType : 'text',
+			beforeSend: function (xhr) {
+			      xhr.setRequestHeader(header, token);
+			    },
+			success : function(result){
+				console.log(result);
+				}
+			});
 		});
+		
 		
 		$(document).ready(function() {
 			$.ajax({
@@ -108,6 +109,7 @@
 				}
 			});
 		});
+	  
 	</script>
 </body>
 </html>

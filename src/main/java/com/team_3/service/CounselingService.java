@@ -15,7 +15,8 @@ public class CounselingService {
 	
 	@Autowired
     private CounselingRepository counselingRepository;
-
+	
+	
     @Autowired
     public CounselingService(CounselingRepository counselingRepository) {
         this.counselingRepository = counselingRepository;
