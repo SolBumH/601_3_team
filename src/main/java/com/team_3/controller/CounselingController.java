@@ -59,7 +59,6 @@ public class CounselingController {
 		
 		List<BoardDTO> groupDataList = new ArrayList<>(); // 초기화
 		groupDataList = counselingService.getGroupData();
-		
 		  
 		model.addAttribute("groupDataList", groupDataList);
 		return "groupsangdam";
