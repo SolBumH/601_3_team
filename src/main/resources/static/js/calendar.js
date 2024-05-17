@@ -19,6 +19,7 @@ document.addEventListener('DOMContentLoaded', function() {
 				start: Date.now(),
 				end: Date.now() + 2592000000,
 		},
+		weekends: false,
 		dateClick: function(info) {
 			date = info.dateStr;
 			// info.dayEl.style.backgroundColor = '#E8ADAD';
