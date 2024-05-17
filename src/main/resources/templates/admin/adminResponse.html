@@ -51,6 +51,7 @@
 					  <textarea class="form-control adminAnswer" id="adminAnswer" name="adminAnswer"></textarea>
 					</div>
 					<div class="d-flex justify-content-end">
+						<button class="btn btn-outline-dark mx-2"id="answerShowBtn" th:text="답변보기"></button>
 						<button class="btn btn-outline-dark" id="answerBtn" th:text="답변하기"></button>
 					</div>
 				</div>
@@ -71,7 +72,11 @@
 		// csrf 토큰
 		const header = $("meta[name='_csrf_header']").attr("content");
 		const token = $("meta[name='_csrf']").attr("content");
-	
+		
+		// 글 번호, 답변 번호
+		let board_no = 0;
+		let answer_yn = "1";
+		
 		const grid = new tui.Grid({
 		  el: document.getElementById("grid"),
 		  // rowHeaders : [ 'rowNum' ],
@@ -86,12 +91,13 @@
 		      header: "번호",
 		      name: "board_no",
 		      align: "center",
-		      width: 50,
+		      width: 30,
 		    },
 		    {
 		      header: "제목",
 		      name: "board_title",
 		      width: 350,
+		      
 		    },
 		    {
 		      header: "내용",
@@ -133,15 +139,14 @@
 		            { text: "미답변", value: "1" },
 		            { text: "답변완료", value: "2" },
 		            { text: "답변불필요", value: "3" },
+		            { text: "-", value: "4" },
 		          ],
 		        },
 		      },
 		    },
 		  ],
 		});
-	
 		
-	
 		$(document).ready(function () {
 		  $.ajax({
 		    url: "/admin/boardList",
@@ -160,14 +165,14 @@
 					$('#responseName').val(board.name);
 					$('#responseTitle').val(board.board_title);
 					$('#responseContent').text(board.board_content);
+					board_no = board.board_no;
+					answer_yn = board.ans_yn;
 				}
 		  });
 		  
 		  $('#answerBtn').on('click', function() {
-			  let board_no = $('#responseNo').val();
-			  console.log(board_no);
 			  if (!board_no) {
-				  alert("답변 할 글 선택 후 진행해주세요.");
+				  alert("답변 할 글을 선택 후 진행해주세요.");
 			  } else {
 				  let answer = $('#adminAnswer').val();
 				  console.log(answer);
@@ -182,13 +187,44 @@
 					  },
 					  success: function (result) {
 						  console.log(result);
+						  if (result == 1) {
+							  alert("답변 작성 완료");
+							  $('#responseNo').val("");
+							  $('#responseName').val("");
+							  $('#responseTitle').val("");
+							  $('#responseContent').text("");
+							  $('#adminAnswer').val("");
+						  }
 					  },
 					  error: function (xhr, status, error) {
 					      alert("통신 에러 발생");
 					  },
 				  });
 			  }
-		  })
+		  });
+		  
+		  $('#answerShowBtn').on('click', function() {
+			  if (!board_no || answer_yn == 1) {
+				  alert("답변이 없거나 글이 선택되지 않았습니다.");
+			  } else {
+				  $.ajax({
+					  url: '/admin/answerContent',
+					  type: 'post',
+					  data: {'board_no' : board_no,},
+					  dataType: "text",
+					  beforeSend: function (xhr) {
+					      xhr.setRequestHeader(header, token);
+					  },
+					  success: function (result) {
+						  console.log(result);
+						  $('#adminAnswer').val(result);
+					  },
+					  error: function (xhr, status, error) {
+					      alert("통신 에러 발생");
+					  },
+				  });
+			  }
+		  });
 		});
 	</script>
 </body>
