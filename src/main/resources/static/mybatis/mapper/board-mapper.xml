@@ -7,7 +7,7 @@
 		from Inq_Board ib
 		join `USER` u
 		where ib.BOARD_USER = u.USER_NO
-		and ib.DEL_YN = '1'
+		and ib.DEL_YN = '1' and ib.ANS_YN != '4'
 		order by ib.BOARD_DATE DESC, ib.ANS_YN, ib.BOARD_NO DESC
 	</select>
 
@@ -20,7 +20,8 @@
 	</insert>
 	
 	<select id="detail" parameterType="Integer" resultType="BoardDTO">
-		select ib.BOARD_NO, ib.BOARD_USER, ib.BOARD_TITLE, ib.BOARD_CONTENT, ib.BOARD_DATE,
+		select ib.BOARD_NO, ib.BOARD_BF_NO, ib.BOARD_ANS_NO, 
+				ib.BOARD_USER, ib.BOARD_TITLE, ib.BOARD_CONTENT, ib.BOARD_DATE,
 				ib.ANS_YN, ib.FILE_NO, u.NAME
 		from Inq_Board ib join USER u on ib.BOARD_USER = u.USER_NO
 		where BOARD_NO = #{no}

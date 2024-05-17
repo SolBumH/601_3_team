@@ -116,7 +116,7 @@ public class AdminController {
 		board.setName(userUtil.getUsername());
 		int result = adminService.answerPost(board);
 		System.out.println(board.toString());
-		adminService.answerPostUpdate(board);
+		adminService.answerNumberUpdate(board);
 		
 		return result;
 	}
