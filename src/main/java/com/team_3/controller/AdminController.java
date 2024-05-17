@@ -127,4 +127,12 @@ public class AdminController {
 		String result = adminService.getAnswerContent(board_no);
 		return result;
 	}
+	
+	@GetMapping("/adminJkCounseling")
+	public String adminJkCounseling(Model model) {
+		model.addAttribute("user", userUtil.getUserNameAndRole());
+		return "/admin/adminJkCounseling";
+	}
+	
+
 }

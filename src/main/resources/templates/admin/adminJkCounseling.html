@@ -24,35 +24,38 @@
 					<h1 th:text="'상담 관리'">상담 관리</h1>
 					<div class="divider mx-auto my-4"></div>
 				</div>
-				<div id="calendarBox">
+<!-- 				<div id="calendarBox">
 	     				<div id='calendar'></div>
 						<div class="section-title text-center"></div>
-				    </div>
+				    </div> -->
 				
 				<div class="section-title text-center">
-					<h1 th:text="'시간 선택'">시간 선택</h1>
+					<h1 th:text="'상담 가능일자 선택'">상담 가능일자 선택</h1>
 					<div class="divider mx-auto my-4"></div>
 					
-					<form action="/admin/jkselect" method="post">
-					<input type="date" onchange="jkselectdt()" name="jkselectdate" id="jkselectdate"/>
-					<input type="submit">
+	 			<form action="/admin/jkselect" method="post">
+	 			<label for="jkselectdate">Select a date:</label>
+					<input type="date" onchange="jkselectdt()" name="jkselectdate" id="jkselectdate" required="required"/>
 					<input type="hidden" name="_csrf" th:value="${_csrf.token}"/>
-					</form>
-					<th:block th:each="list : ${schedule}">
-								<input type="radio" class="btn-check" th:value="${list.CD}" name="time" th:id="${list.CD}">
-								<label class="btn btn-outline-danger" th:for="${list.CD}" th:text="${list.CD}+'시'"></label>
-						</th:block>	
+					<label for="jkoption">Select an option:</label>
+					<select id="jkoption" name="jkoption">
+						<option value="SC0110">10:00 ~ 10:50</option>
+        				<option value="SC0111">11:00 ~ 11:50</option>
+        				<option value="SC0113">13:00 ~ 13:50</option>
+        				<option value="SC0114">14:00 ~ 14:50</option>
+        				<option value="SC0115">15:00 ~ 15:50</option>
+        				<option value="SC0116">16:00 ~ 16:50</option>
+    				</select>
+    				<div class="divider mx-auto my-4"></div>
+					<input class="btn btn-danger"  type="submit" value="가능 일정 선택" id="calselect">
+				</form>
+
 				</div>
 			</div>
 			
-        		<!-- Button trigger modal -->
-			<div style="text-align: center;">
-				<button type="button" class="btn btn-danger" th:onclick="">신청하기</button>
-			</div>
 			</div>
 		</div>
 </section>
-    
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
 	<script src="/admin/js/scripts.js"></script>
 	<th:block th:insert="~{admin/adminmenu.html::admincalendarImport}"></th:block>
