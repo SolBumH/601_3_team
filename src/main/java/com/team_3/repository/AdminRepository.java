@@ -31,15 +31,23 @@ public class AdminRepository {
 		return sqlSession.update("admin.userUpdate", dto);
 	}
 
-	public int answerPost(BoardDTO board) {
-		return sqlSession.insert("admin.answerPost", board);
+	public String getAnswerContent(int board_no) {
+		return sqlSession.selectOne("admin.getAnswerContent", board_no);
 	}
 
+	public String getAnsYn(BoardDTO board) {
+		return sqlSession.selectOne("admin.getAnsYn", board);
+	}
+
+	public int answerPostInsert(BoardDTO board) {
+		return sqlSession.insert("admin.answerPostInsert", board);
+	}
+	
 	public int answerPostUpdate(BoardDTO board) {
 		return sqlSession.update("admin.answerPostUpdate", board);
 	}
-
-	public String getAnswerContent(int board_no) {
-		return sqlSession.selectOne("admin.getAnswerContent", board_no);
+	
+	public int answerNumberUpdate(BoardDTO board) {
+		return sqlSession.update("admin.answerNumberUpdate", board);
 	}
 }

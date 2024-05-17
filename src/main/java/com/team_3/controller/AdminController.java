@@ -86,7 +86,7 @@ public class AdminController {
 	@PostMapping("/updateBoardDel")
 	@ResponseBody
 	public String updateBoardDel(BoardDTO board) {
-		System.out.println("no + " + board.getBoard_no() + " del : " + board.getDel_yn());
+		// System.out.println("no : " + board.getBoard_no() + " del : " + board.getDel_yn());
 		int result = adminService.updateBoardDel(board);
 		return String.valueOf(result);
 	}
@@ -116,7 +116,7 @@ public class AdminController {
 		board.setName(userUtil.getUsername());
 		int result = adminService.answerPost(board);
 		System.out.println(board.toString());
-		adminService.answerPostUpdate(board);
+		adminService.answerNumberUpdate(board);
 		
 		return result;
 	}

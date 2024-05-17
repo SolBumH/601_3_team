@@ -70,21 +70,28 @@ public class CounselingController {
 		BoardDTO detail = counselingService.getDetail(no);
 		System.out.println(detail);
 		if (user == null || user.getRole().equals("ROLE_ANONYMOUS")) {
-			return "redirect:/board?error=2";
-		}
-		
-		if (!user.getRole().equals("ROLE_STUD") || user.getUser_no() == detail.getBoard_user()) {
+			return "redirect:/login";
+		} else {
 			model.addAttribute("detail", detail);
 			model.addAttribute("user", user);
-			return "detail";
-		} else {
-			return "redirect:/board?error=1";
+			
+			  model.addAttribute("user", userUtil.getUserNameAndRole());
+		        
+		      List<BoardDTO> groupDataList = new ArrayList<BoardDTO>();
+		      groupDataList = counselingService.getGroupData();
+		      model.addAttribute("groupDataList", groupDataList);
+			
+		      return "groupDetail";
 		}
 	}
 	
 	@GetMapping("/groupResult")
 	public String groupRequest(Model model) {
 		model.addAttribute("user", userUtil.getUserNameAndRole());
+		
+		List<BoardDTO> groupDataList = new ArrayList<BoardDTO>();
+		groupDataList = counselingService.getGroupData();
+		model.addAttribute("groupDataList", groupDataList);
 		return "groupResult";
 	}
 	

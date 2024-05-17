@@ -16,7 +16,7 @@
 	<th:block th:insert="~{menu.html::header}">메뉴 들어가는 곳</th:block>
 
 	<section class="counselindex gray-bg">
-		<div class="container" style="height: 100vh">
+		<div class="container" style="min-height: 100vh; padding-bottom: 20px;">
 			<div class="title-container" style="padding-top: 40px">
 				<h4>집단상담 프로그램 신청</h4>
 			</div>
@@ -27,17 +27,19 @@
 					<div class="col-sm-3 mb-2">
 						<div class="card">
 							<div class="card-body" style="height: 300px">
-							<a th:href="@{/groupDetail(no=${row.JD_NO})}">
+								<a th:href="@{/groupDetail(no=${row.JD_NO})}"> 
 								<img alt="/img/program.png" src="/img/program.png" width="215" height="265"></a>
+
 							</div>
 						</div>
 					</div>
-					
+
 					<!-- Second card -->
 					<div class="col-sm-8 mb-2">
 						<div class="card">
 							<div class="card-body" style="height: 300px">
-								<div class="program1" th:text="'프로그램명 : '+ ${row.PG_NAME}"><br>
+								<div class="program1" th:text="'프로그램명 : '+ ${row.PG_NAME}">
+									<br>
 									<div class="date1" th:text="'일정 : ' + ${row.JMS_CS_DATE}"><hr>
 										<div class="explain" th:text="${row.PG_EXPLAIN}"></div>
 									</div>
