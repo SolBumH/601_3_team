@@ -11,6 +11,16 @@ const grid = new tui.Grid({
   },
   scrollX: false,
   scrollY: false,
+  contextMenu: ({ rowKey, columnName }) => [[
+	{
+		label: '이동하기',
+		action: () => {
+			let board = grid.getRow(rowKey);
+			location.href = "/detail?no=" + board.board_no;
+		}
+	}
+	]
+  ],
   columns: [
     {
       header: "번호",
@@ -68,6 +78,7 @@ const grid = new tui.Grid({
             { text: "미답변", value: "1" },
             { text: "답변완료", value: "2" },
             { text: "답변불필요", value: "3" },
+            { text: "답변게시글", value: "4" },
           ],
           // useViewMode: true
         },
@@ -77,8 +88,7 @@ const grid = new tui.Grid({
 });
 
 grid.on("afterChange", (ev) => {
-  let board_no = grid.getElement(ev.changes[0].rowKey, "board_no").firstChild
-    .innerText;
+  let board_no = grid.getElement(ev.changes[0].rowKey, "board_no").firstChild.innerText;
   let del_yn = ev.changes[0].value;
 
   $.ajax({

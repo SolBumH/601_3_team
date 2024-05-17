@@ -90,10 +90,12 @@ public class BoardController {
 		
 		// 해당 글 정보를 가져옴
 		BoardDTO detail = boardService.getDetail(no);
-		
 		// 로그인 한 사람이 학생이 아니면 => 관리자, 교직원임
 		// or 로그인 한 사람과 작성자가 같으면 통과
 		if (!user.getRole().equals("ROLE_STUD") || user.getUser_no() == detail.getBoard_user()) {
+			if ("2".equals(detail.getAns_yn())) {
+				model.addAttribute("answer", boardService.getAnswerContent(detail.getBoard_ans_no()));
+			}
 			model.addAttribute("detail", detail);
 			model.addAttribute("user", user);
 			return "detail";

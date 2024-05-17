@@ -32,4 +32,9 @@
 		update Inq_Board set DEL_YN = "2"
 		where BOARD_NO = #{board_no}
 	</update>
+	
+	<select id="getAnswerContent" resultType="BoardDTO" parameterType="Integer">
+		select * from Inq_Board
+		where BOARD_NO = #{board_ans_no}
+	</select>
 </mapper>
