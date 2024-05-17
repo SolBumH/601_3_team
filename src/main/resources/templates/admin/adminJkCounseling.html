@@ -7,13 +7,12 @@
         <meta name="description" content="" />
         <meta name="author" content="" />
         <title>상담관리</title>
-        <link href="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/style.min.css" rel="stylesheet" />
         <link href="/admin/css/styles.css" rel="stylesheet" />
         <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
+        <script src="/admin/js/calendar.js"></script>
 </head>
-<body id="top">
 <body class="sb-nav-fixed">
-	<th:block th:insert="~{admin/adminmenu::topbar}"></th:block>
+	<th:block th:insert="~{admin/adminmenu.html::topbar}"></th:block>
 	<th:block th:insert="~{admin/adminmenu.html::leftmenu}"></th:block>
 
 	
@@ -25,14 +24,24 @@
 					<h1 th:text="'상담 관리'">상담 관리</h1>
 					<div class="divider mx-auto my-4"></div>
 				</div>
+				<div id="calendarBox">
+	     				<div id='calendar'></div>
+						<div class="section-title text-center"></div>
+				    </div>
 				
 				<div class="section-title text-center">
 					<h1 th:text="'시간 선택'">시간 선택</h1>
 					<div class="divider mx-auto my-4"></div>
-					<div id="calendarBox">
-   						<div id='calendar'></div>
-   						<div class="section-title text-center"></div>
- 					</div>
+					
+					<form action="/admin/jkselect" method="post">
+					<input type="date" onchange="jkselectdt()" name="jkselectdate" id="jkselectdate"/>
+					<input type="submit">
+					<input type="hidden" name="_csrf" th:value="${_csrf.token}"/>
+					</form>
+					<th:block th:each="list : ${schedule}">
+								<input type="radio" class="btn-check" th:value="${list.CD}" name="time" th:id="${list.CD}">
+								<label class="btn btn-outline-danger" th:for="${list.CD}" th:text="${list.CD}+'시'"></label>
+						</th:block>	
 				</div>
 			</div>
 			
@@ -42,17 +51,11 @@
 			</div>
 			</div>
 		</div>
-	</div>
 </section>
     
-	<th:block th:insert="~{admin/adminmenu.html::admincalendarImport}"></th:block>
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
 	<script src="/admin/js/scripts.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
-	<script src="/admin/assets/demo/chart-area-demo.js"></script>
-	<script src="/admin/assets/demo/chart-bar-demo.js"></script>
-	<script src="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/umd/simple-datatables.min.js" crossorigin="anonymous"></script>
-	<script src="/admin/js/datatables-simple-demo.js"></script>
+	<th:block th:insert="~{admin/adminmenu.html::admincalendarImport}"></th:block>
 </body>
 </html>
    

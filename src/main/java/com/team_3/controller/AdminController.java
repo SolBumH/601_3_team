@@ -88,6 +88,7 @@ public class AdminController {
 		System.out.println("no + " + board.getBoard_no() + " del : " + board.getDel_yn());
 		int result = adminService.updateBoardDel(board);
 		return String.valueOf(result);
+	}
 	@GetMapping("/jkCounseling")
 	public String jkCounseling(Model model) {
 		model.addAttribute("user",userUtil.getUserNameAndRole());

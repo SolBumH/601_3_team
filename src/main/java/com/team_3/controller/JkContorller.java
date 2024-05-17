@@ -23,7 +23,13 @@ public class JkContorller {
 	@PostMapping("/JkControll")
 	@ResponseBody
 	public String JkControll(@RequestParam(name = "start") String start) {
-		//System.out.println(start);
+		System.out.println(start);
 		return "admin/adminJkCounseling";
+	}
+	
+	@PostMapping("/jkselect")
+	public String jkselect(@RequestParam(name = "jkselectdate") String jkselectdate) {
+		System.out.println(jkselectdate);
+		return "redirect:/admin/jkCounseling";
 	}
 }

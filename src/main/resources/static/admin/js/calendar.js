@@ -48,3 +48,24 @@ function click(arg) {
 		}
 	});
 }
+
+function jkselectdt(){
+	    var dateInput = document.getElementById("jkselectdate"); // 날짜 입력(input) 요소 가져오기
+	    var selectedDate = dateInput.value; // 선택된 날짜 가져오기
+
+	    console.log("Selected date:", selectedDate); // 선택된 날짜 콘솔에 출력
+
+	    document.getElementById("jkselect").submit(); // 폼 제출
+	}
+	
+function sangdamSign() {
+	let selectTime = document.querySelector('input[name="time"]:checked');
+	if (date == null || selectTime == null) {
+		alert("날짜와 시간을 모두 선택해주세요.");
+		return false;
+	}
+	
+	if(confirm("신청하시겠습니까?\n신청 날짜 : " + date + "\n선택 시간 : " + selectTime.value + "시")) {
+		location.href="/jcCounselingForm?date=" + date + "&time=" + selectTime.value;
+	}	
+}
