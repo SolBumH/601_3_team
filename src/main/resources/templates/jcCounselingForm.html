@@ -19,8 +19,6 @@
 			<div class="section-title text-center">
 
 				<form action="/saveCounselingForm" method="post">
-	
-
 					<div class="box">
 						<div class="container">
 							<span class="label">상담 구분:</span>
@@ -34,15 +32,12 @@
 						</div>
 					</div>
 
-
 					<table class="request">
-
 						<tr>
 							<th class="th" scope="row">상담 날짜</th>
 							<td th:text="${param.date}">
 							</td>
 							<td><input id="date" type="text" th:value="${param.date}" name="date" hidden="true"></td>
-							
 						</tr>
 						<tr>
 							<th class="th" scope="row">상담 시간</th>
