@@ -2,13 +2,14 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="admin">
 	<select id="AdminBoard" resultType="BoardDTO">
-		select ib.BOARD_NO, ib.BOARD_TITLE, ib.BOARD_CONTENT, ib.BOARD_DATE, u.NAME,
+		select ib.BOARD_NO, ib.BOARD_BF_NO, ib.BOARD_ANS_NO, 
+			ib.BOARD_TITLE, ib.BOARD_CONTENT, ib.BOARD_DATE, u.NAME,
 			ib.ANS_YN, ib.DEL_YN 
 		from Inq_Board ib
 		join `USER` u
 		where ib.BOARD_USER = u.USER_NO
 		<!-- and ib.DEL_YN = '1' -->
-		order by ib.BOARD_DATE DESC, ib.ANS_YN
+		order by ib.BOARD_DATE DESC, ib.ANS_YN, ib.BOARD_NO DESC
 	</select>
 	
 	<select id="AdminUser" resultType="userDTO">
@@ -25,4 +26,34 @@
 		UPDATE USER SET ROLE = #{role}
 		WHERE USER_NO = #{user_no}
 	</update>
+	
+	<insert id="answerPost" parameterType="BoardDTO" useGeneratedKeys="true" keyProperty="board_ans_no">
+		<selectKey resultType="String" keyProperty="ans_yn" order="BEFORE">
+	    	select ANS_YN from Inq_Board where BOARD_NO = #{board_no};
+	    </selectKey>
+		<choose>
+			<when test="#{ans_yn} == &quot;1&quot;">
+				insert into Inq_Board (BOARD_BF_NO, BOARD_USER, BOARD_TITLE, BOARD_CONTENT, ANS_YN)
+				values (#{board_no}, (select USER_NO from USER where USERNAME = #{name}), 
+				#{board_title}, #{board_content}, '4');
+			</when>
+			<otherwise>
+				update Inq_Board set BOARD_CONTENT = #{board_content}
+				where BOARD_BF_NO = #{board_no}
+			</otherwise>
+		</choose>
+	</insert>
+	
+	<update id="answerPostUpdate" parameterType="BoardDTO">
+		update Inq_Board set 
+		ANS_YN = "2",
+		BOARD_ANS_NO = #{board_ans_no}
+		<!-- (ANS_YN, BOARD_ANS_NO) = ("2", #{board_ans_no}) -->
+		where BOARD_NO = #{board_no};
+	</update>
+	
+	<select id="getAnswerContent" parameterType="Integer" resultType="String">
+		select BOARD_CONTENT from Inq_Board
+		where BOARD_BF_NO = #{board_no}
+	</select>
 </mapper>

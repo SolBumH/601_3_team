@@ -113,8 +113,18 @@ public class AdminController {
 		BoardDTO board = new BoardDTO();
 		board.setBoard_no(board_no);
 		board.setBoard_content(answer);
+		board.setName(userUtil.getUsername());
 		int result = adminService.answerPost(board);
+		System.out.println(board.toString());
+		adminService.answerPostUpdate(board);
 		
-		return 1;
+		return result;
+	}
+	
+	@PostMapping("/answerContent")
+	@ResponseBody
+	public String answerContent(@RequestParam(name = "board_no") int board_no) {
+		String result = adminService.getAnswerContent(board_no);
+		return result;
 	}
 }
