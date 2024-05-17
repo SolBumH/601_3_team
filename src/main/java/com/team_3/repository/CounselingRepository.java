@@ -14,7 +14,7 @@ public interface CounselingRepository {
 
 	 BoardDTO getDetail(int no);
 
-	String findStudentNumber(String name);
+	String findStudentNumber(String username);
 
 	List<Map<String, Object>> getSchedule();
 }

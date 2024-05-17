@@ -8,6 +8,7 @@ public class CounselingFormDTO {
     private int USER_NO;
     private String STUD_NO;  
     private String NAME;
+    private String username;  
     private String email;   
     private String counselingContent;
     private String selectedType;
