@@ -33,7 +33,6 @@ public class JcFormController {
 			// 로그인되지 않은 경우 로그인 페이지로 리다이렉트
 			return "redirect:/login";
 		}
-
 		// Principal을 이용하여 사용자 이름 가져오기
 		String username = principal.getName();
 
