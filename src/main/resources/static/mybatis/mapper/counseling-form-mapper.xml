@@ -8,10 +8,10 @@
     VALUES (#{date}, #{time}, #{NAME}, #{studentNumber}, #{selectedType}, #{email}, #{counselingContent})
 </insert>
 
-	 <select id="findByStud_no" resultType="String">
-     SELECT STUD_NO FROM student_user_view WHERE USER_NO = #{user_no};
-	</select>
-	
+	   <select id="findByStud_no" resultType="String">
+    		SELECT STUD_NO FROM student_user_view WHERE NAME = #{name};
+		</select>
+
 	<select id="selectGroupData" resultType="BoardDTO">
 		SELECT * FROM JDSD_Info
 	</select>

@@ -27,8 +27,6 @@ public class CounselingService {
     }
 
 	public String findStudentNumber(String username) {
-		 String studentNumber =  "1234";
-		   System.out.println("학번: " + studentNumber);
 		return counselingRepository.findStudentNumber(username);
 	}
 	
