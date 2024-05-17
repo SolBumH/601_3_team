@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.team_3.repository.MypageRepository">
+	
+	<select id="mypageBoardList" resultType="BoardDTO">
+		select BOARD_NO, u.NAME , BOARD_TITLE, BOARD_CONTENT, DEL_YN, ANS_YN,
+		DATE_FORMAT(BOARD_DATE, '%Y-%m-%d %H:%i') as BOARD_DATE
+		from Inq_Board ib join `USER` u 
+		on BOARD_USER = USER_NO 
+		where ib.BOARD_USER = #{user_no}
+	</select>
+</mapper>

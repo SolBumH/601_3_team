@@ -77,13 +77,13 @@ public class JcFormController {
 		//System.out.println("날짜: " + date); System.out.println("학번: " + studentNumber);
 		
 		CounselingFormDTO formDTO = new CounselingFormDTO();
-		formDTO.setEmail(email);
-		formDTO.setCounselingContent(counselingContent);
-		formDTO.setSelectedType(selectedType);
-		formDTO.setDate(date);
-		formDTO.setTime(time);
-		formDTO.setNAME(name);
-		formDTO.setStudentNumber(studentNumber);
+//		formDTO.setEmail(email);
+//		formDTO.setCounselingContent(counselingContent);
+//		formDTO.setSelectedType(selectedType);
+//		formDTO.setDate(date);
+//		formDTO.setTime(time);
+//		formDTO.setNAME(name);
+//		formDTO.setStudentNumber(studentNumber);
 		
 		//System.out.println("컨트롤러 들어왔어요");
 		
