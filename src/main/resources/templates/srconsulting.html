@@ -56,32 +56,9 @@
 					</div>
 				</div>
 			
-        		<!-- Button trigger modal -->
-			<div style="text-align: center;">
-				<button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal">신청하기</button>
-				<button type="button" class="btn btn-danger" th:onclick="return sangdamSign()">신청하기</button>
-			</div>
-			
-			<!-- Modal -->
-			<div class="modal fade" id="exampleModal" tabindex="-1"
-				aria-labelledby="exampleModalLabel" aria-hidden="true">
-				<div class="modal-dialog">
-					<div class="modal-content">
-						<div class="modal-header">
-							<h1 class="modal-title fs-5" id="exampleModalLabel" style="font-size: 130%;">상담을 신청하시겠습니까?</h1>
-							<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-						</div>
-						<div class="modal-body">확인을 누르면 신청이 완료됩니다.</div>
-						<div class="modal-footer">
-							<button type="button" class="btn btn-secondary"
-								data-bs-dismiss="modal">닫기</button>
-							<button type="button" class="btn btn-danger"
-								onclick="window.location.href='jcCounselingForm'">확인</button>
-						</div>
-					</div>
+				<div style="text-align: center;">
+					<button type="button" class="btn btn-danger" th:onclick="return sangdamSign()">신청하기</button>
 				</div>
-			</div>
-				
 			</div>
 		</div>
 	</div>

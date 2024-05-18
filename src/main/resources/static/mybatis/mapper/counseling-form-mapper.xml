@@ -3,14 +3,14 @@
 
 <mapper namespace="jcCounselingForm">
 
-   <insert id="insertCounselingForm" parameterType="com.team_3.dto.CounselingFormDTO">
-    INSERT INTO CounselingForm (date, time, NAME, studentNumber, selectedType, email, counselingContent)
-    VALUES (#{date}, #{time}, #{NAME}, #{studentNumber}, #{selectedType}, #{email}, #{counselingContent})
-</insert>
+	<insert id="insertCounselingForm" parameterType="com.team_3.dto.CounselingFormDTO">
+		INSERT INTO CounselingForm (date, time, NAME, studentNumber, selectedType, email, counselingContent)
+		VALUES (#{date}, #{time}, #{NAME}, #{studentNumber}, #{selectedType}, #{email}, #{counselingContent})
+	</insert>
 
-	   <select id="findByStud_no" resultType="String">
-    		SELECT STUD_NO FROM student_user_view WHERE NAME = #{name};
-		</select>
+	<select id="findByStud_no" resultType="String">
+   		SELECT STUD_NO FROM student_user_view WHERE NAME = #{name};
+	</select>
 
 	<select id="selectGroupData" resultType="BoardDTO">
 		SELECT * FROM JDSD_Info
@@ -28,4 +28,8 @@
 		where `DIV` = 'SC01'
 	</select>
 	
+	<insert id="saveFormJM" parameterType="CounselingFormDTO">
+		insert into JMS_List (STUD_NO, RS_DATE, RS_TIME, RSVT_YN, JMS_Content)
+		values (#{studentNumber}, #{date}, #{time}, '1', #{counselingContent});
+	</insert>
 </mapper>

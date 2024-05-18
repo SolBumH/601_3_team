@@ -42,4 +42,8 @@ public class CounselingService {
 	public List<Map<String, Object>> getSchedule() {
 		return counselingRepository.getSchedule();
 	}
+
+	public int saveFormJM(CounselingFormDTO formDTO) {
+		return counselingRepository.saveFormJM(formDTO);
+	}
 }

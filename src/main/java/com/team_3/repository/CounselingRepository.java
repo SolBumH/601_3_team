@@ -17,4 +17,6 @@ public interface CounselingRepository {
 	String findStudentNumber(String username);
 
 	List<Map<String, Object>> getSchedule();
+
+	int saveFormJM(CounselingFormDTO formDTO);
 }
