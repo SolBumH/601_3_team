@@ -92,18 +92,8 @@ public class CounselingController {
 	}
 	
 	@GetMapping("/groupResult")
-	public String groupRequest(Model model, Principal principal) {
+	public String groupResult(Model model, Principal principal) {
 		model.addAttribute("user", userUtil.getUserNameAndRole());
-		
-		String username = principal.getName();
-		UserDetails userDetails = customUserDetailService.loadUserByUsername(username);
-		String name = userDetails.getUsername();
-		String studentNumber = counselingService.findStudentNumber(name);
-		
-		model.addAttribute("studentname", name);
-		model.addAttribute("studentNumber", studentNumber);
-		model.addAttribute("user", userUtil.getUserNameAndRole());
-		
 		return "groupResult";
 	}
 	
