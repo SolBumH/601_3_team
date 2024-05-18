@@ -18,8 +18,8 @@ document.addEventListener('DOMContentLoaded', function() {
 		fixedWeekCount: false, // 해당 달의 마지막 주 까지만 보여줌, 다음 달의 미리보기 X
 		weekends: false, // 주말은 안보이게 설정
 		validRange: {
-				start: Date.now(), // 
-				end: Date.now() + 2592000000,
+				start: Date.now() + 86400000, // 하루 뒤 부터 예약할 수 있게
+				end: Date.now() + 2592000000, // 한달 뒤 까지 예약할 수 있게
 		},
 		dateClick: function(info) {
 			date = info.dateStr;
