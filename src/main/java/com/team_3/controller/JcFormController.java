@@ -73,32 +73,41 @@ public class JcFormController {
 			@RequestParam("name") String name,
 			@RequestParam("studentNumber") String studentNumber,  RedirectAttributes redirectAttributes) {
 	
-		//System.out.println("시간: " + time); System.out.println("학생이름: " + name);
 		//System.out.println("날짜: " + date); System.out.println("학번: " + studentNumber);
 		
 		CounselingFormDTO formDTO = new CounselingFormDTO();
-//		formDTO.setEmail(email);
-//		formDTO.setCounselingContent(counselingContent);
-//		formDTO.setSelectedType(selectedType);
-//		formDTO.setDate(date);
-//		formDTO.setTime(time);
-//		formDTO.setNAME(name);
-//		formDTO.setStudentNumber(studentNumber);
+		formDTO.setDate(date); // 날짜
+		formDTO.setTime(time); // 시간 코드
+		formDTO.setNAME(name); // 이름
+		formDTO.setStudentNumber(studentNumber); // 학번
+		formDTO.setEmail(email); // 이메일 
+		formDTO.setCounselingContent(counselingContent); // 상담 내용
 		
-		//System.out.println("컨트롤러 들어왔어요");
+		int result = 0; // 정상 저장 여부 확인
 		
-		// System.out.println(formData);
-		counselingService.saveForm(formDTO);
+		switch (selectedType) {
+			case "10": // 교수 상담
+//				counselingService.saveForm(formDTO);
+				redirectAttributes.addFlashAttribute("selectedType", "지도교수 상담");
+				break;
+			case "20": // 전문 상담
+				result = counselingService.saveFormJM(formDTO);
+				// 전문 상담 넘기기
+				redirectAttributes.addFlashAttribute("selectedType", "전문 상담");
+				break;
+			case "40": // 심리 상담
+				
+				redirectAttributes.addFlashAttribute("selectedType", "심리 상담");
+				break;
+			case "50": // 취업 상담
+				
+				redirectAttributes.addFlashAttribute("selectedType", "취업 · 진로 상담");
+				break;
+		}
 		
-		/*
-		 * System.out.println("Selected Type: " + selectedType);
-		 * System.out.println("Date: " + date); System.out.println("Time: " + time);
-		 * System.out.println("Name: " + name); System.out.println("Student Number: " +
-		 * studentNumber);
-		 */
-
+		System.out.println(result);
 	    // RedirectAttributes를 사용하여 데이터를 전달합니다.
-	    redirectAttributes.addFlashAttribute("selectedType", selectedType);
+		// 다음 페이지로 값 넘기기
 	    redirectAttributes.addFlashAttribute("date", date);
 	    redirectAttributes.addFlashAttribute("time", time);
 	    redirectAttributes.addFlashAttribute("name", name);

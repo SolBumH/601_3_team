@@ -45,6 +45,8 @@ public class CounselingRepositoryImpl implements CounselingRepository {
 		return sqlSession.selectOne("jcCounselingForm.getDetail", no);
 	}
 
-
-	
+	@Override
+	public int saveFormJM(CounselingFormDTO formDTO) {
+		return sqlSession.insert("jcCounselingForm.saveFormJM", formDTO);
+	}
 }
