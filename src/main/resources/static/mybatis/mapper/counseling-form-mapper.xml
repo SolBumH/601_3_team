@@ -3,33 +3,70 @@
 
 <mapper namespace="jcCounselingForm">
 
-	<insert id="insertCounselingForm" parameterType="com.team_3.dto.CounselingFormDTO">
-		INSERT INTO CounselingForm (date, time, NAME, studentNumber, selectedType, email, counselingContent)
-		VALUES (#{date}, #{time}, #{NAME}, #{studentNumber}, #{selectedType}, #{email}, #{counselingContent})
+	<insert id="insertCounselingForm"
+		parameterType="com.team_3.dto.CounselingFormDTO">
+		INSERT INTO CounselingForm (date, time, NAME,
+		studentNumber, selectedType, email, counselingContent)
+		VALUES (#{date},
+		#{time}, #{NAME}, #{studentNumber}, #{selectedType}, #{email},
+		#{counselingContent})
 	</insert>
 
 	<select id="findByStud_no" resultType="String">
-   		SELECT STUD_NO FROM student_user_view WHERE NAME = #{name};
+		SELECT STUD_NO FROM student_user_view WHERE NAME = #{name};
 	</select>
 
 	<select id="selectGroupData" resultType="BoardDTO">
 		SELECT * FROM JDSD_Info
 	</select>
-	
+
 	<select id="getDetail" resultType="BoardDTO">
-		SELECT JD_NO, PG_NAME, PG_EXPLAIN, EN_DATE, JMS_CS_DATE, TO_NO, AP_NO, PA_NO 
+		SELECT JD_NO, PG_NAME,
+		PG_EXPLAIN, EN_DATE, JMS_CS_DATE, TO_NO, AP_NO, PA_NO
 		FROM JDSD_Info
 		WHERE JD_NO = #{no}
-			and EN_NO = "2"
+		and EN_NO = "2"
 	</select>
 
 	<select id="getSchedule" resultType="HashMap">
 		select * from CODE
-		where `DIV` = 'SC01'
+		where
+		`DIV` = 'SC01'
 	</select>
-	
-	<insert id="saveFormJM" parameterType="CounselingFormDTO">
-		insert into JMS_List (STUD_NO, RS_DATE, RS_TIME, RSVT_YN, JMS_Content)
-		values (#{studentNumber}, #{date}, #{time}, '1', #{counselingContent});
+
+	<!-- 지도교수 상담 테이블명 수정해야함-->
+	<insert id="saveAdvisorCounselingForm" parameterType="com.team_3.dto.CounselingFormDTO">
+		INSERT INTO advisor_ (JMS_NO, ST_NO, JMS_RS_DATE,
+		JMS_RS_TIME, JMS_CS_DATE, JMS_CS_TIME, JMS_RS_TEXT, RSVT_YN, JMS_LIST,
+		SC_SN)
+		VALUES (#{JMS_NO}, #{ST_NO}, #{JMS_RS_DATE}, #{JMS_RS_TIME}, #{JMS_CS_DATE},
+		#{JMS_CS_TIME}, #{JMS_RS_TEXT}, #{RSVT_YN}, #{JMS_LIST}, #{SC_SN})
 	</insert>
+
+	<!-- 전문 상담 테이블명 수정해야함-->
+	<insert id="saveExpertCounselingForm"	parameterType="com.team_3.dto.CounselingFormDTO">
+		INSERT INTO expert_counseling_forms (JMS_NO, JMS_BF, ST_NO, JMS_RS_DATE,
+		JMS_RS_TIME, JMS_CS_DATE, JMS_CS_TIME, JMS_RS_TEXT, RSVT_YN, JMS_LIST,
+		SC_SN)
+		VALUES (#{JMS_NO}, #{JMS_BF}, #{ST_NO}, #{JMS_RS_DATE}, #{JMS_RS_TIME},
+		#{JMS_CS_DATE}, #{JMS_CS_TIME}, #{JMS_RS_TEXT}, #{RSVT_YN},
+		#{JMS_LIST}, #{SC_SN})
+	</insert>
+
+	<!-- 심리 상담 테이블명 수정해야함 -->
+	<insert id="savePsychologicalCounselingForm" parameterType="com.team_3.dto.CounselingFormDTO">
+		INSERT INTO psychological_counseling_forms (JMS_NO, ST_NO, JMS_RS_DATE,
+		JMS_RS_TIME, JMS_CS_DATE, JMS_CS_TIME, JMS_RS_TEXT, RSVT_YN, JMS_LIST,
+		SC_SN)
+		VALUES (#{JMS_NO}, #{ST_NO}, #{JMS_RS_DATE}, #{JMS_RS_TIME}, #{JMS_CS_DATE},
+		#{JMS_CS_TIME}, #{JMS_RS_TEXT}, #{RSVT_YN}, #{JMS_LIST}, #{SC_SN})
+	</insert>
+
+	<!-- 취업 상담 양식-->
+	<insert id="saveEmploymentCounselingForm" parameterType="com.team_3.dto.CounselingFormDTO">
+    	INSERT INTO JC_LIST (JC_RSVT_NO, JC_RSVT_TM, NAME, STUD_NO, email, JC_DSCSN_CN)
+    	VALUES (#{JC_RSVT_NO}, #{JC_RSVT_TM}, #{NAME}, #{STUD_NO}, #{email}, #{JC_DSCSN_CN})
+	</insert>
+
+
 </mapper>
