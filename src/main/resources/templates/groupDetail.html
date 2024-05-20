@@ -11,7 +11,12 @@
 <link rel="stylesheet" href="/css/jcCounseling.css">
 <link rel="stylesheet" href="/css/jdCounseling.css">
 </head>
-
+<style>
+	.program-name {
+	    font-size: 24px;  /* 글씨 크기를 설정 */
+	    font-weight: bold; /* 글씨를 굵게 설정 */
+	}
+</style>
 <body>
 	<th:block th:insert="~{menu.html::header}">메뉴 들어가는 곳</th:block>
 
@@ -35,11 +40,17 @@
 					<div class="col-sm-8 mb-2">
 						<div class="card">
 							<div class="card-body" style="height: 300px">
-								<div class="program1" th:text="'프로그램명 : '+ ${detail.PG_NAME}">
+								<div class="program1" style="margin-left:20px;">
+									<div class="program-name" th:text="'프로그램명 : '+ ${detail.PG_NAME}" style="font-size: 22px;"></div><br>
+								<div>
+									<span th:text="'일정 : ' + ${#dates.format(detail.JMS_CS_DATE, 'yyyy-MM-dd')}"></span>
+									<span style="margin-left: 200px;" th:text="'마감일 : ' + ${#dates.format(detail.EN_DATE, 'yyyy-MM-dd')}"></span>
+								</div>
 									<br>
-									<div th:text="'일정 : ' + ${detail.JMS_CS_DATE}"><br><hr>
-										<div th:text="'프로그램에 관한 상세설명 : ' + ${detail.PG_EXPLAIN}"></div>
-									</div>
+
+								<div th:text="'총 인원수 : ' + ${detail.TO_NO} + '명'"></div><br>
+									<div th:text="'신청인원수 : ' + ${detail.AP_NO}+ '명'"></div><br>
+									<div th:text="'참여인원수 : ' + ${detail.PA_NO}+ '명'"></div>
 								</div>
 							</div>
 						</div>
@@ -50,7 +61,7 @@
 					<div class="card" style="height:300px">
 						<div class="card-body">
 							<h4>프로그램에 관한 상세설명</h4>
-							<p>속잎나고 가지에 싹이 트고 꽃 피고 새 우는 봄날의 천지는 얼마나 기쁘며 얼마나 아름다우냐? 이것을 얼음 속에서 불러 내는 것이 따뜻한 봄바람이다 인생에 따뜻한 봄바람을 불어 보내는 것은 청춘의 끓는 피다 청춘의 피가 뜨거운지라 인간의 동산에는 사랑의 풀이 돋고 이상의 꽃이 피고 풀밭에 속잎나고 가지에 싹이 트고 꽃 피고 새 우는 봄날의 천지는 얼마나 기쁘며 얼마나 아름다우냐? 이것을 얼음 속에서 불러 내는 것이 따뜻한 봄바람이다 인생에 따뜻한 봄바람을 불어 보내는 피가 아니더면 인간이 얼마나 쓸쓸하랴? 얼음에 싸인 만물은 얼음이 있을 뿐이다 그들에게 생명을 불어 넣는 것은 속잎나고 가지에 싹이 트고 꽃 피고 새 우는 봄날의 천지는 얼마나</p>
+						<div th:text="${detail.PG_EXPLAIN}"></div>
 						</div>
 					</div>
 				</div>
@@ -73,13 +84,30 @@
 					<div class="modal-body">확인을 누르면 신청이 완료됩니다.</div>
 					<div class="modal-footer">
 						<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">닫기</button>
-						<button type="button" class="btn btn-danger" onclick="window.location.href='groupResult'">확인</button>
-
+<!-- 						<button type="button" class="btn btn-danger" onclick="window.location.href='groupResult'">확인</button> -->
+						<button type="button" class="btn btn-danger" onclick="applyForProgram()">확인</button>
 					</div>
 				</div>
 			</div>
 		</div>
 	</section>
+
+   <script>
+    function getQueryParam(param) {
+        let urlParams = new URLSearchParams(window.location.search);
+        return urlParams.get(param);
+    }
+
+    function applyForProgram() {
+        let no = getQueryParam('no');
+        if (no) {
+            let url = `groupResult?no=${no}`;
+            window.location.href = url;
+        } else {
+            alert("No parameter is missing in the URL");
+        }
+    }
+    </script>
 
 	<th:block th:insert="~{index.html::jsImport}">CDN JS 링크</th:block>
 </body>

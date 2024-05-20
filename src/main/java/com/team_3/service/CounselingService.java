@@ -39,6 +39,10 @@ public class CounselingService {
 		return counselingRepository.getDetail(no);
 	}
 
+	public BoardDTO getResult(int no) {
+		return counselingRepository.getResult(no);
+	}
+	
 	public List<Map<String, Object>> getSchedule() {
 		return counselingRepository.getSchedule();
 	}
@@ -62,5 +66,6 @@ public class CounselingService {
 	public int saveEmploymentCounselingForm(CounselingFormDTO formDTO) {
 	    return counselingRepository.saveEmploymentCounselingForm(formDTO);
 	}
+
 
 }

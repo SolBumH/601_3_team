@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>상담 신청서 작성</title>
+<title>상담 신청 완료</title>
 <th:block th:insert="~{index.html::headImport}">CDN CSS 링크</th:block>
 <link rel="stylesheet" href="/css/jcCounselingForm.css">
 </head>
@@ -23,7 +23,7 @@
 					<table class="request">
 						<tr>
 							<th class="th" scope="row">프로그램명</th>
-							<td th:text="${PG_NAME}">
+							<td th:text="${detail.PG_NAME}">
 							</td>
 							<td><input id="date" type="text" th:value="${param.date}" name="date" hidden="true"></td>
 							
@@ -31,7 +31,7 @@
 						
 						<tr>
 							<th class="th" scope="row">상담 날짜</th>
-							<td th:text="${JMS_CS_DATE}">
+							<td th:text="${detail.JMS_CS_DATE}">
 							</td>
 							<td><input id="date" type="text" th:value="${param.date}" name="date" hidden="true"></td>
 							
@@ -49,7 +49,7 @@
 						</tr>
 						<tr>
 							<th class="th" scope="row">학번</th>
-							<td th:text="${studentNumber}"></td>
+							<td th:text="${user.studentNumber}"></td>
 							<td><input id="studentNumber" type="text"th:value="${studentNumber}" name="studentNumber" hidden="true"></td>
 						</tr>
 					
@@ -100,16 +100,5 @@
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 	
 </body>
-<script>
-// 상담 신청 버튼 클릭 시 상담 종류 선택 여부 확인
-document.querySelector(".btn").addEventListener("click", function() {
-    var selectedType = document.getElementById("selectedType").value;
-    if (selectedType === "") {
-        alert("상담 종류를 선택해주세요.");
-        event.preventDefault(); // 이벤트의 기본 동작 중지
-        return false; // 이벤트 버블링 차단
-    }
-});
-</script>
 
 </html>

@@ -8,11 +8,13 @@ import com.team_3.dto.CounselingFormDTO;
 
 public interface CounselingRepository {
 	
-	 void saveForm(CounselingFormDTO formDTO);
-	 
-	 List<BoardDTO> getGroupData();
+	void saveForm(CounselingFormDTO formDTO);
 
-	 BoardDTO getDetail(int no);
+	List<BoardDTO> getGroupData();
+
+	BoardDTO getDetail(int no);
+
+	BoardDTO getResult(int no);
 
 	String findStudentNumber(String username);
 
@@ -27,4 +29,5 @@ public interface CounselingRepository {
 	int savePsychologicalCounselingForm(CounselingFormDTO formDTO);
 
 	int saveEmploymentCounselingForm(CounselingFormDTO formDTO);
+
 }

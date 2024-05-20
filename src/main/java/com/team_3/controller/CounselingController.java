@@ -74,32 +74,29 @@ public class CounselingController {
 	public String groupDetail(Model model, @RequestParam(name = "no") int no) {
 		UserDTO user = userUtil.getUserData();
 		BoardDTO detail = counselingService.getDetail(no);
+		
 		System.out.println(detail);
-		if (user == null || user.getRole().equals("ROLE_ANONYMOUS")) {
-			return "redirect:/login";
-		} else {
-			model.addAttribute("detail", detail);
-			model.addAttribute("user", user);
-			
-			  model.addAttribute("user", userUtil.getUserNameAndRole());
-		        
-		      List<BoardDTO> groupDataList = new ArrayList<BoardDTO>();
-		      groupDataList = counselingService.getGroupData();
-		      model.addAttribute("groupDataList", groupDataList);
-			
-		      return "groupDetail";
+
+		model.addAttribute("detail", detail);
+		model.addAttribute("user", user);
+		model.addAttribute("user", userUtil.getUserNameAndRole());
+
+		return "groupDetail";
 		}
-	}
 	
 	@GetMapping("/groupResult")
-	public String groupResult(Model model, Principal principal) {
-		model.addAttribute("user", userUtil.getUserNameAndRole());
+	public String groupResult(Model model,@RequestParam(name = "no") int no, Principal principal) {
+		UserDTO user = userUtil.getUserData();
+		BoardDTO detail = counselingService.getResult(no);
+		
+		System.out.println(detail);
+		
+		model.addAttribute("detail", detail);
+		model.addAttribute("user", user);
+		model.addAttribute("userNameAndRole", userUtil.getUserNameAndRole());
 		return "groupResult";
 	}
 
-	
-	
-	
 	@GetMapping("/jcCounseling")
 	public String jcCounseling(Model model) {
 		model.addAttribute("counselingTitle", "취업·진로 상담 안내");	
