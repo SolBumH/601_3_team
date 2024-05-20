@@ -19,100 +19,104 @@ import com.team_3.util.UserUtil;
 @Controller
 public class JcFormController {
 
-	@Autowired
-	private UserUtil userUtil;
+    @Autowired
+    private UserUtil userUtil;
 
-	@Autowired
-	private CounselingService counselingService;
+    @Autowired
+    private CounselingService counselingService;
 
-	@Autowired
-	private CustomUserDetailService customUserDetailService;
-	
-	@GetMapping("/jcCounselingForm")
-	public String jcCounselingForm(Model model, Principal principal) {
-	    if (principal == null) {
-	        // 로그인되지 않은 경우 로그인 페이지로 리다이렉트
-	        return "redirect:/login";
-	    }
+    @Autowired
+    private CustomUserDetailService customUserDetailService;
 
-	    // Principal 객체에서 사용자의 이름 가져오기
-	    String name = principal.getName();
+    @GetMapping("/jcCounselingForm")
+    public String jcCounselingForm(Model model, Principal principal) {
+        if (principal == null) {
+            // 로그인되지 않은 경우 로그인 페이지로 리다이렉트
+            return "redirect:/login";
+        }
 
-	    // 사용자 이름으로 CustomUserDetails 객체 가져오기
-	    CustomUserDetails customUserDetails = (CustomUserDetails) customUserDetailService.loadUserByUsername(name);
+        // Principal 객체에서 사용자의 이름 가져오기
+        String name = principal.getName();
 
-	    // CustomUserDetails 객체에서 사용자의 이름 가져오기
-	    String username = customUserDetails.getName();
+        // 사용자 이름으로 CustomUserDetails 객체 가져오기
+        CustomUserDetails customUserDetails = (CustomUserDetails) customUserDetailService.loadUserByUsername(name);
 
-	    // 사용자 이름으로 학생 번호 가져오기
-	    String studentNumber = counselingService.findStudentNumber(username);
-	    //System.out.println(studentNumber); // 학번 확인하기
+        // CustomUserDetails 객체에서 사용자의 이름 가져오기
+        String username = customUserDetails.getName();
 
-	    // 모델에 이름, 학번 추가
-	    model.addAttribute("studentName", username);
-	    model.addAttribute("studentNumber", studentNumber);
-	    
-	    // 다른 필요한 데이터들을 모델에 추가
-	    model.addAttribute("user", userUtil.getUserNameAndRole());
+        // 사용자 이름으로 학생 번호 가져오기
+        String studentNumber = counselingService.findStudentNumber(username);
+        // System.out.println(studentNumber); // 학번 확인하기
 
-	    return "jcCounselingForm";
-	}
+        // 모델에 이름, 학번 추가
+        model.addAttribute("studentName", username);
+        model.addAttribute("studentNumber", studentNumber);
 
-	@GetMapping("/jcFormsuccessPage")
-	public String successPage(Model model) {
-		model.addAttribute("user", userUtil.getUserNameAndRole());
-		return "jcFormsuccessPage";
-	}
+        // 다른 필요한 데이터들을 모델에 추가
+        model.addAttribute("user", userUtil.getUserNameAndRole());
 
-	@PostMapping("/saveCounselingForm")
-	public String saveCounselingForm(@RequestParam(name = "email") String email,
-			@RequestParam("counselingContent") String counselingContent,
-			@RequestParam("selectedType") String selectedType, 
-			@RequestParam("date") String date,
-			@RequestParam("time") String time, 
-			@RequestParam("name") String name,
-			@RequestParam("studentNumber") String studentNumber,  RedirectAttributes redirectAttributes) {
-	
-		//System.out.println("날짜: " + date); System.out.println("학번: " + studentNumber);
-		
-		CounselingFormDTO formDTO = new CounselingFormDTO();
-		formDTO.setDate(date); // 날짜
-		formDTO.setTime(time); // 시간 코드
-		formDTO.setNAME(name); // 이름
-		formDTO.setStudentNumber(studentNumber); // 학번
-		formDTO.setEmail(email); // 이메일 
-		formDTO.setCounselingContent(counselingContent); // 상담 내용
-		
-		int result = 0; // 정상 저장 여부 확인
-		
-		switch (selectedType) {
-			case "10": // 교수 상담
-//				counselingService.saveForm(formDTO);
-				redirectAttributes.addFlashAttribute("selectedType", "지도교수 상담");
-				break;
-			case "20": // 전문 상담
-				result = counselingService.saveFormJM(formDTO);
-				// 전문 상담 넘기기
-				redirectAttributes.addFlashAttribute("selectedType", "전문 상담");
-				break;
-			case "40": // 심리 상담
-				
-				redirectAttributes.addFlashAttribute("selectedType", "심리 상담");
-				break;
-			case "50": // 취업 상담
-				
-				redirectAttributes.addFlashAttribute("selectedType", "취업 · 진로 상담");
-				break;
-		}
-		
-		System.out.println(result);
-	    // RedirectAttributes를 사용하여 데이터를 전달합니다.
-		// 다음 페이지로 값 넘기기
-	    redirectAttributes.addFlashAttribute("date", date);
-	    redirectAttributes.addFlashAttribute("time", time);
-	    redirectAttributes.addFlashAttribute("name", name);
-	    redirectAttributes.addFlashAttribute("studentNumber", studentNumber);
+        return "jcCounselingForm";
+    }
 
-	    return "redirect:/jcFormsuccessPage"; 
-	}
+    @GetMapping("/jcFormsuccessPage")
+    public String successPage(Model model) {
+        model.addAttribute("user", userUtil.getUserNameAndRole());
+        return "jcFormsuccessPage";
+    }
+
+    @PostMapping("/saveCounselingForm")
+    public String saveCounselingForm(@RequestParam(name = "email") String email,
+                                     @RequestParam("counselingContent") String counselingContent,
+                                     @RequestParam("selectedType") String selectedType,
+                                     @RequestParam("date") String date,
+                                     @RequestParam("time") String time,
+                                     @RequestParam("name") String name,
+                                     @RequestParam("studentNumber") String studentNumber,
+                                     RedirectAttributes redirectAttributes) {
+
+        CounselingFormDTO formDTO = new CounselingFormDTO();
+        formDTO.setJC_RSVT_NO(date); // 예약일자
+        formDTO.setJC_RSVT_TM(time); // 예약시간
+        formDTO.setNAME(name); // 학생 이름
+        formDTO.setSTUD_NO(studentNumber); // 학번
+        formDTO.setEmail(email); // 이메일 
+        formDTO.setJC_DSCSN_CN(counselingContent); // 상담 내용
+        formDTO.setSelectedType(selectedType); // 상담 종류
+
+        // 상담 종류에 따라 다른 서비스 메서드 호출
+        int jcNo = 0;
+        switch (selectedType) {
+            case "10": // 지도교수 상담
+                jcNo = counselingService.saveAdvisorCounselingForm(formDTO);
+                redirectAttributes.addFlashAttribute("selectedType", "지도교수 상담");
+                break;
+            case "20": // 전문 상담
+                jcNo = counselingService.saveExpertCounselingForm(formDTO);
+                redirectAttributes.addFlashAttribute("selectedType", "전문 상담");
+                break;
+            case "30": // 심리 상담
+                jcNo = counselingService.savePsychologicalCounselingForm(formDTO);
+                redirectAttributes.addFlashAttribute("selectedType", "심리 상담");
+                break;
+            case "40": // 취업 상담
+                jcNo = counselingService.saveEmploymentCounselingForm(formDTO);
+                redirectAttributes.addFlashAttribute("selectedType", "취업 · 진로 상담");
+                break;
+            default:
+                // 상담 종류가 잘못되었을 경우 처리
+                break;
+        }
+
+        System.out.println(jcNo);
+
+        // RedirectAttributes를 사용하여 데이터를 전달합니다.
+        // 다음 페이지로 값 넘기기
+        redirectAttributes.addFlashAttribute("jcNo", jcNo);
+        redirectAttributes.addFlashAttribute("date", date);
+        redirectAttributes.addFlashAttribute("time", time);
+        redirectAttributes.addFlashAttribute("name", name);
+        redirectAttributes.addFlashAttribute("studentNumber", studentNumber);
+
+        return "redirect:/jcFormsuccessPage";
+    }
 }
