@@ -55,4 +55,12 @@ public class AdminRepository {
 	public List<CounselingFormDTO> getJMSangdamList() {
 		return sqlSession.selectList("admin.getJMSangdamList");
 	}
+
+	public List<CounselingFormDTO> getSRSangdamList() {
+		return sqlSession.selectList("admin.getSRSangdamList");
+	}
+	
+	public List<CounselingFormDTO> getJCSangdamList() {
+		return sqlSession.selectList("admin.getJCSangdamList");
+	}
 }

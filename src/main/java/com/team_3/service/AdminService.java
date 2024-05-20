@@ -70,8 +70,10 @@ public class AdminService {
 				list = adminRepository.getJMSangdamList();
 				break;
 			} case "30": {
+				list = adminRepository.getSRSangdamList();
 				break;
 			} case "40": {
+				list = adminRepository.getJCSangdamList();
 				break;
 			} case "50": {
 				break;
