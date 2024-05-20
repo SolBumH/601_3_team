@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 
 import com.team_3.dto.BoardDTO;
 import com.team_3.dto.CounselingDTO;
+import com.team_3.dto.CounselingFormDTO;
 
 @Repository
 public class CounselingRepositoryImpl implements CounselingRepository {
