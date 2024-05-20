@@ -6,10 +6,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.team_3.dto.BoardDTO;
+import com.team_3.dto.CounselingFormDTO;
 import com.team_3.dto.UserDTO;
 import com.team_3.service.MypageService;
 import com.team_3.util.UserUtil;
@@ -61,5 +64,18 @@ public class MyPageController {
 		model.addAttribute("user", userUtil.getUserNameAndRole());
 		
 		return "mypage/mypageSangdam";
+	}
+	
+	// 현재 내 상담 리스트 가져오기
+	@GetMapping("/sangdamList")
+	@ResponseBody
+	public List<CounselingFormDTO> sangdamList() {
+		List<CounselingFormDTO> list;
+		UserDTO user = userUtil.getUserData();
+		
+		list = mypageService.sangdamList(user);
+		System.out.println(list);
+		
+		return list;
 	}
 }
