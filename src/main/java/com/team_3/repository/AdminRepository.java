@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.team_3.dto.BoardDTO;
+import com.team_3.dto.CodeDTO;
 import com.team_3.dto.CounselingFormDTO;
 import com.team_3.dto.UserDTO;
 
@@ -62,5 +63,9 @@ public class AdminRepository {
 	
 	public List<CounselingFormDTO> getJCSangdamList() {
 		return sqlSession.selectList("admin.getJCSangdamList");
+	}
+
+	public List<CodeDTO> getCodeList(CodeDTO codeDTO) {
+		return sqlSession.selectList("admin.getCodeList",codeDTO);
 	}
 }

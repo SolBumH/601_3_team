@@ -83,4 +83,9 @@
 		join USER us on st.USER_NO = us.USER_NO
 		order by RS_DATE, RS_TIME, JC_NO DESC;
 	</select>
+	
+	<select id="getCodeList" resultType="com.team_3.dto.CodeDTO">
+		SELECT * FROM CODE 
+	</select>
+	
 </mapper>
