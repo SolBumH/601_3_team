@@ -63,4 +63,8 @@ public class AdminRepository {
 	public List<CounselingFormDTO> getJCSangdamList() {
 		return sqlSession.selectList("admin.getJCSangdamList");
 	}
+
+	public int changeJMSRSVT(CounselingFormDTO dto) {
+		return sqlSession.update("admin.changeJMSRSVT", dto);
+	}
 }

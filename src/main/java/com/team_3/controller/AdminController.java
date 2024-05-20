@@ -141,4 +141,18 @@ public class AdminController {
 		List<CounselingFormDTO> list = adminService.getSangdamList(no);
 		return list;
 	}
+	
+	@PostMapping("/changeRSVT")
+	@ResponseBody
+	public int changeRSVT(@RequestParam(name = "rsvt_YN") String yn,
+						@RequestParam(name = "no") int no,
+						@RequestParam(name = "sangdamNo") String sangdamNo) {
+		System.out.println(yn);
+		System.out.println(no);
+		System.out.println(sangdamNo);
+		
+		int result = adminService.changeRSVT(sangdamNo, no, yn);
+		
+		return result;
+	}
 }

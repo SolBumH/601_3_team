@@ -4,6 +4,7 @@
 // csrf 토큰
 const header = $("meta[name='_csrf_header']").attr("content");
 const token = $("meta[name='_csrf']").attr("content");
+let sangdamNo;
 
 const grid = new tui.Grid({
   el: document.getElementById("grid"),
@@ -23,11 +24,13 @@ const grid = new tui.Grid({
     {
       header: "예약 신청일",
       name: "rs_DATE",
+	  filter: 'select',
       align: "center",
     },
     {
       header: "신청 시간 (시)",
       name: "rs_TIME",
+	  filter: 'select',
       align: "center",
     },
     {
@@ -71,8 +74,38 @@ const grid = new tui.Grid({
 });
 
 grid.on("afterChange", (ev) => {
-  let no = grid.getRow(ev.changes[0].rowKey);
-  console.log(no);
+	  let no = grid.getRow(ev.changes[0].rowKey);
+	  let number = 0;
+	  if (no.jms_NO != 0) {
+		number = no.jms_NO;
+	  } else if (no.jc_NO != 0) {
+		number = no.jc_NO;
+	  } else if (no.sr_NO != 0) {
+		number = no.sr_NO;
+	  }
+	
+	  //console.log(no);
+	  $.ajax({
+		url: '/admin/changeRSVT',
+		type: 'post',
+		data: {
+			'no' : number, 
+			'rsvt_YN' : no.rsvt_YN,
+			'sangdamNo' : sangdamNo,
+			},
+		dataType: 'text',
+		beforeSend: function (xhr) {
+	      xhr.setRequestHeader(header, token);
+	    },
+		success: function(result) {
+			if (result == 1) {
+				console.log("변경완료");
+			}
+		}, 
+		error: function() {
+			
+		}
+	});
 });
 
 $(document).ready(function () {
@@ -88,7 +121,7 @@ $(document).ready(function () {
   // });
 
   $("#selectSangdamBtn").on("click", function () {
-    let sangdamNo = $("#sangdamList option:selected").val();
+    sangdamNo = $("#sangdamList option:selected").val();
 
     $.ajax({
       url: "/admin/sangdamList",
