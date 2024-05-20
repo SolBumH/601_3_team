@@ -88,4 +88,8 @@
 		SELECT * FROM CODE 
 	</select>
 	
+	<update id="changeJMSRSVT">
+		update JMS_List set RSVT_YN = #{RSVT_YN}
+		where JMS_NO = #{JMS_NO};
+	</update>
 </mapper>
