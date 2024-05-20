@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.team_3.dto.BoardDTO;
+import com.team_3.dto.CounselingFormDTO;
 import com.team_3.dto.UserDTO;
 
 @Repository
@@ -49,5 +50,21 @@ public class AdminRepository {
 	
 	public int answerNumberUpdate(BoardDTO board) {
 		return sqlSession.update("admin.answerNumberUpdate", board);
+	}
+
+	public List<CounselingFormDTO> getJMSangdamList() {
+		return sqlSession.selectList("admin.getJMSangdamList");
+	}
+
+	public List<CounselingFormDTO> getSRSangdamList() {
+		return sqlSession.selectList("admin.getSRSangdamList");
+	}
+	
+	public List<CounselingFormDTO> getJCSangdamList() {
+		return sqlSession.selectList("admin.getJCSangdamList");
+	}
+
+	public int changeJMSRSVT(CounselingFormDTO dto) {
+		return sqlSession.update("admin.changeJMSRSVT", dto);
 	}
 }

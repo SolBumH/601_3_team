@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.team_3.dto.BoardDTO;
+import com.team_3.dto.CounselingFormDTO;
 import com.team_3.dto.UserDTO;
 import com.team_3.service.AdminService;
 import com.team_3.util.UserUtil;
@@ -134,5 +135,24 @@ public class AdminController {
 		return "/admin/adminJkCounseling";
 	}
 	
-
+	@PostMapping("/sangdamList")
+	@ResponseBody
+	public List<CounselingFormDTO> jmsangdamList(@RequestParam(name="sangdamNo") String no) {
+		List<CounselingFormDTO> list = adminService.getSangdamList(no);
+		return list;
+	}
+	
+	@PostMapping("/changeRSVT")
+	@ResponseBody
+	public int changeRSVT(@RequestParam(name = "rsvt_YN") String yn,
+						@RequestParam(name = "no") int no,
+						@RequestParam(name = "sangdamNo") String sangdamNo) {
+		System.out.println(yn);
+		System.out.println(no);
+		System.out.println(sangdamNo);
+		
+		int result = adminService.changeRSVT(sangdamNo, no, yn);
+		
+		return result;
+	}
 }
