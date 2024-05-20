@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import com.team_3.dto.CounselingFormDTO;
+import com.team_3.dto.CounselingDTO;
 import com.team_3.dto.CustomUserDetails;
 import com.team_3.service.CounselingService;
 import com.team_3.service.CustomUserDetailService;
@@ -76,14 +76,14 @@ public class JcFormController {
 		//System.out.println("시간: " + time); System.out.println("학생이름: " + name);
 		//System.out.println("날짜: " + date); System.out.println("학번: " + studentNumber);
 		
-		CounselingFormDTO formDTO = new CounselingFormDTO();
-		formDTO.setEmail(email);
-		formDTO.setCounselingContent(counselingContent);
-		formDTO.setSelectedType(selectedType);
-		formDTO.setDate(date);
-		formDTO.setTime(time);
-		formDTO.setNAME(name);
-		formDTO.setStudentNumber(studentNumber);
+		CounselingDTO formDTO = new CounselingDTO();
+//		formDTO.setEmail(email);
+//		formDTO.setCounselingContent(counselingContent);
+//		formDTO.setSelectedType(selectedType);
+//		formDTO.setDate(date);
+//		formDTO.setTime(time);
+//		formDTO.setNAME(name);
+//		formDTO.setStudentNumber(studentNumber);
 		
 		//System.out.println("컨트롤러 들어왔어요");
 		
@@ -98,11 +98,11 @@ public class JcFormController {
 		 */
 		
 		 // RedirectAttributes를 사용하여 데이터를 전달
-	    redirectAttributes.addFlashAttribute("selectedType", selectedType);
-	    redirectAttributes.addFlashAttribute("date", date);
-	    redirectAttributes.addFlashAttribute("time", time);
-	    redirectAttributes.addFlashAttribute("name", name);
-	    redirectAttributes.addFlashAttribute("studentNumber", studentNumber);
+//	    redirectAttributes.addFlashAttribute("selectedType", selectedType);
+//	    redirectAttributes.addFlashAttribute("date", date);
+//	    redirectAttributes.addFlashAttribute("time", time);
+//	    redirectAttributes.addFlashAttribute("name", name);
+//	    redirectAttributes.addFlashAttribute("studentNumber", studentNumber);
 
 		return "redirect:/jcFormsuccessPage"; 
 	}
