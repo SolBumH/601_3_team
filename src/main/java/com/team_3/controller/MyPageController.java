@@ -45,8 +45,15 @@ public class MyPageController {
 	public List<BoardDTO> mypageBoardList() {
 		UserDTO user = userUtil.getUserData();
 		List<BoardDTO> list = mypageService.mypageBoardList(user);
-		System.out.println(list);
 		return list;
+	}
+	
+	@PostMapping("/boardDelete")
+	@ResponseBody
+	public int boardDelete(@RequestParam(name="board_no") int board_no) {
+		int result = mypageService.boardDelete(board_no);
+		
+		return result;
 	}
 	
 	@GetMapping("/mysangdam")

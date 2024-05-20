@@ -8,5 +8,12 @@
 		from Inq_Board ib join `USER` u 
 		on BOARD_USER = USER_NO 
 		where ib.BOARD_USER = #{user_no}
+		and ib.DEL_YN = '1'
+	</select>
+	
+	<update id="boardDelete" parameterType="Integer">
+		update Inq_Board set DEL_YN = '2'
+		where BOARD_NO = #{board_no}
+	</update>
 	</select>
 </mapper>

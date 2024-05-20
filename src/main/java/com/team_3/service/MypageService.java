@@ -18,4 +18,8 @@ public class MypageService {
 	public List<BoardDTO> mypageBoardList(UserDTO user) {
 		return mypageRepository.mypageBoardList(user);
 	}
+
+	public int boardDelete(int board_no) {
+		return mypageRepository.boardDelete(board_no);
+	}
 }

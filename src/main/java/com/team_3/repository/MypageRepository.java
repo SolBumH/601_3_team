@@ -14,4 +14,5 @@ public interface MypageRepository {
 	
 	public List<BoardDTO> mypageBoardList(UserDTO user);
 
+	public int boardDelete(int board_no);
 }
