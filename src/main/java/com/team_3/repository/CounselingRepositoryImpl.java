@@ -8,7 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.team_3.dto.BoardDTO;
-import com.team_3.dto.CounselingFormDTO;
+import com.team_3.dto.CounselingDTO;
 
 @Repository
 public class CounselingRepositoryImpl implements CounselingRepository {
@@ -21,7 +21,7 @@ public class CounselingRepositoryImpl implements CounselingRepository {
     }
 
 	@Override
-	public void saveForm(CounselingFormDTO formDTO) {
+	public void saveForm(CounselingDTO formDTO) {
 		sqlSession.insert("jcCounselingForm.insertCounselingForm", formDTO);		
 	}
 	

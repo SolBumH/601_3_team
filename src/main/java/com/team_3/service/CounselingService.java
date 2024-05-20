@@ -7,7 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.team_3.dto.BoardDTO;
-import com.team_3.dto.CounselingFormDTO;
+import com.team_3.dto.CounselingDTO;
 import com.team_3.repository.CounselingRepository;
 
 @Service
@@ -22,7 +22,7 @@ public class CounselingService {
         this.counselingRepository = counselingRepository;
     }
 
-    public void saveForm(CounselingFormDTO formDTO) {
+    public void saveForm(CounselingDTO formDTO) {
         counselingRepository.saveForm(formDTO);
     }
 
