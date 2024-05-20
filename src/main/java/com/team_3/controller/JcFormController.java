@@ -1,6 +1,7 @@
 package com.team_3.controller;
 
 import java.security.Principal;
+import java.sql.Date;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -68,19 +69,19 @@ public class JcFormController {
     public String saveCounselingForm(@RequestParam(name = "email") String email,
                                      @RequestParam("counselingContent") String counselingContent,
                                      @RequestParam("selectedType") String selectedType,
-                                     @RequestParam("date") String date,
+                                     @RequestParam("date") Date date,
                                      @RequestParam("time") String time,
                                      @RequestParam("name") String name,
                                      @RequestParam("studentNumber") String studentNumber,
                                      RedirectAttributes redirectAttributes) {
 
         CounselingFormDTO formDTO = new CounselingFormDTO();
-        formDTO.setJC_RSVT_NO(date); // 예약일자
-        formDTO.setJC_RSVT_TM(time); // 예약시간
+        formDTO.setRS_DATE(date); // 예약일자
+        formDTO.setRS_TIME(time); // 예약시간
         formDTO.setNAME(name); // 학생 이름
         formDTO.setSTUD_NO(studentNumber); // 학번
         formDTO.setEmail(email); // 이메일 
-        formDTO.setJC_DSCSN_CN(counselingContent); // 상담 내용
+        formDTO.setCS_TEXT(counselingContent); // 상담 내용
         formDTO.setSelectedType(selectedType); // 상담 종류
 
         // 상담 종류에 따라 다른 서비스 메서드 호출

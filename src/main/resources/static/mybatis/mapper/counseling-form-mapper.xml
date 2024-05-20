@@ -64,8 +64,8 @@
 
 	<!-- 취업 상담 양식-->
 	<insert id="saveEmploymentCounselingForm" parameterType="com.team_3.dto.CounselingFormDTO">
-    	INSERT INTO JC_LIST (JC_RSVT_NO, JC_RSVT_TM, NAME, STUD_NO, email, JC_DSCSN_CN)
-    	VALUES (#{JC_RSVT_NO}, #{JC_RSVT_TM}, #{NAME}, #{STUD_NO}, #{email}, #{JC_DSCSN_CN})
+    	INSERT INTO JC_LIST (RS_DATE, RS_TIME, NAME, STUD_NO, email, CS_TEXT )
+    	VALUES (#{RS_DATE}, #{RS_TIME}, #{NAME}, #{STUD_NO}, #{email}, #{CS_TEXT})
 	</insert>
 
 
