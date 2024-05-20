@@ -29,16 +29,14 @@
 							
 						</tr>
 						
-						<tr>
-							<th class="th" scope="row">상담 날짜</th>
-							<td th:text="${detail.JMS_CS_DATE}">
-							</td>
-							<td><input id="date" type="text" th:value="${param.date}" name="date" hidden="true"></td>
-							
-						</tr>
+						 <tr>
+                            <th class="th" scope="row">상담 날짜</th>
+                            <td th:text="${#dates.format(detail.JMS_CS_DATE, 'yyyy-MM-dd')}"></td>
+                            <td><input id="date" type="text" th:value="${#dates.format(detail.JMS_CS_DATE, 'yyyy-MM-dd')}" name="date" hidden="true"></td>
+                        </tr>
 						<tr>
 							<th class="th" scope="row">상담 시간</th>
-							<td th:text="${param.time} + '시'"></td>
+							<td th:text="${#dates.format(detail.JMS_CS_DATE, 'HH시')}"></td>
 							<td><input id="time" type="text" th:value="${param.time}" name="time" hidden="true"></td>
 						</tr>
 						<tr>
@@ -47,11 +45,7 @@
 							</td>
 							<td><input id="name" type="text" th:value="${studentName}" name="name" hidden="true"></td>
 						</tr>
-						<tr>
-							<th class="th" scope="row">학번</th>
-							<td th:text="${user.studentNumber}"></td>
-							<td><input id="studentNumber" type="text"th:value="${studentNumber}" name="studentNumber" hidden="true"></td>
-						</tr>
+						
 					
 					</table>
 

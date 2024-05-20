@@ -11,8 +11,6 @@ public interface CounselingRepository {
 	
 	 void saveForm(CounselingDTO formDTO);
 	 
-	 List<BoardDTO> getGroupData();
-
 	List<BoardDTO> getGroupData();
 
 	BoardDTO getDetail(int no);
