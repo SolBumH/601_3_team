@@ -9,6 +9,7 @@
 		join `USER` u
 		where ib.BOARD_USER = u.USER_NO
 		<!-- and ib.DEL_YN = '1' -->
+		and ans_yn != 4
 		order by ib.BOARD_DATE DESC, ib.BOARD_NO DESC
 	</select>
 

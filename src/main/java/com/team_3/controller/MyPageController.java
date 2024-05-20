@@ -24,7 +24,7 @@ public class MyPageController {
 	@Autowired
 	private MypageService mypageService;
 
-	@GetMapping("")
+	@GetMapping({"", "/"})
 	public String mypage(Model model) {
 		UserDTO user = userUtil.getUserData();
 		model.addAttribute("user", user);
@@ -47,5 +47,12 @@ public class MyPageController {
 		List<BoardDTO> list = mypageService.mypageBoardList(user);
 		System.out.println(list);
 		return list;
+	}
+	
+	@GetMapping("/mysangdam")
+	public String mypageSangdam(Model model) {
+		model.addAttribute("user", userUtil.getUserNameAndRole());
+		
+		return "mypage/mypageSangdam";
 	}
 }
