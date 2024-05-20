@@ -6,14 +6,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.team_3.dto.BoardDTO;
+import com.team_3.dto.CounselingFormDTO;
 import com.team_3.dto.UserDTO;
 import com.team_3.repository.AdminRepository;
+
 @Service
 public class AdminService {
-	
+
 	@Autowired
 	private AdminRepository adminRepository;
-	
+
 	public List<BoardDTO> AdminBoard() {
 		return adminRepository.AdminBoard();
 	}
@@ -33,7 +35,7 @@ public class AdminService {
 	public int answerPost(BoardDTO board) {
 		// 글 답변 여부 확인하기
 		String ans_yn = adminRepository.getAnsYn(board);
-		
+
 		if (ans_yn.equals("1")) {
 			board.setBoard_title(board.getBoard_no() + "번 글에 대한 답변입니다.");
 			return adminRepository.answerPostInsert(board);
@@ -54,4 +56,52 @@ public class AdminService {
 		return adminRepository.getAnswerContent(board_no);
 	}
 
+	public List<CounselingFormDTO> getJMSangdamList() {
+		return adminRepository.getJMSangdamList();
+	}
+
+	public List<CounselingFormDTO> getSangdamList(String no) {
+		List<CounselingFormDTO> list = null;
+		
+		switch (no) {
+			case "10": {
+				break;
+			} case "20": {
+				list = adminRepository.getJMSangdamList();
+				break;
+			} case "30": {
+				list = adminRepository.getSRSangdamList();
+				break;
+			} case "40": {
+				list = adminRepository.getJCSangdamList();
+				break;
+			} case "50": {
+				break;
+			}
+		}
+		return list;
+	}
+
+	public int changeRSVT(String sangdamNo, int no, String yn) {
+		int result = 0;
+		CounselingFormDTO dto = new CounselingFormDTO();
+		dto.setRSVT_YN(yn);
+		
+		switch (sangdamNo) {
+			case "10":
+				break;
+			case "20":
+				dto.setJMS_NO(no);
+				result = adminRepository.changeJMSRSVT(dto);
+				break;
+			case "30":
+				break;
+			case "40":
+				break;
+			case "50":
+				break;
+		}
+		
+		return result;
+	}
 }

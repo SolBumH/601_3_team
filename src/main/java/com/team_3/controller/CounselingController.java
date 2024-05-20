@@ -6,7 +6,6 @@ import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -69,6 +68,7 @@ public class CounselingController {
 		model.addAttribute("groupDataList", groupDataList);
 		return "groupsangdam";
 	}
+
 	
 	@GetMapping("/groupDetail")
 	public String groupDetail(Model model, @RequestParam(name = "no") int no) {
@@ -96,6 +96,9 @@ public class CounselingController {
 		model.addAttribute("user", userUtil.getUserNameAndRole());
 		return "groupResult";
 	}
+
+	
+	
 	
 	@GetMapping("/jcCounseling")
 	public String jcCounseling(Model model) {

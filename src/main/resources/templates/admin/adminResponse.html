@@ -25,37 +25,36 @@
 		<div id="grid"></div>
 		
 		<div class="answerpart">
-				<div class="d-inline-block" style="width:45%;">
-					<div class="d-flex justify-content-between">
-						<div class="w40">
-						  <label for="responseNo" class="form-label" th:text="'글 번호'">글 번호</label>
-						  <input type="text" class="form-control" id="responseNo" readonly="readonly" />
-						</div>
-						<div class="w40">
-						  <label for="responseName" class="form-label" th:text="작성자" >작성자</label>
-						  <input type="text" class="form-control" id="responseName" readonly="readonly"/>
-						</div>
+			<div class="d-inline-block" style="width:45%;">
+				<div class="d-flex justify-content-between">
+					<div class="w40">
+					  <label for="responseNo" class="form-label" th:text="'글 번호'">글 번호</label>
+					  <input type="text" class="form-control" id="responseNo" readonly="readonly" />
 					</div>
-					<div class="mb-3">
-					  <label for="responseTitle" class="form-label" th:text="'제목'"></label>
-					  <input type="text" class="form-control" id="responseTitle" readonly="readonly"/>
-					</div>
-					<div class="mb-3">
-					  <label for="responseContent" class="form-label" th:text="'내용'"></label>
-					  <textarea class="form-control responseTextarea" id="responseContent" readonly="readonly"></textarea>
+					<div class="w40">
+					  <label for="responseName" class="form-label" th:text="작성자" >작성자</label>
+					  <input type="text" class="form-control" id="responseName" readonly="readonly"/>
 					</div>
 				</div>
-				<div class="d-inline-block ms-2" style="width:50%;">
-					<div class="mb-3">
-					  <label for="adminAnswer" class="form-label" th:text="'답변'"></label>
-					  <textarea class="form-control adminAnswer" id="adminAnswer" name="adminAnswer"></textarea>
-					</div>
-					<div class="d-flex justify-content-end">
-						<button class="btn btn-outline-dark mx-2"id="answerShowBtn" th:text="'답변 불러오기'"></button>
-						<button class="btn btn-outline-dark" id="answerBtn" th:text="답변하기"></button>
-					</div>
+				<div class="mb-3">
+				  <label for="responseTitle" class="form-label" th:text="'제목'"></label>
+				  <input type="text" class="form-control" id="responseTitle" readonly="readonly"/>
 				</div>
-		
+				<div class="mb-3">
+				  <label for="responseContent" class="form-label" th:text="'내용'"></label>
+				  <textarea class="form-control responseTextarea" id="responseContent" readonly="readonly"></textarea>
+				</div>
+			</div>
+			<div class="d-inline-block ms-2" style="width:50%;">
+				<div class="mb-3">
+				  <label for="adminAnswer" class="form-label" th:text="'답변'"></label>
+				  <textarea class="form-control adminAnswer" id="adminAnswer" name="adminAnswer"></textarea>
+				</div>
+				<div class="d-flex justify-content-end">
+					<button class="btn btn-outline-dark mx-2"id="answerShowBtn" th:text="'답변 불러오기'"></button>
+					<button class="btn btn-outline-dark" id="answerBtn" th:text="답변하기"></button>
+				</div>
+			</div>
 		</div>
 	</div>
 
@@ -176,7 +175,7 @@
 				  alert("답변 할 글을 선택 후 진행해주세요.");
 			  } else {
 				  let answer = $('#adminAnswer').val();
-				  console.log(answer);
+				  // console.log(answer);
 				  
 				  $.ajax({
 					  url: '/admin/answerPost',

@@ -82,4 +82,11 @@ public class MyPageController {
 		System.out.println(list);
 		return list;
 	}
+	
+	@GetMapping("/mysangdam")
+	public String mypageSangdam(Model model) {
+		model.addAttribute("user", userUtil.getUserNameAndRole());
+		
+		return "mypage/mypageSangdam";
+	}
 }

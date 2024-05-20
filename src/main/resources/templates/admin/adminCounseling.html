@@ -2,9 +2,8 @@
 <html xmlns:th="http://www.thymelaf.org">
 <link rel="stylesheet" href="https://uicdn.toast.com/tui-grid/latest/tui-grid.css" />
 <link rel="stylesheet" href="https://uicdn.toast.com/tui.pagination/latest/tui-pagination.css" />
-<script src="https://uicdn.toast.com/tui.pagination/latest/tui-pagination.js"></script>
-<script src="https://uicdn.toast.com/tui-grid/latest/tui-grid.js"></script>
 <head>
+<th:block th:insert="~{menu.html::metaImport}"></th:block>
 <style type="text/css">
 .bodypart {
 	margin-top: 60px;
@@ -16,67 +15,69 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
 <meta name="description" content="" />
 <meta name="author" content="" />
-<title>Dashboard - SB Admin</title>
+<title>상담 신청 내역</title>
 <link href="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/style.min.css" rel="stylesheet" />
 <link href="/admin/css/styles.css" rel="stylesheet" />
+<link href="/admin/css/response.css" rel="stylesheet" />
 <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
 </head>
 <body class="sb-nav-fixed">
-	
 	<th:block th:insert="~{/admin/adminmenu.html::topbar}"></th:block>
 	<th:block th:insert="~{/admin/adminmenu.html::leftmenu}"></th:block>
 	<div class="bodypart">
-	
-	<h1>상담내역 관리 페이지</h1>
-
+		<h1 class="mb-3">상담내역 관리</h1>
+		<div class="my-3 d-flex justify-content-end">
+			<div class="d-inline-block">
+				<select id="sangdamList"class="form-select" aria-label="Default select example">
+				  <option selected th:text="'전문 상담'" th:value="20">Open this select menu</option>
+				  <option th:text="'심리 상담'" th:value="30">One</option>
+				  <option th:text="'취업 상담'" th:value="40">Two</option>
+				  <option th:text="'교수 상담'" th:value="10">Three</option>
+				</select>
+			</div>
+			<button id="selectSangdamBtn" class="btn btn-dark-outline">조회하기</button>
+		</div>
 		<div id="grid"></div>
+		<div class="answerpart">
+			<div class="d-inline-block" style="width:45%;">
+				<div class="d-flex justify-content-between">
+					<div class="w40">
+					  <label for="responseNo" class="form-label" th:text="'글 번호'">글 번호</label>
+					  <input type="text" class="form-control" id="responseNo" readonly="readonly" />
+					</div>
+					<div class="w40">
+					  <label for="responseName" class="form-label" th:text="작성자" >작성자</label>
+					  <input type="text" class="form-control" id="responseName" readonly="readonly"/>
+					</div>
+				</div>
+				<div class="mb-3">
+				  <label for="responseTitle" class="form-label" th:text="'제목'"></label>
+				  <input type="text" class="form-control" id="responseTitle" readonly="readonly"/>
+				</div>
+				<div class="mb-3">
+				  <label for="responseContent" class="form-label" th:text="'내용'"></label>
+				  <textarea class="form-control responseTextarea" id="responseContent" readonly="readonly"></textarea>
+				</div>
+			</div>
+			<div class="d-inline-block ms-2" style="width:50%;">
+				<div class="mb-3">
+				  <label for="adminAnswer" class="form-label" th:text="'답변'"></label>
+				  <textarea class="form-control adminAnswer" id="adminAnswer" name="adminAnswer"></textarea>
+				</div>
+				<div class="d-flex justify-content-end">
+					<button class="btn btn-outline-dark mx-2"id="answerShowBtn" th:text="'답변 불러오기'"></button>
+					<button class="btn btn-outline-dark" id="answerBtn" th:text="답변하기"></button>
+				</div>
+			</div>
+		</div>
 	</div>
-
-
 
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
 	<script src="/admin/js/scripts.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
-	<script src="/admin/assets/demo/chart-area-demo.js"></script>
-	<script src="/admin/assets/demo/chart-bar-demo.js"></script>
-	<script src="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/umd/simple-datatables.min.js" crossorigin="anonymous"></script>
 	<script src="/admin/js/datatables-simple-demo.js"></script>
+	<script src="https://uicdn.toast.com/tui.pagination/latest/tui-pagination.js"></script>
+	<script src="https://uicdn.toast.com/tui-grid/latest/tui-grid.js"></script>
 	<th:block th:insert="~{menu.html::scriptImport}">CDN JS 링크</th:block>
-	<script type="text/javascript">
-		$(document).ready(function() {
-
-			$.ajax({
-				url : "/admin/boardList",
-				type : "get",
-				dataType : "JSON",
-				contentType : "application/json; charset=UTF-8",
-				success : function(result) {
-					console.log(result);
-
-					const grid = new tui.Grid({
-						el : document.getElementById('grid'),
-						rowHeaders : [ 'rowNum' ],
-						pageOptions : {
-							useClient : true,
-							perPage : 5
-						},
-						scrollX : false,
-						scrollY : false,
-						columns : [ {
-							header : '아이디',
-							name : 'board_no',
-						}, {
-							header : '제목',
-							name : 'board_title',
-						}, {
-							header : '지역',
-							name : 'board_content'
-						} ]
-					});
-					grid.resetData(result);
-				}
-			});
-		});
-	</script>
+	<script src="/admin/js/counseling.js"></script>
 </body>
 </html>
