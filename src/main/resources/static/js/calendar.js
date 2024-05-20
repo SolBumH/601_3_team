@@ -9,15 +9,17 @@ document.addEventListener('DOMContentLoaded', function() {
 
 		initialView: 'dayGridMonth', // 초기화면에 보이는 캘린더 화면
 		contentHeight: 180, //캘린더 크기 설정
+		// contentWidth: 400,
 		locale: 'ko', // 한국어로 변경
 		// aspectRatio: 1.35, // 가로세로 비율
 		selectable: false, // 달력 드래그 설정
 		// dayMaxEventRows: false, // for all non-TimeGrid views
 		editable: false, // 기존 예약을 옮길수 있음
 		fixedWeekCount: false, // 해당 달의 마지막 주 까지만 보여줌, 다음 달의 미리보기 X
+		weekends: false, // 주말은 안보이게 설정
 		validRange: {
-				start: Date.now(),
-				end: Date.now() + 2592000000,
+				start: Date.now() + 86400000, // 하루 뒤 부터 예약할 수 있게
+				end: Date.now() + 2592000000, // 한달 뒤 까지 예약할 수 있게
 		},
 		dateClick: function(info) {
 			date = info.dateStr;

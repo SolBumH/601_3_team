@@ -15,9 +15,11 @@ p {
 .section-title {
     margin-top: 20px;
     background-color: #f7f7f7;
-    padding: 20px;
+    padding: 10px; /* 패딩을 줄임 */
     border-radius: 10px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    max-width: 800px; /* 최대 너비 설정 */
+    margin: 0 auto; /* 가운데 정렬을 위해 추가 */
 }
 
 .request {
@@ -29,16 +31,21 @@ p {
 .request th,
 .request td {
     padding: 10px;
-    text-align: left;
+    text-align: center;
     border-bottom: 1px solid #ddd;
+    width: 100px;
 }
 
 .request th {
     background-color: #f2f2f2;
+    width: 35%;
+    text-align: center;
+    color: black; 
 }
 
 .request td {
     background-color: #ffffff;
+    color: black; 
 }
 
 input[type="hidden"] {

@@ -42,4 +42,25 @@ public class CounselingService {
 	public List<Map<String, Object>> getSchedule() {
 		return counselingRepository.getSchedule();
 	}
+
+	public int saveFormJM(CounselingFormDTO formDTO) {
+		return counselingRepository.saveFormJM(formDTO);
+	}
+
+	public int saveAdvisorCounselingForm(CounselingFormDTO formDTO) {
+	    return counselingRepository.saveAdvisorCounselingForm(formDTO);
+	}
+
+	public int saveExpertCounselingForm(CounselingFormDTO formDTO) {
+	    return counselingRepository.saveExpertCounselingForm(formDTO);
+	}
+
+	public int savePsychologicalCounselingForm(CounselingFormDTO formDTO) {
+	    return counselingRepository.savePsychologicalCounselingForm(formDTO);
+	}
+
+	public int saveEmploymentCounselingForm(CounselingFormDTO formDTO) {
+	    return counselingRepository.saveEmploymentCounselingForm(formDTO);
+	}
+
 }

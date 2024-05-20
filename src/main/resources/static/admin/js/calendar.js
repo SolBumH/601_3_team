@@ -50,12 +50,21 @@ function click(arg) {
 }
 
 function jkselectdt(){
-	    var dateInput = document.getElementById("jkselectdate"); // 날짜 입력(input) 요소 가져오기
-	    var selectedDate = dateInput.value; // 선택된 날짜 가져오기
+		
+		document.getElementById('jkselect').addEventListener('submit', function(event) {
+        event.preventDefault(); // 폼 제출 방지
+        
+        var dateInput = document.getElementById('jkselectdate'); // 날짜 입력(input) 요소 가져오기
+        var selectedDate = dateInput.value; // 선택된 날짜 가져오기
 
-	    console.log("Selected date:", selectedDate); // 선택된 날짜 콘솔에 출력
+        var selectInput = document.getElementById('jkoption'); // 선택 옵션 요소 가져오기
+        var selectedOption = selectInput.options[selectInput.selectedIndex].value; // 선택된 옵션 값 가져오기
+        
+        console.log('Selected date:', selectedDate); // 선택된 날짜 콘솔에 출력
+        console.log('Selected option:', selectedOption); // 선택된 옵션 콘솔에 출력
 
-	    document.getElementById("jkselect").submit(); // 폼 제출
+        this.submit();
+    });
 	}
 	
 function sangdamSign() {
@@ -66,6 +75,6 @@ function sangdamSign() {
 	}
 	
 	if(confirm("신청하시겠습니까?\n신청 날짜 : " + date + "\n선택 시간 : " + selectTime.value + "시")) {
-		location.href="/jcCounselingForm?date=" + date + "&time=" + selectTime.value;
+		location.href="../jcCounselingForm?date=" + date + "&time=" + selectTime.value;
 	}	
 }
