@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import com.team_3.dto.CounselingDTO;
 import com.team_3.dto.CounselingFormDTO;
 import com.team_3.dto.CustomUserDetails;
 import com.team_3.service.CounselingService;
