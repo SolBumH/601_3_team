@@ -20,4 +20,11 @@ public class MainController {
 		model.addAttribute("user", userUtil.getUserNameAndRole());
 		return "index";
 	}
+	
+	@GetMapping("departmentsInfo")
+	public String info(Model model) {
+		model.addAttribute("user", userUtil.getUserNameAndRole());
+		
+		return "departments";
+	}
 }
