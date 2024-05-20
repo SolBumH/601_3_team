@@ -62,4 +62,25 @@
 	<select id="getAnsYn" resultType="String" parameterType="BoardDTO">
 		select ANS_YN from Inq_Board where BOARD_NO = #{board_no}
 	</select>
+	
+	<select id="getJMSangdamList" resultType="CounselingFormDTO">
+		select jm.*, name from JMS_List jm
+		join STUD_INFO st on jm.STUD_NO = st.STUD_NO
+		join USER us on st.USER_NO = us.USER_NO
+		order by RS_DATE, RS_TIME, JMS_NO DESC;
+	</select>
+	
+	<select id="getSRSangdamList" resultType="CounselingFormDTO">
+		select sr.*, name from SR sr
+		join STUD_INFO st on sr.STUD_NO = st.STUD_NO
+		join USER us on st.USER_NO = us.USER_NO
+		order by RS_DATE, RS_TIME, SR_NO DESC;
+	</select>
+	
+	<select id="getJCSangdamList" resultType="CounselingFormDTO">
+		select jc.*, us.name from JC_LIST jc
+		join STUD_INFO st on jc.STUD_NO = st.STUD_NO
+		join USER us on st.USER_NO = us.USER_NO
+		order by RS_DATE, RS_TIME, JC_NO DESC;
+	</select>
 </mapper>
