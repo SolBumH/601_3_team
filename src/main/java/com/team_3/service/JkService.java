@@ -21,4 +21,8 @@ public class JkService {
 	public List<JkDTO> searchList(JkDTO dto) {
 		return jkRepository.searchList(dto);
 	}
+
+	public List<JkDTO> getSchedule(String date) {
+		return jkRepository.getSchedule(date);
+	}
 }

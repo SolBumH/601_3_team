@@ -27,4 +27,11 @@ public class JkRepositoryImpl implements JkRepository{
 	public List<JkDTO> searchList(JkDTO dto) {
 		return sqlSession.selectList("adminJkCounseling.searchList", dto);
 	}
+
+	@Override
+	public List<JkDTO> getSchedule(String date) {
+		return sqlSession.selectList("JkCounseling.getSchedule", date);
+	}
+	
+	
 }
