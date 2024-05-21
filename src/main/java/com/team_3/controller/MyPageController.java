@@ -49,14 +49,15 @@ public class MyPageController {
         
         // CustomUserDetails 객체에서 사용자의 이름 가져오기
         String username = customUserDetails.getName();
+        String userId = customUserDetails.getUsername();
 
-        // 사용자 이름으로 학생 번호 가져오기
-        String studentNumber = mypageService.findStudentNumber(username);
-        String studentDept = mypageService.findStud_dept(username);
-        String studentPhone = mypageService.findPhone(username);
+        // 사용자 아이디로 학생 번호 가져오기
+        String studentNumber = mypageService.findStudentNumber(userId);
+        String studentDept = mypageService.findStud_dept(userId);
+        String studentPhone = mypageService.findPhone(userId);
         // System.out.println(studentNumber); // 학번 확인하기
-         System.out.println(studentDept); // 학번 확인하기
-         System.out.println(studentPhone); // 학번 확인하기
+        // System.out.println(studentDept); // 학과 확인하기
+        // System.out.println(studentPhone); // 핸드폰번호 확인하기
 
         // 모델에 이름, 학번 추가
         model.addAttribute("name", name);

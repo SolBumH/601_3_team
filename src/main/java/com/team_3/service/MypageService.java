@@ -62,15 +62,16 @@ public class MypageService {
 		return result;
 	}
 	
-	public String findStudentNumber(String username) {
-		return mypageRepository.findStudentNumber(username);
+
+	public String findStud_dept(String userId) {
+		return mypageRepository.findStud_dept(userId);
 	}
 
-	public String findStud_dept(String username) {
-		return mypageRepository.findStud_dept(username);
+	public String findPhone(String userId) {
+		return  mypageRepository.findPhone(userId);
 	}
 
-	public String findPhone(String username) {
-		return  mypageRepository.findPhone(username);
+	public String findStudentNumber(String userId) {
+		return mypageRepository.findStudentNumber(userId);
 	}
 }

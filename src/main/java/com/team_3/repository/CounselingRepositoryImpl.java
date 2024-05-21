@@ -26,10 +26,6 @@ public class CounselingRepositoryImpl implements CounselingRepository {
 		sqlSession.insert("jcCounselingForm.insertCounselingForm", formDTO);		
 	}
 	
-	@Override
-	public String findStudentNumber(String username) {
-		return sqlSession.selectOne("jcCounselingForm.findByStud_no", username);
-	}
 	
 	//집단상담
 	@Override
@@ -81,7 +77,8 @@ public class CounselingRepositoryImpl implements CounselingRepository {
 		return sqlSession.insert("jcCounselingForm.saveEmploymentCounselingForm", formDTO);
 	}
 
-
-	
-	
+	@Override
+	public String findStudentNumber(String userId) {
+		return sqlSession.selectOne("jcCounselingForm.findByStud_no", userId);
+	}
 }
