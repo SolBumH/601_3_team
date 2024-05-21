@@ -39,6 +39,8 @@
 		`DIV` = 'SC01'
 	</select>
 
+	
+
 	<!-- 지도교수 상담 테이블명 수정해야함-->
 	<insert id="saveAdvisorCounselingForm" parameterType="com.team_3.dto.CounselingFormDTO">
 		INSERT INTO advisor_ (JMS_NO, ST_NO, JMS_RS_DATE,

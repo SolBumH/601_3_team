@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.team_3.dto.BoardDTO;
 import com.team_3.dto.CounselingFormDTO;
+import com.team_3.dto.GroupDTO;
 import com.team_3.dto.UserDTO;
 import com.team_3.repository.AdminRepository;
 
@@ -103,5 +104,9 @@ public class AdminService {
 		}
 		
 		return result;
+	}
+
+	public int save(GroupDTO groupDTO) {
+		return adminRepository.saveGroup(groupDTO);
 	}
 }

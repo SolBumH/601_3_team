@@ -20,6 +20,7 @@
 
 	<th:block th:insert="~{/admin/adminmenu.html::topbar}"></th:block>
 	<th:block th:insert="~{/admin/adminmenu.html::leftmenu}"></th:block>
+	
 	<div class="bodypart">
 		<div class="title-container">
 			<h4>집단상담 프로그램 관리</h4>
@@ -31,7 +32,7 @@
 		<div id="grid"></div>
 		<div class="col-sm-2mb-2">
 			<div class="row justify-content-center"></div>
-			<a href="adminGroupAp" class="btn btn-danger btn-block">새로운 프로그램 신청하기</a>
+			<a href="GroupAp" class="btn btn-danger btn-block">새로운 프로그램 신청하기</a>
 		</div>
 	</div>
 
@@ -65,13 +66,16 @@
 						scrollX : false,
 						scrollY : false,
 						columns : [ {
-							header : '아이디',
+							header : '프로그램명',
 							name : 'board_no',
 						}, {
-							header : '제목',
+							header : '상담날짜',
 							name : 'board_title',
 						}, {
-							header : '내용',
+							header : '마감날짜',
+							name : 'board_content'
+						}, {
+							header : '모집인원',
 							name : 'board_content'
 						} ]
 					});

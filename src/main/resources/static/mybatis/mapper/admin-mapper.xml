@@ -92,4 +92,10 @@
 		update JMS_List set RSVT_YN = #{RSVT_YN}
 		where JMS_NO = #{JMS_NO};
 	</update>
+	
+	<insert id="saveGroup" parameterType="GroupDTO">
+		INSERT INTO JDSD_List
+		(PG_NAME, PG_EXPLAIN, JMS_CS_DATE, EN_DATE)
+		VALUES (#{PG_NAME}, #{PG_EXPLAIN}, #{JMS_CS_DATE}, #{EN_DATE})
+	</insert>
 </mapper>

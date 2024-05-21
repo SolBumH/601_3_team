@@ -1,8 +1,10 @@
 package com.team_3.controller;
 
+import java.sql.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -10,9 +12,11 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.team_3.dto.BoardDTO;
 import com.team_3.dto.CounselingFormDTO;
+import com.team_3.dto.GroupDTO;
 import com.team_3.dto.UserDTO;
 import com.team_3.service.AdminService;
 import com.team_3.util.UserUtil;
@@ -70,6 +74,34 @@ public class AdminController {
 		model.addAttribute("user", userUtil.getUserNameAndRole());
 		return "admin/adminGroup";
 	}
+	
+	@GetMapping("/GroupAp")
+	public String adminGroupAp(Model model) {
+		model.addAttribute("user", userUtil.getUserNameAndRole());
+		return "/admin/adminGroupAp";
+		
+	}
+	
+	@PostMapping("/saveGroupForm")
+	public String saveGroupForm(@RequestParam(name = "programName") String programName,
+								@RequestParam(name = "date") @DateTimeFormat(pattern = "yyyy-MM-dd") Date date,
+					            @RequestParam(name = "endDate") @DateTimeFormat(pattern = "yyyy-MM-dd") Date endDate,
+								@RequestParam("selectedType") String selectedType,
+                                @RequestParam("programContent") String programContent,
+                                RedirectAttributes redirectAttributes) {
+									
+		GroupDTO groupDTO = new GroupDTO();
+		groupDTO.setPG_NAME(programName);
+		groupDTO.setJMS_CS_DATE(date);
+		groupDTO.setEN_DATE(endDate);
+		groupDTO.setPG_EXPLAIN(programContent);
+		
+		adminService.save(groupDTO);
+		
+		return "redirect:/admin/adminGroup";
+		
+	}
+	
 	
 	@GetMapping("/Counseling")
 	public String counseling(Model model) {
@@ -133,13 +165,6 @@ public class AdminController {
 	public String adminJkCounseling(Model model) {
 		model.addAttribute("user", userUtil.getUserNameAndRole());
 		return "/admin/adminJkCounseling";
-	}
-	
-	@GetMapping("/adminGroupAp")
-	public String adminGroupAp(Model model) {
-		model.addAttribute("user", userUtil.getUserNameAndRole());
-		return "/admin/adminGroupAp";
-		
 	}
 	
 	@PostMapping("/sangdamList")
