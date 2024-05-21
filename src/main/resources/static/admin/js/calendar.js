@@ -1,80 +1,33 @@
 const header = $("meta[name='_csrf_header']").attr('content');
 const token = $("meta[name='_csrf']").attr('content');
 
-let date;
-
-document.addEventListener('DOMContentLoaded', function() {
-	let calendarEl = document.getElementById('calendar')
-	let calendar = new FullCalendar.Calendar(calendarEl, {
-
-		initialView: 'dayGridMonth', // 초기화면에 보이는 캘린더 화면
-		contentHeight: 180, //캘린더 크기 설정
-		locale: 'ko', // 한국어로 변경
-		// aspectRatio: 1.35, // 가로세로 비율
-		selectable: false, // 달력 드래그 설정
-		// dayMaxEventRows: false, // for all non-TimeGrid views
-		editable: false, // 기존 예약을 옮길수 있음
-		fixedWeekCount: false, // 해당 달의 마지막 주 까지만 보여줌, 다음 달의 미리보기 X
-		validRange: {
-				start: Date.now(),
-				end: Date.now() + 2592000000,
-		},
-		dateClick: function(info) {
-			date = info.dateStr;
-			// info.dayEl.style.backgroundColor = '#E8ADAD';
-			let days = document.querySelectorAll(".selectedDate");
-			days.forEach(function(day) {
-			  day.classList.remove("selectedDate");
-			});
-			info.dayEl.classList.add("selectedDate");
-  		},
-	});
-	// calendar.unselect();
-	calendar.render();
-});
-
-function click(arg) {
-	$.ajax({
-		type: 'post',
-		url: '/JkControll',
-		dataType: 'json',
-		data: { 'start': arg, },
-		beforeSend: function(xhr) {
-			xhr.setRequestHeader(header, token);
-		},
-		success: function(data) {
-		},
-		error: function(error) {
-		}
-	});
-}
-
-function jkselectdt(){
-		
-		document.getElementById('jkselect').addEventListener('submit', function(event) {
-        event.preventDefault(); // 폼 제출 방지
-        
+	function jkselectdt(){
+		      
         var dateInput = document.getElementById('jkselectdate'); // 날짜 입력(input) 요소 가져오기
         var selectedDate = dateInput.value; // 선택된 날짜 가져오기
 
-        var selectInput = document.getElementById('jkoption'); // 선택 옵션 요소 가져오기
-        var selectedOption = selectInput.options[selectInput.selectedIndex].value; // 선택된 옵션 값 가져오기
-        
-        console.log('Selected date:', selectedDate); // 선택된 날짜 콘솔에 출력
-        console.log('Selected option:', selectedOption); // 선택된 옵션 콘솔에 출력
+		$.ajax({
+			type: 'get',
+			url: '/admin/jkselect',
+			dataType: 'json',
+			data: { 'jkselectdate' : selectedDate },
+			success: function(data) {
+				for(var i=0; i< data.length;i++){
+				console.log(data[i].cd_TM);
+				
+				}
+			},
+			error: function(error) {
+				console.error("err:",error);
+			}
+		});
 
-        this.submit();
-    });
+        
+		console.log('Selected date:', selectedDate); // 선택된 날짜 콘솔에 출력
+        
+	
 	}
 	
-function sangdamSign() {
-	let selectTime = document.querySelector('input[name="time"]:checked');
-	if (date == null || selectTime == null) {
-		alert("날짜와 시간을 모두 선택해주세요.");
-		return false;
-	}
-	
-	if(confirm("신청하시겠습니까?\n신청 날짜 : " + date + "\n선택 시간 : " + selectTime.value + "시")) {
-		location.href="../jcCounselingForm?date=" + date + "&time=" + selectTime.value;
-	}	
-}
+
+
+

@@ -29,7 +29,7 @@ function boardWrite(id) {
 
 function writeComplete(user) {
 	const board_title = $("#writeForm")[0][0].value;
-	const board_content = editor.getHTML();
+	const board_content = editor.getMarkdown();
 	console.log(board_title + board_content);
 	
 	if (user.role == 'ROLE_ANONYMOUS') {
@@ -49,10 +49,15 @@ function writeComplete(user) {
 			xhr.setRequestHeader(header, token);
 		},
 		success: function(result) {
-			alert("작성이 완료되었습니다.");
+			if (result == 1) {
+				alert("작성이 완료되었습니다.");
+			} else {
+				alert("작성 실패");
+			}
 			location.href="/board";
 		},
 		error: function(error) {
+			alert("통신 오류");
 		}
 	});
 }

@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.team_3.dto.BoardDTO;
+import com.team_3.dto.CounselingFormDTO;
 import com.team_3.dto.UserDTO;
 import com.team_3.repository.MypageRepository;
 

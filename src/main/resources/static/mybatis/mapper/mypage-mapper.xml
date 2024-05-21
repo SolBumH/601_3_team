@@ -8,6 +8,7 @@
 		from Inq_Board ib join `USER` u 
 		on BOARD_USER = USER_NO 
 		where ib.BOARD_USER = #{user_no}
+		and ib.DEL_YN = '1'
 	</select>
 	
 	  <select id="findStudentNumber" resultType="String">

@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.team_3.dto.BoardDTO;
+import com.team_3.dto.CustomUserDetails;
 import com.team_3.dto.UserDTO;
 import com.team_3.service.CounselingService;
 import com.team_3.service.CustomUserDetailService;
@@ -74,32 +75,43 @@ public class CounselingController {
 	public String groupDetail(Model model, @RequestParam(name = "no") int no) {
 		UserDTO user = userUtil.getUserData();
 		BoardDTO detail = counselingService.getDetail(no);
+		
 		System.out.println(detail);
-		if (user == null || user.getRole().equals("ROLE_ANONYMOUS")) {
-			return "redirect:/login";
-		} else {
-			model.addAttribute("detail", detail);
-			model.addAttribute("user", user);
-			
-			  model.addAttribute("user", userUtil.getUserNameAndRole());
-		        
-		      List<BoardDTO> groupDataList = new ArrayList<BoardDTO>();
-		      groupDataList = counselingService.getGroupData();
-		      model.addAttribute("groupDataList", groupDataList);
-			
-		      return "groupDetail";
+
+		model.addAttribute("detail", detail);
+		model.addAttribute("user", user);
+		model.addAttribute("user", userUtil.getUserNameAndRole());
+
+		return "groupDetail";
 		}
-	}
 	
 	@GetMapping("/groupResult")
-	public String groupResult(Model model, Principal principal) {
-		model.addAttribute("user", userUtil.getUserNameAndRole());
+	public String groupResult(Model model,@RequestParam(name = "no") int no, Principal principal) {
+		UserDTO user = userUtil.getUserData();
+		BoardDTO detail = counselingService.getResult(no);
+		
+		// Principal 객체에서 사용자의 이름 가져오기
+        String name = principal.getName();
+
+        // 사용자 이름으로 CustomUserDetails 객체 가져오기
+        CustomUserDetails customUserDetails = (CustomUserDetails) customUserDetailService.loadUserByUsername(name);
+
+        // CustomUserDetails 객체에서 사용자의 이름 가져오기
+        String username = customUserDetails.getName();
+        
+		System.out.println(username);
+		
+		String studentNumber = counselingService.findStudentNumber(username);
+		 model.addAttribute("studentNumber", studentNumber);
+		 
+		model.addAttribute("studentName", username);
+		model.addAttribute("detail", detail);
+		model.addAttribute("user", user);
+		model.addAttribute("userNameAndRole", userUtil.getUserNameAndRole());
+		
 		return "groupResult";
 	}
 
-	
-	
-	
 	@GetMapping("/jcCounseling")
 	public String jcCounseling(Model model) {
 		model.addAttribute("counselingTitle", "취업·진로 상담 안내");	

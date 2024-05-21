@@ -5,6 +5,7 @@
         <typeAlias type="com.team_3.dto.UserDTO" alias="UserDTO"></typeAlias>
         <typeAlias type="com.team_3.dto.BoardDTO" alias="BoardDTO"></typeAlias>
         <typeAlias type="com.team_3.dto.JkDTO" alias="JkDTO"></typeAlias>
+        <typeAlias type="com.team_3.dto.CodeDTO" alias="CodeDTO"></typeAlias>
         <typeAlias type="com.team_3.dto.CounselingFormDTO" alias="CounselingFormDTO"></typeAlias>
     </typeAliases>
 </configuration>

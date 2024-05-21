@@ -135,6 +135,13 @@ public class AdminController {
 		return "/admin/adminJkCounseling";
 	}
 	
+	@GetMapping("/adminGroupAp")
+	public String adminGroupAp(Model model) {
+		model.addAttribute("user", userUtil.getUserNameAndRole());
+		return "/admin/adminGroupAp";
+		
+	}
+	
 	@PostMapping("/sangdamList")
 	@ResponseBody
 	public List<CounselingFormDTO> jmsangdamList(@RequestParam(name="sangdamNo") String no) {

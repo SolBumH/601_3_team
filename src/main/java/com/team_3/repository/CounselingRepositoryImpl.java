@@ -27,6 +27,12 @@ public class CounselingRepositoryImpl implements CounselingRepository {
 	}
 	
 	@Override
+	public String findStudentNumber(String username) {
+		return sqlSession.selectOne("jcCounselingForm.findByStud_no", username);
+	}
+	
+	//집단상담
+	@Override
     public List<BoardDTO> getGroupData() {
 		    return sqlSession.selectList("jcCounselingForm.selectGroupData");
     }
@@ -37,15 +43,15 @@ public class CounselingRepositoryImpl implements CounselingRepository {
 	}
 	
 	@Override
-	public String findStudentNumber(String username) {
-		return sqlSession.selectOne("jcCounselingForm.findByStud_no", username);
-	}
-	
-	@Override
 	public BoardDTO getDetail(int no) {
 		return sqlSession.selectOne("jcCounselingForm.getDetail", no);
 	}
-
+	
+	@Override
+	public BoardDTO getResult(int no) {
+		return sqlSession.selectOne("jcCounselingForm.getResult", no);
+	}
+	
 	@Override
 	public int saveFormJM(CounselingFormDTO formDTO) {
 		return sqlSession.insert("jcCounselingForm.saveFormJM", formDTO);
@@ -74,6 +80,7 @@ public class CounselingRepositoryImpl implements CounselingRepository {
 	public int saveEmploymentCounselingForm(CounselingFormDTO formDTO) {
 		return sqlSession.insert("jcCounselingForm.saveEmploymentCounselingForm", formDTO);
 	}
+
 
 	
 	

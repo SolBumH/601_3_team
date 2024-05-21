@@ -14,8 +14,7 @@
 	<insert id="boardInsert" parameterType="BoardDTO">
 		insert into
 		Inq_Board(BOARD_USER, BOARD_TITLE, BOARD_CONTENT)
-		values ((select
-			USER_NO from USER where USERNAME = #{username}),
+		values (#{board_user},
 			#{board_title}, #{board_content})
 	</insert>
 	

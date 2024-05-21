@@ -6,6 +6,7 @@ import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
 
 import com.team_3.dto.BoardDTO;
+import com.team_3.dto.CounselingFormDTO;
 import com.team_3.dto.UserDTO;
 
 @Repository
