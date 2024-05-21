@@ -10,7 +10,6 @@ import org.springframework.stereotype.Repository;
 import com.team_3.dto.BoardDTO;
 import com.team_3.dto.CodeDTO;
 import com.team_3.dto.CounselingFormDTO;
-import com.team_3.dto.GroupDTO;
 import com.team_3.dto.UserDTO;
 
 @Repository
@@ -86,6 +85,7 @@ public class AdminRepository {
 	public int JSMfinishedSangdam(CounselingFormDTO dto) {
 		return sqlSession.update("admin.JSMfinishedSangdam",dto);
 	}
+	
 	public List<Map<String, Object>> chart() {
 		return sqlSession.selectList("admin.chart");
 	}
