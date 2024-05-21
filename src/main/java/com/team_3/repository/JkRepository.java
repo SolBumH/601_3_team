@@ -11,4 +11,6 @@ public interface JkRepository {
 
 	List<JkDTO> searchList(JkDTO dto);
 
+	List<JkDTO> getSchedule(String date);
+
 }
