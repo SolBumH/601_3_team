@@ -1,5 +1,6 @@
 package com.team_3.controller;
 
+import java.security.Principal;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,8 +13,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.team_3.dto.BoardDTO;
+import com.team_3.dto.CustomUserDetails;
 import com.team_3.dto.CounselingFormDTO;
 import com.team_3.dto.UserDTO;
+import com.team_3.service.CounselingService;
+import com.team_3.service.CustomUserDetailService;
 import com.team_3.service.MypageService;
 import com.team_3.util.UserUtil;
 
@@ -27,12 +31,42 @@ public class MyPageController {
 	@Autowired
 	private MypageService mypageService;
 
-	@GetMapping({"", "/"})
-	public String mypage(Model model) {
-		UserDTO user = userUtil.getUserData();
-		model.addAttribute("user", user);
-		
-		return "mypage/mypage";
+	@Autowired
+	private CounselingService counselingService;
+
+	@Autowired
+	private CustomUserDetailService customUserDetailService;
+	
+
+	@GetMapping("")
+	public  String jcCounselingForm(Model model, Principal principal) {
+        if (principal == null) {
+            // 로그인되지 않은 경우 로그인 페이지로 리다이렉트
+            return "redirect:/login";
+        }
+
+        // Principal 객체에서 사용자의 이름 가져오기
+        String name = principal.getName();
+
+        // 사용자 이름으로 CustomUserDetails 객체 가져오기
+        CustomUserDetails customUserDetails = (CustomUserDetails) customUserDetailService.loadUserByUsername(name);
+        
+        // CustomUserDetails 객체에서 사용자의 이름 가져오기
+        String username = customUserDetails.getName();
+
+        // 사용자 이름으로 학생 번호 가져오기
+        String studentNumber = counselingService.findStudentNumber(username);
+        // System.out.println(studentNumber); // 학번 확인하기
+
+        // 모델에 이름, 학번 추가
+        model.addAttribute("name", name);
+        model.addAttribute("studentName", username);
+        model.addAttribute("studentNumber", studentNumber);
+
+        // 다른 필요한 데이터들을 모델에 추가
+        model.addAttribute("user", userUtil.getUserNameAndRole());
+
+        return "mypage/mypage";
 	}
 	
 	@GetMapping("/board")

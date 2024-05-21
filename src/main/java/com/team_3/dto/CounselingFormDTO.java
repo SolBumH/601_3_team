@@ -30,17 +30,7 @@ public class CounselingFormDTO {
 	private int JC_NO; //취업상담번호
 	private String username; //학생 아이디
 	private String selectedType; //상담 종류
-	private String studentNumber; //학번(이전꺼) 바꾸고 삭제할 예정
-	private String SC_NO; //스케줄번호
-	private String JC_RSVT_NO; //예약일자
-	private String JC_RSVT_TM; //예약시간
-	private String JC_DSCSN_YMD; //상담일자
-	private String JC_DSCSN_TM; //상담시간
-	private String JC_DSCSN_CN; //상담내용
 
-    private String counselingContent; //상담 내용(이전꺼) 바꾸고 삭제할 예정
-    private String date;  //상담 날짜(이전꺼) 바꾸고 삭제할 예정
-    private String time; //상담 시간(이전꺼) 바꾸고 삭제할 예정
 	
 }
 
