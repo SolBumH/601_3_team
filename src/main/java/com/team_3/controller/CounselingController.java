@@ -90,19 +90,15 @@ public class CounselingController {
 		UserDTO user = userUtil.getUserData();
 		BoardDTO detail = counselingService.getResult(no);
 		
-		// Principal 객체에서 사용자의 이름 가져오기
         String name = principal.getName();
 
-        // 사용자 이름으로 CustomUserDetails 객체 가져오기
         CustomUserDetails customUserDetails = (CustomUserDetails) customUserDetailService.loadUserByUsername(name);
-
-        // CustomUserDetails 객체에서 사용자의 이름 가져오기
         String username = customUserDetails.getName();
         
 		System.out.println(username);
 		
-		
-		 
+		String studentNumber = counselingService.findStudentNumber(username);
+		model.addAttribute("studentNumber", studentNumber);
 		model.addAttribute("studentName", username);
 		model.addAttribute("detail", detail);
 		model.addAttribute("user", user);
