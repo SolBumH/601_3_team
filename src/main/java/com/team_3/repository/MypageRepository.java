@@ -14,6 +14,12 @@ import com.team_3.dto.UserDTO;
 public interface MypageRepository {
 	
 	public List<BoardDTO> mypageBoardList(UserDTO user);
+	
+	public int boardDelete(int board_no);
+	
+	public List<CounselingFormDTO> jmSangdamList(UserDTO user);
+
+	public int cancelSangdam(int no);
 
 	public String findStudentNumber(String username);
 

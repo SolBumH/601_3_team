@@ -13,10 +13,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.team_3.dto.BoardDTO;
-import com.team_3.dto.CustomUserDetails;
 import com.team_3.dto.CounselingFormDTO;
+import com.team_3.dto.CustomUserDetails;
 import com.team_3.dto.UserDTO;
-import com.team_3.service.CounselingService;
 import com.team_3.service.CustomUserDetailService;
 import com.team_3.service.MypageService;
 import com.team_3.util.UserUtil;

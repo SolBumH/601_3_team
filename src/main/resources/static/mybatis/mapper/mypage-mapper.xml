@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.team_3.repository.MypageRepository">
-	
 	<select id="mypageBoardList" resultType="BoardDTO">
 		select BOARD_NO, u.NAME , BOARD_TITLE, BOARD_CONTENT, DEL_YN, ANS_YN,
 		DATE_FORMAT(BOARD_DATE, '%Y-%m-%d %H:%i') as BOARD_DATE
@@ -10,6 +9,22 @@
 		where ib.BOARD_USER = #{user_no}
 		and ib.DEL_YN = '1'
 	</select>
+	
+	<update id="boardDelete" parameterType="Integer">
+		update Inq_Board set DEL_YN = '2'
+		where BOARD_NO = #{board_no}
+	</update>
+	
+	<select id="jmSangdamList" parameterType="UserDTO" resultType="CounselingFormDTO">
+		select * from JMS_List
+		where STUD_NO = (select STUD_NO from STUD_INFO where USER_NO = #{user_no})
+		order by RS_DATE, RS_TIME
+	</select>
+	
+	<update id="cancelSangdam" parameterType="Integer">
+		update JMS_List set RSVT_YN = '3'
+		where JMS_NO = #{no}
+	</update>
 	
 	  <select id="findStudentNumber" resultType="String">
         SELECT STUD_NO 
@@ -28,6 +43,4 @@
         FROM student_user_view 
         WHERE NAME = #{name}
     </select>
-    
-    	
 </mapper>
