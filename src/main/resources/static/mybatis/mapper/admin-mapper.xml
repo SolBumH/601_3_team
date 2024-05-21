@@ -108,4 +108,9 @@
 		update JMS_List set CS_DATE = #{RS_CF}, CS_TIME = #{RS_CF_TIME}, CS_TEXT = #{CONTENT}
 		where JMS_NO = #{JMS_NO};
 	</update>
+	
+	<select id="chart" resultType="Map">
+		select * from JMS_List
+		where 
+	</select>
 </mapper>

@@ -2,6 +2,7 @@ package com.team_3.controller;
 
 import java.text.ParseException;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -211,4 +212,10 @@ public class AdminController {
 		return result;
 	}
 	
+	@GetMapping("/chart")
+	public String chart(Model model) {
+		List<Map<String, Object>> list = adminService.chart();
+		model.addAttribute("list", list);
+		return "/admin/chart";
+	}
 }

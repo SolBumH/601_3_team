@@ -150,6 +150,7 @@ grid.on("click", (ev) => {
     }
 });
 
+
 $(document).ready(function () {
   // $.ajax({
   //   url: "/admin/jmsangdamList",

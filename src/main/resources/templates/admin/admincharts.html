@@ -20,8 +20,28 @@
 	
 	
 	<div class="bodypart">
-	<div id="chart-area"></div>
+	<!-- <div id="chart-area"></div> -->
+		<div>
+		<table>
+			<tr>
+				<th></th>
+				<th></th>
+				<th></th>
+				<th></th>
+			</tr>
+			<tr>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+			</tr>
+		</table>
+			<input type="month" id="chart"/>
+			<button type="button" id="chartBtn">조회하기</button>
+		</div>
 	</div>
+	
 
 
 
@@ -34,8 +54,14 @@
 	<script src="/admin/js/datatables-simple-demo.js"></script>
 	<th:block th:insert="~{menu.html::scriptImport}">CDN JS 링크</th:block>
 	<script type="text/javascript">
+	
+	$('#chartBtn').on('click', function(){
+		let monthValue = $('#chart').val();
+		
+	});
+	
 
-    const el = document.getElementById('chart-area');
+    /* const el = document.getElementById('chart-area');
     const data = {
       categories: ['Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
       series: [
@@ -61,8 +87,9 @@
       chart: { title: 'Monthly Revenue', width: 900, height: 400 },
     };
 
-    const chart = toastui.Chart.columnChart({ el, data, options });
+    const chart = toastui.Chart.columnChart({ el, data, options }); */
   
+    
 	</script>
 </body>
 </html>
