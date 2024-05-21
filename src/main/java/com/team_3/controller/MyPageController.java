@@ -120,6 +120,6 @@ public class MyPageController {
 							@RequestParam(name = "no") int no) {
 		int result = mypageService.cancelSangdam(sangdamNo, no);
 		
-		return 1;
+		return result;
 	}
 }

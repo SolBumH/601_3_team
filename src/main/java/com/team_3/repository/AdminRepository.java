@@ -74,8 +74,15 @@ public class AdminRepository {
 		return sqlSession.selectList("admin.getCodeList",codeDTO);
 	}
 
-	public int saveGroup(GroupDTO groupDTO) {
-		return sqlSession.selectOne("admin.saveGroup", groupDTO);
+	public int JMSCancel(CounselingFormDTO dto) {
+		return sqlSession.update("admin.JMSCancel",dto);
 	}
 
+	public int JSMUpdateDateAndTime(CounselingFormDTO dto) {
+		return sqlSession.update("admin.JSMUpdateDateAndTime",dto);
+	}
+
+	public int JSMfinishedSangdam(CounselingFormDTO dto) {
+		return sqlSession.update("admin.JSMfinishedSangdam",dto);
+	}
 }

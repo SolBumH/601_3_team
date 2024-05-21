@@ -45,20 +45,17 @@ public class JkContorller {
 		//System.out.println(list);
 		return list;
 	}
-/*	
+	
 	@PostMapping("/jkselect")
-	@ResponseBody
 	public String jkselect(@RequestParam(name = "jkselectdate") String jkselectdate,
-							@RequestParam(name = "jkoption") String jkoption, Model model, JkDTO dto) {
+							@RequestParam(name = "jkoption") String jkoption, JkDTO dto) {
 		System.out.println(jkselectdate);
 		System.out.println(jkoption);
 		
 		dto.setUSER_NO(userUtil.getUserData().getUser_no());
-		dto.setRSVT_YMD(jkselectdate);
-		dto.setRSVT_TM(jkoption);
-		//List<Map<String, Object>> list = jkService.searchList(dto.getRSVT_YMD());
+		dto.setPLAN_YMD(jkselectdate);
+		dto.setCD_TM(jkoption);
 		jkService.getJkList(dto);
 		return "redirect:/admin/adminJkCounseling";
 	}
-*/
 }

@@ -15,6 +15,62 @@ const grid = new tui.Grid({
   },
   scrollX: false,
   scrollY: false,
+  contextMenu: ({ rowKey, columnName }) => [[
+	{
+		label: '승인',
+		action: () => {
+			let row = grid.getRow(rowKey);
+			let no = 0;
+			if(sangdamNo == 20){
+				no = row.jms_NO;
+			} else if (sangdamNo == 50) {
+				no = row.jc_NO;
+			}
+			$.ajax({
+				type : 'post',
+				url : '/admin/approval',
+				data : { sangdamNo : sangdamNo, no : no, rsvt_YN : "2",
+						 RS_DATE: row.rs_DATE, RS_TIME: row.rs_TIME,},
+				dataType : 'text',
+				beforeSend: function (xhr) {
+			    	xhr.setRequestHeader(header, token);
+			    },
+				success : function(result){
+					if (result == 1) {
+						console.log("승인 완료 : " + no + "번");
+					}
+				}
+			});
+		}
+	},
+	{
+		label: '취소하기',
+		action: () => {
+			let row = grid.getRow(rowKey);
+			let no = 0;
+			if(sangdamNo == 20){
+				no = row.jms_NO;
+			} else if (sangdamNo == 50) {
+				no = row.jc_NO;
+			}
+			$.ajax({
+				type : 'post',
+				url : '/admin/cancel',
+				data : { sangdamNo : sangdamNo, no : no, rsvt_YN : "3", },
+				dataType : 'text',
+				beforeSend: function (xhr) {
+			    	xhr.setRequestHeader(header, token);
+			    },
+				success : function(result){
+					if (result == 1) {
+						console.log("취소 완료 : " + no + "번");
+					}
+				}
+			});
+		}
+	}
+	]
+  ],
   columns: [
     {
       header: "신청 학생",
@@ -74,39 +130,24 @@ const grid = new tui.Grid({
   ],
 });
 
-grid.on("afterChange", (ev) => {
-	  let no = grid.getRow(ev.changes[0].rowKey);
-	  let number = 0;
-	  if (no.jms_NO != 0) {
-		number = no.jms_NO;
-	  } else if (no.jc_NO != 0) {
-		number = no.jc_NO;
-	  } else if (no.sr_NO != 0) {
-		number = no.sr_NO;
-	  }
-	
-	  //console.log(no);
-	  $.ajax({
-		url: '/admin/changeRSVT',
-		type: 'post',
-		data: {
-			'no' : number, 
-			'rsvt_YN' : no.rsvt_YN,
-			'sangdamNo' : sangdamNo,
-			},
-		dataType: 'text',
-		beforeSend: function (xhr) {
-	      xhr.setRequestHeader(header, token);
-	    },
-		success: function(result) {
-			if (result == 1) {
-				console.log("변경완료");
-			}
-		}, 
-		error: function() {
-			
+
+grid.on("click", (ev) => {
+    let row = grid.getRow(ev.rowKey);
+    if (row !== null) {
+	    // console.log(row);
+		
+		let no = 0;
+		if(sangdamNo == 20){
+			no = row.jms_NO;
+		} else if (sangdamNo == 50) {
+			no = row.jc_NO;
 		}
-	});
+		  $('#responseNo').val(no);
+		  $('#responseName').val(row.name);
+		  $('#content').text(row.content);
+		  $("#before_sangdamNo").val(row.bf_NO);
+		  $('#adminAnswer').val("");
+    }
 });
 
 $(document).ready(function () {
@@ -141,4 +182,25 @@ $(document).ready(function () {
       },
     });
   });
+
+	$('#saveSangdamBtn').on('click', function() {
+		let no = $("#responseNo").val();
+		let date = $("#rs_cf").val();
+		let time = $("#rs_cf_time option:selected").val();
+		let content = $("#adminAnswer").val();
+		
+		$.ajax({
+			url: "/admin/finishedSangdam",
+			type: "post",
+			dataType: "text",
+			beforeSend: function (xhr) {
+		        xhr.setRequestHeader(header, token);
+		    },
+			data: {sangdamNo : sangdamNo, no : no, 
+				rs_cf : date, rs_cf_time : time, content : content},
+			success: function(result) {
+				console.log(result);
+			},
+		});
+	});
 });
