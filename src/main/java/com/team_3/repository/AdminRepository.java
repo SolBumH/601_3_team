@@ -85,6 +85,7 @@ public class AdminRepository {
 
 	public int JSMfinishedSangdam(CounselingFormDTO dto) {
 		return sqlSession.update("admin.JSMfinishedSangdam",dto);
+	}
 	public List<Map<String, Object>> chart() {
 		return sqlSession.selectList("admin.chart");
 	}
