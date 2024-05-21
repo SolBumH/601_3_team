@@ -84,6 +84,10 @@
 		order by RS_DATE, RS_TIME, JC_NO DESC;
 	</select>
 	
+	<select id="getCodeList" resultType="com.team_3.dto.CodeDTO">
+		SELECT * FROM CODE 
+	</select>
+	
 	<update id="changeJMSRSVT">
 		update JMS_List set RSVT_YN = #{RSVT_YN}
 		where JMS_NO = #{JMS_NO};
