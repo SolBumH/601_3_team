@@ -104,4 +104,27 @@ public class AdminService {
 		
 		return result;
 	}
+
+	public int approval(String sangdamNo, int no, String yn) {
+		int result = 0;
+		CounselingFormDTO dto = new CounselingFormDTO();
+		dto.setRSVT_YN(yn);
+		
+		switch (sangdamNo) {
+			case "10":
+				break;
+			case "20":
+				dto.setJMS_NO(no);
+				result = adminRepository.changeJMSRSVT(dto);
+				break;
+			case "30":
+				break;
+			case "40":
+				break;
+			case "50":
+				break;
+		}
+		
+		return result;
+	}
 }

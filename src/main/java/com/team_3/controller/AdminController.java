@@ -20,19 +20,19 @@ import com.team_3.util.UserUtil;
 @Controller
 @RequestMapping("/admin")
 public class AdminController {
-	
+
 	@Autowired
 	private UserUtil userUtil;
-	
+
 	@Autowired
 	private AdminService adminService;
-	
-	@GetMapping({"/index" , ""})
+
+	@GetMapping({ "/index", "" })
 	public String index(Model model) {
 		model.addAttribute("user", userUtil.getUserNameAndRole());
 		return "admin/adminIndex";
 	}
-	
+
 	@GetMapping("/board")
 	public String board(Model model) {
 		List<BoardDTO> list = adminService.AdminBoard();
@@ -48,7 +48,7 @@ public class AdminController {
 		List<BoardDTO> list = adminService.AdminBoard();
 		return list;
 	}
-	
+
 	@GetMapping("/user")
 	public String member(Model model) {
 		List<UserDTO> list = adminService.AdminUser();
@@ -56,49 +56,50 @@ public class AdminController {
 		model.addAttribute("user", userUtil.getUserNameAndRole());
 		return "admin/adminuser";
 	}
-	
+
 	@GetMapping("/userList")
 	@ResponseBody
 	public List<UserDTO> userList(Model model) {
 		List<UserDTO> list = adminService.AdminUser();
-		//System.out.println(list);
+		// System.out.println(list);
 		return list;
 	}
-	
+
 	@GetMapping("/Group")
 	public String adminGroup(Model model) {
 		model.addAttribute("user", userUtil.getUserNameAndRole());
 		return "admin/adminGroup";
 	}
-	
+
 	@GetMapping("/Counseling")
 	public String counseling(Model model) {
 		model.addAttribute("user", userUtil.getUserNameAndRole());
 		return "admin/adminCounseling";
 	}
-	
+
 	@GetMapping("/charts")
 	public String charts(Model model) {
 		model.addAttribute("user", userUtil.getUserNameAndRole());
 		return "admin/admincharts";
 	}
-	
+
 	// 관리자페이지 글 상태 변경 메소드
 	@PostMapping("/updateBoardDel")
 	@ResponseBody
 	public String updateBoardDel(BoardDTO board) {
-		// System.out.println("no : " + board.getBoard_no() + " del : " + board.getDel_yn());
+		// System.out.println("no : " + board.getBoard_no() + " del : " +
+		// board.getDel_yn());
 		int result = adminService.updateBoardDel(board);
 		return String.valueOf(result);
 	}
-	
+
 	// 게시글 답변 페이지 이동
 	@GetMapping("/response")
 	public String response(Model model) {
 		model.addAttribute("user", userUtil.getUserNameAndRole());
 		return "/admin/adminResponse";
 	}
-	
+
 	@PostMapping("/userUpdate")
 	@ResponseBody
 	public int userUpdate(UserDTO dto) {
@@ -106,11 +107,10 @@ public class AdminController {
 		System.out.println(result);
 		return result;
 	}
-	
+
 	@PostMapping("/answerPost")
 	@ResponseBody
-	public int answerPost(@RequestParam(name = "board_no") int board_no,
-							@RequestParam(name = "answer") String answer) {
+	public int answerPost(@RequestParam(name = "board_no") int board_no, @RequestParam(name = "answer") String answer) {
 		BoardDTO board = new BoardDTO();
 		board.setBoard_no(board_no);
 		board.setBoard_content(answer);
@@ -118,41 +118,53 @@ public class AdminController {
 		int result = adminService.answerPost(board);
 		System.out.println(board.toString());
 		adminService.answerNumberUpdate(board);
-		
+
 		return result;
 	}
-	
+
 	@PostMapping("/answerContent")
 	@ResponseBody
 	public String answerContent(@RequestParam(name = "board_no") int board_no) {
 		String result = adminService.getAnswerContent(board_no);
 		return result;
 	}
-	
+
 	@GetMapping("/adminJkCounseling")
 	public String adminJkCounseling(Model model) {
 		model.addAttribute("user", userUtil.getUserNameAndRole());
 		return "/admin/adminJkCounseling";
 	}
-	
+
 	@PostMapping("/sangdamList")
 	@ResponseBody
-	public List<CounselingFormDTO> jmsangdamList(@RequestParam(name="sangdamNo") String no) {
+	public List<CounselingFormDTO> jmsangdamList(@RequestParam(name = "sangdamNo") String no) {
 		List<CounselingFormDTO> list = adminService.getSangdamList(no);
 		return list;
 	}
-	
+
 	@PostMapping("/changeRSVT")
 	@ResponseBody
-	public int changeRSVT(@RequestParam(name = "rsvt_YN") String yn,
-						@RequestParam(name = "no") int no,
-						@RequestParam(name = "sangdamNo") String sangdamNo) {
+	public int changeRSVT(@RequestParam(name = "rsvt_YN") String yn, @RequestParam(name = "no") int no,
+			@RequestParam(name = "sangdamNo") String sangdamNo) {
 		System.out.println(yn);
 		System.out.println(no);
 		System.out.println(sangdamNo);
-		
+
 		int result = adminService.changeRSVT(sangdamNo, no, yn);
-		
+
 		return result;
+	}
+	//상담내역 승인하기
+	@PostMapping("/approval")
+	@ResponseBody
+	public int approval(@RequestParam(name = "rsvt_YN") String yn, @RequestParam(name = "no") int no,
+			@RequestParam(name = "sangdamNo") String sangdamNo) {
+		System.out.println(yn);
+		System.out.println(no);
+		System.out.println(sangdamNo);
+
+		int result = adminService.approval(sangdamNo, no, yn);
+
+		return 1;
 	}
 }

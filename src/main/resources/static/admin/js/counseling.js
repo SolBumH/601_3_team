@@ -8,13 +8,61 @@ let sangdamNo;
 
 const grid = new tui.Grid({
   el: document.getElementById("grid"),
-  rowHeaders: ["rowNum"],
+  rowHeaders: ["checkbox"],
   pageOptions: {
     useClient: true,
     perPage: 5,
   },
   scrollX: false,
   scrollY: false,
+  contextMenu: ({ rowKey, columnName }) => [[
+	{
+		label: '승인',
+		action: () => {
+			let row = grid.getRow(rowKey);
+			console.log(row);
+			let no = 0;
+			if(sangdamNo == 20){
+				no = row.jms_NO;
+			} else if (sangdamNo == 50) {
+				no = row.jc_NO;
+			}
+			//location.href = "/detail?no=" + board.rsvt_YN;
+			$.ajax({
+				type : 'post',
+				url : '/admin/approval',
+				data : { sangdamNo : sangdamNo, no : no, rsvt_YN : row.rsvt_YN },
+				dataType : 'text',
+				beforeSend: function (xhr) {
+			    	xhr.setRequestHeader(header, token);
+			    },
+				success : function(result){
+					console.log(result);
+				}
+			});
+		}
+	},
+	{
+		label: '취소하기',
+		action: () => {
+			let board = grid.getRow(rowKey);
+			location.href = "/detail?no=" + board.rsvt_YN;
+			$.ajax({
+				type : 'post',
+				url : 'admin/cancel',
+				data : { board : board },
+				dataType : 'text',
+				beforeSend: function (xhr) {
+			    	xhr.setRequestHeader(header, token);
+			    },
+				success : function(result){
+					console.log(result);
+				}
+			});
+		}
+	}
+	]
+  ],
   columns: [
     {
       header: "신청 학생",
@@ -72,6 +120,7 @@ const grid = new tui.Grid({
     },
   ],
 });
+
 
 grid.on("afterChange", (ev) => {
 	  let no = grid.getRow(ev.changes[0].rowKey);
