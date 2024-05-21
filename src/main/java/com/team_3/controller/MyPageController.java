@@ -55,9 +55,9 @@ public class MyPageController {
         String studentNumber = mypageService.findStudentNumber(userId);
         String studentDept = mypageService.findStud_dept(userId);
         String studentPhone = mypageService.findPhone(userId);
-        // System.out.println(studentNumber); // 학번 확인하기
-        // System.out.println(studentDept); // 학과 확인하기
-        // System.out.println(studentPhone); // 핸드폰번호 확인하기
+        //System.out.println(studentNumber); // 학번 확인하기
+       // System.out.println(studentDept); // 학과 확인하기
+       // System.out.println(studentPhone); // 핸드폰번호 확인하기
 
         // 모델에 이름, 학번 추가
         model.addAttribute("name", name);
