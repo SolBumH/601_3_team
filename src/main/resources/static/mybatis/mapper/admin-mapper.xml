@@ -92,4 +92,9 @@
 		update JMS_List set RSVT_YN = #{RSVT_YN}
 		where JMS_NO = #{JMS_NO};
 	</update>
+	
+	<select id="chart" resultType="Map">
+		select * from JMS_List
+		where 
+	</select>
 </mapper>

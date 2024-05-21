@@ -1,6 +1,7 @@
 package com.team_3.repository;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -71,5 +72,9 @@ public class AdminRepository {
 	
 	public List<CodeDTO> getCodeList(CodeDTO codeDTO) {
 		return sqlSession.selectList("admin.getCodeList",codeDTO);
+	}
+
+	public List<Map<String, Object>> chart() {
+		return sqlSession.selectList("admin.chart");
 	}
 }

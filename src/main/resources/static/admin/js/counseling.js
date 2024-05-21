@@ -158,6 +158,7 @@ grid.on("afterChange", (ev) => {
 	});
 });
 
+
 $(document).ready(function () {
   // $.ajax({
   //   url: "/admin/jmsangdamList",
