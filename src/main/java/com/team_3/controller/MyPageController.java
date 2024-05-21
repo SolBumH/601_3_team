@@ -29,9 +29,6 @@ public class MyPageController {
 	private MypageService mypageService;
 
 	@Autowired
-	private CounselingService counselingService;
-
-	@Autowired
 	private CustomUserDetailService customUserDetailService;
 	
 
@@ -52,13 +49,19 @@ public class MyPageController {
         String username = customUserDetails.getName();
 
         // 사용자 이름으로 학생 번호 가져오기
-        String studentNumber = counselingService.findStudentNumber(username);
+        String studentNumber = mypageService.findStudentNumber(username);
+        String studentDept = mypageService.findStud_dept(username);
+        String studentPhone = mypageService.findPhone(username);
         // System.out.println(studentNumber); // 학번 확인하기
+         System.out.println(studentDept); // 학번 확인하기
+         System.out.println(studentPhone); // 학번 확인하기
 
         // 모델에 이름, 학번 추가
         model.addAttribute("name", name);
         model.addAttribute("studentName", username);
         model.addAttribute("studentNumber", studentNumber);
+        model.addAttribute("studentDept", studentDept);
+        model.addAttribute("studentPhone", studentPhone);
 
         // 다른 필요한 데이터들을 모델에 추가
         model.addAttribute("user", userUtil.getUserNameAndRole());

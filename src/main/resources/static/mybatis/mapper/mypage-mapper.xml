@@ -9,4 +9,24 @@
 		on BOARD_USER = USER_NO 
 		where ib.BOARD_USER = #{user_no}
 	</select>
+	
+	  <select id="findStudentNumber" resultType="String">
+        SELECT STUD_NO 
+        FROM student_user_view 
+        WHERE NAME = #{name}
+    </select>
+    
+      <select id="findStud_dept" resultType="String">
+        SELECT STUD_DEPT 
+        FROM student_user_view 
+        WHERE NAME = #{name}
+    </select>
+    
+    <select id="findPhone" resultType="String">
+        SELECT STUD_PHONE 
+        FROM student_user_view 
+        WHERE NAME = #{name}
+    </select>
+    
+    	
 </mapper>

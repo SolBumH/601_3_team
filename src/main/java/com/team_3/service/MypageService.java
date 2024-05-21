@@ -18,4 +18,16 @@ public class MypageService {
 	public List<BoardDTO> mypageBoardList(UserDTO user) {
 		return mypageRepository.mypageBoardList(user);
 	}
+	
+	public String findStudentNumber(String username) {
+		return mypageRepository.findStudentNumber(username);
+	}
+
+	public String findStud_dept(String username) {
+		return mypageRepository.findStud_dept(username);
+	}
+
+	public String findPhone(String username) {
+		return  mypageRepository.findPhone(username);
+	}
 }

@@ -14,4 +14,10 @@ public interface MypageRepository {
 	
 	public List<BoardDTO> mypageBoardList(UserDTO user);
 
+	public String findStudentNumber(String username);
+
+	public String findStud_dept(String username);
+
+	public String findPhone(String username);
+
 }
