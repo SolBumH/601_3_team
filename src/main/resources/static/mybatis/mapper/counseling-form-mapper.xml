@@ -21,13 +21,18 @@
 	</select>
 
 	<select id="getDetail" resultType="BoardDTO">
-		SELECT JD_NO, PG_NAME,
-		PG_EXPLAIN, EN_DATE, JMS_CS_DATE, TO_NO, AP_NO, PA_NO
+		SELECT *
 		FROM JDSD_Info
 		WHERE JD_NO = #{no}
 		and EN_NO = "2"
 	</select>
 
+	<select id="getResult" resultType="BoardDTO">
+		SELECT *
+		FROM JDSD_Info
+		WHERE JD_NO = #{no}
+	</select>
+	
 	<select id="getSchedule" resultType="HashMap">
 		select * from CODE
 		where
