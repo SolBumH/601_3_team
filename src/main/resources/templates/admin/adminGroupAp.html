@@ -38,20 +38,74 @@
 	</nav>
 	<th:block th:insert="~{/admin/adminmenu.html::leftmenu}"></th:block>
 	<div class="bodypart">
-		<div class="title-container">
-			<h4>집단상담 프로그램 관리</h4>
-		</div>
-	</div>
+		
+				<div class="section-title text-center">
 
-	<div style="width: 500px; margin-left: 300px;">
-		<h6>프로그램 목록</h6>
-		<div id="grid"></div>
-		<div class="col-sm-2mb-2">
-			<div class="row justify-content-center"></div>
-			<a href="adminGroupAp" class="btn btn-danger btn-block">새로운 프로그램 신청하기</a>
-		</div>
-	</div>
+				<form action="/saveCounselingForm" method="post">
+					<div class="box">
+						<div class="container">
+							<span class="label"><b>상담 구분 : </b></span>
+							 <select id="selectedType" name="selectedType" class="form-select" aria-label="상담 종류 선택">
+								<option value="" selected disabled>원하는 상담을 선택하세요.</option>
+								<option value="10">지도교수 상담</option>
+								<option value="20">전문 상담</option>
+								<option value="30">심리 상담</option>
+								<option value="40">취업·진로 상담</option>
+							</select>
+						</div>
+					</div>
 
+					<table class="request">
+						<tr>
+							<th class="th" scope="row">상담 날짜</th>
+							<td th:text="${param.date}">
+							</td>
+							<td><input id="date" type="text" th:value="${param.date}" name="date" hidden="true"></td>
+						</tr>
+						<tr>
+							<th class="th" scope="row">상담 시간</th>
+							<td th:text="${param.time} + '시'"></td>
+							<td><input id="time" type="text" th:value="${param.time}" name="time" hidden="true"></td>
+						</tr>
+						<tr>
+							<th class="th" scope="row">이름</th>
+							<td th:text="${studentName}">
+							</td>
+							<td><input id="name" type="text" th:value="${studentName}" name="name" hidden="true"></td>
+						</tr>
+						<tr>
+							<th class="th" scope="row">학번</th>
+							<td th:text="${studentNumber}"></td>
+							<td><input id="studentNumber" type="text" th:value="${studentNumber}" name="studentNumber" hidden="true"></td>
+						</tr>
+
+						<tr>
+							<th class="th" scope="row">이메일</th>
+							<td>
+							<input id="email" type="text" class="wid53" name="email" placeholder="이메일을 입력해주세요">
+							</td>
+						</tr>
+
+
+						<tr>
+							<th class="th" scope="row">상담 내용</th>
+							<td>
+								<textarea id="counselingContent" name="counselingContent" placeholder="200자 이내(400byte)로 입력해 주세요"style="text-align: left;"></textarea>
+							</td>
+						</tr>
+					</table>
+
+					<div class="section-title text-center">
+						<button id="submitBtn" type="submit" class="btn btn-danger">신청하기</button>
+					</div>
+
+					<input type="hidden" name="_csrf" th:value="${_csrf.token}" />
+				</form>
+			</div>
+
+
+
+</div>
 
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
 	<script src="/admin/js/scripts.js"></script>

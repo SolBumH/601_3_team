@@ -49,32 +49,33 @@ public class BoardController {
 		}
 	}
 	
-	@PostMapping("/write")
-	public String write(BoardDTO board) {
-		// 로그인이 안 된 사용자면 /board로 보내기
-		if (userUtil.getUserRole().equals("ROLE_ANONYMOUS")) {
-			return "redirect:/board";
-		}
-		int result = boardService.write(board);
-		if (result == 1) {
-			return "redirect:/board";
-		} else {
-			// 에러 시 에러 페이지 이동시키기
-			return "redirect:/board";
-		}
-	}
+//	@PostMapping("/write")
+//	public String write(BoardDTO board) {
+//		// 로그인이 안 된 사용자면 /board로 보내기
+//		if (userUtil.getUserRole().equals("ROLE_ANONYMOUS")) {
+//			return "redirect:/board";
+//		}
+//		int result = boardService.write(board);
+//		if (result == 1) {
+//			return "redirect:/board";
+//		} else {
+//			// 에러 시 에러 페이지 이동시키기
+//			return "redirect:/board";
+//		}
+//	}
 	
 	@PostMapping("/writeComplete")
 	@ResponseBody
-	public String write2(BoardDTO board) {
+	public int write2(BoardDTO board) {
 		System.out.println(board.toString());
 		System.out.println("title : " + board.getBoard_title());
 		System.out.println("content : " + board.getBoard_content());
-		String role = userUtil.getUserRole();
-		if (role.equals("ROLE_ANONYMOUS")) {
-			return "0";
+		UserDTO user = userUtil.getUserData();
+		if (user.getRole().equals("ROLE_ANONYMOUS")) {
+			return 0;
 		} else {
-			return "1";
+			int result = boardService.write(board, user);
+			return result;
 		}
 	}
 	

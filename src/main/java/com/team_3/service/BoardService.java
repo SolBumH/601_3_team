@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.team_3.dto.BoardDTO;
+import com.team_3.dto.UserDTO;
 import com.team_3.repository.BoardRepository;
 
 @Service
@@ -14,7 +15,8 @@ public class BoardService {
 	@Autowired
 	private BoardRepository boardRepository;
 
-	public int write(BoardDTO board) {
+	public int write(BoardDTO board, UserDTO user) {
+		board.setBoard_user(user.getUser_no());
 		return boardRepository.write(board);
 	}
 

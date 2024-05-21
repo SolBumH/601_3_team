@@ -11,9 +11,11 @@ public interface CounselingRepository {
 	
 	 void saveForm(CounselingDTO formDTO);
 	 
-	 List<BoardDTO> getGroupData();
+	List<BoardDTO> getGroupData();
 
-	 BoardDTO getDetail(int no);
+	BoardDTO getDetail(int no);
+
+	BoardDTO getResult(int no);
 
 	String findStudentNumber(String username);
 
@@ -28,4 +30,5 @@ public interface CounselingRepository {
 	int savePsychologicalCounselingForm(CounselingFormDTO formDTO);
 
 	int saveEmploymentCounselingForm(CounselingFormDTO formDTO);
+
 }

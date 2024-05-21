@@ -114,6 +114,7 @@ const grid = new tui.Grid({
             { text: "미승인", value: "1" },
             { text: "승인", value: "2" },
             { text: "취소", value: "3" },
+            { text: "상담완료", value: "4" },
           ],
         },
       },
