@@ -72,4 +72,16 @@ public class AdminRepository {
 	public List<CodeDTO> getCodeList(CodeDTO codeDTO) {
 		return sqlSession.selectList("admin.getCodeList",codeDTO);
 	}
+
+	public int JMSCancel(CounselingFormDTO dto) {
+		return sqlSession.update("admin.JMSCancel",dto);
+	}
+
+	public int JSMUpdateDateAndTime(CounselingFormDTO dto) {
+		return sqlSession.update("admin.JSMUpdateDateAndTime",dto);
+	}
+
+	public int JSMfinishedSangdam(CounselingFormDTO dto) {
+		return sqlSession.update("admin.JSMfinishedSangdam",dto);
+	}
 }

@@ -36,38 +36,58 @@
 				</select>
 			</div>
 			<button id="selectSangdamBtn" class="btn btn-dark-outline">조회하기</button>
-			<button type="button" id="checkBtn" class="btn btn-dark-outline">여부</button>
 		</div>
 		<div id="grid"></div>
 		<div class="answerpart">
 			<div class="d-inline-block" style="width:45%;">
 				<div class="d-flex justify-content-between">
 					<div class="w40">
-					  <label for="responseNo" class="form-label" th:text="'글 번호'">글 번호</label>
+					  <label for="responseNo" class="form-label" th:text="'상담 번호'">번호</label>
 					  <input type="text" class="form-control" id="responseNo" readonly="readonly" />
 					</div>
 					<div class="w40">
-					  <label for="responseName" class="form-label" th:text="작성자" >작성자</label>
+					  <label for="responseName" class="form-label" th:text="신청자" >작성자</label>
 					  <input type="text" class="form-control" id="responseName" readonly="readonly"/>
 					</div>
 				</div>
-				<div class="mb-3">
-				  <label for="responseTitle" class="form-label" th:text="'제목'"></label>
-				  <input type="text" class="form-control" id="responseTitle" readonly="readonly"/>
+				<div class="d-flex justify-content-between">
+					<div class="w40">
+					  <label for="responseNo" class="form-label" th:text="'상담 일자'">번호</label>
+					  <input type="date" class="form-control" id="rs_cf" />
+					</div>
+					<div class="w40">
+					  <label for="rs_cf_time" class="form-label" th:text="'상담 시간'"></label>
+					  <select class="form-select" id="rs_cf_time">
+					  	<option th:value="10" th:text="10시"></option>
+					  	<option th:value="11" th:text="11시"></option>
+					  	<option th:value="13" th:text="13시"></option>
+					  	<option th:value="14" th:text="14시"></option>
+					  	<option th:value="15" th:text="15시"></option>
+					  	<option th:value="16" th:text="16시"></option>
+					  </select>
+					</div>
 				</div>
 				<div class="mb-3">
-				  <label for="responseContent" class="form-label" th:text="'내용'"></label>
-				  <textarea class="form-control responseTextarea" id="responseContent" readonly="readonly"></textarea>
+				  <label for="content" class="form-label" th:text="'상담 신청 내용'"></label>
+				  <textarea class="form-control" id="content" readonly="readonly"></textarea>
 				</div>
 			</div>
 			<div class="d-inline-block ms-2" style="width:50%;">
+				<div class="d-flex justify-content-between">
+					<div class="w40">
+					  <label for="before_sangdamNo" class="form-label" th:text="'이전 상담 번호'">번호</label>
+					  <input type="text" class="form-control" id="before_sangdamNo" readonly="readonly"/>
+					</div>
+					<div class="w40">
+					</div>
+				</div>
 				<div class="mb-3">
-				  <label for="adminAnswer" class="form-label" th:text="'답변'"></label>
+				  <label for="adminAnswer" class="form-label" th:text="'상담 진행 내용'"></label>
 				  <textarea class="form-control adminAnswer" id="adminAnswer" name="adminAnswer"></textarea>
 				</div>
 				<div class="d-flex justify-content-end">
-					<button class="btn btn-outline-dark mx-2"id="answerShowBtn" th:text="'답변 불러오기'"></button>
-					<button class="btn btn-outline-dark" id="answerBtn" th:text="답변하기"></button>
+					<button class="btn btn-outline-dark mx-2" id="changeScheduleBtn" th:text="'일정 변경'"></button>
+					<button class="btn btn-outline-dark" id="saveSangdamBtn" th:text="저장하기"></button>
 				</div>
 			</div>
 		</div>

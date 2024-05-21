@@ -13,13 +13,18 @@ public class CounselingFormDTO {
 	private String email; //이메일
 	private Date RS_DATE;	//예약일자
 	private String RS_TIME; //예약시간코드
-	private Date RS_CF; // 예약 확정된 일자
+//	private Date RS_CF; // 예약 확정된 일자
+	private String RS_CF; // 예약 확정된 일자
+//	private java.util.Date RS_CF; // 예약 확정된 일자
 	private String RS_CF_TIME; // 예약 확정된 시간 코드
-	private Date CS_DATE;	//상담일자
+//	private Date CS_DATE;	//상담일자
+	private String CS_DATE;	//상담일자
 	private String CS_TIME; //상담시간코드
 	private String CS_TEXT; //상담내용
 	private String RSVT_YN;		//예약승인여부
 	private String SC_SN;		//스케줄번호
+	private String CONTENT; // 상담 내용
+	private int BF_NO; // 이전 상담 번호
 	
 	// 전문 상담
 	private int JMS_NO; 		//전문상담번호

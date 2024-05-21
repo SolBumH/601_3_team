@@ -25,3 +25,8 @@ label {
 	height: 300px;
 	resize: none;
 }
+
+#content {
+	height: 200px;
+	resize: none;
+}
