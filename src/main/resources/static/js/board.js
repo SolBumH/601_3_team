@@ -24,8 +24,7 @@ const grid = new tui.Grid({
 		label: '삭제하기',
 		action: () => {
 			let board = grid.getRow(rowKey);
-			console.log(board);
-			// location.href = "/detail?no=" + board.board_no;
+			// console.log(board);
 			$.ajax({
 				url: '/mypage/boardDelete',
 				type: 'post',
@@ -36,7 +35,7 @@ const grid = new tui.Grid({
 			    },
 				success: function (result) {
 					if (result == 1) {
-						location.href="/mypage/board"
+						location.href="/mypage/board";
 					}
 				}
 			});
