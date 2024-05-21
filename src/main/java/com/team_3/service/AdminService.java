@@ -211,9 +211,9 @@ public class AdminService {
 		}
 		
 		return result;
+	}
+	
 	public List<Map<String, Object>> chart() {
 		return adminRepository.chart();
 	}
-
-
 }
