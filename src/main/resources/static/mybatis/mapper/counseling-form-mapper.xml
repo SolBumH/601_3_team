@@ -3,14 +3,6 @@
 
 <mapper namespace="jcCounselingForm">
 
-	<insert id="insertCounselingForm" parameterType="com.team_3.dto.CounselingFormDTO">
-		INSERT INTO JC_LIST (date, time,
-		studentNumber, selectedType, email, counselingContent)
-		VALUES (#{date},
-		#{time}, #{studentNumber}, #{selectedType}, #{email},
-		#{counselingContent})
-	</insert>
-
 	<select id="findByStud_no" resultType="String" parameterType="com.team_3.dto.CounselingFormDTO">
  		 SELECT STUD_NO FROM student_user_view WHERE username = #{username}
 	</select>
@@ -58,7 +50,7 @@
 
 	<!-- 취업 상담-->
 	<insert id="saveEmploymentCounselingForm" parameterType="com.team_3.dto.CounselingFormDTO">
-    	INSERT INTO JC_LIST (RS_DATE, RS_TIME, STUD_NO, email, CS_TEXT )
+	INSERT INTO JC_LIST (RS_DATE, RS_TIME, STUD_NO, email, CS_TEXT )
     	VALUES (#{RS_DATE}, #{RS_TIME}, #{STUD_NO}, #{email}, #{CS_TEXT})
 	</insert>
 
