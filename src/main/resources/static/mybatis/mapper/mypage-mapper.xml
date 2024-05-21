@@ -16,9 +16,14 @@
 		where BOARD_NO = #{board_no}
 	</update>
 	
-	<select id="sangdamList" parameterType="UserDTO" resultType="CounselingFormDTO">
+	<select id="jmSangdamList" parameterType="UserDTO" resultType="CounselingFormDTO">
 		select * from JMS_List
 		where STUD_NO = (select STUD_NO from STUD_INFO where USER_NO = #{user_no})
 		order by RS_DATE, RS_TIME
 	</select>
+	
+	<update id="cancelSangdam" parameterType="Integer">
+		update JMS_List set RSVT_YN = '3'
+		where JMS_NO = #{no}
+	</update>
 </mapper>

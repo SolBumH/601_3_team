@@ -21,6 +21,17 @@
 	<th:block th:insert="~{/mypage/mypageMenu::leftmenu}"></th:block>
 	<div class="bodypart">
 		<h1 class="mb-3">나의 상담 내역</h1>
+		<div class="my-3 d-flex justify-content-end">
+			<div class="d-inline-block">
+				<select id="sangdamList"class="form-select" aria-label="Default select example">
+				  <option selected th:text="'전문 상담'" th:value="20">Open this select menu</option>
+				  <option th:text="'심리 상담'" th:value="30">One</option>
+				  <option th:text="'취업 상담'" th:value="40">Two</option>
+				  <option th:text="'교수 상담'" th:value="10">Three</option>
+				</select>
+			</div>
+			<button id="selectSangdamBtn" class="btn btn-dark-outline">조회하기</button>
+		</div>
 		<div id="grid"></div>
 	</div>
 

@@ -18,18 +18,23 @@ const grid = new tui.Grid({
 		label: '취소하기',
 		action: () => {
 			let sangdam = grid.getRow(rowKey);
+			let no = 0;
+			if (sangdamOption == 20) {
+				no = sangdam.jms_NO; 				
+			}
 			console.log(sangdam);
 			$.ajax({
-				url: '/mypage/boardDelete',
+				url: '/mypage/cancelSangdam',
 				type: 'post',
 				dataType: 'text',
-				data: {board_no : board.board_no},
+				data: {sangdamNo : sangdamOption,
+						no : no},
 				beforeSend: function (xhr) {
 			        xhr.setRequestHeader(header, token);
 			    },
 				success: function (result) {
 					if (result == 1) {
-						location.href="/mypage/board"
+						location.href="/mypage/mysangdam";
 					}
 				}
 			});
@@ -77,7 +82,6 @@ const grid = new tui.Grid({
       filter: "select", // 필터
       formatter: "listItemText",
       editor: {
-        type: "select",
         options: {
           listItems: [
             { text: "미승인", value: "1" },
@@ -93,13 +97,25 @@ const grid = new tui.Grid({
 
 
 $(document).ready(function () {
-  $.ajax({
-    url: "/mypage/sangdamList",
-    type: "get",
-    dataType: "JSON",
-    contentType: "application/json; charset=UTF-8",
-    success: function (result) {
-      grid.resetData(result);
-    },
+
+  $("#selectSangdamBtn").on("click", function () {
+    sangdamOption = $("#sangdamList option:selected").val();
+
+    $.ajax({
+      url: "/mypage/sangdamList",
+      type: "post",
+      data: { sangdamNo: sangdamOption },
+      dataType: "json",
+      //contentType: "application/json; charset=UTF-8",
+      beforeSend: function (xhr) {
+        xhr.setRequestHeader(header, token);
+      },
+      success: function (result) {
+        grid.resetData(result);
+      },
+      error: function () {
+        alert("통신 에러 발생");
+      },
+    });
   });
 });

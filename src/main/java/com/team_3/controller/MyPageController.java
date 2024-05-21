@@ -67,15 +67,23 @@ public class MyPageController {
 	}
 	
 	// 현재 내 상담 리스트 가져오기
-	@GetMapping("/sangdamList")
+	@PostMapping("/sangdamList")
 	@ResponseBody
-	public List<CounselingFormDTO> sangdamList() {
+	public List<CounselingFormDTO> sangdamList(@RequestParam(name = "sangdamNo") String no) {
 		List<CounselingFormDTO> list;
 		UserDTO user = userUtil.getUserData();
-		
-		list = mypageService.sangdamList(user);
-		System.out.println(list);
+		list = mypageService.sangdamList(user, no);
 		
 		return list;
+	}
+	
+	// 상담 취소하기
+	@PostMapping("/cancelSangdam")
+	@ResponseBody
+	public int cancelSangdam(@RequestParam(name = "sangdamNo") String sangdamNo,
+							@RequestParam(name = "no") int no) {
+		int result = mypageService.cancelSangdam(sangdamNo, no);
+		
+		return 1;
 	}
 }

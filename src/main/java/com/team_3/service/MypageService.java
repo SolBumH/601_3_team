@@ -24,7 +24,41 @@ public class MypageService {
 		return mypageRepository.boardDelete(board_no);
 	}
 
-	public List<CounselingFormDTO> sangdamList(UserDTO user) {
-		return mypageRepository.sangdamList(user);
+	public List<CounselingFormDTO> sangdamList(UserDTO user, String no) {
+		List<CounselingFormDTO> list = null;
+		switch (no) {
+		case "10":
+			break;
+		case "20":
+			list = mypageRepository.jmSangdamList(user);
+			break;
+		case "30":
+			break;
+		case "40":
+			break;
+		case "50":
+			break;
+		}
+		
+		return list;
+	}
+
+	public int cancelSangdam(String sangdamNo, int no) {
+		int result = 0;
+		switch (sangdamNo) {
+		case "10":
+			break;
+		case "20":
+			result = mypageRepository.cancelSangdam(no);
+			break;
+		case "30":
+			break;
+		case "40":
+			break;
+		case "50":
+			break;
+		}
+		
+		return result;
 	}
 }

@@ -17,5 +17,7 @@ public interface MypageRepository {
 
 	public int boardDelete(int board_no);
 
-	public List<CounselingFormDTO> sangdamList(UserDTO user);
+	public List<CounselingFormDTO> jmSangdamList(UserDTO user);
+
+	public int cancelSangdam(int no);
 }
