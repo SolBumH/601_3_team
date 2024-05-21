@@ -26,10 +26,6 @@ public class CounselingService {
     public void saveForm(CounselingDTO formDTO) {
         counselingRepository.saveForm(formDTO);
     }
-
-	public String findStudentNumber(String username) {
-		return counselingRepository.findStudentNumber(username);
-	}
 	
 	public List<BoardDTO> getGroupData() {
 		List<BoardDTO> groupDataList = counselingRepository.getGroupData();
@@ -66,6 +62,10 @@ public class CounselingService {
 
 	public int saveEmploymentCounselingForm(CounselingFormDTO formDTO) {
 	    return counselingRepository.saveEmploymentCounselingForm(formDTO);
+	}
+
+	public String findStudentNumber(String userId) {
+		return counselingRepository.findStudentNumber(userId);
 	}
 
 

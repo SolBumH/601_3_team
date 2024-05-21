@@ -101,8 +101,7 @@ public class CounselingController {
         
 		System.out.println(username);
 		
-		String studentNumber = counselingService.findStudentNumber(username);
-		 model.addAttribute("studentNumber", studentNumber);
+		
 		 
 		model.addAttribute("studentName", username);
 		model.addAttribute("detail", detail);

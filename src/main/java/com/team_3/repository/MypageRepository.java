@@ -21,10 +21,10 @@ public interface MypageRepository {
 
 	public int cancelSangdam(int no);
 
-	public String findStudentNumber(String username);
+	public String findStudentNumber(String userId);
 
-	public String findStud_dept(String username);
+	public String findStud_dept(String userId);
 
-	public String findPhone(String username);
+	public String findPhone(String userId);
 
 }
