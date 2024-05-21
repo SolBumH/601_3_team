@@ -72,7 +72,15 @@ public class AdminController {
 		model.addAttribute("user", userUtil.getUserNameAndRole());
 		return "admin/adminGroup";
 	}
-
+	
+	@GetMapping("/GroupAp")
+	public String adminGroupAp(Model model) {
+		model.addAttribute("user", userUtil.getUserNameAndRole());
+		return "/admin/adminGroupAp";
+		
+	}
+	
+	
 	@GetMapping("/Counseling")
 	public String counseling(Model model) {
 		model.addAttribute("user", userUtil.getUserNameAndRole());
@@ -135,13 +143,6 @@ public class AdminController {
 	public String adminJkCounseling(Model model) {
 		model.addAttribute("user", userUtil.getUserNameAndRole());
 		return "/admin/adminJkCounseling";
-	}
-	
-	@GetMapping("/adminGroupAp")
-	public String adminGroupAp(Model model) {
-		model.addAttribute("user", userUtil.getUserNameAndRole());
-		return "/admin/adminGroupAp";
-		
 	}
 	
 	@PostMapping("/sangdamList")

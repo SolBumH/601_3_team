@@ -113,4 +113,9 @@
 		select * from JMS_List
 		where 
 	</select>
+	<insert id="saveGroup" parameterType="GroupDTO">
+		INSERT INTO JDSD_List
+		(PG_NAME, PG_EXPLAIN, JMS_CS_DATE, EN_DATE)
+		VALUES (#{PG_NAME}, #{PG_EXPLAIN}, #{JMS_CS_DATE}, #{EN_DATE})
+	</insert>
 </mapper>
