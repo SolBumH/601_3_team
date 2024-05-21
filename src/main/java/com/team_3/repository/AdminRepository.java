@@ -67,6 +67,8 @@ public class AdminRepository {
 
 	public int changeJMSRSVT(CounselingFormDTO dto) {
 		return sqlSession.update("admin.changeJMSRSVT", dto);
+	}
+	
 	public List<CodeDTO> getCodeList(CodeDTO codeDTO) {
 		return sqlSession.selectList("admin.getCodeList",codeDTO);
 	}
