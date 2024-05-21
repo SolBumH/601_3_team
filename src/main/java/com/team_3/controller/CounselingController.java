@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.team_3.dto.BoardDTO;
+import com.team_3.dto.CustomUserDetails;
 import com.team_3.dto.UserDTO;
 import com.team_3.service.CounselingService;
 import com.team_3.service.CustomUserDetailService;
@@ -89,11 +90,25 @@ public class CounselingController {
 		UserDTO user = userUtil.getUserData();
 		BoardDTO detail = counselingService.getResult(no);
 		
-		System.out.println(detail);
+		// Principal 객체에서 사용자의 이름 가져오기
+        String name = principal.getName();
+
+        // 사용자 이름으로 CustomUserDetails 객체 가져오기
+        CustomUserDetails customUserDetails = (CustomUserDetails) customUserDetailService.loadUserByUsername(name);
+
+        // CustomUserDetails 객체에서 사용자의 이름 가져오기
+        String username = customUserDetails.getName();
+        
+		System.out.println(username);
 		
+		String studentNumber = counselingService.findStudentNumber(username);
+		 model.addAttribute("studentNumber", studentNumber);
+		 
+		model.addAttribute("studentName", username);
 		model.addAttribute("detail", detail);
 		model.addAttribute("user", user);
 		model.addAttribute("userNameAndRole", userUtil.getUserNameAndRole());
+		
 		return "groupResult";
 	}
 
