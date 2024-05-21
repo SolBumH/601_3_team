@@ -17,8 +17,6 @@ public interface CounselingRepository {
 
 	BoardDTO getResult(int no);
 
-	String findStudentNumber(String username);
-
 	List<Map<String, Object>> getSchedule();
 
 	int saveFormJM(CounselingFormDTO formDTO);
@@ -30,5 +28,7 @@ public interface CounselingRepository {
 	int savePsychologicalCounselingForm(CounselingFormDTO formDTO);
 
 	int saveEmploymentCounselingForm(CounselingFormDTO formDTO);
+
+	String findStudentNumber(String userId);
 
 }

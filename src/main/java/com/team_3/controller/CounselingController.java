@@ -95,6 +95,7 @@ public class CounselingController {
         CustomUserDetails customUserDetails = (CustomUserDetails) customUserDetailService.loadUserByUsername(name);
         String username = customUserDetails.getName();
         
+        System.out.println(detail);
 		System.out.println(username);
 		
 		String studentNumber = counselingService.findStudentNumber(username);

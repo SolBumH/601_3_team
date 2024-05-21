@@ -7,5 +7,6 @@
         <typeAlias type="com.team_3.dto.JkDTO" alias="JkDTO"></typeAlias>
         <typeAlias type="com.team_3.dto.CodeDTO" alias="CodeDTO"></typeAlias>
         <typeAlias type="com.team_3.dto.CounselingFormDTO" alias="CounselingFormDTO"></typeAlias>
+        <typeAlias type="com.team_3.dto.GroupDTO" alias="GroupDTO"></typeAlias>
     </typeAliases>
 </configuration>

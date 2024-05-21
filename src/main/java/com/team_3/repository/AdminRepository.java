@@ -1,6 +1,7 @@
 package com.team_3.repository;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +10,7 @@ import org.springframework.stereotype.Repository;
 import com.team_3.dto.BoardDTO;
 import com.team_3.dto.CodeDTO;
 import com.team_3.dto.CounselingFormDTO;
+import com.team_3.dto.GroupDTO;
 import com.team_3.dto.UserDTO;
 
 @Repository
@@ -71,5 +73,20 @@ public class AdminRepository {
 	
 	public List<CodeDTO> getCodeList(CodeDTO codeDTO) {
 		return sqlSession.selectList("admin.getCodeList",codeDTO);
+	}
+
+	public int JMSCancel(CounselingFormDTO dto) {
+		return sqlSession.update("admin.JMSCancel",dto);
+	}
+
+	public int JSMUpdateDateAndTime(CounselingFormDTO dto) {
+		return sqlSession.update("admin.JSMUpdateDateAndTime",dto);
+	}
+
+	public int JSMfinishedSangdam(CounselingFormDTO dto) {
+		return sqlSession.update("admin.JSMfinishedSangdam",dto);
+	}
+	public List<Map<String, Object>> chart() {
+		return sqlSession.selectList("admin.chart");
 	}
 }

@@ -1,6 +1,8 @@
 package com.team_3.controller;
 
+import java.text.ParseException;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -70,7 +72,15 @@ public class AdminController {
 		model.addAttribute("user", userUtil.getUserNameAndRole());
 		return "admin/adminGroup";
 	}
-
+	
+	@GetMapping("/GroupAp")
+	public String adminGroupAp(Model model) {
+		model.addAttribute("user", userUtil.getUserNameAndRole());
+		return "/admin/adminGroupAp";
+		
+	}
+	
+	
 	@GetMapping("/Counseling")
 	public String counseling(Model model) {
 		model.addAttribute("user", userUtil.getUserNameAndRole());
@@ -135,13 +145,6 @@ public class AdminController {
 		return "/admin/adminJkCounseling";
 	}
 	
-	@GetMapping("/adminGroupAp")
-	public String adminGroupAp(Model model) {
-		model.addAttribute("user", userUtil.getUserNameAndRole());
-		return "/admin/adminGroupAp";
-		
-	}
-	
 	@PostMapping("/sangdamList")
 	@ResponseBody
 	public List<CounselingFormDTO> jmsangdamList(@RequestParam(name = "sangdamNo") String no) {
@@ -164,14 +167,56 @@ public class AdminController {
 	//상담내역 승인하기
 	@PostMapping("/approval")
 	@ResponseBody
-	public int approval(@RequestParam(name = "rsvt_YN") String yn, @RequestParam(name = "no") int no,
+	public int approval(@RequestParam(name = "rsvt_YN") String yn,
+			@RequestParam(name = "no") int no,
+			@RequestParam(name = "sangdamNo") String sangdamNo,
+			@RequestParam(name = "RS_DATE") String rs_date,
+			@RequestParam(name = "RS_TIME") String rs_time) throws ParseException {
+		
+		int result = adminService.approval(sangdamNo, no, yn, rs_date, rs_time);
+
+		return result;
+	}
+	
+	@PostMapping("/cancel")
+	@ResponseBody
+	public int cancel(@RequestParam(name = "rsvt_YN") String yn,
+			@RequestParam(name = "no") int no,
 			@RequestParam(name = "sangdamNo") String sangdamNo) {
-		System.out.println(yn);
-		System.out.println(no);
-		System.out.println(sangdamNo);
+		
+		int result = adminService.cancel(sangdamNo, no, yn);
 
-		int result = adminService.approval(sangdamNo, no, yn);
-
-		return 1;
+		return result;
+	}
+	
+	@PostMapping("/updateDateAndTime")
+	@ResponseBody
+	public int updateDateAndTime(@RequestParam(name = "sangdamNo") String sangdamNo,
+								@RequestParam(name = "no") int no,
+								@RequestParam(name = "rs_cf") String rs_cf,
+								@RequestParam(name = "rs_cf_time") String rs_cf_time) {
+		System.out.println(sangdamNo + " : " + no + " : " + rs_cf + " : " + rs_cf_time);
+		
+		int result = adminService.updateDateAndTime(sangdamNo, no, rs_cf, rs_cf_time);
+		return result;
+	}
+	
+	@PostMapping("/finishedSangdam")
+	@ResponseBody
+	public int finishedSangdam(@RequestParam(name = "sangdamNo") String sangdamNo,
+			@RequestParam(name = "no") int no,
+			@RequestParam(name = "rs_cf") String rs_cf,
+			@RequestParam(name = "rs_cf_time") String rs_cf_time,
+		    @RequestParam(name = "content") String content) {
+		
+		int result = adminService.finishedSangdam(sangdamNo, no, rs_cf, rs_cf_time, content);
+		return result;
+	}
+	
+	@GetMapping("/chart")
+	public String chart(Model model) {
+		List<Map<String, Object>> list = adminService.chart();
+		model.addAttribute("list", list);
+		return "/admin/chart";
 	}
 }

@@ -3,19 +3,10 @@
 
 <mapper namespace="jcCounselingForm">
 
-	<insert id="insertCounselingForm"
-		parameterType="com.team_3.dto.CounselingFormDTO">
-		INSERT INTO CounselingForm (date, time, NAME,
-		studentNumber, selectedType, email, counselingContent)
-		VALUES (#{date},
-		#{time}, #{NAME}, #{studentNumber}, #{selectedType}, #{email},
-		#{counselingContent})
-	</insert>
-
-	<select id="findByStud_no" resultType="String">
-		SELECT STUD_NO FROM student_user_view WHERE NAME = #{name};
+	<select id="findByStud_no" resultType="String" parameterType="com.team_3.dto.CounselingFormDTO">
+ 		 SELECT STUD_NO FROM student_user_view WHERE username = #{username}
 	</select>
-
+	
 	<select id="selectGroupData" resultType="BoardDTO">
 		SELECT * FROM JDSD_Info
 	</select>
@@ -39,38 +30,28 @@
 		`DIV` = 'SC01'
 	</select>
 
-	<!-- 지도교수 상담 테이블명 수정해야함-->
+	<!-- 지도교수-->
 	<insert id="saveAdvisorCounselingForm" parameterType="com.team_3.dto.CounselingFormDTO">
-		INSERT INTO advisor_ (JMS_NO, ST_NO, JMS_RS_DATE,
-		JMS_RS_TIME, JMS_CS_DATE, JMS_CS_TIME, JMS_RS_TEXT, RSVT_YN, JMS_LIST,
-		SC_SN)
-		VALUES (#{JMS_NO}, #{ST_NO}, #{JMS_RS_DATE}, #{JMS_RS_TIME}, #{JMS_CS_DATE},
-		#{JMS_CS_TIME}, #{JMS_RS_TEXT}, #{RSVT_YN}, #{JMS_LIST}, #{SC_SN})
+	INSERT INTO JKS_ST (RS_DATE, RS_TIME, STUD_NO, email, CS_TEXT )
+    	VALUES (#{RS_DATE}, #{RS_TIME}, #{STUD_NO}, #{email}, #{CS_TEXT})
 	</insert>
 
-	<!-- 전문 상담 테이블명 수정해야함-->
+	<!-- 전문 상담-->
 	<insert id="saveExpertCounselingForm"	parameterType="com.team_3.dto.CounselingFormDTO">
-		INSERT INTO expert_counseling_forms (JMS_NO, JMS_BF, ST_NO, JMS_RS_DATE,
-		JMS_RS_TIME, JMS_CS_DATE, JMS_CS_TIME, JMS_RS_TEXT, RSVT_YN, JMS_LIST,
-		SC_SN)
-		VALUES (#{JMS_NO}, #{JMS_BF}, #{ST_NO}, #{JMS_RS_DATE}, #{JMS_RS_TIME},
-		#{JMS_CS_DATE}, #{JMS_CS_TIME}, #{JMS_RS_TEXT}, #{RSVT_YN},
-		#{JMS_LIST}, #{SC_SN})
+	INSERT INTO JMS_List (RS_DATE, RS_TIME, STUD_NO, email, CS_TEXT )
+    	VALUES (#{RS_DATE}, #{RS_TIME}, #{STUD_NO}, #{email}, #{CS_TEXT})
 	</insert>
 
-	<!-- 심리 상담 테이블명 수정해야함 -->
+	<!-- 심리 상담 -->
 	<insert id="savePsychologicalCounselingForm" parameterType="com.team_3.dto.CounselingFormDTO">
-		INSERT INTO psychological_counseling_forms (JMS_NO, ST_NO, JMS_RS_DATE,
-		JMS_RS_TIME, JMS_CS_DATE, JMS_CS_TIME, JMS_RS_TEXT, RSVT_YN, JMS_LIST,
-		SC_SN)
-		VALUES (#{JMS_NO}, #{ST_NO}, #{JMS_RS_DATE}, #{JMS_RS_TIME}, #{JMS_CS_DATE},
-		#{JMS_CS_TIME}, #{JMS_RS_TEXT}, #{RSVT_YN}, #{JMS_LIST}, #{SC_SN})
+		INSERT INTO SR (RS_DATE, RS_TIME, STUD_NO, email, CS_TEXT )
+    	VALUES (#{RS_DATE}, #{RS_TIME}, #{STUD_NO}, #{email}, #{CS_TEXT})
 	</insert>
 
-	<!-- 취업 상담 양식-->
+	<!-- 취업 상담-->
 	<insert id="saveEmploymentCounselingForm" parameterType="com.team_3.dto.CounselingFormDTO">
-    	INSERT INTO JC_LIST (RS_DATE, RS_TIME, NAME, STUD_NO, email, CS_TEXT )
-    	VALUES (#{RS_DATE}, #{RS_TIME}, #{NAME}, #{STUD_NO}, #{email}, #{CS_TEXT})
+	INSERT INTO JC_LIST (RS_DATE, RS_TIME, STUD_NO, email, CS_TEXT )
+    	VALUES (#{RS_DATE}, #{RS_TIME}, #{STUD_NO}, #{email}, #{CS_TEXT})
 	</insert>
 
 
