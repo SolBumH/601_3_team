@@ -21,8 +21,13 @@
 
 	<select id="jmSangdamList" parameterType="UserDTO" resultType="CounselingFormDTO">
 		select * from JMS_List
-		where STUD_NO = (select STUD_NO from
-		STUD_INFO where USER_NO = #{user_no})
+		where STUD_NO = (select STUD_NO from STUD_INFO where USER_NO = #{user_no})
+		order by RS_DATE, RS_TIME
+	</select>
+	
+	<select id="srSangdamList" parameterType="UserDTO" resultType="CounselingFormDTO">
+		select * from SR_List
+		where STUD_NO = (select STUD_NO from STUD_INFO where USER_NO = #{user_no})
 		order by RS_DATE, RS_TIME
 	</select>
 

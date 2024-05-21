@@ -19,12 +19,14 @@ public interface MypageRepository {
 	
 	public List<CounselingFormDTO> jmSangdamList(UserDTO user);
 
+	public List<CounselingFormDTO> srSangdamList(UserDTO user);
+
 	public int cancelSangdam(int no);
-
+	
 	public String findStudentNumber(String userId);
-
+	
 	public String findStud_dept(String userId);
-
+	
 	public String findPhone(String userId);
 
 }

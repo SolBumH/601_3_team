@@ -33,6 +33,7 @@ public class MypageService {
 			list = mypageRepository.jmSangdamList(user);
 			break;
 		case "30":
+			list = mypageRepository.srSangdamList(user);
 			break;
 		case "40":
 			break;

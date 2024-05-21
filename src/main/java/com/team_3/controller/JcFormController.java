@@ -79,7 +79,7 @@ public class JcFormController {
         CounselingFormDTO formDTO = new CounselingFormDTO();
         formDTO.setRS_DATE(date); // 예약일자
         formDTO.setRS_TIME(time); // 예약시간
-        formDTO.setNAME(name); // 학생 이름
+        // formDTO.setNAME(name); // 학생 이름
         formDTO.setSTUD_NO(studentNumber); // 학번
         formDTO.setEmail(email); // 이메일 
         formDTO.setCS_TEXT(counselingContent); // 상담 내용

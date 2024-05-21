@@ -14,8 +14,7 @@
 	</select>
 
 	<select id="AdminUser" resultType="userDTO">
-		SELECT *
-		FROM USER
+		SELECT * FROM USER
 	</select>
 
 	<update id="updateBoardDel" parameterType="BoardDTO">
@@ -71,7 +70,7 @@
 	</select>
 	
 	<select id="getSRSangdamList" resultType="CounselingFormDTO">
-		select sr.*, name from SR sr
+		select sr.*, sr.SR_BF_NO as BF_NO, us.name from SR_List sr
 		join STUD_INFO st on sr.STUD_NO = st.STUD_NO
 		join USER us on st.USER_NO = us.USER_NO
 		order by RS_DATE, RS_TIME, SR_NO DESC;
