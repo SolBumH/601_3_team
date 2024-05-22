@@ -92,18 +92,26 @@
 		RSVT_YN = #{RSVT_YN}, RS_CF = #{RS_CF}, RS_CF_TIME = #{RS_CF_TIME}
 		where JMS_NO = #{JMS_NO};
 	</update>
+	<update id="changeSRSRSVT">
+		update SR_List set ST_NO = (select ST_NO from st_info_view where USER_NO = #{ST_NO}),
+		RSVT_YN = #{RSVT_YN}, RS_CF = #{RS_CF}, RS_CF_TIME = #{RS_CF_TIME}
+		where SR_NO = #{SR_NO};
+	</update>
 	
 	<update id="JMSCancel" parameterType="CounselingFormDTO">
 		update JMS_List set RSVT_YN = #{RSVT_YN}
 		where JMS_NO = #{JMS_NO}
 	</update>
+	<update id="SRSCancel" parameterType="CounselingFormDTO">
+		update SR_List set RSVT_YN = #{RSVT_YN}
+		where SR_NO = #{SR_NO}
+	</update>
 	
-	<update id="JSMUpdateDateAndTime" parameterType="CounselingFormDTO">
+	<update id="JMSUpdateDateAndTime" parameterType="CounselingFormDTO">
 		update JMS_List set RS_CF = #{RS_CF}, RS_CF_TIME = #{RS_CF_TIME}
 		where JMS_NO = #{JMS_NO};
 	</update>
-	
-	<update id="JSMfinishedSangdam" parameterType="CounselingFormDTO">
+	<update id="JMSfinishedSangdam" parameterType="CounselingFormDTO">
 		update JMS_List set CS_DATE = #{RS_CF}, CS_TIME = #{RS_CF_TIME}, CS_TEXT = #{CONTENT}
 		where JMS_NO = #{JMS_NO};
 	</update>

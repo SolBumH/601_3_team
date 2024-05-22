@@ -121,17 +121,21 @@ public class AdminService {
 		System.out.println(dto.getST_NO());
 		
 		switch (sangdamNo) {
+			// 교수
 			case "10":
 				break;
+			// 전문
 			case "20":
 				dto.setJMS_NO(no);
 				result = adminRepository.changeJMSRSVT(dto);
 				break;
+			// 심리
 			case "30":
+				dto.setSR_NO(no);
+				result = adminRepository.changeSRSRSVT(dto);
 				break;
+			// 취업
 			case "40":
-				break;
-			case "50":
 				break;
 		}
 		
@@ -151,10 +155,10 @@ public class AdminService {
 				result = adminRepository.JMSCancel(dto);
 				break;
 			case "30":
+				dto.setSR_NO(no);
+				result = adminRepository.SRSCancel(dto);
 				break;
 			case "40":
-				break;
-			case "50":
 				break;
 		}
 		
@@ -173,7 +177,7 @@ public class AdminService {
 				break;
 			case "20":
 				dto.setJMS_NO(no);
-				result = adminRepository.JSMUpdateDateAndTime(dto);
+				result = adminRepository.JMSUpdateDateAndTime(dto);
 				break;
 			case "30":
 				break;
@@ -199,7 +203,7 @@ public class AdminService {
 				break;
 			case "20":
 				dto.setJMS_NO(no);
-				result = adminRepository.JSMfinishedSangdam(dto);
+				result = adminRepository.JMSfinishedSangdam(dto);
 				break;
 			case "30":
 				break;

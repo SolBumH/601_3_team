@@ -21,11 +21,16 @@ const grid = new tui.Grid({
 		action: () => {
 			let row = grid.getRow(rowKey);
 			let no = 0;
-			if(sangdamNo == 20){
+			if (sangdamNo == 10) {
+				
+			} else if (sangdamNo == 20){
 				no = row.jms_NO;
-			} else if (sangdamNo == 50) {
+			} else if (sangdamNo == 30) {
+				no = row.sr_NO;
+			} else if (sangdamNo == 40) {
 				no = row.jc_NO;
 			}
+			
 			$.ajax({
 				type : 'post',
 				url : '/admin/approval',
@@ -48,11 +53,17 @@ const grid = new tui.Grid({
 		action: () => {
 			let row = grid.getRow(rowKey);
 			let no = 0;
-			if(sangdamNo == 20){
+			
+			if (sangdamNo == 10) {
+				
+			} else if (sangdamNo == 20){
 				no = row.jms_NO;
-			} else if (sangdamNo == 50) {
+			} else if (sangdamNo == 30) {
+				no = row.sr_NO;
+			} else if (sangdamNo == 40) {
 				no = row.jc_NO;
 			}
+			
 			$.ajax({
 				type : 'post',
 				url : '/admin/cancel',
@@ -165,8 +176,8 @@ $(document).ready(function () {
   //   },
   // });
 
-  $("#selectSangdamBtn").on("click", function () {
-    sangdamNo = $("#sangdamList option:selected").val();
+  $("#changeScheduleBtn").on("click", function () {
+    // sangdamNo = $("#sangdamList option:selected").val();
 
     $.ajax({
       url: "/admin/sangdamList",
