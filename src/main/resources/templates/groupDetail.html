@@ -3,184 +3,202 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+<link
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"
+	rel="stylesheet">
 <!-- 부트 스트랩 -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+<script
+	src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
 <title>집단상담</title>
 <th:block th:insert="~{index.html::headImport}">CDN CSS 링크</th:block>
 <link rel="stylesheet" href="/css/jcCounseling.css">
 <link rel="stylesheet" href="/css/jdCounseling.css">
 <style>
-    .program-name {
-        font-size: 24px;  /* 글씨 크기를 설정 */
-        font-weight: bold; /* 글씨를 굵게 설정 */
-        position: relative; /* 가상 요소 위치 설정을 위한 relative 포지션 */
-        padding-bottom: 10px; /* 텍스트와 밑줄 사이의 간격 조정 */
-    }
-    .program-name::after {
-        content: "";
-        position: absolute;
-        left: 0;
-        bottom: 0;
-        width: 100%;
-        border-bottom: 3px solid black; /* 밑줄 추가 */
-    }
-    .request {
-        width: 100%;
-        margin: 0; /* 카드 내부 여백 제거 */
-        padding: 0; /* 카드 내부 여백 제거 */
-    }
-    .request th, .request td {
-        padding: 5px 10px; /* 테이블 셀 여백 조정 */
-        text-align: left;
-    }
-    .request th {
-        background-color: #f8f9fa;
-        border: 1px solid #dee2e6;
-    }
-    .request td {
-        border: 1px solid #dee2e6;
-    }
-    .card-body {
-        padding: 10px; /* 카드 내부 패딩 조정 */
-    }
-    .card img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-    }
-    .equal-height {
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-        height: 100%;
-    }
-    
-    .badge.text-bg-primary {
-    display: inline-block;
-    padding: 0.2em 0.3em; 
-    background-color: #8ca6cd !important; /* 새로운 배경 색상 */
-    color: white;
-    border-radius: 0.25em;
-    font-size: 0.8em;
-    font-weight: bold;
-    margin-top: 0.5em;
+.program-name {
+	font-size: 24px; /* 글씨 크기를 설정 */
+	font-weight: bold; /* 글씨를 굵게 설정 */
+	position: relative; /* 가상 요소 위치 설정을 위한 relative 포지션 */
+	padding-bottom: 10px; /* 텍스트와 밑줄 사이의 간격 조정 */
+}
+
+.program-name::after {
+	content: "";
+	position: absolute;
+	left: 0;
+	bottom: 0;
+	width: 100%;
+	border-bottom: 3px solid black; /* 밑줄 추가 */
+}
+
+.request {
+	width: 100%;
+	margin: 0; /* 카드 내부 여백 제거 */
+	padding: 0; /* 카드 내부 여백 제거 */
+}
+
+.request th, .request td {
+	padding: 5px 10px; /* 테이블 셀 여백 조정 */
+	text-align: left;
+}
+
+.request th {
+	background-color: #f8f9fa;
+	border: 1px solid #dee2e6;
+}
+
+.request td {
+	border: 1px solid #dee2e6;
+}
+
+.card-body {
+	padding: 10px; /* 카드 내부 패딩 조정 */
+}
+
+.card img {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+}
+
+.equal-height {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	height: 100%;
+}
+
+.badge.text-bg-primary {
+	display: inline-block;
+	padding: 0.2em 0.3em;
+	background-color: #8ca6cd !important; /* 새로운 배경 색상 */
+	color: white;
+	border-radius: 0.25em;
+	font-size: 0.8em;
+	font-weight: bold;
+	margin-top: 0.5em;
 }
 </style>
 </head>
 <body>
-    <th:block th:insert="~{menu.html::header}">메뉴 들어가는 곳</th:block>
+	<th:block th:insert="~{menu.html::header}">메뉴 들어가는 곳</th:block>
 
-    <section class="counselindex gray-bg">
-        <div class="container" style="min-height: 100vh; padding-bottom: 20px;">
-            <div class="title-container" style="padding-top: 40px">
-                <h3>집단상담 프로그램 신청</h3>
-            </div>
-            <hr>
-            <div class="row">
-                <!-- First card -->
-                <div class="col-sm-3 mb-2">
-                    <div class="card">
-                        <div class="card-body" style="height: 300px; padding: 0;">
-                            <img alt="/img/program.png" src="/img/program.png" style="width: 100%; height: 100%; object-fit: cover;">
-                        </div>
-                    </div>
-                </div>
+	<section class="counselindex gray-bg">
+		<div class="container" style="min-height: 100vh; padding-bottom: 20px;">
+	
+			<div class="title-container" style="padding-top: 40px">
+				<h3>집단상담 프로그램 신청</h3>
+			</div><hr>
+			
+			<div class="row">
+				<!-- First card -->
+				<div class="col-sm-3 mb-2">
+					<div class="card">
+						<div class="card-body" style="height: 300px; padding: 0;">
+							<img alt="/img/program.png" src="/img/program.png" style="width: 100%; height: 100%; object-fit: cover;">
+						</div>
+					</div>
+				</div>
 
-                <!-- Second card -->
-                <div class="col-sm-8 mb-2">
-                    <div class="card" style="height: 300px;">
-                        <div class="card-body" style="height: 100%;">
-                            <div class="program1" style="height: 100%; margin-left: 0;">
-                                <table class="request" style="height: 100%;">
-									<tr>
-										<th class="th" scope="row">프로그램명</th>
+				<!-- Second card -->
+				<div class="col-sm-8 mb-2">
+					<div class="card" style="height: 300px;">
+						<div class="card-body" style="height: 100%;">
+							<div class="program1" style="height: 100%; margin-left: 0;">
+								<table class="request" style="height: 100%;">
+									<tr><th class="th" scope="row">프로그램명</th>
 										<td th:utext="${detail.PG_NAME} + ' <span class=\'badge text-bg-primary\'>모집중</span>'"></td>
 									</tr>
+									<tr><th class="th" scope="row">상담 날짜</th>
+										<td th:text="${#dates.format(detail.JMS_CS_DATE, 'yyyy-MM-dd HH')} + '시'"></td>
+									</tr>
 									<tr>
-                                        <th class="th" scope="row">상담 날짜</th>
-                                        <td th:text="${#dates.format(detail.JMS_CS_DATE, 'yyyy-MM-dd HH')} + '시'"></td>
-                                    </tr>
-                                    <tr>
-                                        <th class="th" scope="row">마감일</th>
-                                        <td th:text="${#dates.format(detail.EN_DATE, 'yyyy-MM-dd')}"></td>
-                                    </tr>
-                                    <tr>
-                                        <th class="th" scope="row">신청인원수</th>
-                                        <td th:text="${detail.AP_NO} + '명'"></td>
-                                    </tr>
-                                    <tr>
-                                        <th class="th" scope="row">참여인원수</th>
-                                        <td th:text="${detail.PA_NO} + '명'"></td>
-                                    </tr>
-                                    <tr>
-                                        <th class="th" scope="row">총 인원수</th>
-                                        <td th:text="${detail.TO_NO} + '명'"></td>
-                                    </tr>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-sm-11 mb-2">
-                    <div class="card" style="height: auto;">
-                        <div class="card-body">
-                            <h4>프로그램에 관한 상세설명</h4>
-                            <div class="program1">
-                                <table class="request">
-                                    <tr>
-                                        <th class="th" scope="row">상세 설명</th>
-                                        <td th:text="${detail.PG_EXPLAIN}"></td>
-                                    </tr>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- Button trigger modal -->
-            <div style="text-align: center;">
-                <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal">신청하기</button>
-            </div>
-        </div>
+										<th class="th" scope="row">마감일</th>
+										<td th:text="${#dates.format(detail.EN_DATE, 'yyyy-MM-dd')}"></td>
+									</tr>
+									<tr><th class="th" scope="row">신청인원수</th>
+										<td th:text="${detail.AP_NO} + '명'"></td>
+									</tr>
+									<tr><th class="th" scope="row">참여인원수</th>
+										<td th:text="${detail.PA_NO} + '명'"></td>
+									</tr>
+									<tr><th class="th" scope="row">총 인원수</th>
+										<td th:text="${detail.TO_NO} + '명'"></td>
+									</tr>
+								</table>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-sm-11 mb-2">
+					<div class="card" style="height: auto;">
+						<div class="card-body">
+							<h4>프로그램에 관한 상세설명</h4>
+							<div class="program1">
+								<table class="request">
+									<tr><th class="th" scope="row">상세 설명</th>
+										<td th:text="${detail.PG_EXPLAIN}"></td>
+									</tr>
+								</table>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- Button trigger modal -->
+			<div style="text-align: center;">
+				<button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal">신청하기</button>
+			</div>
+			 
+			<form id="saveGroupResultForm" action="saveGroupResult" method="post">
+				<input type="hidden" name="programName" id="formProgramName" value="[[${detail.PG_NAME}]]">
+				<input type="hidden" name="JD_NO" id="formJDNO" value="[[${detail.JD_NO}]]">
+				<input type="hidden" name="studentName" id="formStudentName">
+				<input type="hidden" name="studentNo" id="formStudentNo">
+			</form>
+			 
+		</div>
 
-        <!-- Modal -->
-        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h1 class="modal-title fs-5" id="exampleModalLabel">상담프로그램을 신청하시겠습니까?</h1>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body">확인을 누르면 신청이 완료됩니다.</div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">닫기</button>
-                        <button type="button" class="btn btn-danger" onclick="applyForProgram()">확인</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+		<!-- Modal -->
+		<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h1 class="modal-title fs-5" id="exampleModalLabel">상담프로그램을 신청하시겠습니까?</h1>
+						<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+					</div>
+					<div class="modal-body">확인을 누르면 신청이 완료됩니다.</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">닫기</button>
+						<button type="button" class="btn btn-danger" onclick="applyForProgram()">확인</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
 
-    <script>
-    function getQueryParam(param) {
-        let urlParams = new URLSearchParams(window.location.search);
-        return urlParams.get(param);
-    }
+	<script>
+		function getQueryParam(param) {
+			let urlParams = new URLSearchParams(window.location.search);
+			return urlParams.get(param);
+		}
 
-    function applyForProgram() {
-        let no = getQueryParam('no');
-        if (no) {
-            let url = `groupResult?no=${no}`;
-            window.location.href = url;
-        } else {
-            alert("No parameter is missing in the URL");
-        }
-    }
-    </script>
+		function applyForProgram() {
+			let no = getQueryParam('no');
+			if (no) {
+				let url = `groupResult?no=${no}`;
+				window.location.href = url;
+			} else {
+				alert("No parameter is missing in the URL");
+			}
+		}
+		
+		function submitForm() {
+			document.getElementById('saveGroupResultForm').submit();
+		}
+	</script>
 
-    <th:block th:insert="~{index.html::jsImport}">CDN JS 링크</th:block>
+	<th:block th:insert="~{index.html::jsImport}">CDN JS 링크</th:block>
 </body>
 </html>

@@ -1,6 +1,5 @@
 package com.team_3.dto;
 
-import java.time.LocalDate;
 import java.util.Date;
 
 import lombok.Data;
@@ -17,5 +16,9 @@ public class GroupDTO {
 	private int TO_NO; //총 인원수
 	private int AP_NO; //신청인원수
 	private int PA_NO; //참여인원수
+	
+	private String STUD_NO; //학번
+	private int ST_NO; //교직원번호
+	private String PA_YN; //참여여부   1.미참여 / 2.참여
 	
 }

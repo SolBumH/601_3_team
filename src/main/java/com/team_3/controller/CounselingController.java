@@ -9,10 +9,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.team_3.dto.BoardDTO;
 import com.team_3.dto.CustomUserDetails;
+import com.team_3.dto.GroupDTO;
 import com.team_3.dto.UserDTO;
 import com.team_3.service.CounselingService;
 import com.team_3.service.CustomUserDetailService;
@@ -110,6 +112,22 @@ public class CounselingController {
 		model.addAttribute("userNameAndRole", userUtil.getUserNameAndRole());
 		
 		return "groupResult";
+	}
+	
+	@PostMapping("/saveGroupResult")
+	public String savaeGroupResult(@RequestParam("programName") String programName,
+								   @RequestParam("JD_NO") int JD_NO,
+								   @RequestParam(name = "studentName") String studentName,
+								   @RequestParam(name = "studentNo") String studentNo) {
+		
+		GroupDTO groupDTO = new GroupDTO();
+		groupDTO.setJD_NO(JD_NO);
+		groupDTO.setPG_NAME(programName);
+		groupDTO.setSTUD_NO(studentNo);
+		System.out.println(groupDTO);
+		counselingService.saveGroupResult(groupDTO);
+		return "redirect:/groupResult";
+		
 	}
 	
 	@GetMapping("/jcCounseling")
