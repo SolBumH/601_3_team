@@ -20,8 +20,15 @@ public List<BoardDTO> mypageBoardList(UserDTO user);
 	public List<CounselingFormDTO> jmSangdamList(UserDTO user);
 
 	public List<CounselingFormDTO> srSangdamList(UserDTO user);
+	
+	public List<CounselingFormDTO> jkSangdamList(UserDTO user);
+	
+	public List<CounselingFormDTO> jcSangdamList(UserDTO user);
 
-	public int cancelSangdam(int no);
+	public int cancelJKSangdam(int no);
+	public int cancelJMSangdam(int no);
+	public int cancelSRSangdam(int no);
+	public int cancelJCSangdam(int no);
 	
 	public String findStudentNumber(String userId);
 	
