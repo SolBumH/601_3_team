@@ -86,17 +86,21 @@ public class AdminController {
 	public String saveGroupForm(@RequestParam(name = "programName") String programName,
 								@RequestParam(name = "date") @DateTimeFormat(pattern = "yyyy-MM-dd") Date date,
 					            @RequestParam(name = "endDate") @DateTimeFormat(pattern = "yyyy-MM-dd") Date endDate,
-                                @RequestParam("programContent") String programContent) {
-									
+					            @RequestParam(name = "time") String time,
+                                @RequestParam("programContent") String programContent,
+                                @RequestParam("recruitmentNumber") int recruitmentNumber) {
+							
+		
+		
 		GroupDTO groupDTO = new GroupDTO();
 		groupDTO.setPG_NAME(programName);
 		groupDTO.setJMS_CS_DATE(date);
 		groupDTO.setEN_DATE(endDate);
 		groupDTO.setPG_EXPLAIN(programContent);
+		groupDTO.setTO_NO(recruitmentNumber);
 		
 		adminService.save(groupDTO);
 		return "redirect:/admin/Group";
-		
 	}
 	
 	@GetMapping("/Counseling")
