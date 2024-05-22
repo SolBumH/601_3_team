@@ -50,50 +50,50 @@
     <th:block th:insert="~{/admin/adminmenu.html::leftmenu}"></th:block>
 
     <div class="bodypart">
-
         <div class="form-container">
             <h3 class="text-center">집단상담 프로그램 신청</h3>
-            <form action="/saveCounselingForm" method="post">
+            <form action="/admin/saveGroupForm" method="post">
 
                 <div class="form-group mb-3">
                     <label for="programName">프로그램명</label>
-                    <input id="programName" type="text" class="form-control" name="programName" placeholder="프로그램명을 입력해주세요.">
+                    <input id="programName" type="text" class="form-control" name="programName" placeholder="프로그램명을 입력해주세요." required>
                 </div>
 
                 <div class="form-group mb-3">
                     <label for="date">상담 날짜</label>
-                    <input id="date" type="date" class="form-control" name="date">
+                    <input id="date" type="date" class="form-control" name="date" required>
                 </div>
 
                 <div class="form-group mb-3">
                     <label for="endDate">마감 날짜</label>
-                    <input id="endDate" type="date" class="form-control" name="endDate">
+                    <input id="endDate" type="date" class="form-control" name="endDate" required>
                 </div>
+
 
                 <div class="form-group mb-3">
                     <label for="time">상담 시간</label>
-                    <select id="time" class="form-control" name="time">
-                        <option value="10:00">10:00</option>
-                        <option value="11:00">11:00</option>
-                        <option value="13:00">13:00</option>
-                        <option value="14:00">14:00</option>
-                        <option value="15:00">15:00</option>
-                        <option value="16:00">16:00</option>
+                    <select id="time" class="form-control" name="time" required>
+                        <option value="10">10:00</option>
+                        <option value="11">11:00</option>
+                        <option value="13">13:00</option>
+                        <option value="14">14:00</option>
+                        <option value="15">15:00</option>
+                        <option value="16">16:00</option>
                     </select>
                 </div>
 
                 <div class="form-group mb-3">
                     <label for="recruitmentNumber">모집인원</label>
-                    <input id="recruitmentNumber" type="text" class="form-control" name="recruitmentNumber" placeholder="모집인원을 입력해주세요.">
+                    <input id="recruitmentNumber" type="text" class="form-control" name="recruitmentNumber" placeholder="모집인원을 입력해주세요." required>
                 </div>
 
                 <div class="form-group mb-3">
                     <label for="programContent">프로그램 상세설명</label>
-                    <textarea id="programContent" class="form-control" name="programContent" placeholder="200자 이내(400byte)로 입력해 주세요." rows="4"></textarea>
+                    <textarea id="programContent" class="form-control" name="programContent" placeholder="200자 이내(400byte)로 입력해 주세요." rows="4" required></textarea>
                 </div>
 
                 <div class="d-flex justify-content-center">
-                     <button id="submitBtn" type="button" class="btn btn-danger" onclick="location.href='Group'">신청하기</button>
+                     <button id="submitBtn" type="submit" class="btn btn-danger">신청하기</button> <!-- 버튼 타입을 submit으로 수정 -->
                 </div>
                 <input type="hidden" name="_csrf" th:value="${_csrf.token}" />
             </form>
@@ -107,6 +107,7 @@
             document.getElementById('endDate').setAttribute('min', today); //최소날짜 오늘 날짜로 지정
         });
     </script>
+    
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
     <script src="/admin/js/scripts.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
