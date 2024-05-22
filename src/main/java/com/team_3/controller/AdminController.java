@@ -32,7 +32,7 @@ public class AdminController {
 	@Autowired
 	private AdminService adminService;
 
-	@GetMapping({ "/index", "" })
+	@GetMapping({"/index", "", "/"})
 	public String index(Model model) {
 		model.addAttribute("user", userUtil.getUserNameAndRole());
 		return "admin/adminIndex";
@@ -194,6 +194,7 @@ public class AdminController {
 			@RequestParam(name = "sangdamNo") String sangdamNo,
 			@RequestParam(name = "RS_DATE") String rs_date,
 			@RequestParam(name = "RS_TIME") String rs_time) throws ParseException {
+		System.out.println(yn + "/" + no + "/" + sangdamNo + "/" + rs_date + "/" + rs_time);
 		
 		int result = adminService.approval(sangdamNo, no, yn, rs_date, rs_time);
 

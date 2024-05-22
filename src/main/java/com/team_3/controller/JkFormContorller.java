@@ -35,6 +35,7 @@ public class JkFormContorller {
 	@PostMapping("/jkconsult")
 	@ResponseBody
 	public List<JkDTO> jkconsult(@RequestParam(name = "date") String date, Model model) {
+		model.addAttribute("user", userUtil.getUserNameAndRole());
 		List<JkDTO> schedule = jkService.getSchedule(date);
 		return schedule;
 	}
