@@ -78,7 +78,7 @@ public class CounselingRepositoryImpl implements CounselingRepository {
 	}
 
 	@Override
-	public String findStudentNumber(String userId) {
-		return sqlSession.selectOne("jcCounselingForm.findByStud_no", userId);
+	public String findStudentNumber(String id) {
+		return sqlSession.selectOne("jcCounselingForm.findByStud_no", id);
 	}
 }

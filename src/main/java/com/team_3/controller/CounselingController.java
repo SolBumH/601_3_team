@@ -91,23 +91,27 @@ public class CounselingController {
 		BoardDTO detail = counselingService.getResult(no);
 		
         String name = principal.getName();
-
+        
         CustomUserDetails customUserDetails = (CustomUserDetails) customUserDetailService.loadUserByUsername(name);
         String username = customUserDetails.getName();
+        String id = customUserDetails.getUsername();
         
         System.out.println(detail);
+        System.out.println("=============");
 		System.out.println(username);
+		System.out.println(id);
 		
-		String studentNumber = counselingService.findStudentNumber(username);
+		String studentNumber = counselingService.findStudentNumber(id);
 		model.addAttribute("studentNumber", studentNumber);
 		model.addAttribute("studentName", username);
 		model.addAttribute("detail", detail);
 		model.addAttribute("user", user);
+		model.addAttribute("id", id);
 		model.addAttribute("userNameAndRole", userUtil.getUserNameAndRole());
 		
 		return "groupResult";
 	}
-
+	
 	@GetMapping("/jcCounseling")
 	public String jcCounseling(Model model) {
 		model.addAttribute("counselingTitle", "취업·진로 상담 안내");	

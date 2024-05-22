@@ -17,21 +17,32 @@
 <link rel="stylesheet" href="/css/jcCounseling.css">
 <link rel="stylesheet" href="/css/jdCounseling.css">
 <style>
-	.text1 {
-		padding-top: 5px;
-		text-align: center;
-		display: flex;
-		flex-direction: column;
-		justify-content: center;
-		align-items: center;
-		height: 100%;
-	}
-	
-	.card-group-item.col {
-		margin: 5px 0;
-		padding: 2px;
-		font-size: 14px;
-	}
+.text1 {
+	padding-top: 5px;
+	text-align: center;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	height: 100%;
+}
+
+.card-group-item.col {
+	margin: 5px 0;
+	padding: 2px;
+	font-size: 14px;
+}
+
+.badge.text-bg-primary {
+	display: inline-block;
+	padding: 0.2em 0.4em; /* 상하와 좌우 패딩을 조절 */
+	background-color: #8ca6cd;
+	color: white;
+	border-radius: 0.25em;
+	font-size: 0.9em;
+	font-weight: bold;
+	margin-top: 0.5em;
+}
 </style>
 </head>
 
@@ -74,7 +85,10 @@
                            </div>
                            <div class="text1">
                               <p style="text-align: center">
-                              	<div class="card-group-item col" style="font-weight: bold;" th:text="${row.PG_NAME}"></div>
+                              	<div class="card-group-item col" style="font-weight: bold;">
+                                     <span th:text="${row.PG_NAME}"></span>
+                                     <span class="badge text-bg-primary" th:text="'모집중 (' + ${row.AP_NO} + '/' + ${row.TO_NO} + ')'">모집중</span>
+                                 </div>
                               	 <div class="card-group-item col" th:text="'일 정 : ' + ${#dates.format(row.JMS_CS_DATE, 'yyyy-MM-dd')}"></div>
                               	 <div class="card-group-item col" th:text="'시 간 : ' + ${#dates.format(row.JMS_CS_DATE, 'HH시')}"></div>
                               </p>
