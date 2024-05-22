@@ -53,8 +53,15 @@
         <div class="form-container">
             <h3 class="text-center">집단상담 프로그램 신청</h3>
             <form action="/admin/saveGroupForm" method="post">
+				<div class="form-group mb-3">
+					<label for="file">파일선택</label>
+					<div class="input-group mb-3">
+						<input type="file" class="form-control" id="formFile" name="file" accept="image/*">
+						<button type="submit" class="btn btn-secondary">업로드</button>
+					</div>
+				</div>
 
-                <div class="form-group mb-3">
+				<div class="form-group mb-3">
                     <label for="programName">프로그램명</label>
                     <input id="programName" type="text" class="form-control" name="programName" placeholder="프로그램명을 입력해주세요." required>
                 </div>

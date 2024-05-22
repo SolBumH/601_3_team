@@ -1,5 +1,9 @@
 package com.team_3.controller;
 
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.security.Principal;
 import java.util.ArrayList;
 import java.util.List;
@@ -11,7 +15,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.team_3.dto.BoardDTO;
 import com.team_3.dto.CustomUserDetails;
 import com.team_3.dto.GroupDTO;
@@ -127,8 +133,8 @@ public class CounselingController {
 		System.out.println(groupDTO);
 		counselingService.saveGroupResult(groupDTO);
 		return "redirect:/groupResult";
-		
 	}
+	
 	
 	@GetMapping("/jcCounseling")
 	public String jcCounseling(Model model) {
