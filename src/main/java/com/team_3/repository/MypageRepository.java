@@ -13,7 +13,7 @@ import com.team_3.dto.UserDTO;
 @Mapper
 public interface MypageRepository {
 	
-	public List<BoardDTO> mypageBoardList(UserDTO user);
+public List<BoardDTO> mypageBoardList(UserDTO user);
 	
 	public int boardDelete(int board_no);
 	
@@ -28,5 +28,6 @@ public interface MypageRepository {
 	public String findStud_dept(String userId);
 	
 	public String findPhone(String userId);
+	
 
 }

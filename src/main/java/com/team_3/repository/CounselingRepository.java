@@ -31,4 +31,6 @@ public interface CounselingRepository {
 
 	String findStudentNumber(String id);
 
+
+
 }
