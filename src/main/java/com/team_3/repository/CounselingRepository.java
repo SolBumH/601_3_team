@@ -29,6 +29,6 @@ public interface CounselingRepository {
 
 	int saveEmploymentCounselingForm(CounselingFormDTO formDTO);
 
-	String findStudentNumber(String userId);
+	String findStudentNumber(String id);
 
 }

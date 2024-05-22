@@ -89,8 +89,6 @@ public class AdminController {
 					            @RequestParam(name = "time") String time,
                                 @RequestParam("programContent") String programContent,
                                 @RequestParam("recruitmentNumber") int recruitmentNumber) {
-							
-		
 		
 		GroupDTO groupDTO = new GroupDTO();
 		groupDTO.setPG_NAME(programName);

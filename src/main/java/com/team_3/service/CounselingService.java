@@ -64,8 +64,8 @@ public class CounselingService {
 	    return counselingRepository.saveEmploymentCounselingForm(formDTO);
 	}
 
-	public String findStudentNumber(String userId) {
-		return counselingRepository.findStudentNumber(userId);
+	public String findStudentNumber(String id) {
+		return counselingRepository.findStudentNumber(id);
 	}
 
 
