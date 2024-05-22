@@ -102,6 +102,10 @@ public class AdminRepository {
 		return sqlSession.update("admin.SRSUpdateDateAndTime",dto);
 	}
 
+	public int JCSUpdateDateAndTime(CounselingFormDTO dto) {
+		return sqlSession.update("admin.JCSUpdateDateAndTime",dto);
+	}
+
 	public int JMSfinishedSangdam(CounselingFormDTO dto) {
 		return sqlSession.update("admin.JMSfinishedSangdam",dto);
 	}
@@ -110,7 +114,12 @@ public class AdminRepository {
 		return sqlSession.update("admin.SRSfinishedSangdam",dto);
 	}
 	
+	public int JCSfinishedSangdam(CounselingFormDTO dto) {
+		return sqlSession.update("admin.JCSfinishedSangdam",dto);
+	}
+	
 	public List<Map<String, Object>> chart() {
 		return sqlSession.selectList("admin.chart");
 	}
+
 }

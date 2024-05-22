@@ -123,6 +123,10 @@
 		update SR_List set RS_CF = #{RS_CF}, RS_CF_TIME = #{RS_CF_TIME}
 		where SR_NO = #{SR_NO};
 	</update>
+	<update id="JCSUpdateDateAndTime" parameterType="CounselingFormDTO">
+		update JC_LIST set RS_CF = #{RS_CF}, RS_CF_TIME = #{RS_CF_TIME}
+		where JC_NO = #{JC_NO};
+	</update>
 	
 	<update id="JMSfinishedSangdam" parameterType="CounselingFormDTO">
 		update JMS_List set CS_DATE = #{RS_CF}, CS_TIME = #{RS_CF_TIME},
@@ -133,6 +137,11 @@
 		update SR_List set CS_DATE = #{RS_CF}, CS_TIME = #{RS_CF_TIME},
 							CS_TEXT = #{CONTENT}, RSVT_YN = '4'
 		where SR_NO = #{SR_NO};
+	</update>
+	<update id="JCSfinishedSangdam" parameterType="CounselingFormDTO">
+		update JC_LIST set CS_DATE = #{RS_CF}, CS_TIME = #{RS_CF_TIME},
+							CS_TEXT = #{CONTENT}, RSVT_YN = '4'
+		where JC_NO = #{JC_NO};
 	</update>
 	
 	<select id="chart" resultType="Map">

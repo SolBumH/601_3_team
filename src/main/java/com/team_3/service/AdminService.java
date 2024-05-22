@@ -187,6 +187,8 @@ public class AdminService {
 				result = adminRepository.SRSUpdateDateAndTime(dto);
 				break;
 			case "40":
+				dto.setJC_NO(no);
+				result = adminRepository.JCSUpdateDateAndTime(dto);
 				break;
 			case "50":
 				break;
@@ -215,6 +217,8 @@ public class AdminService {
 				result = adminRepository.SRSfinishedSangdam(dto);
 				break;
 			case "40":
+				dto.setJC_NO(no);
+				result = adminRepository.JCSfinishedSangdam(dto);
 				break;
 			case "50":
 				break;

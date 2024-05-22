@@ -145,7 +145,17 @@ const grid = new tui.Grid({
 grid.on("click", (ev) => {
     let row = grid.getRow(ev.rowKey);
     if (row !== null) {
-	    // console.log(row);
+	    console.log(row);
+		let date;
+		let time;
+		// 예약 확정 시간이 있으면 확정된 시간을 넣고, 아니면 신청일을 집어넣음
+		if (row.rs_CF == null) {
+			date = row.rs_DATE;
+			time = row.rs_TIME;
+		} else {
+			date = row.rs_CF;
+			time = row.rs_CF_TIME;
+		}
 		
 		let no = 0;
 		if(sangdamNo == 20){
@@ -159,8 +169,9 @@ grid.on("click", (ev) => {
 		  $('#responseName').val(row.name);
 		  $('#content').text(row.content);
 		  $("#before_sangdamNo").val(row.bf_NO);
-		  $("#rs_cf").val(row.rs_CF);
-		  $('#adminAnswer').val("");
+		  $("#rs_cf").val(date);
+		  $("#rs_cf_time").val(time).prop("selected", true);
+		  $('#adminAnswer').text(row.content);
     }
 });
 
