@@ -78,6 +78,10 @@ public class AdminRepository {
 		return sqlSession.update("admin.changeSRSRSVT", dto);
 	}
 	
+	public int changeJCSRSVT(CounselingFormDTO dto) {
+		return sqlSession.update("admin.changeJCSRSVT", dto);
+	}
+	
 	public int JMSCancel(CounselingFormDTO dto) {
 		return sqlSession.update("admin.JMSCancel",dto);
 	}
@@ -85,13 +89,25 @@ public class AdminRepository {
 	public int SRSCancel(CounselingFormDTO dto) {
 		return sqlSession.update("admin.SRSCancel",dto);
 	}
+	
+	public int JCSCancel(CounselingFormDTO dto) {
+		return sqlSession.update("admin.JCSCancel",dto);
+	}
 
 	public int JMSUpdateDateAndTime(CounselingFormDTO dto) {
 		return sqlSession.update("admin.JMSUpdateDateAndTime",dto);
 	}
 
+	public int SRSUpdateDateAndTime(CounselingFormDTO dto) {
+		return sqlSession.update("admin.SRSUpdateDateAndTime",dto);
+	}
+
 	public int JMSfinishedSangdam(CounselingFormDTO dto) {
 		return sqlSession.update("admin.JMSfinishedSangdam",dto);
+	}
+
+	public int SRSfinishedSangdam(CounselingFormDTO dto) {
+		return sqlSession.update("admin.SRSfinishedSangdam",dto);
 	}
 	
 	public List<Map<String, Object>> chart() {

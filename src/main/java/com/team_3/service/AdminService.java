@@ -136,6 +136,8 @@ public class AdminService {
 				break;
 			// 취업
 			case "40":
+				dto.setJC_NO(no);
+				result = adminRepository.changeJCSRSVT(dto);
 				break;
 		}
 		
@@ -159,6 +161,8 @@ public class AdminService {
 				result = adminRepository.SRSCancel(dto);
 				break;
 			case "40":
+				dto.setJC_NO(no);
+				result = adminRepository.JCSCancel(dto);
 				break;
 		}
 		
@@ -167,7 +171,6 @@ public class AdminService {
 
 	public int updateDateAndTime(String sangdamNo, int no, String rs_cf, String rs_cf_time) {
 		int result = 0;
-		
 		CounselingFormDTO dto = new CounselingFormDTO();
 		dto.setRS_CF(rs_cf);
 		dto.setRS_CF_TIME(rs_cf_time);
@@ -180,6 +183,8 @@ public class AdminService {
 				result = adminRepository.JMSUpdateDateAndTime(dto);
 				break;
 			case "30":
+				dto.setSR_NO(no);
+				result = adminRepository.SRSUpdateDateAndTime(dto);
 				break;
 			case "40":
 				break;
@@ -206,6 +211,8 @@ public class AdminService {
 				result = adminRepository.JMSfinishedSangdam(dto);
 				break;
 			case "30":
+				dto.setSR_NO(no);
+				result = adminRepository.SRSfinishedSangdam(dto);
 				break;
 			case "40":
 				break;

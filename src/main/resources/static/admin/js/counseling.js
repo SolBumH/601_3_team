@@ -159,6 +159,7 @@ grid.on("click", (ev) => {
 		  $('#responseName').val(row.name);
 		  $('#content').text(row.content);
 		  $("#before_sangdamNo").val(row.bf_NO);
+		  $("#rs_cf").val(row.rs_CF);
 		  $('#adminAnswer').val("");
     }
 });
@@ -176,20 +177,46 @@ $(document).ready(function () {
   //   },
   // });
 
+	$("#selectSangdamBtn").on("click", function () {
+	    sangdamNo = $("#sangdamList option:selected").val();
+	
+	    $.ajax({
+	      url: "/admin/sangdamList",
+	      type: "post",
+	      data: { sangdamNo: sangdamNo },
+	      dataType: "json",
+	      //contentType: "application/json; charset=UTF-8",
+	      beforeSend: function (xhr) {
+	        xhr.setRequestHeader(header, token);
+	      },
+	      success: function (result) {
+	        grid.resetData(result);
+	      },
+	      error: function () {
+	        alert("통신 에러 발생");
+	      },
+	    });
+  	});
+
   $("#changeScheduleBtn").on("click", function () {
     // sangdamNo = $("#sangdamList option:selected").val();
-
+	let no = $("#responseNo").val();
+	let date = $("#rs_cf").val();
+	let time = $("#rs_cf_time option:selected").val();
+	
     $.ajax({
-      url: "/admin/sangdamList",
+      url: "/admin/updateDateAndTime",
       type: "post",
-      data: { sangdamNo: sangdamNo },
+      data: { sangdamNo: sangdamNo, no:no, rs_cf:date, rs_cf_time:time },
       dataType: "json",
       //contentType: "application/json; charset=UTF-8",
       beforeSend: function (xhr) {
         xhr.setRequestHeader(header, token);
       },
       success: function (result) {
-        grid.resetData(result);
+        if (result == 1) {
+			alert("저장 완료");
+		}
       },
       error: function () {
         alert("통신 에러 발생");
@@ -213,7 +240,9 @@ $(document).ready(function () {
 			data: {sangdamNo : sangdamNo, no : no, 
 				rs_cf : date, rs_cf_time : time, content : content},
 			success: function(result) {
-				console.log(result);
+				if (result == 1) {
+					alert("저장 완료");
+				}
 			},
 		});
 	});
