@@ -83,7 +83,6 @@
 	padding: 1%
 }
 
-
 .request .add {
 	margin-top: 1%;
 }
@@ -99,13 +98,17 @@
 	margin-left: 5px;
 }
 
-.request .wid30 {
-	width: 30%;
+.custom-file-label {
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
 }
 
-
-.request .wid53 {
-	width: 49%;
+input[type="file"].form-control {
+	border: none; /* 테두리 제거 */
 }
 
-
+#formFileMultiple {
+	margin-top: 10px; /* 파일 업로드 입력 필드 위쪽 마진 추가 */
+	margin-left: -12px;
+}

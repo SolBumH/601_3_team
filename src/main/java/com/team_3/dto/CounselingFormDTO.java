@@ -35,8 +35,8 @@ public class CounselingFormDTO {
 	private int JC_NO; //취업상담번호
 	private String username; //학생 아이디
 	private String selectedType; //상담 종류
-	private int USER_NO; //유저 번호
-	private int JC_USER; //취업 유저 번호
+	private String file;
+	
 	
 	//교수 상담
 	private int JKS_NO; //교수상담번호
