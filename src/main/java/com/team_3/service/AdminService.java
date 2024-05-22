@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import com.team_3.dto.BoardDTO;
 import com.team_3.dto.CounselingFormDTO;
+import com.team_3.dto.GroupDTO;
 import com.team_3.dto.UserDTO;
 import com.team_3.repository.AdminRepository;
 import com.team_3.util.UserUtil;
@@ -121,17 +122,23 @@ public class AdminService {
 		System.out.println(dto.getST_NO());
 		
 		switch (sangdamNo) {
+			// 교수
 			case "10":
 				break;
+			// 전문
 			case "20":
 				dto.setJMS_NO(no);
 				result = adminRepository.changeJMSRSVT(dto);
 				break;
+			// 심리
 			case "30":
+				dto.setSR_NO(no);
+				result = adminRepository.changeSRSRSVT(dto);
 				break;
+			// 취업
 			case "40":
-				break;
-			case "50":
+				dto.setJC_NO(no);
+				result = adminRepository.changeJCSRSVT(dto);
 				break;
 		}
 		
@@ -151,10 +158,12 @@ public class AdminService {
 				result = adminRepository.JMSCancel(dto);
 				break;
 			case "30":
+				dto.setSR_NO(no);
+				result = adminRepository.SRSCancel(dto);
 				break;
 			case "40":
-				break;
-			case "50":
+				dto.setJC_NO(no);
+				result = adminRepository.JCSCancel(dto);
 				break;
 		}
 		
@@ -163,7 +172,6 @@ public class AdminService {
 
 	public int updateDateAndTime(String sangdamNo, int no, String rs_cf, String rs_cf_time) {
 		int result = 0;
-		
 		CounselingFormDTO dto = new CounselingFormDTO();
 		dto.setRS_CF(rs_cf);
 		dto.setRS_CF_TIME(rs_cf_time);
@@ -173,11 +181,15 @@ public class AdminService {
 				break;
 			case "20":
 				dto.setJMS_NO(no);
-				result = adminRepository.JSMUpdateDateAndTime(dto);
+				result = adminRepository.JMSUpdateDateAndTime(dto);
 				break;
 			case "30":
+				dto.setSR_NO(no);
+				result = adminRepository.SRSUpdateDateAndTime(dto);
 				break;
 			case "40":
+				dto.setJC_NO(no);
+				result = adminRepository.JCSUpdateDateAndTime(dto);
 				break;
 			case "50":
 				break;
@@ -199,11 +211,15 @@ public class AdminService {
 				break;
 			case "20":
 				dto.setJMS_NO(no);
-				result = adminRepository.JSMfinishedSangdam(dto);
+				result = adminRepository.JMSfinishedSangdam(dto);
 				break;
 			case "30":
+				dto.setSR_NO(no);
+				result = adminRepository.SRSfinishedSangdam(dto);
 				break;
 			case "40":
+				dto.setJC_NO(no);
+				result = adminRepository.JCSfinishedSangdam(dto);
 				break;
 			case "50":
 				break;
@@ -214,5 +230,9 @@ public class AdminService {
 	
 	public List<Map<String, Object>> chart() {
 		return adminRepository.chart();
+	}
+
+	public int save(GroupDTO groupDTO) {
+		return adminRepository.saveGroup(groupDTO);
 	}
 }

@@ -1,10 +1,12 @@
 package com.team_3.controller;
 
 import java.text.ParseException;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,6 +17,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.team_3.dto.BoardDTO;
 import com.team_3.dto.CounselingFormDTO;
+import com.team_3.dto.GroupDTO;
 import com.team_3.dto.UserDTO;
 import com.team_3.service.AdminService;
 import com.team_3.util.UserUtil;
@@ -29,7 +32,7 @@ public class AdminController {
 	@Autowired
 	private AdminService adminService;
 
-	@GetMapping({ "/index", "" })
+	@GetMapping({"/index", "", "/"})
 	public String index(Model model) {
 		model.addAttribute("user", userUtil.getUserNameAndRole());
 		return "admin/adminIndex";
@@ -77,9 +80,24 @@ public class AdminController {
 	public String adminGroupAp(Model model) {
 		model.addAttribute("user", userUtil.getUserNameAndRole());
 		return "/admin/adminGroupAp";
-		
 	}
 	
+	@PostMapping("/saveGroupForm")
+	public String saveGroupForm(@RequestParam(name = "programName") String programName,
+								@RequestParam(name = "date") @DateTimeFormat(pattern = "yyyy-MM-dd") Date date,
+					            @RequestParam(name = "endDate") @DateTimeFormat(pattern = "yyyy-MM-dd") Date endDate,
+                                @RequestParam("programContent") String programContent) {
+									
+		GroupDTO groupDTO = new GroupDTO();
+		groupDTO.setPG_NAME(programName);
+		groupDTO.setJMS_CS_DATE(date);
+		groupDTO.setEN_DATE(endDate);
+		groupDTO.setPG_EXPLAIN(programContent);
+		
+		adminService.save(groupDTO);
+		return "redirect:/admin/Group";
+		
+	}
 	
 	@GetMapping("/Counseling")
 	public String counseling(Model model) {
@@ -172,6 +190,7 @@ public class AdminController {
 			@RequestParam(name = "sangdamNo") String sangdamNo,
 			@RequestParam(name = "RS_DATE") String rs_date,
 			@RequestParam(name = "RS_TIME") String rs_time) throws ParseException {
+		System.out.println(yn + "/" + no + "/" + sangdamNo + "/" + rs_date + "/" + rs_time);
 		
 		int result = adminService.approval(sangdamNo, no, yn, rs_date, rs_time);
 
