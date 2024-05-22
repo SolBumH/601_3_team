@@ -9,8 +9,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RequestPart;
-import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.team_3.dto.CounselingFormDTO;
@@ -76,24 +74,8 @@ public class JcFormController {
                                      @RequestParam("time") String time,
                                      @RequestParam("name") String name,
                                      @RequestParam("studentNumber") String studentNumber,
-                                     @RequestPart("file") MultipartFile file,
                                      RedirectAttributes redirectAttributes) {
     	
-    	   // 파일 업로드 처리
-        if (!file.isEmpty()) {
-            try {
-                // 파일 업로드 로직 추가
-                // 예를 들어, FileService 클래스를 사용하여 파일을 저장하고 DB에 경로를 저장하는 방법을 사용할 수 있습니다.
-            } catch (Exception e) {
-                // 파일 업로드 중 오류 발생 시 예외 처리
-                redirectAttributes.addFlashAttribute("error", "파일 업로드 중 오류가 발생했습니다.");
-                return "redirect:/jcCounselingForm";
-            }
-        } else {
-            // 파일이 비어있을 경우 처리
-        }
-
-
         CounselingFormDTO formDTO = new CounselingFormDTO();
         formDTO.setRS_DATE(date); // 예약일자
         formDTO.setRS_TIME(time); // 예약시간

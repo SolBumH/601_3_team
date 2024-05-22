@@ -18,7 +18,7 @@
 
 			<div class="section-title text-center">
 
-				<form action="/saveCounselingForm" method="post">
+				<form action="/saveCounselingForm" method="post" enctype="multipart/form-data">
 					<div class="box">
 						<div class="container">
 							<span class="label"><b>상담 구분 : </b></span>
@@ -62,15 +62,6 @@
 							<input id="email" type="text" class="wid53" name="email" placeholder="이메일을 입력해주세요">
 							</td>
 						</tr>
-						
-						<tr>
-              				<th class="th" scope="row">파일 업로드</th>
-             				<td>             			
-                     		 	<div class="mb-3">
- 								  <input class="form-control" type="file" id="formFileMultiple" multiple>
-								</div>
-             			   </td>
-           			   </tr>
 						<tr>
 							<th class="th" scope="row">상담 내용</th>
 							<td>

@@ -2,6 +2,8 @@ package com.team_3.dto;
 
 import java.sql.Date;
 
+import org.springframework.web.multipart.MultipartFile;
+
 import lombok.Data;
 
 @Data
@@ -35,7 +37,6 @@ public class CounselingFormDTO {
 	private int JC_NO; //취업상담번호
 	private String username; //학생 아이디
 	private String selectedType; //상담 종류
-	private String file;
 	
 	
 	//교수 상담
