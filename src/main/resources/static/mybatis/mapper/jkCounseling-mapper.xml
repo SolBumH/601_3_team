@@ -3,7 +3,7 @@
 <mapper namespace="JkCounseling">
 
 	<select id="getSchedule" resultType="JkDTO" parameterType="String">
-		SELECT ST_NO, RIGHT(CD_TM,2) as CD_TM FROM JKS_SC WHERE PLAN_YMD = #{date}
+		SELECT ST_NO, RIGHT(CD_TM,2) as CD_TM FROM JKS_SC WHERE PLAN_YMD = #{date} ORDER BY CD_TM
 	</select>
 	
 		<!-- 지도교수-->

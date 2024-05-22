@@ -75,7 +75,7 @@ public class JcFormController {
                                      @RequestParam("name") String name,
                                      @RequestParam("studentNumber") String studentNumber,
                                      RedirectAttributes redirectAttributes) {
-
+    	
         CounselingFormDTO formDTO = new CounselingFormDTO();
         formDTO.setRS_DATE(date); // 예약일자
         formDTO.setRS_TIME(time); // 예약시간
