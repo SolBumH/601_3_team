@@ -66,6 +66,6 @@ function jksangdamSign() {
 	}
 	
 	if(confirm("신청하시겠습니까?\n신청 날짜 : " + date + "\n선택 시간 : " + selectTime.value + "시")) {
-		location.href="/jcCounselingForm?date=" + date + "&time=" + selectTime.value;
+		location.href="/jkCounselingForm?date=" + date + "&time=" + selectTime.value;
 	}	
 }
