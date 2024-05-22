@@ -139,8 +139,10 @@ grid.on("click", (ev) => {
 		let no = 0;
 		if(sangdamNo == 20){
 			no = row.jms_NO;
-		} else if (sangdamNo == 50) {
+		} else if (sangdamNo == 40) {
 			no = row.jc_NO;
+		} else if (sangdamNo == 30){
+			no = row.sr_NO;
 		}
 		  $('#responseNo').val(no);
 		  $('#responseName').val(row.name);

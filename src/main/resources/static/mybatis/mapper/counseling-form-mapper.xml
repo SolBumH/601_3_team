@@ -38,21 +38,20 @@
 
 	<!-- 전문 상담-->
 	<insert id="saveExpertCounselingForm"	parameterType="com.team_3.dto.CounselingFormDTO">
-	INSERT INTO JMS_List (RS_DATE, RS_TIME, STUD_NO, email, CS_TEXT )
+	INSERT INTO JMS_List (RS_DATE, RS_TIME, STUD_NO, email, content)
     	VALUES (#{RS_DATE}, #{RS_TIME}, #{STUD_NO}, #{email}, #{CS_TEXT})
 	</insert>
 
 	<!-- 심리 상담 -->
 	<insert id="savePsychologicalCounselingForm" parameterType="com.team_3.dto.CounselingFormDTO">
-		INSERT INTO SR (RS_DATE, RS_TIME, STUD_NO, email, CS_TEXT )
+		INSERT INTO SR_List (RS_DATE, RS_TIME, STUD_NO, email, content )
     	VALUES (#{RS_DATE}, #{RS_TIME}, #{STUD_NO}, #{email}, #{CS_TEXT})
 	</insert>
 
 	<!-- 취업 상담-->
 	<insert id="saveEmploymentCounselingForm" parameterType="com.team_3.dto.CounselingFormDTO">
-	INSERT INTO JC_LIST (RS_DATE, RS_TIME, STUD_NO, email, CS_TEXT )
+	INSERT INTO JC_LIST (RS_DATE, RS_TIME, STUD_NO, email, content )
     	VALUES (#{RS_DATE}, #{RS_TIME}, #{STUD_NO}, #{email}, #{CS_TEXT})
 	</insert>
-
 
 </mapper>
