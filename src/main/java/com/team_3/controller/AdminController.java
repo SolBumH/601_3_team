@@ -186,6 +186,7 @@ public class AdminController {
 
 		return result;
 	}
+	
 	//상담내역 승인하기
 	@PostMapping("/approval")
 	@ResponseBody

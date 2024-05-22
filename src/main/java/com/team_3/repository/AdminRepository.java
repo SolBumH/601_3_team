@@ -67,6 +67,10 @@ public class AdminRepository {
 		return sqlSession.selectList("admin.getJCSangdamList");
 	}
 
+	public List<CounselingFormDTO> getJKSangdamList() {
+		return sqlSession.selectList("admin.getJKSangdamList");
+	}
+
 	public List<CodeDTO> getCodeList(CodeDTO codeDTO) {
 		return sqlSession.selectList("admin.getCodeList",codeDTO);
 	}
@@ -83,6 +87,10 @@ public class AdminRepository {
 		return sqlSession.update("admin.changeJCSRSVT", dto);
 	}
 	
+	public int changeJKSRSVT(CounselingFormDTO dto) {
+		return sqlSession.update("admin.changeJKSRSVT", dto);
+	}
+	
 	public int JMSCancel(CounselingFormDTO dto) {
 		return sqlSession.update("admin.JMSCancel",dto);
 	}
@@ -93,6 +101,10 @@ public class AdminRepository {
 	
 	public int JCSCancel(CounselingFormDTO dto) {
 		return sqlSession.update("admin.JCSCancel",dto);
+	}
+	
+	public int JKSCancel(CounselingFormDTO dto) {
+		return sqlSession.update("admin.JKSCancel",dto);
 	}
 
 	public int JMSUpdateDateAndTime(CounselingFormDTO dto) {
@@ -106,6 +118,9 @@ public class AdminRepository {
 	public int JCSUpdateDateAndTime(CounselingFormDTO dto) {
 		return sqlSession.update("admin.JCSUpdateDateAndTime",dto);
 	}
+	public int JKSUpdateDateAndTime(CounselingFormDTO dto) {
+		return sqlSession.update("admin.JKSUpdateDateAndTime",dto);
+	}
 
 	public int JMSfinishedSangdam(CounselingFormDTO dto) {
 		return sqlSession.update("admin.JMSfinishedSangdam",dto);
@@ -118,6 +133,9 @@ public class AdminRepository {
 	public int JCSfinishedSangdam(CounselingFormDTO dto) {
 		return sqlSession.update("admin.JCSfinishedSangdam",dto);
 	}
+	public int JKSfinishedSangdam(CounselingFormDTO dto) {
+		return sqlSession.update("admin.JKSfinishedSangdam",dto);
+	}
 	
 	public List<Map<String, Object>> chart() {
 		return sqlSession.selectList("admin.chart");
@@ -126,4 +144,6 @@ public class AdminRepository {
 	public int saveGroup(GroupDTO groupDTO) {
 		return sqlSession.insert("admin.saveGroup", groupDTO);
 	}
+
+
 }
