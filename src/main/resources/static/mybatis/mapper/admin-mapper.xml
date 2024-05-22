@@ -81,6 +81,12 @@
 		join USER us on st.USER_NO = us.USER_NO
 		order by RS_DATE, RS_TIME, JC_NO DESC;
 	</select>
+	<select id="getJKSangdamList" resultType="CounselingFormDTO">
+		select jc.*, us.name from JKS_ST jc
+		join STUD_INFO st on jc.STUD_NO = st.STUD_NO
+		join USER us on st.USER_NO = us.USER_NO
+		order by RS_DATE, RS_TIME, JKS_NO DESC;
+	</select>
 	
 	<select id="getCodeList" resultType="com.team_3.dto.CodeDTO">
 		SELECT * FROM CODE 
@@ -101,6 +107,11 @@
 		RSVT_YN = #{RSVT_YN}, RS_CF = #{RS_CF}, RS_CF_TIME = #{RS_CF_TIME}
 		where JC_NO = #{JC_NO};
 	</update>
+	<update id="changeJKSRSVT">
+		update JKS_ST set ST_NO = (select ST_NO from st_info_view where USER_NO = #{ST_NO}),
+		RSVT_YN = #{RSVT_YN}, RS_CF = #{RS_CF}, RS_CF_TIME = #{RS_CF_TIME}
+		where JKS_NO = #{JKS_NO};
+	</update>
 	
 	<update id="JMSCancel" parameterType="CounselingFormDTO">
 		update JMS_List set RSVT_YN = #{RSVT_YN}
@@ -114,6 +125,10 @@
 		update JC_LIST set RSVT_YN = #{RSVT_YN}
 		where JC_NO = #{JC_NO}
 	</update>
+	<update id="JKSCancel" parameterType="CounselingFormDTO">
+		update JKS_ST set RSVT_YN = #{RSVT_YN}
+		where JKS_NO = #{JKS_NO}
+	</update>
 	
 	<update id="JMSUpdateDateAndTime" parameterType="CounselingFormDTO">
 		update JMS_List set RS_CF = #{RS_CF}, RS_CF_TIME = #{RS_CF_TIME}
@@ -126,6 +141,10 @@
 	<update id="JCSUpdateDateAndTime" parameterType="CounselingFormDTO">
 		update JC_LIST set RS_CF = #{RS_CF}, RS_CF_TIME = #{RS_CF_TIME}
 		where JC_NO = #{JC_NO};
+	</update>
+	<update id="JKSUpdateDateAndTime" parameterType="CounselingFormDTO">
+		update JKS_ST set RS_CF = #{RS_CF}, RS_CF_TIME = #{RS_CF_TIME}
+		where JKS_NO = #{JKS_NO};
 	</update>
 	
 	<update id="JMSfinishedSangdam" parameterType="CounselingFormDTO">
@@ -142,6 +161,11 @@
 		update JC_LIST set CS_DATE = #{RS_CF}, CS_TIME = #{RS_CF_TIME},
 							CS_TEXT = #{CONTENT}, RSVT_YN = '4'
 		where JC_NO = #{JC_NO};
+	</update>
+	<update id="JKSfinishedSangdam" parameterType="CounselingFormDTO">
+		update JKS_ST set CS_DATE = #{RS_CF}, CS_TIME = #{RS_CF_TIME},
+							CS_TEXT = #{CONTENT}, RSVT_YN = '4'
+		where JKS_NO = #{JKS_NO};
 	</update>
 	
 	<select id="chart" resultType="Map">

@@ -72,6 +72,7 @@ public class AdminService {
 		
 		switch (no) {
 			case "10": {
+				list = adminRepository.getJKSangdamList();
 				break;
 			} case "20": {
 				list = adminRepository.getJMSangdamList();
@@ -96,6 +97,8 @@ public class AdminService {
 		
 		switch (sangdamNo) {
 			case "10":
+				dto.setJKS_NO(no);
+				result = adminRepository.changeJKSRSVT(dto);
 				break;
 			case "20":
 				dto.setJMS_NO(no);
@@ -104,8 +107,6 @@ public class AdminService {
 			case "30":
 				break;
 			case "40":
-				break;
-			case "50":
 				break;
 		}
 		
@@ -124,6 +125,8 @@ public class AdminService {
 		switch (sangdamNo) {
 			// 교수
 			case "10":
+				dto.setJKS_NO(no);
+				result = adminRepository.changeJKSRSVT(dto);
 				break;
 			// 전문
 			case "20":
@@ -152,6 +155,8 @@ public class AdminService {
 		
 		switch (sangdamNo) {
 			case "10":
+				dto.setJKS_NO(no);
+				result = adminRepository.JKSCancel(dto);
 				break;
 			case "20":
 				dto.setJMS_NO(no);
@@ -178,6 +183,8 @@ public class AdminService {
 		
 		switch (sangdamNo) {
 			case "10":
+				dto.setJKS_NO(no);
+				result = adminRepository.JKSUpdateDateAndTime(dto);
 				break;
 			case "20":
 				dto.setJMS_NO(no);
@@ -208,6 +215,8 @@ public class AdminService {
 		
 		switch (sangdamNo) {
 			case "10":
+				dto.setJKS_NO(no);
+				result = adminRepository.JKSfinishedSangdam(dto);
 				break;
 			case "20":
 				dto.setJMS_NO(no);
