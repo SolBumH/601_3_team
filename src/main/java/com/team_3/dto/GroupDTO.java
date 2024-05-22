@@ -1,6 +1,7 @@
 package com.team_3.dto;
 
-import java.sql.Date;
+import java.time.LocalDate;
+import java.util.Date;
 
 import lombok.Data;
 
