@@ -37,8 +37,8 @@
                         </tr>
 						<tr>
 							<th class="th" scope="row">상담 시간</th>
-							<td th:text="${#dates.format(detail.JMS_CS_DATE, 'HH시')}"></td>
-							<td><input id="time" type="text" th:value="${param.time}" name="time" hidden="true"></td>
+							<td th:text="${JMS_CS_TIME + '시'}"></td>
+							<td><input id="time" type="text" th:value="${JMS_CS_TIME}" name="time" hidden="true"></td>
 						</tr>
 						<tr>
 							<th class="th" scope="row">이름</th>

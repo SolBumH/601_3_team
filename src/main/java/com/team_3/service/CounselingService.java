@@ -28,16 +28,16 @@ public class CounselingService {
         counselingRepository.saveForm(formDTO);
     }
 	
-	public List<BoardDTO> getGroupData() {
-		List<BoardDTO> groupDataList = counselingRepository.getGroupData();
+	public List<GroupDTO> getGroupData() {
+		List<GroupDTO> groupDataList = counselingRepository.getGroupData();
 		return groupDataList;
 	}
 
-	public BoardDTO getDetail(int no) {
+	public GroupDTO getDetail(int no) {
 		return counselingRepository.getDetail(no);
 	}
 
-	public BoardDTO getResult(int no) {
+	public GroupDTO getResult(int no) {
 		return counselingRepository.getResult(no);
 	}
 	

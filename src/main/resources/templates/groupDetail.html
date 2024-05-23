@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" lang="ko">
 <head>
+<th:block th:insert="~{menu.html::metaImport}"></th:block>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link
@@ -151,12 +152,9 @@
 				<button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal">신청하기</button>
 			</div>
 			 
-			<form id="saveGroupResultForm" action="saveGroupResult" method="post">
-				<input type="hidden" name="programName" id="formProgramName" value="[[${detail.PG_NAME}]]">
-				<input type="hidden" name="JD_NO" id="formJDNO" value="[[${detail.JD_NO}]]">
-				<input type="hidden" name="studentName" id="formStudentName">
-				<input type="hidden" name="studentNo" id="formStudentNo">
-			</form>
+				<input type="hidden" name="programName" id="formProgramName" th:value="${detail.PG_NAME}">
+				<input type="hidden" name="JD_NO" id="formJDNO" th:value="${detail.JD_NO}">
+				<input type="hidden" name="studentNo" id="formStudentNo" th:value="${user.user_no}">
 			 
 		</div>
 
@@ -171,30 +169,67 @@
 					<div class="modal-body">확인을 누르면 신청이 완료됩니다.</div>
 					<div class="modal-footer">
 						<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">닫기</button>
-						<button type="button" class="btn btn-danger" onclick="applyForProgram()">확인</button>
+						<button type="button" class="btn btn-danger" onclick="submitForm()">확인</button>
 					</div>
 				</div>
 			</div>
 		</div>
 	</section>
 
-	<script>
-		function getQueryParam(param) {
-			let urlParams = new URLSearchParams(window.location.search);
-			return urlParams.get(param);
-		}
-
-		function applyForProgram() {
-			let no = getQueryParam('no');
-				let url = `groupResult?no=${no}`;
-				window.location.href = url;
-		}
-		
-		function submitForm() {
-			document.getElementById('saveGroupResultForm').submit();
-		}
-	</script>
-
 	<th:block th:insert="~{index.html::jsImport}">CDN JS 링크</th:block>
+	<script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+	<script>
+	// csrf 토큰
+	const header = $("meta[name='_csrf_header']").attr("content");
+	const token = $("meta[name='_csrf']").attr("content");
+	
+	function getQueryParam(param) {
+		let urlParams = new URLSearchParams(window.location.search);
+		return urlParams.get(param);
+	}
+
+	function applyForProgram() {
+		let no = getQueryParam('no');
+			let url = `groupResult?no=${no}`;
+			window.location.href = url;
+	}
+	
+	/* function submitForm() {
+		document.getElementById('saveGroupResultForm').submit();
+	} */
+	
+	function submitForm() {
+        // 각 필드의 값을 가져오기
+        const programName = $('#formProgramName').val();
+        const JD_NO = $('#formJDNO').val();
+        const studentNo = $('#formStudentNo').val();
+
+        $.ajax({
+            url: '/saveGroupResult',
+            type: 'POST',
+            data: {
+                programName: programName,
+                JD_NO: JD_NO,
+                // 학번처럼 보이지만 사실 회원번호임
+                studentNo: studentNo
+            },
+            beforeSend: function (xhr) {
+                xhr.setRequestHeader(header, token);
+            },
+            success: function(response) {
+                if (response == 1) {
+                	location.href = "/groupResult?no=" + [[${detail.JD_NO}]];
+                } else {
+                	alert("신청 실패 했습니다.")
+                }
+                // 필요한 경우 성공 후 처리 추가
+            },
+            error: function(xhr, status, error) {
+                alert('An error occurred: ' + error);
+                // 필요한 경우 에러 처리 추가
+            }
+        });
+    }
+	</script>
 </body>
 </html>
