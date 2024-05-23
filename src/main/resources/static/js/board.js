@@ -97,6 +97,12 @@ $(document).ready(function () {
     dataType: "JSON",
     contentType: "application/json; charset=UTF-8",
     success: function (result) {
+	  console.log(result);
+	  for (let key of result) {
+		let temp = key.board_date.split("T");
+		key.board_date = temp[0] + " " + temp[1].substring(0, 5);
+	  }
+
       grid.resetData(result);
     },
   });
