@@ -186,12 +186,8 @@
 
 		function applyForProgram() {
 			let no = getQueryParam('no');
-			if (no) {
 				let url = `groupResult?no=${no}`;
 				window.location.href = url;
-			} else {
-				alert("No parameter is missing in the URL");
-			}
 		}
 		
 		function submitForm() {
