@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import com.team_3.dto.BoardDTO;
 import com.team_3.dto.CounselingDTO;
 import com.team_3.dto.CounselingFormDTO;
+import com.team_3.dto.GroupDTO;
 import com.team_3.repository.CounselingRepository;
 
 @Service
@@ -66,6 +67,10 @@ public class CounselingService {
 
 	public String findStudentNumber(String id) {
 		return counselingRepository.findStudentNumber(id);
+	}
+
+	public int saveGroupResult(GroupDTO groupDTO) {
+		return counselingRepository.saveGroupResult(groupDTO);
 	}
 
 

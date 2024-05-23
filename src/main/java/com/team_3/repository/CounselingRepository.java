@@ -6,6 +6,7 @@ import java.util.Map;
 import com.team_3.dto.BoardDTO;
 import com.team_3.dto.CounselingDTO;
 import com.team_3.dto.CounselingFormDTO;
+import com.team_3.dto.GroupDTO;
 
 public interface CounselingRepository {
 	
@@ -31,6 +32,7 @@ public interface CounselingRepository {
 
 	String findStudentNumber(String id);
 
+	int saveGroupResult(GroupDTO groupDTO);
 
 
 }

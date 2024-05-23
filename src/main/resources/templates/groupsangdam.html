@@ -90,7 +90,7 @@
                                      <span class="badge text-bg-primary" th:text="'모집중 (' + ${row.AP_NO} + '/' + ${row.TO_NO} + ')'">모집중</span>
                                  </div>
                               	 <div class="card-group-item col" th:text="'일 정 : ' + ${#dates.format(row.JMS_CS_DATE, 'yyyy-MM-dd')}"></div>
-                              	 <div class="card-group-item col" th:text="'시 간 : ' + ${#dates.format(row.JMS_CS_DATE, 'HH시')}"></div>
+                              	 <div class="card-group-item col" th:text="'시 간 : ' +  ${row.JMS_CS_TIME} + '시'"></div>
                               </p>
                            </div>
                         </div>

@@ -3,10 +3,8 @@
 <mapper namespace="com.team_3.repository.MypageRepository">
 
 	<select id="mypageBoardList" resultType="BoardDTO">
-		select BOARD_NO, u.NAME
-		, BOARD_TITLE, BOARD_CONTENT, DEL_YN, ANS_YN,
-		DATE_FORMAT(BOARD_DATE,
-		'%Y-%m-%d %H:%i') as BOARD_DATE
+		select BOARD_NO, u.NAME , BOARD_TITLE, BOARD_CONTENT, DEL_YN, ANS_YN,
+		DATE_FORMAT(BOARD_DATE, '%Y-%m-%d %H:%i') as BOARD_DATE
 		from Inq_Board ib join `USER` u
 		on BOARD_USER = USER_NO
 		where ib.BOARD_USER = #{user_no}
@@ -14,8 +12,7 @@
 	</select>
 
 	<update id="boardDelete" parameterType="Integer">
-		update Inq_Board set
-		DEL_YN = '2'
+		update Inq_Board set DEL_YN = '2'
 		where BOARD_NO = #{board_no}
 	</update>
 
@@ -30,11 +27,32 @@
 		where STUD_NO = (select STUD_NO from STUD_INFO where USER_NO = #{user_no})
 		order by RS_DATE, RS_TIME
 	</select>
+	<select id="jkSangdamList" parameterType="UserDTO" resultType="CounselingFormDTO">
+		select * from JKS_ST
+		where STUD_NO = (select STUD_NO from STUD_INFO where USER_NO = #{user_no})
+		order by RS_DATE, RS_TIME
+	</select>
+	<select id="jcSangdamList" parameterType="UserDTO" resultType="CounselingFormDTO">
+		select * from JC_LIST
+		where STUD_NO = (select STUD_NO from STUD_INFO where USER_NO = #{user_no})
+		order by RS_DATE, RS_TIME
+	</select>
 
-	<update id="cancelSangdam" parameterType="Integer">
-		update JMS_List set
-		RSVT_YN = '3'
+	<update id="cancelJKSangdam" parameterType="Integer">
+		update JKS_ST set RSVT_YN = '3'
+		where JKS_NO = #{no}
+	</update>
+	<update id="cancelJMSangdam" parameterType="Integer">
+		update JMS_List set RSVT_YN = '3'
 		where JMS_NO = #{no}
+	</update>
+	<update id="cancelSRSangdam" parameterType="Integer">
+		update SR_List set RSVT_YN = '3'
+		where SR_NO = #{no}
+	</update>
+	<update id="cancelJCSangdam" parameterType="Integer">
+		update JC_LIST set RSVT_YN = '3'
+		where JC_NO = #{no}
 	</update>
 
 	<select id="findStudentNumber" resultType="String">

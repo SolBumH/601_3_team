@@ -24,6 +24,12 @@
 		WHERE JD_NO = #{no}
 	</select>
 	
+	<insert id="saveGroupResult" parameterType="GroupDTO">
+		INSERT INTO JDSD_List
+		(JD_NO, STUD_NO, ST_NO, PA_YN) 
+		VALUES (#{JD_NO}, #{STUD_NO}, #{ST_NO}, #{PA_YN})
+	</insert>
+	
 	<select id="getSchedule" resultType="HashMap">
 		select * from CODE
 		where

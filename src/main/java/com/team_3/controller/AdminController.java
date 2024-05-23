@@ -88,15 +88,20 @@ public class AdminController {
 					            @RequestParam(name = "endDate") @DateTimeFormat(pattern = "yyyy-MM-dd") Date endDate,
 					            @RequestParam(name = "time") String time,
                                 @RequestParam("programContent") String programContent,
-                                @RequestParam("recruitmentNumber") int recruitmentNumber) {
+                                @RequestParam("recruitmentNumber") int recruitmentNumber) throws ParseException {
+//		시간 문자열을 java.sql.Time 객체로 변환
+//		SimpleDateFormat sdf = new SimpleDateFormat("HH:mm");
+//      Date parsedDate = sdf.parse(time);
+//      Time sqlTime = new Time(parsedDate.getTime());
 		
 		GroupDTO groupDTO = new GroupDTO();
 		groupDTO.setPG_NAME(programName);
+		System.out.println(date);
 		groupDTO.setJMS_CS_DATE(date);
 		groupDTO.setEN_DATE(endDate);
 		groupDTO.setPG_EXPLAIN(programContent);
 		groupDTO.setTO_NO(recruitmentNumber);
-		
+		groupDTO.setJMS_CS_TIME(time);
 		adminService.save(groupDTO);
 		return "redirect:/admin/Group";
 	}

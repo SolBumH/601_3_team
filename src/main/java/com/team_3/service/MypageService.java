@@ -26,8 +26,10 @@ public class MypageService {
 
 	public List<CounselingFormDTO> sangdamList(UserDTO user, String no) {
 		List<CounselingFormDTO> list = null;
+		// no 는 상담 옵션
 		switch (no) {
 		case "10":
+			list = mypageRepository.jkSangdamList(user);
 			break;
 		case "20":
 			list = mypageRepository.jmSangdamList(user);
@@ -36,6 +38,7 @@ public class MypageService {
 			list = mypageRepository.srSangdamList(user);
 			break;
 		case "40":
+			list = mypageRepository.jcSangdamList(user);
 			break;
 		case "50":
 			break;
@@ -48,13 +51,16 @@ public class MypageService {
 		int result = 0;
 		switch (sangdamNo) {
 		case "10":
+			result = mypageRepository.cancelJKSangdam(no);
 			break;
 		case "20":
-			result = mypageRepository.cancelSangdam(no);
+			result = mypageRepository.cancelJMSangdam(no);
 			break;
 		case "30":
+			result = mypageRepository.cancelSRSangdam(no);
 			break;
 		case "40":
+			result = mypageRepository.cancelJCSangdam(no);
 			break;
 		case "50":
 			break;
