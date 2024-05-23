@@ -175,7 +175,7 @@
 	
 	<insert id="saveGroup" parameterType="GroupDTO">
 		INSERT INTO JDSD_Info
-		(PG_NAME, PG_EXPLAIN, JMS_CS_DATE, EN_DATE, TO_NO, AP_NO, PA_NO)
-		VALUES (#{PG_NAME}, #{PG_EXPLAIN}, #{JMS_CS_DATE}, #{EN_DATE}, #{TO_NO}, #{AP_NO}, #{PA_NO})
+		(PG_NAME, PG_EXPLAIN, JMS_CS_DATE, JMS_CS_TIME, EN_DATE, TO_NO, AP_NO, PA_NO)
+		VALUES (#{PG_NAME}, #{PG_EXPLAIN}, #{JMS_CS_DATE}, #{JMS_CS_TIME}, #{EN_DATE}, #{TO_NO}, #{AP_NO}, #{PA_NO})
 	</insert>
 </mapper>

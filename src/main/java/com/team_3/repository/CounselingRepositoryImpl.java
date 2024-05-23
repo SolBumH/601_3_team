@@ -10,6 +10,7 @@ import org.springframework.stereotype.Repository;
 import com.team_3.dto.BoardDTO;
 import com.team_3.dto.CounselingDTO;
 import com.team_3.dto.CounselingFormDTO;
+import com.team_3.dto.GroupDTO;
 
 @Repository
 public class CounselingRepositoryImpl implements CounselingRepository {
@@ -80,5 +81,10 @@ public class CounselingRepositoryImpl implements CounselingRepository {
 	@Override
 	public String findStudentNumber(String id) {
 		return sqlSession.selectOne("jcCounselingForm.findByStud_no", id);
+	}
+
+	@Override
+	public int saveGroupResult(GroupDTO groupDTO) {
+		return sqlSession.insert("jcCounselingForm.saveGroupResult", groupDTO);
 	}
 }
