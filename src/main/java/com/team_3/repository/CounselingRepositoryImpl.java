@@ -30,7 +30,7 @@ public class CounselingRepositoryImpl implements CounselingRepository {
 	
 	//집단상담
 	@Override
-    public List<BoardDTO> getGroupData() {
+    public List<GroupDTO> getGroupData() {
 		    return sqlSession.selectList("jcCounselingForm.selectGroupData");
     }
 
@@ -40,12 +40,12 @@ public class CounselingRepositoryImpl implements CounselingRepository {
 	}
 	
 	@Override
-	public BoardDTO getDetail(int no) {
+	public GroupDTO getDetail(int no) {
 		return sqlSession.selectOne("jcCounselingForm.getDetail", no);
 	}
 	
 	@Override
-	public BoardDTO getResult(int no) {
+	public GroupDTO getResult(int no) {
 		return sqlSession.selectOne("jcCounselingForm.getResult", no);
 	}
 	

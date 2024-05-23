@@ -7,27 +7,27 @@
  		 SELECT STUD_NO FROM student_user_view WHERE userName = #{userName}
 	</select>
 	
-	<select id="selectGroupData" resultType="BoardDTO">
+	<select id="selectGroupData" resultType="GroupDTO">
 		SELECT * FROM JDSD_Info
 	</select>
 
-	<select id="getDetail" resultType="BoardDTO">
+	<select id="getDetail" resultType="GroupDTO">
 		SELECT *
 		FROM JDSD_Info
 		WHERE JD_NO = #{no}
 		and EN_NO = "2"
 	</select>
 
-	<select id="getResult" resultType="BoardDTO">
+	<select id="getResult" resultType="GroupDTO">
 		SELECT *
 		FROM JDSD_Info
 		WHERE JD_NO = #{no}
 	</select>
 	
 	<insert id="saveGroupResult" parameterType="GroupDTO">
-		INSERT INTO JDSD_List
-		(JD_NO, STUD_NO, ST_NO, PA_YN) 
-		VALUES (#{JD_NO}, #{STUD_NO}, #{ST_NO}, #{PA_YN})
+		INSERT INTO JD_List
+		(JD_NO, STUD_NO) 
+		VALUES (#{JD_NO}, (select STUD_NO from STUD_INFO where user_no = #{STUD_NO}))
 	</insert>
 	
 	<select id="getSchedule" resultType="HashMap">

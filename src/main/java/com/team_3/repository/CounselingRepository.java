@@ -12,11 +12,11 @@ public interface CounselingRepository {
 	
 	 void saveForm(CounselingDTO formDTO);
 	 
-	List<BoardDTO> getGroupData();
+	List<GroupDTO> getGroupData();
 
-	BoardDTO getDetail(int no);
+	GroupDTO getDetail(int no);
 
-	BoardDTO getResult(int no);
+	GroupDTO getResult(int no);
 
 	List<Map<String, Object>> getSchedule();
 
