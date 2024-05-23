@@ -28,4 +28,5 @@ public class BoardDTO {
 	private int TO_NO;
 	private int AP_NO;
 	private int PA_NO;
+	private String JMS_CS_TIME; //상담시간
 }
