@@ -8,19 +8,19 @@
 	</select>
 	
 	<select id="selectGroupData" resultType="GroupDTO">
-		SELECT * FROM JDSD_Info
+		SELECT * FROM JDSD_VIEW
 	</select>
 
 	<select id="getDetail" resultType="GroupDTO">
 		SELECT *
-		FROM JDSD_Info
+		FROM JDSD_VIEW
 		WHERE JD_NO = #{no}
 		and EN_NO = "2"
 	</select>
 
 	<select id="getResult" resultType="GroupDTO">
 		SELECT *
-		FROM JDSD_Info
+		FROM JDSD_VIEW
 		WHERE JD_NO = #{no}
 	</select>
 	

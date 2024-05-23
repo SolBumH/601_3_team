@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.team_3.dto.BoardDTO;
 import com.team_3.dto.CustomUserDetails;
 import com.team_3.dto.GroupDTO;
 import com.team_3.dto.UserDTO;
