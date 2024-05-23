@@ -21,5 +21,5 @@ public class GroupDTO {
 	private String STUD_NO; //학번
 	private int ST_NO; //교직원번호
 	private String PA_YN; //참여여부   1.미참여 / 2.참여
-	
+	private String IMG_URL;
 }

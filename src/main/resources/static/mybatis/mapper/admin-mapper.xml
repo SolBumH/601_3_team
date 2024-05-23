@@ -175,7 +175,7 @@
 	
 	<select id="groupList" resultType="GroupDTO">
 		SELECT JD_NO , ST_NO , PG_NAME , PG_EXPLAIN , EN_DATE , 
-           JMS_CS_DATE , JMS_CS_TIME , TO_NO , PA_NO , AP_NO 
+           JMS_CS_DATE , JMS_CS_TIME , TO_NO , PA_NO , AP_NO
     	FROM JDSD_VIEW
 	</select>
 	

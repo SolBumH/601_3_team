@@ -93,15 +93,10 @@
 			<div class="row">
 				<!-- First card -->
 				<div class="col-sm-3 mb-2">
-					<div class="card">
-						<div class="card-body" style="height: 300px; padding: 0;">
-							<img alt="/img/program.png" src="/img/program.png" style="width: 100%; height: 100%; object-fit: cover;">
-						</div>
-					</div>
 				</div>
 
 				<!-- Second card -->
-				<div class="col-sm-8 mb-2">
+				<div class="col-sm-12 mb-2">
 					<div class="card" style="height: 300px;">
 						<div class="card-body" style="height: 100%;">
 							<div class="program1" style="height: 100%; margin-left: 0;">
@@ -110,11 +105,11 @@
 										<td th:utext="${detail.PG_NAME} + ' <span class=\'badge text-bg-primary\'>모집중</span>'"></td>
 									</tr>
 									<tr><th class="th" scope="row">상담 날짜</th>
-										<td th:text="${#dates.format(detail.JMS_CS_DATE, 'yyyy-MM-dd HH')} + '시'"></td>
+										<td th:text="${#dates.format(detail.JMS_CS_DATE, 'yyyy-MM-dd')} + '일/ '+${detail.JMS_CS_TIME} +'시'"></td>
 									</tr>
 									<tr>
 										<th class="th" scope="row">마감일</th>
-										<td th:text="${#dates.format(detail.EN_DATE, 'yyyy-MM-dd')}"></td>
+										<td th:text="'~' + ${#dates.format(detail.EN_DATE, 'yyyy-MM-dd')}"></td>
 									</tr>
 									<tr><th class="th" scope="row">신청인원수</th>
 										<td th:text="${detail.AP_NO} + '명'"></td>
@@ -122,7 +117,7 @@
 									<tr><th class="th" scope="row">참여인원수</th>
 										<td th:text="${detail.PA_NO} + '명'"></td>
 									</tr>
-									<tr><th class="th" scope="row">총 인원수</th>
+									<tr><th class="th" scope="row">모집인원</th>
 										<td th:text="${detail.TO_NO} + '명'"></td>
 									</tr>
 								</table>
@@ -132,7 +127,7 @@
 				</div>
 			</div>
 			<div class="row">
-				<div class="col-sm-11 mb-2">
+				<div class="col-sm-12 mb-2">
 					<div class="card" style="height: auto;">
 						<div class="card-body">
 							<h4>프로그램에 관한 상세설명</h4>

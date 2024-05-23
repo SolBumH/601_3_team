@@ -7,7 +7,6 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.team_3.dto.BoardDTO;
 import com.team_3.dto.CounselingDTO;
 import com.team_3.dto.CounselingFormDTO;
 import com.team_3.dto.GroupDTO;
@@ -31,7 +30,7 @@ public class CounselingRepositoryImpl implements CounselingRepository {
 	//집단상담
 	@Override
     public List<GroupDTO> getGroupData() {
-		    return sqlSession.selectList("jcCounselingForm.selectGroupData");
+		return sqlSession.selectList("jcCounselingForm.selectGroupData");
     }
 
 	@Override

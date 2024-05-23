@@ -68,7 +68,6 @@
          </div>
          <hr>
          
-         
         <div class="title-container">
             <h4>집단상담 프로그램 목록</h4>
          </div>
@@ -79,19 +78,18 @@
                   <th:block th:each="row : ${groupDataList}">
                      <div class="col-sm-3 mb-2">
                         <div class="card">
-                           <div class="card-body" style="height: 300px">
+                           <div class="card-body" style="height: 150px">
                               <a th:href="@{/groupDetail(no=${row.JD_NO})}">
-                              <img alt="/img/program.png" src="/img/program.png" width="310" height="300"></a>
-                           </div>
-                           <div class="text1">
-                              <p style="text-align: center">
                               	<div class="card-group-item col" style="font-weight: bold;">
-                                     <span th:text="${row.PG_NAME}"></span>
+                                     <span th:text="${row.PG_NAME}"></span><br>
                                      <span class="badge text-bg-primary" th:text="'모집중 (' + ${row.AP_NO} + '/' + ${row.TO_NO} + ')'">모집중</span>
                                  </div>
-                              	 <div class="card-group-item col" th:text="'일 정 : ' + ${#dates.format(row.JMS_CS_DATE, 'yyyy-MM-dd')}"></div>
-                              	 <div class="card-group-item col" th:text="'시 간 : ' +  ${row.JMS_CS_TIME} + '시'"></div>
-                              </p>
+                              	 </a>
+                              	 <div class="card-group-item col" th:text="'운 영 : ' + ${#dates.format(row.JMS_CS_DATE, 'yyyy-MM-dd')} + ' '+${row.JMS_CS_TIME} + ':00'"></div>
+                              	 <div class="card-group-item col" th:text="'마 감 일 : ' + ${#dates.format(row.EN_DATE, 'yyyy-MM-dd')}"></div>
+                           <div class="text1">
+                              <p style="text-align: center"></p>
+                           </div>
                            </div>
                         </div>
                      </div>

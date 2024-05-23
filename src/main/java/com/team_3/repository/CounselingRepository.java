@@ -3,7 +3,6 @@ package com.team_3.repository;
 import java.util.List;
 import java.util.Map;
 
-import com.team_3.dto.BoardDTO;
 import com.team_3.dto.CounselingDTO;
 import com.team_3.dto.CounselingFormDTO;
 import com.team_3.dto.GroupDTO;

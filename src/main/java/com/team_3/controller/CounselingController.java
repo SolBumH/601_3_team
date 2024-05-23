@@ -1,14 +1,11 @@
 package com.team_3.controller;
 
-import java.awt.print.Pageable;
 import java.security.Principal;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -81,7 +78,7 @@ public class CounselingController {
 		UserDTO user = userUtil.getUserData();
 		GroupDTO detail = counselingService.getDetail(no);
 		
-		// System.out.println(detail);
+		System.out.println(detail);
 
 		model.addAttribute("detail", detail);
 		model.addAttribute("user", user);
