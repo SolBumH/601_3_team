@@ -51,8 +51,10 @@ public class AdminController {
 	@ResponseBody
 	public List<BoardDTO> boardList() {
 		List<BoardDTO> list = adminService.AdminBoard();
+		System.out.println(list);
 		return list;
 	}
+	
 
 	@GetMapping("/user")
 	public String member(Model model) {
@@ -70,12 +72,23 @@ public class AdminController {
 		return list;
 	}
 
+	//관리자_집단상담 메인 페이지
 	@GetMapping("/Group")
 	public String adminGroup(Model model) {
 		model.addAttribute("user", userUtil.getUserNameAndRole());
 		return "admin/adminGroup";
 	}
 	
+	//관리자_집단상담 리스트
+	@GetMapping("/groupList")
+	@ResponseBody
+	public List<GroupDTO> groupList() {
+		List<GroupDTO> groupList = adminService.AdminGroup();
+		System.out.println(groupList);
+		return groupList;
+	}
+	
+	//관리자_집단상담 신청 페이지
 	@GetMapping("/GroupAp")
 	public String adminGroupAp(Model model) {
 		model.addAttribute("user", userUtil.getUserNameAndRole());

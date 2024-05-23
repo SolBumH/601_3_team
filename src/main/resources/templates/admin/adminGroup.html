@@ -15,74 +15,138 @@
 <link href="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/style.min.css" rel="stylesheet" />
 <link href="/admin/css/styles.css" rel="stylesheet" />
 <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
+
+<style>
+    #grid {
+        width: 100%; /* 그리드의 너비를 100%로 설정 */
+        max-width: 1400px; /* 최대 너비를 원하는 값으로 설정 */
+        margin: 0 auto; /* 그리드를 가운데 정렬 */
+    }
+    .container {
+        width: 100%;
+        max-width: 1400px;
+        margin: 0 auto;
+        padding: 0 20px;
+    }
+    .title-container, .content-container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    .title-container h4, .content-container h6 {
+        margin: 0;
+    }
+    .content-container {
+        margin-top: 20px;
+    }
+    .button-container {
+        text-align: right;
+        margin-top: 20px; /* 버튼을 그리드 아래로 내리기 위해 상단 여백 추가 */
+    }
+    .btn-block {
+        display: inline-block;
+    }
+</style>
+
 </head>
 <body class="sb-nav-fixed">
 
-	<th:block th:insert="~{/admin/adminmenu.html::topbar}"></th:block>
-	<th:block th:insert="~{/admin/adminmenu.html::leftmenu}"></th:block>
-	
-	<div class="bodypart">
-		<div class="title-container">
-			<h4>집단상담 프로그램 관리</h4>
-		</div>
-	</div>
+    <th:block th:insert="~{/admin/adminmenu.html::topbar}"></th:block>
+    <th:block th:insert="~{/admin/adminmenu.html::leftmenu}"></th:block>
 
-	<div style="width: 500px; margin-left: 300px;">
-		<h6>프로그램 목록</h6>
-		<div id="grid"></div>
-		<div class="col-sm-2mb-2">
-			<div class="row justify-content-center"></div>
-			<a href="GroupAp" class="btn btn-danger btn-block">새로운 프로그램 신청하기</a>
-		</div>
-	</div>
+    <div class="bodypart">
+        <div class="title-container">
+            <h4>집단상담 프로그램 관리</h4>
+        </div>
 
+        <div class="container">
+            <div class="content-container">
+                <h6>프로그램 목록</h6>
+            </div>
+            <div id="grid"></div>
+            <div class="button-container">
+                <a href="GroupAp" class="btn btn-danger btn-block">새로운 프로그램 신청하기</a>
+            </div>
+        </div>
+    </div>
 
-	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
-	<script src="/admin/js/scripts.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
-	<script src="/admin/assets/demo/chart-area-demo.js"></script>
-	<script src="/admin/assets/demo/chart-bar-demo.js"></script>
-	<script src="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/umd/simple-datatables.min.js" crossorigin="anonymous"></script>
-	<script src="/admin/js/datatables-simple-demo.js"></script>
-	<th:block th:insert="~{menu.html::scriptImport}">CDN JS 링크</th:block>
-	<script type="text/javascript">
-		$(document).ready(function() {
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+    <script src="/admin/js/scripts.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
+    <script src="/admin/assets/demo/chart-area-demo.js"></script>
+    <script src="/admin/assets/demo/chart-bar-demo.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/umd/simple-datatables.min.js" crossorigin="anonymous"></script>
+    <script src="/admin/js/datatables-simple-demo.js"></script>
+    <th:block th:insert="~{menu.html::scriptImport}">CDN JS 링크</th:block>
+    <script type="text/javascript">
+        const grid = new tui.Grid({
+            el : document.getElementById('grid'),
+            rowHeaders : [ 'rowNum' ],
+            pageOptions : {
+                useClient : true,
+                perPage : 5
+            },
+            scrollX : false,
+            scrollY : false,
+            columns : [ 
+                {
+                    header : '프로그램명',
+                    name : 'pg_NAME',
+                    width : 560,
+                    align: 'center'
+                }, 
+                {
+                    header : '상담날짜',
+                    name : 'jms_CS_DATE',
+                    width : 200,
+                    align: 'center'
+                }, 
+                {
+                    header : '마감날짜',
+                    name : 'en_DATE',
+                    width : 200,
+                    align: 'center'
+                }, 
+                {
+                    header : '모집인원',
+                    name : 'to_NO',
+                    width : 100,
+                    align: 'center'
+                }, 
+                {
+                    header : '신청인원',
+                    name : 'ap_NO',
+                    width : 100,
+                    align: 'center'
+                }, 
+                {
+                    header : '참여인원',
+                    name : 'pa_NO',
+                    width : 100,
+                    align: 'center'
+                }
+            ]
+        });
+        
+        $(document).ready(function() {
 
-			$.ajax({
-				url : "/admin/boardList",
-				type : "get",
-				dataType : "JSON",
-				contentType : "application/json; charset=UTF-8",
-				success : function(result) {
-					console.log(result);
-
-					const grid = new tui.Grid({
-						el : document.getElementById('grid'),
-						rowHeaders : [ 'rowNum' ],
-						pageOptions : {
-							useClient : true,
-							perPage : 5
-						},
-						scrollX : false,
-						scrollY : false,
-						columns : [ {
-							header : '프로그램명',
-							name : 'board_no',
-						}, {
-							header : '상담날짜',
-							name : 'board_title',
-						}, {
-							header : '마감날짜',
-							name : 'board_content'
-						}, {
-							header : '모집인원',
-							name : 'board_content'
-						} ]
-					});
-					grid.resetData(result);
-				}
-			});
-		});
-	</script>
+            $.ajax({
+                url : "/admin/groupList",
+                type : "get",
+                dataType : "JSON",
+                contentType : "application/json; charset=UTF-8",
+                success : function(result) {
+                    console.log(result);
+                    
+                    for (let key of result) {
+                        key.en_DATE = key.en_DATE.split("T")[0];
+                        key.jms_CS_DATE = key.jms_CS_DATE.split("T")[0];
+                    }
+                    
+                    grid.resetData(result);
+                }
+            });
+        });
+    </script>
 </body>
 </html>

@@ -145,5 +145,9 @@ public class AdminRepository {
 		return sqlSession.insert("admin.saveGroup", groupDTO);
 	}
 
+	public List<GroupDTO> groupList() {
+		return sqlSession.selectList("admin.groupList");
+	}
+
 
 }

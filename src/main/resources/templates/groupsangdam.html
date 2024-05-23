@@ -98,53 +98,33 @@
 	               </th:block>
                </div>
 
-<!-- 페이징 -->
-<!-- 					<nav class="d-flex justify-content-center"> -->
-<!-- 						<ul class="pagination"> -->
-<!-- 							<li th:if="${currentPage != 0}" class="page-item"><a -->
-<!-- 								class="page-link" th:href="@{/groups(page=${currentPage - 1})}" -->
-<!-- 								aria-label="Previous">&laquo;</a></li> -->
-<!-- 							<li th:each="i : ${#numbers.sequence(0, totalPages - 1)}" -->
-<!-- 								th:classappend="${i == currentPage} ? 'active' : ''" -->
-<!-- 								class="page-item"><a th:href="@{/groups(page=${i})}" -->
-<!-- 								th:text="${i + 1}" class="page-link"></a></li> -->
-<!-- 							<li th:if="${currentPage < totalPages - 1}" class="page-item"> -->
-<!-- 								<a class="page-link" -->
-<!-- 								th:href="@{/groups(page=${currentPage + 1})}" aria-label="Next">&raquo;</a> -->
-<!-- 							</li> -->
-<!-- 						</ul> -->
-<!-- 					</nav> -->
+<!--  			페이징 -->
+<!--                <nav class="d-flex justify-content-center"> -->
+<!--                   <ul class="pagination"> -->
+<!--                      <li th:if="${currentPage != 0}" class="page-item"> -->
+<!--                         <a class="page-link" th:href="@{/groups(page=${currentPage - 1})}" aria-label="Previous">&laquo;</a> -->
+<!--                      </li> -->
+<!--                      <li th:each="i : ${#numbers.sequence(0, totalPages - 1)}" -->
+<!--                          th:classappend="${i == currentPage} ? 'active' : ''" -->
+<!--                          class="page-item"> -->
+<!--                         <a th:href="@{/groups(page=${i})}" th:text="${i + 1}" class="page-link"></a> -->
+<!--                      </li> -->
+<!--                      <li th:if="${currentPage < totalPages - 1}" class="page-item"> -->
+<!--                         <a class="page-link" th:href="@{/groups(page=${currentPage + 1})}" aria-label="Next">&raquo;</a> -->
+<!--                      </li> -->
+<!--                   </ul> -->
+<!--                </nav> -->
+               
 					<!-- Add more columns for additional images -->
             </div>
          </div>
          
       </div>
       <th:block th:insert="~{index.html::jsImport}">CDN JS 링크</th:block>
-      <div id="grid"></div>
    </section>
 </body>
 
 <script>
-	const gridData = [
-
-	];
-
-	const grid = new tui.Grid({
-		el : document.getElementById('grid'),
-		data : gridData,
-		/* data : {
-		   api : {
-		      readData : { url : 'getList', method : 'GET'}
-		   }   
-		},  DB연결방법*/
-		rowHeaders : [ 'rowNum' ],
-		pageOptions : {
-			useClient : true,
-			perPage : 5
-		},
-		scrollX : false,
-		scrollY : false,
-	});
 	
 </script>
 </html>
