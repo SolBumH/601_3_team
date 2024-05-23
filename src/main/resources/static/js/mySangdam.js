@@ -19,8 +19,14 @@ const grid = new tui.Grid({
 		action: () => {
 			let sangdam = grid.getRow(rowKey);
 			let no = 0;
-			if (sangdamOption == 20) {
-				no = sangdam.jms_NO; 				
+			if (sangdamOption == 10) {
+				no = sangdam.jks_NO;
+			} else if (sangdamOption == 20){
+				no = sangdam.jms_NO;
+			} else if (sangdamOption == 30) {
+				no = sangdam.sr_NO;
+			} else if (sangdamOption == 40) {
+				no = sangdam.jc_NO;
 			}
 			console.log(sangdam);
 			$.ajax({
