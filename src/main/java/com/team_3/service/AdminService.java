@@ -244,4 +244,8 @@ public class AdminService {
 	public int save(GroupDTO groupDTO) {
 		return adminRepository.saveGroup(groupDTO);
 	}
+
+	public List<GroupDTO> AdminGroup() {
+		return adminRepository.groupList();
+	}
 }

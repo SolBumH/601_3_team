@@ -173,9 +173,16 @@
 		where 
 	</select>
 	
+	<select id="groupList" resultType="GroupDTO">
+		SELECT JD_NO , ST_NO , PG_NAME , PG_EXPLAIN , EN_DATE , 
+           JMS_CS_DATE , JMS_CS_TIME , TO_NO , PA_NO , AP_NO 
+    	FROM JDSD_VIEW
+	</select>
+	
+	
 	<insert id="saveGroup" parameterType="GroupDTO">
 		INSERT INTO JDSD_Info
-		(PG_NAME, PG_EXPLAIN, JMS_CS_DATE, JMS_CS_TIME, EN_DATE, TO_NO, AP_NO, PA_NO)
-		VALUES (#{PG_NAME}, #{PG_EXPLAIN}, #{JMS_CS_DATE}, #{JMS_CS_TIME}, #{EN_DATE}, #{TO_NO}, #{AP_NO}, #{PA_NO})
+		(PG_NAME, PG_EXPLAIN, JMS_CS_DATE, JMS_CS_TIME, EN_DATE, TO_NO, PA_NO)
+		VALUES (#{PG_NAME}, #{PG_EXPLAIN}, #{JMS_CS_DATE}, #{JMS_CS_TIME}, #{EN_DATE}, #{TO_NO}, #{PA_NO})
 	</insert>
 </mapper>
