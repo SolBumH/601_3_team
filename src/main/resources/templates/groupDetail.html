@@ -8,8 +8,8 @@
 	href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"
 	rel="stylesheet">
 <!-- 부트 스트랩 -->
-<script
-	src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.5.0/font/bootstrap-icons.min.css">
 <title>집단상담</title>
 <th:block th:insert="~{index.html::headImport}">CDN CSS 링크</th:block>
 <link rel="stylesheet" href="/css/jcCounseling.css">
@@ -104,18 +104,15 @@
 									<tr><th class="th" scope="row">프로그램명</th>
 										<td th:utext="${detail.PG_NAME} + ' <span class=\'badge text-bg-primary\'>모집중</span>'"></td>
 									</tr>
-									<tr><th class="th" scope="row">상담 날짜</th>
-										<td th:text="${#dates.format(detail.JMS_CS_DATE, 'yyyy-MM-dd')} + '일/ '+${detail.JMS_CS_TIME} +'시'"></td>
+									<tr><th class="th" scope="row">상담 날짜 / 시간</th>
+										<td th:text="${#dates.format(detail.JMS_CS_DATE, 'yyyy-MM-dd')} + ' 일 / '+${detail.JMS_CS_TIME} +'시'"></td>
 									</tr>
 									<tr>
-										<th class="th" scope="row">마감일</th>
-										<td th:text="'~' + ${#dates.format(detail.EN_DATE, 'yyyy-MM-dd')}"></td>
+										<th class="th" scope="row">마 감 일</th>
+										<td th:text="'~' + ${#dates.format(detail.EN_DATE, 'yyyy-MM-dd')} + '일까지'"></td>
 									</tr>
 									<tr><th class="th" scope="row">신청인원수</th>
 										<td th:text="${detail.AP_NO} + '명'"></td>
-									</tr>
-									<tr><th class="th" scope="row">참여인원수</th>
-										<td th:text="${detail.PA_NO} + '명'"></td>
 									</tr>
 									<tr><th class="th" scope="row">모집인원</th>
 										<td th:text="${detail.TO_NO} + '명'"></td>
@@ -130,10 +127,10 @@
 				<div class="col-sm-12 mb-2">
 					<div class="card" style="height: auto;">
 						<div class="card-body">
-							<h4>프로그램에 관한 상세설명</h4>
+							<h6 style="margin-top: 10px;">프로그램에 관한 상세설명</h6>
 							<div class="program1">
 								<table class="request">
-									<tr><th class="th" scope="row">상세 설명</th>
+									<tr><th class="th" scope="row"></th>
 										<td th:text="${detail.PG_EXPLAIN}"></td>
 									</tr>
 								</table>
