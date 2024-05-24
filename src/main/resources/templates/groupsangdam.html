@@ -10,7 +10,7 @@
    src="https://uicdn.toast.com/tui.pagination/latest/tui-pagination.js"></script>
 <script src="https://uicdn.toast.com/tui-grid/latest/tui-grid.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<!-- 부트 스트랩 -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.5.0/font/bootstrap-icons.min.css">
 <title>집단상담</title>
 
 <th:block th:insert="~{index.html::headImport}">CDN CSS 링크</th:block>
@@ -85,8 +85,15 @@
                                      <span class="badge text-bg-primary" th:text="'모집중 (' + ${row.AP_NO} + '/' + ${row.TO_NO} + ')'">모집중</span>
                                  </div>
                               	 </a>
-                              	 <div class="card-group-item col" th:text="'운 영 : ' + ${#dates.format(row.JMS_CS_DATE, 'yyyy-MM-dd')} + ' '+${row.JMS_CS_TIME} + ':00'"></div>
-                              	 <div class="card-group-item col" th:text="'마 감 일 : ' + ${#dates.format(row.EN_DATE, 'yyyy-MM-dd')}"></div>
+                              	<div class="card-group-item col">
+                            <i class="bi bi-calendar4"></i>
+								  <span th:text="'운 영 : ' + ${#dates.format(row.JMS_CS_DATE, 'yyyy-MM-dd')} + ' ' + ${row.JMS_CS_TIME} + ':00'"></span>
+								</div>
+                              	
+                              	<div class="card-group-item col">
+								<i class="bi bi-calendar4"></i>
+                              	<span th:text="'마 감 일 : ' + ${#dates.format(row.EN_DATE, 'yyyy-MM-dd')} + ' ' + ${row.JMS_CS_TIME} + ':00'"></span>
+                              	  </div>
                            <div class="text1">
                               <p style="text-align: center"></p>
                            </div>
