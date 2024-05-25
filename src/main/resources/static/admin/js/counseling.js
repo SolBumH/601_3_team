@@ -145,7 +145,7 @@ const grid = new tui.Grid({
 grid.on("click", (ev) => {
     let row = grid.getRow(ev.rowKey);
     if (row !== null) {
-	    console.log(row);
+	    // console.log(row);
 		let date;
 		let time;
 		// 예약 확정 시간이 있으면 확정된 시간을 넣고, 아니면 신청일을 집어넣음
@@ -173,7 +173,7 @@ grid.on("click", (ev) => {
 		  $("#before_sangdamNo").val(row.bf_NO);
 		  $("#rs_cf").val(date);
 		  $("#rs_cf_time").val(time).prop("selected", true);
-		  $('#adminAnswer').text(row.content);
+		  $('#adminAnswer').text(row.cs_TEXT);
     }
 });
 
