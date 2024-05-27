@@ -92,7 +92,7 @@ public class AdminController {
 	@GetMapping("/GroupAp")
 	public String adminGroupAp(Model model) {
 		model.addAttribute("user", userUtil.getUserNameAndRole());
-		return "/admin/adminGroupAp";
+		return "admin/adminGroupAp";
 	}
 	
 	@PostMapping("/saveGroupForm")
@@ -145,7 +145,7 @@ public class AdminController {
 	@GetMapping("/response")
 	public String response(Model model) {
 		model.addAttribute("user", userUtil.getUserNameAndRole());
-		return "/admin/adminResponse";
+		return "admin/adminResponse";
 	}
 
 	@PostMapping("/userUpdate")
@@ -180,7 +180,7 @@ public class AdminController {
 	@GetMapping("/adminJkCounseling")
 	public String adminJkCounseling(Model model) {
 		model.addAttribute("user", userUtil.getUserNameAndRole());
-		return "/admin/adminJkCounseling";
+		return "admin/adminJkCounseling";
 	}
 	
 	@PostMapping("/sangdamList")
@@ -257,6 +257,6 @@ public class AdminController {
 	public String chart(Model model) {
 		List<Map<String, Object>> list = adminService.chart();
 		model.addAttribute("list", list);
-		return "/admin/chart";
+		return "admin/chart";
 	}
 }
