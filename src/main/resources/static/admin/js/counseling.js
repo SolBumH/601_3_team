@@ -86,6 +86,7 @@ const grid = new tui.Grid({
     {
       header: "신청 학생",
       name: "name",
+	  filter: "select", // 필터
       align: "center",
     },
     {
@@ -144,7 +145,7 @@ const grid = new tui.Grid({
 
 grid.on("click", (ev) => {
     let row = grid.getRow(ev.rowKey);
-    if (row !== null) {
+    if (row != null) {
 	    // console.log(row);
 		let date;
 		let time;
@@ -167,13 +168,13 @@ grid.on("click", (ev) => {
 		} else if (sangdamNo == 40) {
 			no = row.jc_NO;
 		}
-		  $('#responseNo').val(no);
-		  $('#responseName').val(row.name);
-		  $('#content').text(row.content);
-		  $("#before_sangdamNo").val(row.bf_NO);
-		  $("#rs_cf").val(date);
-		  $("#rs_cf_time").val(time).prop("selected", true);
-		  $('#adminAnswer').text(row.cs_TEXT);
+		$('#responseNo').val(no);
+		$('#responseName').val(row.name);
+		$('#content').text(row.content);
+		$('#adminAnswer').val(row.cs_TEXT);
+		$("#before_sangdamNo").val(row.bf_NO);
+		$("#rs_cf").val(date);
+		$("#rs_cf_time").val(time).prop("selected", true);
     }
 });
 
