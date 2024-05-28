@@ -39,6 +39,7 @@ public class SecurityConfig {
         http.formLogin((auth) -> auth.loginPage("/login")
         		.loginProcessingUrl("/login")  // 로그인 시 해당 URL로 값 전송
         		.defaultSuccessUrl("/")
+        		.failureUrl("/login?fail=1")
         		// .successHandler(successHandler()) 
         		.permitAll());
         

@@ -40,6 +40,9 @@
 								<label class="form-label" th:text="비밀번호" for="password"></label>
 								<input class="form-control" type="password" name="password" placeholder="비밀번호"/>
 							</div>
+							<th:block th:if="${#strings.equals(param.fail, '1')}">
+							  <div style="color:red;" th:text="'잘못된 로그인 시도입니다.'"></div>
+							</th:block>
 							<input type="hidden" name="_csrf" th:value="${_csrf.token}"/>
 							<button type="submit" class="btn btn-danger my-2" th:text="로그인">로그인버튼</button>
 						</form>
