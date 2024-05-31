@@ -1,0 +1,114 @@
+@charset "UTF-8";
+
+.form-select {
+	width: 950px; /* 원하는 가로 길이로 설정 */
+	margin-left: 10px;
+}
+
+.box {
+	border: 1px solid #ccc;
+	padding: 10px;
+	border-radius: 5px;
+	width: 1110px; /* 요소의 내용에 맞게 크기 조절 */
+	margin-bottom: 50px;
+	margin-top: 20px;
+}
+
+.label {
+	margin-right: 10px;
+	color: black;
+}
+
+.request {
+	width: 100%;
+	border-bottom: 2px solid #f6f6f6;
+	font-family: "NanumGothic", sans-serif;
+	margin-bottom: 50px;
+}
+
+.request .qtit {
+	text-align: left;
+	margin: 50px 0 10px 0;
+}
+
+.request tr {
+	border-top: 1px solid #cdcdcd;
+}
+
+.request tr:first-child {
+	border-top: 0;
+}
+
+.request th {
+	background: #f6f6f6;
+	width: 20%;
+	text-align: left;
+	padding-left: 3%;
+	color: #000080;
+}
+
+.request td {
+	text-align: left;
+	background: #fff;
+	padding-top: 1% !important;
+	padding-bottom: 1% !important;
+	color: #5c5c5c;
+	font-size: 15px;
+	line-height: 26px;
+	padding-left: 3%
+}
+
+.request input[type="text"], .question select {
+	margin-right: 1%;
+	color: #5c5c5c;
+	line-height: 12px;
+	font-size: 14px;
+	font-family: "NanumGothic", sans-serif;
+	background: #f6f6f6;
+	vertical-align: middle;
+	border: 1px solid #cdcdcd;
+	padding: 1%;
+}
+
+.request select {
+	padding: 0.9%;
+}
+
+.request textarea {
+	vertical-align: middle;
+	border: 1px solid #cdcdcd;
+	width: 94%;
+	height: 100px;
+	background: #f6f6f6;
+	padding: 1%
+}
+
+.request .add {
+	margin-top: 1%;
+}
+
+.request .wid10 {
+	width: 10%;
+}
+
+.request .wid20 {
+	width: 20%;
+	height: 37px;
+	margin-bottom: 3px;
+	margin-left: 5px;
+}
+
+.custom-file-label {
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+}
+
+input[type="file"].form-control {
+	border: none; /* 테두리 제거 */
+}
+
+#formFileMultiple {
+	margin-top: 10px; /* 파일 업로드 입력 필드 위쪽 마진 추가 */
+	margin-left: -12px;
+}

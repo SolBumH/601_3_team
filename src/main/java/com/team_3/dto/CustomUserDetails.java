@@ -8,56 +8,57 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 public class CustomUserDetails implements UserDetails {
 
-	private UserDTO userDTO;
+    private UserDTO userDTO;
 
-	public CustomUserDetails(UserDTO user) {
-		this.userDTO = user;
-	}
+    public CustomUserDetails(UserDTO user) {
+        this.userDTO = user;
+    }
 
-	@Override
-	public Collection<? extends GrantedAuthority> getAuthorities() {
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        Collection<GrantedAuthority> collection = new ArrayList<>();
+        collection.add(new GrantedAuthority() {
+            @Override
+            public String getAuthority() {
+                return userDTO.getRole();
+            }
+        });
+        return collection;
+    }
 
-		Collection<GrantedAuthority> collection = new ArrayList<>();
+    @Override
+    public String getPassword() {
+        return userDTO.getPassword();
+    }
 
-		collection.add(new GrantedAuthority() {
+    @Override
+    public String getUsername() {
+        return userDTO.getUsername();
+    }
 
-			@Override
-			public String getAuthority() {
+    // 사용자의 이름 반환
+    public String getName() {
+        return userDTO.getName();
+    }
 
-				return userDTO.getRole();
-			}
-		});
+    @Override
+    public boolean isAccountNonExpired() {
+        return true;
+    }
 
-		return collection;
-	}
+    @Override
+    public boolean isAccountNonLocked() {
+        return true;
+    }
 
-	@Override
-	public String getPassword() {
-		return userDTO.getPassword();
-	}
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return true;
+    }
 
-	@Override
-	public String getUsername() {
-		return userDTO.getUsername();
-	}
+    @Override
+    public boolean isEnabled() {
+        return true;
+    }
 
-	@Override
-	public boolean isAccountNonExpired() {
-		return true;
-	}
-
-	@Override
-	public boolean isAccountNonLocked() {
-		return true;
-	}
-
-	@Override
-	public boolean isCredentialsNonExpired() {
-		return true;
-	}
-
-	@Override
-	public boolean isEnabled() {
-		return true;
-	}
 }

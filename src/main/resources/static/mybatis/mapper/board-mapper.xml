@@ -2,22 +2,38 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="board">
 	<select id="boardList" resultType="BoardDTO">
-		select ib.BOARD_NO, ib.BOARD_TITLE, ib.BOARD_DATE, u.NAME  as 'username',
-			(CASE WHEN ib.ANS_YN = '1' THEN '미답변'
-				WHEN ib.ANS_YN = '2' THEN '답변 완료'
-			END) AS ANS_YN
+		select ib.BOARD_NO, ib.BOARD_TITLE, ib.BOARD_DATE, u.NAME,
+			ib.ANS_YN
 		from Inq_Board ib
 		join `USER` u
 		where ib.BOARD_USER = u.USER_NO
-		and ib.DEL_YN = '1'
-		order by ib.BOARD_DATE DESC, ib.ANS_YN
+		and ib.DEL_YN = '1' and ib.ANS_YN != '4'
+		order by ib.BOARD_DATE DESC, ib.ANS_YN, ib.BOARD_NO DESC
 	</select>
 
 	<insert id="boardInsert" parameterType="BoardDTO">
 		insert into
 		Inq_Board(BOARD_USER, BOARD_TITLE, BOARD_CONTENT)
-		values ((select
-			USER_NO from USER where USERNAME = #{username}),
+		values (#{board_user},
 			#{board_title}, #{board_content})
 	</insert>
+	
+	<select id="detail" parameterType="Integer" resultType="BoardDTO">
+		select ib.BOARD_NO, ib.BOARD_BF_NO, ib.BOARD_ANS_NO, 
+				ib.BOARD_USER, ib.BOARD_TITLE, ib.BOARD_CONTENT, ib.BOARD_DATE,
+				ib.ANS_YN, ib.FILE_NO, u.NAME
+		from Inq_Board ib join USER u on ib.BOARD_USER = u.USER_NO
+		where BOARD_NO = #{no}
+			and DEL_YN = '1'
+	</select>
+	
+	<update id="deleteBoard" parameterType="String">
+		update Inq_Board set DEL_YN = "2"
+		where BOARD_NO = #{board_no}
+	</update>
+	
+	<select id="getAnswerContent" resultType="BoardDTO" parameterType="Integer">
+		select * from Inq_Board
+		where BOARD_NO = #{board_ans_no}
+	</select>
 </mapper>

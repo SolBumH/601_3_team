@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    <title>집단상담 프로그램 신청</title>
+    <link rel="shortcut icon" type="image/x-icon" href="/img/favicon.ico" />
+    <link rel="stylesheet" href="https://uicdn.toast.com/tui-grid/latest/tui-grid.css" />
+    <link rel="stylesheet" href="https://uicdn.toast.com/tui.pagination/latest/tui-pagination.css" />
+    <script src="https://uicdn.toast.com/tui.pagination/latest/tui-pagination.js"></script>
+    <script src="https://uicdn.toast.com/tui-grid/latest/tui-grid.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/style.min.css" rel="stylesheet" />
+    <link href="/admin/css/styles.css" rel="stylesheet" />
+    <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
+    <style>
+        .bodypart {
+            margin-top: 120px;
+        }
+
+        .form-container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f8f9fa;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .form-container h3 {
+            margin-bottom: 20px;
+            font-weight: bold;
+        }
+
+        .form-group label {
+            font-weight: bold;
+        }
+
+        .btn-danger {
+            background-color: #d9534f;
+            border-color: #d9534f;
+        }
+    </style>
+</head>
+
+<body class="sb-nav-fixed">
+    <th:block th:insert="~{admin/adminmenu.html::topbar}"></th:block>
+    <th:block th:insert="~{admin/adminmenu.html::leftmenu}"></th:block>
+
+    <div class="bodypart">
+        <div class="form-container">
+            <h3 class="text-center">집단상담 프로그램 신청</h3>
+            <form action="/admin/saveGroupForm" method="post">
+<!-- 				<div class="form-group mb-3"> -->
+<!-- 					<label for="file">파일선택</label> -->
+<!-- 					<div class="input-group mb-3"> -->
+<!-- 						<input type="file" class="form-control" id="formFile" name="file" accept="image/*"> -->
+<!-- 						<button type="submit" class="btn btn-secondary">업로드</button> -->
+<!-- 					</div> -->
+<!-- 				</div> -->
+
+				<div class="form-group mb-3">
+                    <label for="programName">프로그램명</label>
+                    <input id="programName" type="text" class="form-control" name="programName" placeholder="프로그램명을 입력해주세요." required>
+                </div>
+
+                <div class="form-group mb-3">
+                    <label for="date">상담 날짜</label>
+                    <input id="date" type="date" class="form-control" name="date" required>
+                </div>
+
+                <div class="form-group mb-3">
+                    <label for="endDate">마감 날짜</label>
+                    <input id="endDate" type="date" class="form-control" name="endDate" required>
+                </div>
+
+
+                <div class="form-group mb-3">
+                    <label for="time">상담 시간</label>
+                    <select id="time" class="form-control" name="time" required>
+                        <option value="10">10:00</option>
+                        <option value="11">11:00</option>
+                        <option value="13">13:00</option>
+                        <option value="14">14:00</option>
+                        <option value="15">15:00</option>
+                        <option value="16">16:00</option>
+                    </select>
+                </div>
+
+                <div class="form-group mb-3">
+                    <label for="recruitmentNumber">모집인원</label>
+                    <input id="recruitmentNumber" type="text" class="form-control" name="recruitmentNumber" placeholder="모집인원을 입력해주세요." required>
+                </div>
+
+                <div class="form-group mb-3">
+                    <label for="programContent">프로그램 상세설명</label>
+                    <textarea id="programContent" class="form-control" name="programContent" placeholder="200자 이내(400byte)로 입력해 주세요." rows="4" required></textarea>
+                </div>
+
+                <div class="d-flex justify-content-center">
+                     <button id="submitBtn" type="submit" class="btn btn-danger">신청하기</button> 
+                </div>
+                <input type="hidden" name="_csrf" th:value="${_csrf.token}" />
+            </form>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() { 
+            var today = new Date().toISOString().split('T')[0];
+            document.getElementById('date').setAttribute('min', today);
+            document.getElementById('endDate').setAttribute('min', today); //최소날짜 오늘 날짜로 지정
+        });
+    </script>
+    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+    <script src="/admin/js/scripts.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
+    <script src="/admin/assets/demo/chart-area-demo.js"></script>
+    <script src="/admin/assets/demo/chart-bar-demo.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/umd/simple-datatables.min.js" crossorigin="anonymous"></script>
+    <script src="/admin/js/datatables-simple-demo.js"></script>
+    <th:block th:insert="~{menu.html::scriptImport}">CDN JS 링크</th:block>
+</body>
+
+</html>

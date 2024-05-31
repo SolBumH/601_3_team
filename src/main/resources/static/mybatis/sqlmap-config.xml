@@ -2,7 +2,11 @@
 <!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
     <typeAliases>
-        <typeAlias type="com.team_3.dto.UserDTO" alias="userDTO"></typeAlias>
+        <typeAlias type="com.team_3.dto.UserDTO" alias="UserDTO"></typeAlias>
         <typeAlias type="com.team_3.dto.BoardDTO" alias="BoardDTO"></typeAlias>
+        <typeAlias type="com.team_3.dto.JkDTO" alias="JkDTO"></typeAlias>
+        <typeAlias type="com.team_3.dto.CodeDTO" alias="CodeDTO"></typeAlias>
+        <typeAlias type="com.team_3.dto.CounselingFormDTO" alias="CounselingFormDTO"></typeAlias>
+        <typeAlias type="com.team_3.dto.GroupDTO" alias="GroupDTO"></typeAlias>
     </typeAliases>
 </configuration>

@@ -1,22 +1,56 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" lang="ko">
 <head>
-<th:block th:insert="~{menu.html::metaImport}">CDN META 링크</th:block>
 <meta charset="UTF-8">
-<title>글쓰기</title>
-<th:block th:insert="~{menu.html::headImport}">CDN CSS 링크</th:block>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta name="description" content="Orbitor,business,company,agency,modern,bootstrap4,tech,software">
+  <meta name="author" content="themefisher.com">
+  <th:block th:insert="~{menu.html::metaImport}"></th:block>
+  <title>글쓰기</title>
+
+  <!-- Favicon -->
+  <link rel="shortcut icon" type="image/x-icon" href="/images/favicon.ico" />
+  <!-- bootstrap.min css -->
+  <link rel="stylesheet" href="plugins/bootstrap/css/bootstrap.min.css">
+  <!-- Icon Font Css -->
+  <link rel="stylesheet" href="plugins/icofont/icofont.min.css">
+  <!-- Slick Slider  CSS -->
+  <link rel="stylesheet" href="plugins/slick-carousel/slick/slick.css">
+  <link rel="stylesheet" href="plugins/slick-carousel/slick/slick-theme.css">
+  <!-- Main Stylesheet -->
+  <link rel="stylesheet" href="css/style.css">
+  <!-- Toast Editor -->
+  <link rel="stylesheet" href="https://uicdn.toast.com/editor/latest/toastui-editor.min.css" />
 </head>
-<body>
-	<th:block th:insert="~{menu.html::menu}">메뉴 들어가는 곳</th:block>
-	
-	<form action="/write" method="post" name="board">
-		<input type="text" name="board_title" placeholder="제목을 적어주세요."/>
-		<textarea name="board_content" placeholder="내용을 입력해주세요."></textarea>
-		<button type="submit" th:text="글쓰기">글쓰기</button>
-		<input type="hidden" name="_csrf" th:value="${_csrf.token}"/>
-	</form>
-	
-	
-	<th:block th:insert="~{menu.html::scriptImport}">CDN JS 링크</th:block>
+<body id="top">
+<th:block th:insert="~{menu.html::header}"></th:block>
+<section class="section testimonial-2 gray-bg">
+	<div class="container">
+		<div class="row justify-content-center">
+			<div class="col-lg-7">
+				<div class="section-title text-center">
+					<h1 th:text="'글쓰기'">타이틀들어가는곳</h1>
+					<div class="divider mx-auto my-4"></div>
+					<form id="writeForm">
+						<input class="form-control" maxlength="40" type="text" name="board_title" placeholder="제목을 적어주세요."/>
+						<div id="editor"></div>
+					</form>
+				</div>
+				
+				<div class="section-title text-center">
+					<button th:onclick="writeComplete([[${user}]])" class="btn btn-danger" th:text="'작성하기'">글쓰기버튼</button>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+<!-- footer Start -->
+<th:block th:insert="~{menu.html::footer}"></th:block>
+   
+    <!-- Toast Editor -->
+    <script src="https://uicdn.toast.com/editor/latest/toastui-editor-all.min.js"></script>
+    <th:block th:insert="~{menu.html::scriptImport}"></th:block>
+    <script src="js/write.js"></script>
 </body>
 </html>
+   

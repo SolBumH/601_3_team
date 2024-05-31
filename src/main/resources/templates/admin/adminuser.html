@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymelaf.org">
+<link rel="stylesheet" href="https://uicdn.toast.com/tui-grid/latest/tui-grid.css" />
+<link rel="stylesheet" href="https://uicdn.toast.com/tui.pagination/latest/tui-pagination.css" />
+<script src="https://uicdn.toast.com/tui.pagination/latest/tui-pagination.js"></script>
+<script src="https://uicdn.toast.com/tui-grid/latest/tui-grid.js"></script>
+<head>
+<th:block th:insert="~{menu.html::metaImport}"></th:block>
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+<meta name="description" content="" />
+<meta name="author" content="" />
+<title>회원 관리</title>
+<link rel="shortcut icon" type="image/x-icon" href="/img/favicon.ico" />
+<link href="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/style.min.css" rel="stylesheet" />
+<link href="/admin/css/styles.css" rel="stylesheet" />
+<script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
+</head>
+<body class="sb-nav-fixed">
+
+	<th:block th:insert="~{admin/adminmenu.html::topbar}"></th:block>
+	<th:block th:insert="~{admin/adminmenu.html::leftmenu}"></th:block>
+	
+	
+	<div class="bodypart">
+		<h1>회원관리</h1>
+		<div id="grid"></div>
+	</div>
+	
+
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+	<script src="/admin/js/scripts.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
+	<script src="/admin/assets/demo/chart-area-demo.js"></script>
+	<script src="/admin/assets/demo/chart-bar-demo.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/umd/simple-datatables.min.js" crossorigin="anonymous"></script>
+	<script src="/admin/js/datatables-simple-demo.js"></script>
+	<th:block th:insert="~{menu.html::scriptImport}">CDN JS 링크</th:block>
+	<script type="text/javascript">
+	// csrf 토큰
+	const header = $("meta[name='_csrf_header']").attr("content");
+	const token = $("meta[name='_csrf']").attr("content");
+		const grid = new tui.Grid({
+			el : document.getElementById('grid'),
+			// rowHeaders : [ 'checkbox' ],
+			pageOptions : {
+				useClient : true,
+				perPage : 15
+			},
+			scrollX : false,
+			scrollY : false,
+			columns : [ {
+				header : '회원번호',
+				name : 'user_no',
+			},{
+				header : '이름',
+				name : 'name',
+			}, {
+				header : '아이디',
+				name : 'username',
+			}, {
+				header : '등급',
+				name : 'role',
+				formatter: 'listItemText',
+				filter: 'select',
+				editor : {
+					type : 'select',
+					options : {
+						listItems : [
+							 { text: '관리자', value: 'ROLE_ADMIN' },
+				             { text: '교직원', value: 'ROLE_USER' },
+				             { text: '학생', value: 'ROLE_STUD' },
+						],
+						 useViewMode: true
+					}	
+				},
+			}],
+		});
+		
+		grid.on('afterChange', ev => {
+			// console.log(grid.getRow(ev.changes[0].rowKey).user_no);
+			let user_no = grid.getElement(ev.changes[0].rowKey, "user_no").firstChild.innerText;
+			let role = ev.changes[0].value;
+			
+		$.ajax({
+			url : '/admin/userUpdate',
+			type : 'post',
+			data : { 'user_no' : user_no, 'role' : role},
+			dataType : 'text',
+			beforeSend: function (xhr) {
+			      xhr.setRequestHeader(header, token);
+			    },
+			success : function(result){
+				console.log(result);
+				}
+			});
+		});
+		
+		
+		$(document).ready(function() {
+			$.ajax({
+				url : "/admin/userList",
+				type : "get",
+				dataType : "JSON",
+				contentType : "application/json; charset=UTF-8",
+				success : function(result) {
+					//console.log(result);
+					grid.resetData(result);
+				}
+			});
+		});
+	  
+	</script>
+</body>
+</html>

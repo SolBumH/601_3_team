@@ -3,112 +3,143 @@
 <head>
 <meta charset="UTF-8">
 <link rel="stylesheet"
-	href="https://uicdn.toast.com/tui-grid/latest/tui-grid.css" />
+   href="https://uicdn.toast.com/tui-grid/latest/tui-grid.css" />
 <link rel="stylesheet"
-	href="https://uicdn.toast.com/tui.pagination/latest/tui-pagination.css" />
+   href="https://uicdn.toast.com/tui.pagination/latest/tui-pagination.css" />
 <script
-	src="https://uicdn.toast.com/tui.pagination/latest/tui-pagination.js"></script>
+   src="https://uicdn.toast.com/tui.pagination/latest/tui-pagination.js"></script>
 <script src="https://uicdn.toast.com/tui-grid/latest/tui-grid.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<!-- 부트 스트랩 -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.5.0/font/bootstrap-icons.min.css">
 <title>집단상담</title>
 
 <th:block th:insert="~{index.html::headImport}">CDN CSS 링크</th:block>
 <link rel="stylesheet" href="/css/jcCounseling.css">
 <link rel="stylesheet" href="/css/jdCounseling.css">
-
-
-
+<style>
+	.text1 {
+		padding-top: 5px;
+		text-align: center;
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+		height: 100%;
+	}
+	
+	.card-group-item.col {
+		margin: 5px 0;
+		padding: 2px;
+		font-size: 14px;
+	}
+	
+	.badge.text-bg-primary {
+		display: inline-block;
+		padding: 0.2em 0.4em; /* 상하와 좌우 패딩을 조절 */
+		background-color: #8ca6cd;
+		color: white;
+		border-radius: 0.25em;
+		font-size: 0.9em;
+		font-weight: bold;
+		margin-top: 0.5em;
+	}
+	
+	.center {
+		text-align: left; /* Change text alignment to left */
+		display: flex;
+		flex-direction: column;
+		align-items: flex-start; /* Align items to the start (left) */
+		padding-left: 100px; /* Optional: Add some padding to the left */
+	}
+</style>
 </head>
+
 <body>
-	<th:block th:insert="~{index.html::menu}">메뉴 들어가는 곳</th:block>
-	<!-- <th:block th:insert="~{menu.html::consulting}">상담 목록</th:block> -->
+   <th:block th:insert="~{menu.html::header}">메뉴 들어가는 곳</th:block>
 
-	<div class="center">
-	<section class="counselindex gray-bg">
-		<div class="title-container">
-			<h4>집단상담 프로그램이란?</h4>
-		</div>
-		<div class="explain">
-			<p>
-				자기이해, 대인관계증진, 정서 및 스트레스 관리 등의 주제로 비슷한 관심을 가진 학생들이 상담전문가와 
-				함께 소그룹 집단상담을 통해 새로운 관계경험, 자기성장 및 자아실현, <br>
-				정신건강을 도모하는 프로그램입니다. 한 사람의 상담자가 동시에 몇 명의 내담자들을 상대로 상담하여 내담자들의 관심사, 대인관계, 사고 및 행동양식의 변화를 가져오는 활동입니다.
-				<br> 그러나 상담자가 개인적인 능력에만 의존하는 것이 아니라 집단구성원간의 상호 작용적 관계(역동적 관계-Group Dynamics)를 바탕으로 내담자 개개인의 문제해결 및 변화가 이루어지는<br>
-				'집단적 접근방법'입니다.
-			</p>
-		</div>
-	
+   <section class="counselindex gray-bg">
+      <div class="center">
+         <div class="card1">
+            <div class="title-container">
+               <h4>집단상담 프로그램이란?</h4>
+            </div>
+            <div class="explain">
+               <p>
+                  자기이해, 대인관계증진, 정서 및 스트레스 관리 등의 주제로 비슷한 관심을 가진 학생들이 상담전문가와 함께 소그룹
+                  집단상담을 통해 새로운 관계경험, 자기성장 및 자아실현, <br> 정신건강을 도모하는 프로그램입니다. 한
+                  사람의 상담자가 동시에 몇 명의 내담자들을 상대로 상담하여 내담자들의 관심사, 대인관계, 사고 및 행동양식의 변화를
+                  가져오는 활동입니다. <br> 그러나 상담자가 개인적인 능력에만 의존하는 것이 아니라 집단구성원간의 상호
+                  작용적 관계(역동적 관계-Group Dynamics)를 바탕으로 내담자 개개인의 문제해결 및 변화가 이루어지는<br>
+                  '집단적 접근방법'입니다.
+               </p>
+            </div>
+         </div>
+         <hr>
+         
+        <div class="title-container">
+            <h4>집단상담 프로그램 목록</h4>
+         </div>
+         <div class="request">
+            <div class="container-1">
+               <div class="row">
+                  <!-- Start of card loop -->
+                  <th:block th:each="row : ${groupDataList}">
+                     <div class="col-sm-3 mb-2">
+                        <div class="card">
+                           <div class="card-body" style="height: 150px">
+                              <a th:href="@{/groupDetail(no=${row.JD_NO})}">
+                              	<div class="card-group-item col" style="font-weight: bold;">
+                                     <span th:text="${row.PG_NAME}"></span><br>
+                                     <span class="badge text-bg-primary" th:text="'모집중 (' + ${row.AP_NO} + '/' + ${row.TO_NO} + ')'">모집중</span>
+                                 </div>
+                              	 </a>
+                              	<div class="card-group-item col">
+                            <i class="bi bi-calendar4"></i>
+								  <span th:text="'운 영 : ' + ${#dates.format(row.JMS_CS_DATE, 'yyyy-MM-dd')} + ' ' + ${row.JMS_CS_TIME} + ':00'"></span>
+								</div>
+                              	
+                              	<div class="card-group-item col">
+								<i class="bi bi-calendar4"></i>
+                              	<span th:text="'마 감 일 : ' + ${#dates.format(row.EN_DATE, 'yyyy-MM-dd')} + ' ' + ${row.JMS_CS_TIME} + ':00'"></span>
+                              	  </div>
+                           <div class="text1">
+                              <p style="text-align: center"></p>
+                           </div>
+                           </div>
+                        </div>
+                     </div>
+	               </th:block>
+               </div>
 
-		<hr>
-		<div class="title-container">
-			<h4>집단상담 프로그램 목록</h4>
-		</div>
-	<div class="request">
-		<div class="container-1">
-			<div class="row">
-				<!-- Start of card loop -->
-				<th:block th:each="i : ${#numbers.sequence(1,8)}" >
-					<div class="col-sm-3 mb-2">
-						<div class="card">
-							<div class="card-body" style="height: 200px">
-								<a href="groupDetail"><img alt="/img/program.png"
-									src="/img/program.png" width="290" height="180"></a>
-							</div>
-							<div>
-								<p style= "text-align: center">
-									일정 : 2024년 05월 20일<br> 프로그램명 : 룰루랄랄라
-								</p>
-							</div>
-						</div>
-					</div>
-			</div>
-			</th:block>
-
-
-			<nav class="d-flex justify-content-center"
-				aria-label="Page navigation example">
-				<ul class="pagination">
-					<li class="page-item"><a class="page-link" href="#"
-						aria-label="Previous"><span aria-hidden="true">&laquo;</span></a></li>
-					<li class="page-item"><a class="page-link" href="#">1</a></li>
-					<li class="page-item"><a class="page-link" href="#">2</a></li>
-					<li class="page-item"><a class="page-link" href="#">3</a></li>
-					<li class="page-item"><a class="page-link" href="#"
-						aria-label="Next"><span aria-hidden="true">&raquo;</span></a></li>
-				</ul>
-			</nav>
-			<!-- Add more columns for additional images -->
-		</div>
-	</div>
-</section>
-	</div>
-		<th:block th:insert="~{index.html::jsImport}">CDN JS 링크</th:block>
-
-	<div id="grid"></div>
-</div>
+<!--  			페이징 -->
+<!--                <nav class="d-flex justify-content-center"> -->
+<!--                   <ul class="pagination"> -->
+<!--                      <li th:if="${currentPage != 0}" class="page-item"> -->
+<!--                         <a class="page-link" th:href="@{/groups(page=${currentPage - 1})}" aria-label="Previous">&laquo;</a> -->
+<!--                      </li> -->
+<!--                      <li th:each="i : ${#numbers.sequence(0, totalPages - 1)}" -->
+<!--                          th:classappend="${i == currentPage} ? 'active' : ''" -->
+<!--                          class="page-item"> -->
+<!--                         <a th:href="@{/groups(page=${i})}" th:text="${i + 1}" class="page-link"></a> -->
+<!--                      </li> -->
+<!--                      <li th:if="${currentPage < totalPages - 1}" class="page-item"> -->
+<!--                         <a class="page-link" th:href="@{/groups(page=${currentPage + 1})}" aria-label="Next">&raquo;</a> -->
+<!--                      </li> -->
+<!--                   </ul> -->
+<!--                </nav> -->
+               
+					<!-- Add more columns for additional images -->
+            </div>
+         </div>
+         
+      </div>
+   </section>
+   <!-- footer Start -->
+<th:block th:insert="~{menu.html::footer}"></th:block>
+      <th:block th:insert="~{index.html::jsImport}">CDN JS 링크</th:block>
 </body>
-<script>
-const gridData = [
-	
-	
-	];
 
-const grid = new tui.Grid({
-  el: document.getElementById('grid'),
-  data: gridData,
-  /* data : {
-  	api : {
-  		readData : { url : 'getList', method : 'GET'}
-  	}	
-  },  DB연결방법*/
-  rowHeaders: ['rowNum'],
-  pageOptions: {
-    useClient: true,
-    perPage: 5
-  },
-  scrollX: false,
-  scrollY: false,
-});
+<script>
+	
 </script>
 </html>

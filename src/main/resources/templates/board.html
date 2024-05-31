@@ -1,27 +1,154 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" lang="ko">
 <head>
-<th:block th:insert="~{menu.html::metaImport}">CDN META 링크</th:block>
 <meta charset="UTF-8">
-<title>문의하기</title>
-<th:block th:insert="~{menu.html::headImport}">CDN CSS 링크</th:block>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta name="description" content="Orbitor,business,company,agency,modern,bootstrap4,tech,software">
+  <meta name="author" content="themefisher.com">
+  <th:block th:insert="~{menu.html::metaImport}"></th:block>
+  <title>문의하기</title>
+
+  <!-- Favicon -->
+  <link rel="shortcut icon" type="image/x-icon" href="/img/favicon.ico" />
+  <!-- bootstrap.min css -->
+  <link rel="stylesheet" href="plugins/bootstrap/css/bootstrap.min.css">
+  <!-- Icon Font Css -->
+  <link rel="stylesheet" href="plugins/icofont/icofont.min.css">
+  <!-- Slick Slider  CSS -->
+  <link rel="stylesheet" href="plugins/slick-carousel/slick/slick.css">
+  <link rel="stylesheet" href="plugins/slick-carousel/slick/slick-theme.css">
+  <!-- Main Stylesheet -->
+  <link rel="stylesheet" href="css/style.css">
+  <!-- Toast Grid -->
+  <th:block th:insert="~{menu.html::toastgrid}"></th:block>
 </head>
-<body>
-	<th:block th:insert="~{menu.html::menu}">메뉴 들어가는 곳</th:block>
-	<h1 th:text="'문의 게시판'"></h1>
+
+<body id="top">
+<th:block th:insert="~{menu.html::header}"></th:block>
+<section class="section testimonial-2 gray-bg">
+	<div class="container">
+		<div class="row justify-content-center">
+			<div class="col-lg-7">
+				<div class="section-title text-center">
+					<h1 th:text="'문의 게시판'">타이틀들어가는곳</h1>
+					<div class="divider mx-auto my-4"></div>
+					<div id="grid"></div>
+				</div>
+				
+				<div class="section-title text-center">
+					<button th:onclick="boardWrite([[${user.username}]])" class="btn btn-danger" th:text="'글쓰기'">글쓰기버튼</button>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+<!-- footer Start -->
+<th:block th:insert="~{menu.html::footer}"></th:block>
+   
+    <!-- 
+    Essential Scripts
+    =====================================-->
+
+    
+    <!-- Main jQuery -->
+    <script src="plugins/jquery/jquery.js"></script>
+    <!-- Bootstrap 4.3.2 -->
+    <script src="plugins/bootstrap/js/popper.js"></script>
+    <script src="plugins/bootstrap/js/bootstrap.min.js"></script>
+    <script src="plugins/counterup/jquery.easing.js"></script>
+    <!-- Slick Slider -->
+    <script src="plugins/slick-carousel/slick/slick.min.js"></script>
+    <!-- Counterup -->
+    <script src="plugins/counterup/jquery.waypoints.min.js"></script>
+    <script src="plugins/shuffle/shuffle.min.js"></script>
+    <script src="plugins/counterup/jquery.counterup.min.js"></script>
+    <!-- Google Map -->
+    <script src="plugins/google-map/map.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAkeLMlsiwzp6b3Gnaxd86lvakimwGA6UA&callback=initMap"></script>    
+    <th:block th:insert="~{menu.html::scriptImport}"></th:block>
+    <script src="js/script.js"></script>
+    <script src="js/contact.js"></script>
+    <script src="js/write.js"></script>
+    <script type="text/javascript">
+	    const grid = new tui.Grid({
+			  el: document.getElementById('grid'),
+			  // rowHeaders: ['rowNum'],
+			  pageOptions: {
+			    useClient: true,
+			    perPage: 10,
+			  },
+			  scrollX: false,
+			  scrollY: false,
+			  columns: [
+			  	{
+			      header: '번호',
+			      name: 'board_no',
+			      width: 30,
+			      align: 'center',
+			    },
+			    {
+			      header: '제목',
+			      name: 'board_title',
+			      align: 'center',
+			    },
+			    {
+			      header: '작성자',
+			      name: 'name',
+			      width: 130,
+			      align: 'center',
+			    },
+			    {
+			      header: '답변여부',
+			      name: 'ans_yn',
+			      width: 100,
+			      align: 'center',
+			      formatter: 'listItemText',
+					editor : {
+						options : {
+							listItems : [
+								{ text: '미답변', value: "1" },
+								{ text: '답변완료', value: "2" },
+					            { text: '답변불필요', value: "3" },
+					            { text: '-', value: "4" },
+							],
+							//useViewMode: true
+						}	
+					},
+			    }
+			    ],
+			    contextMenu: null,
+			    columnOptions: {
+			      resizable: true
+			    },
+			});
+    
+		$(document).ready(function(){
+			$.ajax({
+				url : "/boardList",
+				type : "get",
+				dataType : "JSON",
+				contentType : "application/json; charset=UTF-8",
+				success : function(result) {
+					grid.resetData(result);
+					tui.Grid.applyTheme('clean', {});
+				}
+			});
+		});
+
+		grid.on("click", function (ev) {
+			let board = grid.getRow(ev.rowKey);
+			location.href = "/detail?no=" + board.board_no;
+		});
+	</script>
+	<script type="text/javascript">
+		const searchParams = new URLSearchParams(location.search);
 	
-	<table>
-		<tr th:each="list : ${list}">
-			<td><a th:text="${list.board_title}" th:href="@{/detail(no=${list.board_no})}"></a></td>
-			<td th:text="${list.username}">작성자</td>
-			<td th:text="${list.board_date}">작성일</td>
-			<td th:text="${list.ans_yn}">답변여부</td>
-		</tr>
-	</table>
-	
-	<th:block th:if="${user.username ne 'anonymousUser'}">
-		<button th:text="글쓰기" th:onclick="|location.href='@{/write}'|">글쓰기</button>
-	</th:block>
-	<th:block th:insert="~{menu.html::scriptImport}">CDN JS 링크</th:block>
+		if (searchParams.get("error") == 1) {
+			alert("본인 게시글만 확인 가능합니다.");
+		} else if (searchParams.get("error") == 2) {
+			alert("게시글 열람 권한이 없습니다.\n로그인이 필요합니다.");
+		}
+	</script>
 </body>
 </html>
+   

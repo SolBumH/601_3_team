@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="adminJkCounseling">
+	<insert id="getJkList" parameterType="JkDTO">
+		INSERT INTO JKS_SC (ST_NO, PLAN_YMD, CD_TM)
+		SELECT (SELECT ST_NO FROM ST_INFO WHERE USER_NO = #{USER_NO}), #{PLAN_YMD}, #{CD_TM}
+		WHERE NOT EXISTS (SELECT 1 FROM JKS_SC WHERE PLAN_YMD = #{PLAN_YMD} AND CD_TM = #{CD_TM})
+	</insert>
+	
+	<select id="searchList" resultType="JkDTO" parameterType="JkDTO">
+		SELECT js.ST_NO,js.PLAN_YMD,js.CD_TM FROM JKS_SC as js JOIN ST_INFO as si ON(js.ST_NO=si.ST_NO)
+		 WHERE js.PLAN_YMD = #{PLAN_YMD} AND si.USER_NO = #{USER_NO}
+	</select>
+</mapper>

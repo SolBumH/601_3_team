@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="ko">
+<head>
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="description" content="" />
+        <meta name="author" content="" />
+        <title>상담관리</title>
+        <link rel="shortcut icon" type="image/x-icon" href="/img/favicon.ico" />
+        <link href="/admin/css/styles.css" rel="stylesheet" />
+        <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
+        <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+</head>
+
+<body class="sb-nav-fixed">
+		<th:block th:insert="~{admin/adminmenu.html::topbar}"></th:block>
+		<th:block th:insert="~{admin/adminmenu.html::leftmenu}"></th:block>
+	
+<section class="section testimonial-2 gray-bg">
+	<div class="container">
+		<div class="row justify-content-center">
+			<div class="col-lg-7">
+				<div class="section-title text-center">
+					<h1 th:text="'상담 관리'">상담 관리</h1>
+					<div class="divider mx-auto my-4"></div>
+					<div class="section-title text-center">
+						<h1 th:text="'상담 가능일자 선택'">상담 가능일자 선택</h1>
+						<div class="divider mx-auto my-4"></div>
+					</div>
+					
+					<form action="/admin/jkselect" method="post" id="jkselectform" name="jkselectform">
+						<input type="hidden" name="_csrf" th:value="${_csrf.token}"/>
+				
+         		       	<div class="form-group mb-3">
+             		       	<label for="jkselectdate">상담 일자 선택:</label>
+        					<input class="form-control" onchange="datechange()" type="date" name = "jkselectdate"  id="jkselectdate"/>
+            	    	</div><hr>
+						
+						<div class="form-group mb-3">
+               		    	<label for="jkoption">상담 시간</label>
+            		       	<select id="jkoption" name="jkoption" class="form-control">
+           	 					<option value="">상담 가능 시간을 선택하세요</option>
+           		 				<option value="SC0110">10:00 ~ 10:50</option>
+           						<option value="SC0111">11:00 ~ 11:50</option>
+            					<option value="SC0113">13:00 ~ 13:50</option>
+            					<option value="SC0114">14:00 ~ 14:50</option>
+            					<option value="SC0115">15:00 ~ 15:50</option>
+            					<option value="SC0116">16:00 ~ 16:50</option>
+        					</select>
+						</div>
+						<div class="divider mx-auto my-4"></div>
+						<div>
+        					<input class="btn btn-danger" type="submit" value="가능 일정 선택" onclick="location.href='#'"/>
+						</div>
+					</form>
+				</div>
+			</div>		
+		</div>
+	</div>
+</section>
+
+
+		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+		<script src="/admin/js/scripts.js"></script>
+		<script src="/admin/js/calendar.js"></script>
+		<th:block th:insert="~{admin/adminmenu.html::admincalendarImport}"></th:block>
+</body>
+</html>
+   

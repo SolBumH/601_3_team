@@ -15,3 +15,4 @@ public class UserDTO {
 	private LocalDateTime rct_acc_dt;
 	private String role; // 권한
 }
+

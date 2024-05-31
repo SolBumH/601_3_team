@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- 부트 스트랩 -->
+<title>상담 예약</title>
+	<th:block th:insert="~{index.html::headImport}">CDN CSS 링크</th:block>
+ 	<link rel="stylesheet" href="/css/jkCounseling.css">
+</head>
+<body id="top">
+<th:block th:insert="~{menu.html::header}"></th:block>
+<section class="section testimonial-2 gray-bg">
+	<div class="container">
+		<div class="row justify-content-center">
+			<div class="col-lg-7">
+				<div class="section-title text-center">
+					<h1 th:text="${counselingTitle}">상담 텍스트 들어가는 곳</h1>
+					<div class="divider mx-auto my-4"></div>
+					<h5>
+						전문 상담 : 전 학년 ( 1 ~ 4학년 )<br>
+						이력서, 자기소개서 컨설팅 : 3, 4학년 인턴 및 취업준비생 위주(저학년도 가능)
+					</h5>
+				</div>
+				<div class="section-title text-center">
+					<h1 th:text="운영일시">운영일시</h1>
+					<div class="divider mx-auto my-4"></div>
+						<h5>학기 중 : 10:00 ~ 17:00 ( 월 ~ 금, 공휴일 제외 )</h5>
+				</div>
+				<div class="section-title text-center">
+					<h1 th:text="'상담 신청 방법'">상담신청방법</h1>
+					<div class="divider mx-auto my-4"></div>
+						<h5>상담은 온라인으로 예약 후 진행됩니다.</h5>
+						<h5>신청서 상에 기재된 모든 내용을 작성해주세요. * 필요 시 파일 첨부</h5>
+						<h5>모든 상담은 1:1 개별상담으로 진행됩니다.</h5>
+						<h5>상담시간은 50분입니다.</h5>				
+				</div>
+				
+					<div class="section-title text-center">
+               <!-- <button th:onclick="|location.href='@{/}'|" th:text="'상담 신청'">신청버튼</button> -->
+               <button class="btn btn-danger" th:onclick="loginCheck([[${user.username}]])" th:text="'상담 신청'">신청버튼</button>
+            </div>
+         </div>
+      </div>
+   </div>
+</section>
+	
+	
+	<hr class="long-horizontal-line">
+	<!-- footer Start -->
+	<th:block th:insert="~{menu.html::footer}"></th:block>
+	
+	
+	  <!-- Main jQuery -->
+    <script src="plugins/jquery/jquery.js"></script>
+    <!-- Bootstrap 4.3.2 -->
+    <script src="plugins/bootstrap/js/popper.js"></script>
+    <script src="plugins/bootstrap/js/bootstrap.min.js"></script>
+    <script src="plugins/counterup/jquery.easing.js"></script>
+    <!-- Slick Slider -->
+    <script src="plugins/slick-carousel/slick/slick.min.js"></script>
+    <!-- Counterup -->
+    <script src="plugins/counterup/jquery.waypoints.min.js"></script>
+    
+    <script src="plugins/shuffle/shuffle.min.js"></script>
+    <script src="plugins/counterup/jquery.counterup.min.js"></script>
+    <!-- Google Map -->
+    <script src="plugins/google-map/map.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAkeLMlsiwzp6b3Gnaxd86lvakimwGA6UA&callback=initMap"></script>    
+    
+      <script src="js/script.js"></script>
+    <script src="js/contact.js"></script>
+    <script src="js/loginCheck.js"></script>
+</body>
+</html>

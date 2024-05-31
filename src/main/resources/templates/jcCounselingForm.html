@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>상담 신청서 작성</title>
+<th:block th:insert="~{index.html::headImport}">CDN CSS 링크</th:block>
+<link rel="stylesheet" href="/css/jcCounselingForm.css">
+</head>
+
+<body id="top">
+	<th:block th:insert="~{menu.html::header}"></th:block>
+
+	<section class="section testimonial-4 gray-bg">
+		<div class="container">
+
+			<h4>상담 신청</h4>
+
+			<div class="section-title text-center">
+
+				<form action="/saveCounselingForm" method="post" enctype="multipart/form-data">
+					<div class="box">
+						<div class="container">
+							<span class="label"><b>상담 구분 : </b></span>
+							 <select id="selectedType" name="selectedType" class="form-select" aria-label="상담 종류 선택">
+								<option value="" selected disabled>원하는 상담을 선택하세요.</option>
+								<option value="10">지도교수 상담</option>
+								<option value="20">전문 상담</option>
+								<option value="30">심리 상담</option>
+								<option value="40">취업·진로 상담</option>
+							</select>
+						</div>
+					</div>
+
+					<table class="request">
+						<tr>
+							<th class="th" scope="row">상담 날짜</th>
+							<td th:text="${param.date}">
+							</td>
+							<td><input id="date" type="text" th:value="${param.date}" name="date" hidden="true"></td>
+						</tr>
+						<tr>
+							<th class="th" scope="row">상담 시간</th>
+							<td th:text="${param.time} + '시'"></td>
+							<td><input id="time" type="text" th:value="${param.time}" name="time" hidden="true"></td>
+						</tr>
+						<tr>
+							<th class="th" scope="row">이름</th>
+							<td th:text="${studentName}">
+							</td>
+							<td><input id="name" type="text" th:value="${studentName}" name="name" hidden="true"></td>
+						</tr>
+						<tr>
+							<th class="th" scope="row">학번</th>
+							<td th:text="${studentNumber}"></td>
+							<td><input id="studentNumber" type="text" th:value="${studentNumber}" name="studentNumber" hidden="true"></td>
+						</tr>
+
+						<tr>
+							<th class="th" scope="row">이메일</th>
+							<td>
+							<input id="email" type="text" class="wid53" name="email" placeholder="이메일을 입력해주세요">
+							</td>
+						</tr>
+						<tr>
+							<th class="th" scope="row">상담 내용</th>
+							<td>
+								<textarea id="counselingContent" name="counselingContent" placeholder="200자 이내(400byte)로 입력해 주세요"style="text-align: left;"></textarea>
+							</td>
+						</tr>
+					</table>
+
+					<div class="section-title text-center">
+						<button id="submitBtn" type="submit" class="btn btn-danger">신청하기</button>
+					</div>
+
+					<input type="hidden" name="_csrf" th:value="${_csrf.token}" />
+				</form>
+			</div>
+		</div>
+	</section>
+
+
+
+	<hr class="long-horizontal-line">
+	<!-- footer Start -->
+	<th:block th:insert="~{menu.html::footer}"></th:block>
+
+
+	<!-- Main jQuery -->
+	<script src="plugins/jquery/jquery.js"></script>
+	<!-- Bootstrap 4.3.2 -->
+	<script src="plugins/bootstrap/js/popper.js"></script>
+	<script src="plugins/bootstrap/js/bootstrap.min.js"></script>
+	<script src="plugins/counterup/jquery.easing.js"></script>
+	<!-- Slick Slider -->
+	<script src="plugins/slick-carousel/slick/slick.min.js"></script>
+	<!-- Counterup -->
+	<script src="plugins/counterup/jquery.waypoints.min.js"></script>
+
+	<script src="plugins/shuffle/shuffle.min.js"></script>
+	<script src="plugins/counterup/jquery.counterup.min.js"></script>
+	<!-- Google Map -->
+	<script src="plugins/google-map/map.js"></script>
+	<script
+		src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAkeLMlsiwzp6b3Gnaxd86lvakimwGA6UA&callback=initMap"></script>
+
+	<script src="js/script.js"></script>
+	<script src="js/contact.js"></script>
+	<script src="js/loginCheck.js"></script>
+	
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	
+</body>
+<script>
+// 상담 신청 버튼 클릭 시 상담 종류 선택 여부 확인
+document.querySelector(".btn").addEventListener("click", function() {
+    var selectedType = document.getElementById("selectedType").value;
+    if (selectedType === "") {
+        alert("상담 종류를 선택해주세요.");
+        event.preventDefault(); // 이벤트의 기본 동작 중지
+        return false; // 이벤트 버블링 차단
+    }
+});
+</script>
+
+</html>

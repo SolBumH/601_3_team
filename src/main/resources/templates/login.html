@@ -9,7 +9,7 @@
   <title>로그인</title>
 
   <!-- Favicon -->
-  <link rel="shortcut icon" type="image/x-icon" href="/images/favicon.ico" />
+  <link rel="shortcut icon" type="image/x-icon" href="/img/favicon.ico" />
   <!-- bootstrap.min css -->
   <link rel="stylesheet" href="plugins/bootstrap/css/bootstrap.min.css">
   <!-- Icon Font Css -->
@@ -22,7 +22,7 @@
 </head>
 
 <body id="top">
-<th:block th:insert="~{/menu.html::header}"></th:block>
+<th:block th:insert="~{menu.html::header}"></th:block>
 <section class="section testimonial-2 gray-bg">
 	<div class="container">
 		<div class="row justify-content-center">
@@ -32,22 +32,25 @@
 					<div class="divider mx-auto my-4"></div>
 					<div id="login">
 						<form method="post" action="/login" name="loginForm">
-							<div>
+							<div class="my-2">
 								<label class="form-label" th:text="아이디" for="username"></label>
 								<input class="form-control" type="text" name="username" placeholder="아이디"/>
 							</div>
-							<div>
+							<div class="my-2">
 								<label class="form-label" th:text="비밀번호" for="password"></label>
 								<input class="form-control" type="password" name="password" placeholder="비밀번호"/>
 							</div>
+							<th:block th:if="${#strings.equals(param.fail, '1')}">
+							  <div style="color:red;" th:text="'잘못된 로그인 시도입니다.'"></div>
+							</th:block>
 							<input type="hidden" name="_csrf" th:value="${_csrf.token}"/>
-							<button type="submit" th:text="로그인">로그인버튼</button>
+							<button type="submit" class="btn btn-danger my-2" th:text="로그인">로그인버튼</button>
 						</form>
 					</div>
-					<div>
-						<a th:text="'아이디 찾기'" th:href="@{/findMyId}">아이디찾기</a>
-						<a th:text="'비밀번호 찾기'" th:href="@{/findMyPw}">비번찾기</a>
-					</div>
+					<!-- <div class="my-2">
+						<a class="mx-2" th:text="'아이디 찾기'" th:href="@{/findMyId}">아이디찾기</a>
+						<a class="mx-2" th:text="'비밀번호 찾기'" th:href="@{/findMyPw}">비번찾기</a>
+					</div> -->
 				</div>
 			</div>
 		</div>

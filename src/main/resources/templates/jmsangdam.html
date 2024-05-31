@@ -9,7 +9,7 @@
   <title>전문 상담</title>
 
   <!-- Favicon -->
-  <link rel="shortcut icon" type="image/x-icon" href="/images/favicon.ico" />
+  <link rel="shortcut icon" type="image/x-icon" href="/img/favicon.ico" />
   <!-- bootstrap.min css -->
   <link rel="stylesheet" href="plugins/bootstrap/css/bootstrap.min.css">
   <!-- Icon Font Css -->
@@ -22,7 +22,7 @@
 </head>
 
 <body id="top">
-<th:block th:insert="~{/menu.html::header}"></th:block>
+<th:block th:insert="~{menu.html::header}"></th:block>
 <section class="section testimonial-2 gray-bg">
 	<div class="container">
 		<div class="row justify-content-center">
@@ -32,7 +32,7 @@
 					<div class="divider mx-auto my-4"></div>
 					<h5>
 						전문 상담 : 전 학년 ( 1 ~ 4학년 )<br>
-						주제 : 가족, 일상, 개인 등
+						주제 : 가족, 일상, 개인 등 원하는 주제로 진행
 					</h5>
 				</div>
 				<div class="section-title text-center">
@@ -43,15 +43,13 @@
 				<div class="section-title text-center">
 					<h1 th:text="'상담 신청 방법'">상담신청방법</h1>
 					<div class="divider mx-auto my-4"></div>
-						<h5>상담은 온라인으로 예약 후 진행됩니다.</h5>
+						<h5>모든 상담은 온라인으로 예약 후, 1 : 1 개별상담으로 진행됩니다.</h5>
 						<h5>신청서 상에 기재된 모든 내용을 작성해주세요. * 필요 시 파일 첨부</h5>
-						<h5>모든 상담은 1:1 개별상담으로 진행됩니다.</h5>
 						<h5>상담시간은 50분입니다.</h5>
 				</div>
 				
 				<div class="section-title text-center">
-					<!-- <button th:onclick="|location.href='@{/}'|" th:text="'상담 신청'">신청버튼</button> -->
-					<button th:onclick="loginCheck([[${user.username}]])" th:text="'상담 신청'">신청버튼</button>
+					<button class="btn btn-danger" th:onclick="loginCheck([[${user.username}]])" th:text="'상담 신청'">신청버튼</button>
 				</div>
 			</div>
 		</div>
@@ -59,7 +57,7 @@
 </section>
 <!-- footer Start -->
 <th:block th:insert="~{menu.html::footer}"></th:block>
-   
+
     <!-- 
     Essential Scripts
     =====================================-->

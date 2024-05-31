@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymelaf.org">
+<link rel="stylesheet" href="https://uicdn.toast.com/tui-grid/latest/tui-grid.css" />
+<link rel="stylesheet" href="https://uicdn.toast.com/tui.pagination/latest/tui-pagination.css" />
+<script src="https://uicdn.toast.com/tui.pagination/latest/tui-pagination.js"></script>
+<script src="https://uicdn.toast.com/tui-grid/latest/tui-grid.js"></script>
+<head>
+<th:block th:insert="~{menu.html::metaImport}"></th:block>
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+<meta name="description" content="" />
+<meta name="author" content="" />
+<title>게시글 답변하기</title>
+<link rel="shortcut icon" type="image/x-icon" href="/img/favicon.ico" />
+<link href="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/style.min.css" rel="stylesheet" />
+<link href="/admin/css/styles.css" rel="stylesheet" />
+<link href="/admin/css/response.css" rel="stylesheet" />
+<script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
+</head>
+<body class="sb-nav-fixed">
+	<th:block th:insert="~{admin/adminmenu.html::topbar}"></th:block>
+	<th:block th:insert="~{admin/adminmenu.html::leftmenu}"></th:block>
+	<div class="bodypart">
+		<h1 class="mb-3">게시글 답변</h1>
+		<div id="grid"></div>
+		
+		<div class="answerpart">
+			<div class="d-inline-block" style="width:45%;">
+				<div class="d-flex justify-content-between">
+					<div class="w40">
+					  <label for="responseNo" class="form-label" th:text="'글 번호'">글 번호</label>
+					  <input type="text" class="form-control" id="responseNo" readonly="readonly" />
+					</div>
+					<div class="w40">
+					  <label for="responseName" class="form-label" th:text="작성자" >작성자</label>
+					  <input type="text" class="form-control" id="responseName" readonly="readonly"/>
+					</div>
+				</div>
+				<div class="mb-3">
+				  <label for="responseTitle" class="form-label" th:text="'제목'"></label>
+				  <input type="text" class="form-control" id="responseTitle" readonly="readonly"/>
+				</div>
+				<div class="mb-3">
+				  <label for="responseContent" class="form-label" th:text="'내용'"></label>
+				  <textarea class="form-control responseTextarea" id="responseContent" readonly="readonly"></textarea>
+				</div>
+			</div>
+			<div class="d-inline-block ms-2" style="width:50%;">
+				<div class="mb-3">
+				  <label for="adminAnswer" class="form-label" th:text="'답변'"></label>
+				  <textarea class="form-control adminAnswer" id="adminAnswer" name="adminAnswer"></textarea>
+				</div>
+				<div class="d-flex justify-content-end">
+					<button class="btn btn-outline-dark mx-2"id="answerShowBtn" th:text="'답변 불러오기'"></button>
+					<button class="btn btn-outline-dark" id="answerBtn" th:text="답변하기"></button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+	<script src="/admin/js/scripts.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
+	<script src="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/umd/simple-datatables.min.js" crossorigin="anonymous"></script>
+	<script src="/admin/js/datatables-simple-demo.js"></script>
+	<!-- 제이쿼리 -->
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <!-- Toast UI Script -->
+    <script src="https://uicdn.toast.com/editor/latest/toastui-editor-all.min.js"></script>
+	<script type="text/javascript">
+		// csrf 토큰
+		const header = $("meta[name='_csrf_header']").attr("content");
+		const token = $("meta[name='_csrf']").attr("content");
+		
+		// 글 번호, 답변 번호
+		let board_no = 0;
+		let answer_yn = "1";
+		
+		const grid = new tui.Grid({
+		  el: document.getElementById("grid"),
+		  // rowHeaders : [ 'rowNum' ],
+		  pageOptions: {
+		    useClient: true,
+		    perPage: 5,
+		  },
+		  scrollX: false,
+		  scrollY: false,
+		  columns: [
+		    {
+		      header: "번호",
+		      name: "board_no",
+		      align: "center",
+		      width: 30,
+		    },
+		    {
+		      header: "제목",
+		      name: "board_title",
+		      width: 350,
+		      
+		    },
+		    {
+		      header: "내용",
+		      name: "board_content",
+		      // width: 400,
+		    },
+		    {
+		      header: "작성자",
+		      name: "name",
+		      align: "center",
+		      width: 100,
+		    },
+		    {
+		      header: "삭제 여부",
+		      name: "del_yn",
+		      filter: "select", // 필터
+		      align: "center",
+		      width: 100,
+		      formatter: "listItemText",
+		      editor: {
+		        options: {
+		          listItems: [
+		            { text: "미삭제", value: "1" },
+		            { text: "삭제", value: "2" },
+		          ],
+		        },
+		      },
+		    },
+		    {
+		      header: "답변",
+		      name: "ans_yn",
+		      filter: "select",
+		      align: "center",
+		      width: 130,
+		      formatter: "listItemText",
+		      editor: {
+		        options: {
+		          listItems: [
+		            { text: "미답변", value: "1" },
+		            { text: "답변완료", value: "2" },
+		            { text: "답변불필요", value: "3" },
+		            { text: "-", value: "4" },
+		          ],
+		        },
+		      },
+		    },
+		  ],
+		});
+		
+		$(document).ready(function () {
+		  $.ajax({
+		    url: "/admin/boardList",
+		    type: "get",
+		    dataType: "JSON",
+		    contentType: "application/json; charset=UTF-8",
+		    success: function (result) {
+		      grid.resetData(result);
+		    },
+		  });
+		  
+		  grid.on("click", function (ev) {
+				let board = grid.getRow(ev.rowKey);
+				if (board != null) {
+					$('#responseNo').val(board.board_no);
+					$('#responseName').val(board.name);
+					$('#responseTitle').val(board.board_title);
+					$('#responseContent').text(board.board_content);
+					$('#adminAnswer').val("");
+					board_no = board.board_no;
+					answer_yn = board.ans_yn;
+				}
+		  });
+		  
+		  $('#answerBtn').on('click', function() {
+			  if (!board_no) {
+				  alert("답변 할 글을 선택 후 진행해주세요.");
+			  } else {
+				  let answer = $('#adminAnswer').val();
+				  // console.log(answer);
+				  
+				  $.ajax({
+					  url: '/admin/answerPost',
+					  type: 'post',
+					  data: {'board_no' : board_no, "answer" : answer},
+					  dataType: "text",
+					  beforeSend: function (xhr) {
+					      xhr.setRequestHeader(header, token);
+					  },
+					  success: function (result) {
+						  console.log(result);
+						  if (result == 1) {
+							  alert("답변 작성 완료");
+							  $('#responseNo').val("");
+							  $('#responseName').val("");
+							  $('#responseTitle').val("");
+							  $('#responseContent').text("");
+							  $('#adminAnswer').val("");
+							  board = 0;
+						  }
+					  },
+					  error: function (xhr, status, error) {
+					      alert("통신 에러 발생");
+					  },
+				  });
+			  }
+		  });
+		  
+		  $('#answerShowBtn').on('click', function() {
+			  if (!board_no || answer_yn == 1) {
+				  alert("답변이 없거나 글이 선택되지 않았습니다.");
+			  } else {
+				  $.ajax({
+					  url: '/admin/answerContent',
+					  type: 'post',
+					  data: {'board_no' : board_no,},
+					  dataType: "text",
+					  beforeSend: function (xhr) {
+					      xhr.setRequestHeader(header, token);
+					  },
+					  success: function (result) {
+						  console.log(result);
+						  $('#adminAnswer').val(result);
+					  },
+					  error: function (xhr, status, error) {
+					      alert("통신 에러 발생");
+					  },
+				  });
+			  }
+		  });
+		});
+	</script>
+</body>
+</html>

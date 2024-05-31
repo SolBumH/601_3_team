@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.team_3.repository.MypageRepository">
+
+	<select id="mypageBoardList" resultType="BoardDTO">
+		select BOARD_NO, u.NAME , BOARD_TITLE, BOARD_CONTENT, DEL_YN, ANS_YN,
+		DATE_FORMAT(BOARD_DATE, '%Y-%m-%d %H:%i') as BOARD_DATE
+		from Inq_Board ib join `USER` u
+		on BOARD_USER = USER_NO
+		where ib.BOARD_USER = #{user_no}
+		and ib.DEL_YN = '1'
+	</select>
+
+	<update id="boardDelete" parameterType="Integer">
+		update Inq_Board set DEL_YN = '2'
+		where BOARD_NO = #{board_no}
+	</update>
+
+	<select id="jmSangdamList" parameterType="UserDTO" resultType="CounselingFormDTO">
+		select * from JMS_List
+		where STUD_NO = (select STUD_NO from STUD_INFO where USER_NO = #{user_no})
+		order by RS_DATE, RS_TIME
+	</select>
+	
+	<select id="srSangdamList" parameterType="UserDTO" resultType="CounselingFormDTO">
+		select * from SR_List
+		where STUD_NO = (select STUD_NO from STUD_INFO where USER_NO = #{user_no})
+		order by RS_DATE, RS_TIME
+	</select>
+	<select id="jkSangdamList" parameterType="UserDTO" resultType="CounselingFormDTO">
+		select * from JKS_ST
+		where STUD_NO = (select STUD_NO from STUD_INFO where USER_NO = #{user_no})
+		order by RS_DATE, RS_TIME
+	</select>
+	<select id="jcSangdamList" parameterType="UserDTO" resultType="CounselingFormDTO">
+		select * from JC_LIST
+		where STUD_NO = (select STUD_NO from STUD_INFO where USER_NO = #{user_no})
+		order by RS_DATE, RS_TIME
+	</select>
+
+	<update id="cancelJKSangdam" parameterType="Integer">
+		update JKS_ST set RSVT_YN = '3'
+		where JKS_NO = #{no}
+	</update>
+	<update id="cancelJMSangdam" parameterType="Integer">
+		update JMS_List set RSVT_YN = '3'
+		where JMS_NO = #{no}
+	</update>
+	<update id="cancelSRSangdam" parameterType="Integer">
+		update SR_List set RSVT_YN = '3'
+		where SR_NO = #{no}
+	</update>
+	<update id="cancelJCSangdam" parameterType="Integer">
+		update JC_LIST set RSVT_YN = '3'
+		where JC_NO = #{no}
+	</update>
+
+	<select id="findStudentNumber" resultType="String">
+		SELECT STUD_NO FROM student_user_view WHERE username = #{username}
+	</select>
+
+	<select id="findStud_dept" resultType="String">
+		SELECT STUD_DEPT FROM student_user_view WHERE username = #{username}
+	</select>
+
+	<select id="findPhone" resultType="String">
+		SELECT STUD_PHONE FROM student_user_view WHERE username = #{username}
+	</select>
+</mapper>

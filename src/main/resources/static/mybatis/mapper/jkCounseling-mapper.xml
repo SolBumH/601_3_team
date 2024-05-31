@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="JkCounseling">
+
+	<select id="getSchedule" resultType="JkDTO" parameterType="String">
+		SELECT ST_NO, RIGHT(CD_TM,2) as CD_TM FROM JKS_SC WHERE PLAN_YMD = #{date} ORDER BY CD_TM
+	</select>
+	
+		<!-- 지도교수-->
+	<insert id="saveAdvisorCounselingForm" parameterType="com.team_3.dto.CounselingFormDTO">
+	INSERT INTO JKS_ST (RS_DATE, RS_TIME, STUD_NO, email, CS_TEXT )
+    	VALUES (#{RS_DATE}, #{RS_TIME}, #{STUD_NO}, #{email}, #{CS_TEXT})
+	</insert>
+
+	<!-- 전문 상담-->
+	<insert id="saveExpertCounselingForm"	parameterType="com.team_3.dto.CounselingFormDTO">
+	INSERT INTO JMS_List (RS_DATE, RS_TIME, STUD_NO, email, content)
+    	VALUES (#{RS_DATE}, #{RS_TIME}, #{STUD_NO}, #{email}, #{CS_TEXT})
+	</insert>
+
+	<!-- 심리 상담 -->
+	<insert id="savePsychologicalCounselingForm" parameterType="com.team_3.dto.CounselingFormDTO">
+		INSERT INTO SR_List (RS_DATE, RS_TIME, STUD_NO, email, content )
+    	VALUES (#{RS_DATE}, #{RS_TIME}, #{STUD_NO}, #{email}, #{CS_TEXT})
+	</insert>
+
+	<!-- 취업 상담-->
+	<insert id="saveEmploymentCounselingForm" parameterType="com.team_3.dto.CounselingFormDTO">
+	INSERT INTO JC_LIST (RS_DATE, RS_TIME, STUD_NO, email, content )
+    	VALUES (#{RS_DATE}, #{RS_TIME}, #{STUD_NO}, #{email}, #{CS_TEXT})
+	</insert>
+	
+	<select id="findByStudno" resultType="String" parameterType="com.team_3.dto.CounselingFormDTO">
+ 		 SELECT STUD_NO FROM student_user_view WHERE USERNAME = #{USERNAME}
+	</select>
+	
+</mapper>

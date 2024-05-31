@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="admin">
+	<select id="AdminBoard" resultType="BoardDTO">
+		select ib.BOARD_NO, ib.BOARD_BF_NO, ib.BOARD_ANS_NO,
+		ib.BOARD_TITLE, ib.BOARD_CONTENT, ib.BOARD_DATE, u.NAME,
+		ib.ANS_YN, ib.DEL_YN
+		from Inq_Board ib
+		join `USER` u
+		where ib.BOARD_USER = u.USER_NO
+		<!-- and ib.DEL_YN = '1' -->
+		and ans_yn != 4
+		order by ib.BOARD_DATE DESC, ib.BOARD_NO DESC
+	</select>
+
+	<select id="AdminUser" resultType="userDTO">
+		SELECT * FROM USER
+	</select>
+
+	<update id="updateBoardDel" parameterType="BoardDTO">
+		update Inq_Board set
+		DEL_YN = #{del_yn}
+		where BOARD_NO = #{board_no}
+	</update>
+
+	<update id="userUpdate" parameterType="userDTO">
+		UPDATE USER SET ROLE = #{role}
+		WHERE USER_NO = #{user_no}
+	</update>
+
+	<update id="answerNumberUpdate" parameterType="BoardDTO">
+		update Inq_Board set ANS_YN = "2", BOARD_ANS_NO = #{board_ans_no}
+		<!-- (ANS_YN, BOARD_ANS_NO) = ("2", #{board_ans_no}) -->
+		where BOARD_NO = #{board_no};
+	</update>
+
+	<select id="getAnswerContent" parameterType="Integer"
+		resultType="String">
+		select BOARD_CONTENT from Inq_Board
+		where BOARD_BF_NO = #{board_no}
+	</select>
+
+	<insert id="answerPostInsert" parameterType="BoardDTO">
+		<!-- Insert query -->
+		insert into Inq_Board (BOARD_BF_NO, BOARD_USER, BOARD_TITLE, BOARD_CONTENT, ANS_YN)
+		values (#{board_no}, (select USER_NO from USER where USERNAME = #{name}),
+		#{board_title}, #{board_content}, '4');
+		<!-- Select the last inserted ID -->
+		<selectKey resultType="Integer" keyProperty="board_ans_no" order="AFTER">
+			select last_insert_id()
+		</selectKey>
+	</insert>
+
+	<update id="answerPostUpdate" parameterType="BoardDTO">
+		<!-- Update query -->
+		update Inq_Board set BOARD_CONTENT = #{board_content}
+		where BOARD_BF_NO = #{board_no}
+	</update>
+
+	<select id="getAnsYn" resultType="String" parameterType="BoardDTO">
+		select ANS_YN from Inq_Board where BOARD_NO = #{board_no}
+	</select>
+	
+	<select id="getJMSangdamList" resultType="CounselingFormDTO">
+		select jm.*, jm.JMS_BF_NO as BF_NO, name from JMS_List jm
+		join STUD_INFO st on jm.STUD_NO = st.STUD_NO
+		join USER us on st.USER_NO = us.USER_NO
+		order by RS_DATE, RS_TIME, JMS_NO DESC;
+	</select>
+	
+	<select id="getSRSangdamList" resultType="CounselingFormDTO">
+		select sr.*, sr.SR_BF_NO as BF_NO, us.name from SR_List sr
+		join STUD_INFO st on sr.STUD_NO = st.STUD_NO
+		join USER us on st.USER_NO = us.USER_NO
+		order by RS_DATE, RS_TIME, SR_NO DESC;
+	</select>
+	
+	<select id="getJCSangdamList" resultType="CounselingFormDTO">
+		select jc.*, us.name from JC_LIST jc
+		join STUD_INFO st on jc.STUD_NO = st.STUD_NO
+		join USER us on st.USER_NO = us.USER_NO
+		order by RS_DATE, RS_TIME, JC_NO DESC;
+	</select>
+	<select id="getJKSangdamList" resultType="CounselingFormDTO">
+		select jc.*, us.name from JKS_ST jc
+		join STUD_INFO st on jc.STUD_NO = st.STUD_NO
+		join USER us on st.USER_NO = us.USER_NO
+		order by RS_DATE, RS_TIME, JKS_NO DESC;
+	</select>
+	
+	<select id="getCodeList" resultType="com.team_3.dto.CodeDTO">
+		SELECT * FROM CODE 
+	</select>
+	
+	<update id="changeJMSRSVT">
+		update JMS_List set ST_NO = (select ST_NO from st_info_view where USER_NO = #{ST_NO}),
+		RSVT_YN = #{RSVT_YN}, RS_CF = #{RS_CF}, RS_CF_TIME = #{RS_CF_TIME}
+		where JMS_NO = #{JMS_NO};
+	</update>
+	<update id="changeSRSRSVT">
+		update SR_List set ST_NO = (select ST_NO from st_info_view where USER_NO = #{ST_NO}),
+		RSVT_YN = #{RSVT_YN}, RS_CF = #{RS_CF}, RS_CF_TIME = #{RS_CF_TIME}
+		where SR_NO = #{SR_NO};
+	</update>
+	<update id="changeJCSRSVT">
+		update JC_LIST set ST_NO = (select ST_NO from st_info_view where USER_NO = #{ST_NO}),
+		RSVT_YN = #{RSVT_YN}, RS_CF = #{RS_CF}, RS_CF_TIME = #{RS_CF_TIME}
+		where JC_NO = #{JC_NO};
+	</update>
+	<update id="changeJKSRSVT">
+		update JKS_ST set ST_NO = (select ST_NO from st_info_view where USER_NO = #{ST_NO}),
+		RSVT_YN = #{RSVT_YN}, RS_CF = #{RS_CF}, RS_CF_TIME = #{RS_CF_TIME}
+		where JKS_NO = #{JKS_NO};
+	</update>
+	
+	<update id="JMSCancel" parameterType="CounselingFormDTO">
+		update JMS_List set RSVT_YN = #{RSVT_YN}
+		where JMS_NO = #{JMS_NO}
+	</update>
+	<update id="SRSCancel" parameterType="CounselingFormDTO">
+		update SR_List set RSVT_YN = #{RSVT_YN}
+		where SR_NO = #{SR_NO}
+	</update>
+	<update id="JCSCancel" parameterType="CounselingFormDTO">
+		update JC_LIST set RSVT_YN = #{RSVT_YN}
+		where JC_NO = #{JC_NO}
+	</update>
+	<update id="JKSCancel" parameterType="CounselingFormDTO">
+		update JKS_ST set RSVT_YN = #{RSVT_YN}
+		where JKS_NO = #{JKS_NO}
+	</update>
+	
+	<update id="JMSUpdateDateAndTime" parameterType="CounselingFormDTO">
+		update JMS_List set RS_CF = #{RS_CF}, RS_CF_TIME = #{RS_CF_TIME}
+		where JMS_NO = #{JMS_NO};
+	</update>
+	<update id="SRSUpdateDateAndTime" parameterType="CounselingFormDTO">
+		update SR_List set RS_CF = #{RS_CF}, RS_CF_TIME = #{RS_CF_TIME}
+		where SR_NO = #{SR_NO};
+	</update>
+	<update id="JCSUpdateDateAndTime" parameterType="CounselingFormDTO">
+		update JC_LIST set RS_CF = #{RS_CF}, RS_CF_TIME = #{RS_CF_TIME}
+		where JC_NO = #{JC_NO};
+	</update>
+	<update id="JKSUpdateDateAndTime" parameterType="CounselingFormDTO">
+		update JKS_ST set RS_CF = #{RS_CF}, RS_CF_TIME = #{RS_CF_TIME}
+		where JKS_NO = #{JKS_NO};
+	</update>
+	
+	<update id="JMSfinishedSangdam" parameterType="CounselingFormDTO">
+		update JMS_List set CS_DATE = #{RS_CF}, CS_TIME = #{RS_CF_TIME},
+							CS_TEXT = #{CONTENT}, RSVT_YN = '4'
+		where JMS_NO = #{JMS_NO};
+	</update>
+	<update id="SRSfinishedSangdam" parameterType="CounselingFormDTO">
+		update SR_List set CS_DATE = #{RS_CF}, CS_TIME = #{RS_CF_TIME},
+							CS_TEXT = #{CONTENT}, RSVT_YN = '4'
+		where SR_NO = #{SR_NO};
+	</update>
+	<update id="JCSfinishedSangdam" parameterType="CounselingFormDTO">
+		update JC_LIST set CS_DATE = #{RS_CF}, CS_TIME = #{RS_CF_TIME},
+							CS_TEXT = #{CONTENT}, RSVT_YN = '4'
+		where JC_NO = #{JC_NO};
+	</update>
+	<update id="JKSfinishedSangdam" parameterType="CounselingFormDTO">
+		update JKS_ST set CS_DATE = #{RS_CF}, CS_TIME = #{RS_CF_TIME},
+							CS_TEXT = #{CONTENT}, RSVT_YN = '4'
+		where JKS_NO = #{JKS_NO};
+	</update>
+	
+	<select id="chart" resultType="Map">
+		select * from JMS_List
+		where 
+	</select>
+	
+	<select id="groupList" resultType="GroupDTO">
+		SELECT JD_NO , ST_NO , PG_NAME , PG_EXPLAIN , EN_DATE , 
+           JMS_CS_DATE , JMS_CS_TIME , TO_NO , PA_NO , AP_NO
+    	FROM JDSD_VIEW
+	</select>
+	
+	
+	<insert id="saveGroup" parameterType="GroupDTO">
+		INSERT INTO JDSD_Info
+		(PG_NAME, PG_EXPLAIN, JMS_CS_DATE, JMS_CS_TIME, EN_DATE, TO_NO, PA_NO)
+		VALUES (#{PG_NAME}, #{PG_EXPLAIN}, #{JMS_CS_DATE}, #{JMS_CS_TIME}, #{EN_DATE}, #{TO_NO}, #{PA_NO})
+	</insert>
+</mapper>
